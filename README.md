@@ -27,7 +27,7 @@ This project tests whether **prompt repair systematically improves medical QA ro
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/<your-username>/medical_llm_project.git
+git clone https://github.com/michaelliruoxi/medical_llm_project.git
 cd medical_llm_project
 ```
 
