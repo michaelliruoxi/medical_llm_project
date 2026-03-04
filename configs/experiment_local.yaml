@@ -1,0 +1,29 @@
+backend: local
+
+n_examples: 5
+noise_variants_per_question: 1
+random_seed: 42
+
+noise_types:
+  - typos_grammar
+
+answer_model: microsoft/biogpt
+repair_model: microsoft/biogpt
+noise_model: google/flan-t5-base
+judge_model: google/flan-t5-base
+
+temperature_answer: 0.2
+temperature_noise: 0.8
+temperature_repair: 0.2
+temperature_judge: 0.0
+
+max_tokens_answer: 128
+max_tokens_repair: 64
+max_tokens_noise: 100
+max_tokens_judge: 10
+
+paths:
+  raw_data: data/raw
+  processed_data: data/processed
+  outputs: data/outputs
+  cache: data/outputs/cache
