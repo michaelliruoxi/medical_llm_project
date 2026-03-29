@@ -1,0 +1,42 @@
+backend: openai
+
+enabled: false
+run_priority: 70
+n_examples: 50
+noise_variants_per_question: 1
+random_seed: 42
+
+noise_types:
+  - typos_grammar
+  - ambiguity
+  - layperson
+  - incomplete
+  - overgeneralization
+
+api_mode: responses
+
+answer_model: gpt-5.2
+repair_model: gpt-5.2
+noise_model: gpt-5.2
+judge_model: gpt-5.2
+
+reasoning_effort_answer: medium
+reasoning_effort_repair: low
+reasoning_effort_noise: low
+reasoning_effort_judge: low
+
+temperature_answer: 0.2
+temperature_noise: 0.8
+temperature_repair: 0.2
+temperature_judge: 0.0
+
+max_tokens_answer: 300
+max_tokens_repair: 120
+max_tokens_noise: 150
+max_tokens_judge: 200
+
+paths:
+  raw_data: data/raw
+  processed_data: data/processed
+  outputs: data/outputs
+  cache: data/outputs/cache

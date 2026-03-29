@@ -31,9 +31,15 @@ sys.path.insert(0, str(PROJECT_ROOT))
 
 import numpy as np
 import pandas as pd
-import sacrebleu
 from bert_score import score as bert_score_fn
 
+from src.metrics import (
+    compute_bleu_score,
+    compute_chrf_score,
+    compute_exact_match_score,
+    compute_rouge_l_score,
+    compute_token_f1_score,
+)
 from src.utils import load_prompts, setup_logging, load_config
 from src.noise import generate_noisy_variant
 from src.answer import answer_question
@@ -154,12 +160,24 @@ def run_test(config_path: str):
         logger.info("  Q: %s", repaired_q[:60])
         logger.info("  A: %s\n", ans[:120])
 
-    # ---- Step 6: Evaluate (BLEU + BERTScore) ----
-    print("\n--- Step 6: Evaluation (BLEU + BERTScore) ---\n")
+    # ---- Step 6: Evaluate (lexical + semantic metrics) ----
+    print("\n--- Step 6: Evaluation (lexical + semantic metrics) ---\n")
     refs = df["answer"].tolist()
 
     def compute_bleu(preds, refs):
-        return [sacrebleu.sentence_bleu(p, [r]).score for p, r in zip(preds, refs)]
+        return [compute_bleu_score(p, r) for p, r in zip(preds, refs)]
+
+    def compute_chrf(preds, refs):
+        return [compute_chrf_score(p, r) for p, r in zip(preds, refs)]
+
+    def compute_rouge_l(preds, refs):
+        return [compute_rouge_l_score(p, r) for p, r in zip(preds, refs)]
+
+    def compute_token_f1(preds, refs):
+        return [compute_token_f1_score(p, r) for p, r in zip(preds, refs)]
+
+    def compute_exact_match(preds, refs):
+        return [compute_exact_match_score(p, r) for p, r in zip(preds, refs)]
 
     def compute_bertscore(preds, refs):
         _, _, f1 = bert_score_fn(preds, refs, lang="en", verbose=False)
@@ -168,6 +186,22 @@ def run_test(config_path: str):
     bleu_clean = compute_bleu(answers_clean, refs)
     bleu_noisy = compute_bleu(answers_noisy, refs)
     bleu_repaired = compute_bleu(answers_repaired, refs)
+
+    chrf_clean = compute_chrf(answers_clean, refs)
+    chrf_noisy = compute_chrf(answers_noisy, refs)
+    chrf_repaired = compute_chrf(answers_repaired, refs)
+
+    rouge_clean = compute_rouge_l(answers_clean, refs)
+    rouge_noisy = compute_rouge_l(answers_noisy, refs)
+    rouge_repaired = compute_rouge_l(answers_repaired, refs)
+
+    token_f1_clean = compute_token_f1(answers_clean, refs)
+    token_f1_noisy = compute_token_f1(answers_noisy, refs)
+    token_f1_repaired = compute_token_f1(answers_repaired, refs)
+
+    exact_clean = compute_exact_match(answers_clean, refs)
+    exact_noisy = compute_exact_match(answers_noisy, refs)
+    exact_repaired = compute_exact_match(answers_repaired, refs)
 
     bert_clean = compute_bertscore(answers_clean, refs)
     bert_noisy = compute_bertscore(answers_noisy, refs)
@@ -193,6 +227,10 @@ def run_test(config_path: str):
     print(f"  {'Metric':<20} {'Clean':>10} {'Noisy':>10} {'Repaired':>10}")
     print(f"  {'-'*50}")
     print(f"  {'BLEU':<20} {mean(bleu_clean):>10.2f} {mean(bleu_noisy):>10.2f} {mean(bleu_repaired):>10.2f}")
+    print(f"  {'chrF':<20} {mean(chrf_clean):>10.2f} {mean(chrf_noisy):>10.2f} {mean(chrf_repaired):>10.2f}")
+    print(f"  {'ROUGE-L F1':<20} {mean(rouge_clean):>10.2f} {mean(rouge_noisy):>10.2f} {mean(rouge_repaired):>10.2f}")
+    print(f"  {'Token F1':<20} {mean(token_f1_clean):>10.2f} {mean(token_f1_noisy):>10.2f} {mean(token_f1_repaired):>10.2f}")
+    print(f"  {'Exact Match':<20} {mean(exact_clean):>10.2f} {mean(exact_noisy):>10.2f} {mean(exact_repaired):>10.2f}")
     print(f"  {'BERTScore F1':<20} {mean(bert_clean):>10.4f} {mean(bert_noisy):>10.4f} {mean(bert_repaired):>10.4f}")
     print(f"  {'Judge (0-3)':<20} {mean(judge_clean):>10.2f} {mean(judge_noisy):>10.2f} {mean(judge_repaired):>10.2f}")
     print()
@@ -215,6 +253,10 @@ def run_test(config_path: str):
         "model": cfg["answer_model"],
         "samples": [],
         "bleu": {"clean": bleu_clean, "noisy": bleu_noisy, "repaired": bleu_repaired},
+        "chrf": {"clean": chrf_clean, "noisy": chrf_noisy, "repaired": chrf_repaired},
+        "rouge_l": {"clean": rouge_clean, "noisy": rouge_noisy, "repaired": rouge_repaired},
+        "token_f1": {"clean": token_f1_clean, "noisy": token_f1_noisy, "repaired": token_f1_repaired},
+        "exact_match": {"clean": exact_clean, "noisy": exact_noisy, "repaired": exact_repaired},
         "bertscore": {"clean": bert_clean, "noisy": bert_noisy, "repaired": bert_repaired},
         "judge": {"clean": judge_clean, "noisy": judge_noisy, "repaired": judge_repaired},
     }
@@ -240,16 +282,20 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run local model test")
     parser.add_argument("--gpu", action="store_true",
                         help="Use GPU config (Mistral-7B-Instruct) instead of CPU config")
+    parser.add_argument("--config", type=str, default=None,
+                        help="Path to a custom config YAML (overrides --gpu)")
     parser.add_argument("--clear-cache", action="store_true",
                         help="Clear cached LLM responses before running")
     args = parser.parse_args()
 
-    if args.gpu:
+    if args.config:
+        config_path = str(Path(args.config).resolve())
+    elif args.gpu:
         config_path = str(PROJECT_ROOT / "configs" / "experiment_local_gpu.yaml")
     else:
         config_path = str(PROJECT_ROOT / "configs" / "experiment_local.yaml")
 
-    if args.clear_cache or args.gpu:
+    if args.clear_cache:
         clear_cache()
 
     run_test(config_path)

@@ -1,4 +1,4 @@
-"""Step E (part 2): LLM-as-judge scoring — rate each predicted answer 0-3 against the reference."""
+"""Step E (part 2): LLM-as-judge scoring - rate each predicted answer 0-3 against the reference."""
 
 import argparse
 import re
@@ -6,15 +6,27 @@ import re
 import pandas as pd
 from tqdm import tqdm
 
-from src.utils import PROJECT_ROOT, load_config, load_prompts, call_llm, setup_logging, get_token_tracker
+from src.utils import (
+    PROJECT_ROOT,
+    _majority_vote_int,
+    call_llm,
+    get_token_tracker,
+    load_config,
+    load_prompts,
+    setup_logging,
+)
 
 
 logger = setup_logging()
 
 
 def judge_answer(reference: str, prediction: str, prompts: dict, cfg: dict,
-                  question: str = "") -> int:
-    """Ask the judge LLM to score a prediction against a reference (0-3)."""
+                 question: str = "") -> int:
+    """Ask the judge LLM to score a prediction against a reference (0-3).
+
+    When ``n_votes_judge`` > 1 in the config, multiple judge calls are made
+    and the final score is determined by majority vote (hallucination control).
+    """
     system_msg = prompts["judge"]["system"]
     user_msg = prompts["judge"]["user_template"].format(
         question=question, reference=reference, prediction=prediction
@@ -23,25 +35,59 @@ def judge_answer(reference: str, prediction: str, prompts: dict, cfg: dict,
         {"role": "system", "content": system_msg},
         {"role": "user", "content": user_msg},
     ]
-    raw = call_llm(
-        messages=messages,
-        model=cfg["judge_model"],
-        temperature=cfg.get("temperature_judge", 0.0),
-        max_tokens=cfg.get("max_tokens_judge", 50),
-        backend=cfg.get("backend", "openai"),
-    )
-    return _parse_score(raw)
+
+    n_votes = cfg.get("n_votes_judge", 1)
+    common_kwargs = {
+        "messages": messages,
+        "model": cfg["judge_model"],
+        "max_tokens": cfg.get("max_tokens_judge", 50),
+        "backend": cfg.get("backend", "openai"),
+        "quantization": cfg.get("quantization", "none"),
+        "api_mode": cfg.get("api_mode", "chat_completions"),
+        "reasoning_effort": cfg.get("reasoning_effort_judge", cfg.get("reasoning_effort")),
+    }
+
+    if n_votes <= 1:
+        raw = call_llm(
+            temperature=cfg.get("temperature_judge", 0.0),
+            **common_kwargs,
+        )
+        return _parse_score(raw)
+
+    scores = []
+    vote_temp = max(cfg.get("temperature_judge", 0.0), 0.3)
+    for _ in range(n_votes):
+        raw = call_llm(
+            temperature=vote_temp,
+            use_cache=False,  # each vote must be independent
+            **common_kwargs,
+        )
+        scores.append(_parse_score(raw))
+    return _majority_vote_int(scores)
+
+
+def _normalize_score(raw_score: int) -> int:
+    if raw_score <= 3:
+        return raw_score
+    logger.warning("Judge returned out-of-rubric score %s; clamping to 3", raw_score)
+    return 3
 
 
 def _parse_score(text: str) -> int:
-    """Extract the final 0-3 integer from the judge response.
+    """Extract the 0-3 score from the judge response.
 
-    With chain-of-thought judging the score is the last digit in the output.
+    Tries structured patterns first, then falls back to the last standalone
+    digit 0-5 in the output. Out-of-rubric values 4-5 are clamped to 3.
     """
-    matches = re.findall(r"[0-3]", text)
-    if matches:
-        return int(matches[-1])
-    logger.warning("Could not parse judge score from: %r — defaulting to 0", text)
+    explicit = re.findall(r"(?:score|rating)\s*[:=]\s*([0-5])", text, re.IGNORECASE)
+    if explicit:
+        return _normalize_score(int(explicit[-1]))
+
+    standalone = re.findall(r"(?<!\d)([0-5])(?!\d)", text)
+    if standalone:
+        return _normalize_score(int(standalone[-1]))
+
+    logger.warning("Could not parse judge score from: %r - defaulting to 0", text)
     return 0
 
 

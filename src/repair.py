@@ -25,6 +25,9 @@ def repair_question(noisy_question: str, prompts: dict, cfg: dict) -> str:
         temperature=cfg["temperature_repair"],
         max_tokens=cfg["max_tokens_repair"],
         backend=cfg.get("backend", "openai"),
+        quantization=cfg.get("quantization", "none"),
+        api_mode=cfg.get("api_mode", "chat_completions"),
+        reasoning_effort=cfg.get("reasoning_effort_repair", cfg.get("reasoning_effort")),
     )
 
 

@@ -29,6 +29,7 @@ data/outputs/local_test_report.md
 data/outputs/*.csv
 data/outputs/*.tex
 data/outputs/*.png
+data/outputs/comparison/
 
 # ---- Jupyter ----
 .ipynb_checkpoints/

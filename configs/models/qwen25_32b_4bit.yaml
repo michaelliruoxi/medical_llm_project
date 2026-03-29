@@ -1,0 +1,35 @@
+backend: local
+quantization: 4bit
+
+run_priority: 45
+n_examples: 50
+noise_variants_per_question: 1
+random_seed: 42
+
+noise_types:
+  - typos_grammar
+  - ambiguity
+  - layperson
+  - incomplete
+  - overgeneralization
+
+answer_model: Qwen/Qwen2.5-32B-Instruct
+repair_model: Qwen/Qwen2.5-32B-Instruct
+noise_model: Qwen/Qwen2.5-32B-Instruct
+judge_model: Qwen/Qwen2.5-32B-Instruct
+
+temperature_answer: 0.2
+temperature_noise: 0.8
+temperature_repair: 0.2
+temperature_judge: 0.0
+
+max_tokens_answer: 300
+max_tokens_repair: 120
+max_tokens_noise: 150
+max_tokens_judge: 200
+
+paths:
+  raw_data: data/raw
+  processed_data: data/processed
+  outputs: data/outputs
+  cache: data/outputs/cache

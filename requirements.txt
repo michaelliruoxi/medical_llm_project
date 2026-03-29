@@ -16,3 +16,5 @@ sacremoses
 accelerate
 sentencepiece
 protobuf
+bitsandbytes
+pytest

@@ -14,7 +14,11 @@ MODES = ("clean", "noisy", "repaired")
 
 
 def answer_question(question: str, prompts: dict, cfg: dict) -> str:
-    """Call the answer LLM for a single question."""
+    """Call the answer LLM for a single question.
+
+    When ``n_votes_answer`` > 1 in the config, multiple responses are generated
+    and the most self-consistent one is returned (hallucination control).
+    """
     system_msg = prompts["answer"]["system"]
     user_msg = prompts["answer"]["user_template"].format(question=question)
     messages = [
@@ -27,6 +31,10 @@ def answer_question(question: str, prompts: dict, cfg: dict) -> str:
         temperature=cfg["temperature_answer"],
         max_tokens=cfg["max_tokens_answer"],
         backend=cfg.get("backend", "openai"),
+        quantization=cfg.get("quantization", "none"),
+        n_votes=cfg.get("n_votes_answer", 1),
+        api_mode=cfg.get("api_mode", "chat_completions"),
+        reasoning_effort=cfg.get("reasoning_effort_answer", cfg.get("reasoning_effort")),
     )
 
 

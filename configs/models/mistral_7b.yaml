@@ -1,0 +1,34 @@
+backend: local
+
+run_priority: 20
+n_examples: 50
+noise_variants_per_question: 1
+random_seed: 42
+
+noise_types:
+  - typos_grammar
+  - ambiguity
+  - layperson
+  - incomplete
+  - overgeneralization
+
+answer_model: mistralai/Mistral-7B-Instruct-v0.3
+repair_model: mistralai/Mistral-7B-Instruct-v0.3
+noise_model: mistralai/Mistral-7B-Instruct-v0.3
+judge_model: mistralai/Mistral-7B-Instruct-v0.3
+
+temperature_answer: 0.2
+temperature_noise: 0.8
+temperature_repair: 0.2
+temperature_judge: 0.0
+
+max_tokens_answer: 300
+max_tokens_repair: 120
+max_tokens_noise: 150
+max_tokens_judge: 200
+
+paths:
+  raw_data: data/raw
+  processed_data: data/processed
+  outputs: data/outputs
+  cache: data/outputs/cache
