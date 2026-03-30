@@ -1,0 +1,11 @@
+{
+  "model": "Phi-3-medium-4k-instruct (4bit)",
+  "config": "phi3_14b_4bit.yaml",
+  "status": "completed",
+  "rows_completed": 250,
+  "rows_expected": 250,
+  "error": null,
+  "samples_csv": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\outputs\\comparison\\samples_Phi-3-medium-4k-instruct_(4bit).csv",
+  "result_json": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\outputs\\comparison\\result_Phi-3-medium-4k-instruct_(4bit).json",
+  "updated_at_epoch": 1774764975.1649873
+}

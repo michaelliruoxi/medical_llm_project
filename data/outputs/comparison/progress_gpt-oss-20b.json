@@ -1,0 +1,11 @@
+{
+  "model": "gpt-oss-20b",
+  "config": "gpt_oss_20b.yaml",
+  "status": "partial",
+  "rows_completed": 33,
+  "rows_expected": 250,
+  "error": "Interrupted by user",
+  "samples_csv": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\outputs\\comparison\\samples_gpt-oss-20b.csv",
+  "result_json": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\outputs\\comparison\\result_gpt-oss-20b.json",
+  "updated_at_epoch": 1774817174.20811
+}
