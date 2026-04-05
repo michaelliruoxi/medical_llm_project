@@ -1,14 +1,11 @@
 """Tests for src/utils.py — config loading, caching, token tracker."""
 
 import json
-import tempfile
-from pathlib import Path
-from unittest.mock import patch
 
 import pytest
 import yaml
 
-from src.utils import load_config, load_prompts, _cache_key, TokenTracker
+from src.utils import CONFIG_ENV_VAR, TokenTracker, _cache_key, load_config, resolve_config_path
 
 
 class TestLoadConfig:
@@ -23,6 +20,28 @@ class TestLoadConfig:
     def test_load_nonexistent_raises(self):
         with pytest.raises(FileNotFoundError):
             load_config("/nonexistent/config.yaml")
+
+    def test_load_uses_env_override(self, tmp_path, monkeypatch):
+        cfg = {"backend": "openai", "n_examples": 7}
+        cfg_file = tmp_path / "env_config.yaml"
+        cfg_file.write_text(yaml.dump(cfg), encoding="utf-8")
+        monkeypatch.setenv(CONFIG_ENV_VAR, str(cfg_file))
+
+        result = load_config()
+
+        assert result["backend"] == "openai"
+        assert result["n_examples"] == 7
+
+    def test_resolve_config_prefers_explicit_path(self, tmp_path, monkeypatch):
+        explicit = tmp_path / "explicit.yaml"
+        explicit.write_text("backend: local\n", encoding="utf-8")
+        env_cfg = tmp_path / "env.yaml"
+        env_cfg.write_text("backend: openai\n", encoding="utf-8")
+        monkeypatch.setenv(CONFIG_ENV_VAR, str(env_cfg))
+
+        resolved = resolve_config_path(explicit)
+
+        assert resolved == explicit.resolve()
 
 
 class TestCacheKey:

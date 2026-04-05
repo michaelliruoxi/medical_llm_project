@@ -1,0 +1,66 @@
+{
+  "project_root": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project",
+  "generated_at_epoch": 1774686169.972334,
+  "results": [
+    {
+      "config": "gpt_oss_20b.yaml",
+      "config_path": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\configs\\models\\gpt_oss_20b.yaml",
+      "model": "openai/gpt-oss-20b",
+      "quantization": "none",
+      "cache_present_before": true,
+      "status": "ok",
+      "load_seconds": 26.53,
+      "generate_seconds": 56.26,
+      "device": "cuda:0",
+      "gpu_peak_gb": 32.36,
+      "error": null,
+      "sample_output": "analysisThe user says \"Reply",
+      "cache_present_after": true
+    },
+    {
+      "config": "mistral_7b.yaml",
+      "config_path": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\configs\\models\\mistral_7b.yaml",
+      "model": "mistralai/Mistral-7B-Instruct-v0.3",
+      "quantization": "none",
+      "cache_present_before": true,
+      "status": "ok",
+      "load_seconds": 21.6,
+      "generate_seconds": 6.59,
+      "device": "cuda:0",
+      "gpu_peak_gb": 32.35,
+      "error": null,
+      "sample_output": "Affirmative. I'm here",
+      "cache_present_after": true
+    },
+    {
+      "config": "phi3_14b_4bit.yaml",
+      "config_path": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\configs\\models\\phi3_14b_4bit.yaml",
+      "model": "microsoft/Phi-3-medium-4k-instruct",
+      "quantization": "4bit",
+      "cache_present_before": false,
+      "status": "ok",
+      "load_seconds": 258.91,
+      "generate_seconds": 3.81,
+      "device": "cuda:0",
+      "gpu_peak_gb": 13.89,
+      "error": null,
+      "sample_output": "Ready.",
+      "cache_present_after": true
+    },
+    {
+      "config": "qwen25_14b_4bit.yaml",
+      "config_path": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\configs\\models\\qwen25_14b_4bit.yaml",
+      "model": "Qwen/Qwen2.5-14B-Instruct",
+      "quantization": "4bit",
+      "cache_present_before": true,
+      "status": "ok",
+      "load_seconds": 23.81,
+      "generate_seconds": 0.16,
+      "device": "cuda:0",
+      "gpu_peak_gb": 13.9,
+      "error": null,
+      "sample_output": "ready",
+      "cache_present_after": true
+    }
+  ]
+}

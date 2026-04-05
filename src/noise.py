@@ -5,6 +5,8 @@ import argparse
 import pandas as pd
 from tqdm import tqdm
 
+from src.noise_schedule import build_noise_plan, summarize_noise_plan
+from src.resume import build_completed_lookup, row_key, write_parquet_atomic
 from src.utils import PROJECT_ROOT, load_config, load_prompts, call_llm, setup_logging, get_token_tracker
 
 
@@ -46,31 +48,39 @@ def run(n_examples: int | None = None):
     if n_examples is not None:
         df = df.head(n_examples)
 
-    noise_types = cfg["noise_types"]
-    variants_per_q = cfg.get("noise_variants_per_question", 1)
+    plan = build_noise_plan(df, cfg)
+    logger.info("Noise assignment counts: %s", summarize_noise_plan(plan))
+
+    out_path = processed_dir / "noisy.parquet"
+    existing_df = pd.read_parquet(out_path) if out_path.exists() else pd.DataFrame()
+    completed_lookup = build_completed_lookup(existing_df, ["id", "noise_type"], ["question_noisy"])
+    if completed_lookup:
+        logger.info("Resuming noise generation with %d completed rows from %s", len(completed_lookup), out_path)
 
     rows = []
-    total = len(df) * len(noise_types) * variants_per_q
-    with tqdm(total=total, desc="Generating noisy variants") as pbar:
-        for _, row in df.iterrows():
-            for noise_type in noise_types:
-                for _ in range(variants_per_q):
-                    noisy_q = generate_noisy_variant(
-                        row["question"], noise_type, prompts, cfg
-                    )
-                    rows.append({
-                        "id": row["id"],
-                        "question_clean": row["question"],
-                        "question_noisy": noisy_q,
-                        "noise_type": noise_type,
-                        "answer_ref": row["answer"],
-                        "source": row.get("source", ""),
-                    })
-                    pbar.update(1)
+    with tqdm(total=len(plan), desc="Generating noisy variants") as pbar:
+        for row, noise_type in plan:
+            key = row_key({"id": row["id"], "noise_type": noise_type}, ["id", "noise_type"])
+            if key in completed_lookup:
+                rows.append(completed_lookup[key])
+                pbar.update(1)
+                continue
+
+            noisy_q = generate_noisy_variant(row["question"], noise_type, prompts, cfg)
+            record = {
+                "id": row["id"],
+                "question_clean": row["question"],
+                "question_noisy": noisy_q,
+                "noise_type": noise_type,
+                "answer_ref": row["answer"],
+                "source": row.get("source", ""),
+            }
+            rows.append(record)
+            write_parquet_atomic(pd.DataFrame(rows), out_path)
+            pbar.update(1)
 
     noisy_df = pd.DataFrame(rows)
-    out_path = processed_dir / "noisy.parquet"
-    noisy_df.to_parquet(out_path, index=False)
+    write_parquet_atomic(noisy_df, out_path)
     logger.info("Saved %d noisy variants to %s", len(noisy_df), out_path)
 
     tracker = get_token_tracker()

@@ -1,36 +1,38 @@
 {
   "project_root": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project",
-  "generated_at_epoch": 1774691550.33175,
+  "generated_at_epoch": 1775376948.635576,
   "results": [
     {
-      "config": "gemma2_9b.yaml",
-      "config_path": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\configs\\models\\gemma2_9b.yaml",
-      "model": "google/gemma-2-9b-it",
-      "quantization": "none",
-      "cache_present_before": true,
+      "config": "gemma4_31b_q6k_ref.yaml",
+      "config_path": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\configs\\models\\gemma4_31b_q6k_ref.yaml",
+      "backend": "openai_compatible",
+      "model": "gemma-4-local",
+      "quantization": "Q6_K-ref",
+      "cache_present_before": false,
       "status": "ok",
-      "load_seconds": 16.37,
-      "generate_seconds": 0.56,
-      "device": "cuda:0",
-      "gpu_peak_gb": 17.25,
+      "load_seconds": null,
+      "generate_seconds": 0.57,
+      "device": "api:chat_completions",
+      "gpu_peak_gb": 0.0,
       "error": null,
       "sample_output": "ready",
-      "cache_present_after": true
+      "cache_present_after": false
     },
     {
-      "config": "llama3_70b_4bit.yaml",
-      "config_path": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\configs\\models\\llama3_70b_4bit.yaml",
-      "model": "meta-llama/Llama-3.1-70B-Instruct",
-      "quantization": "4bit",
-      "cache_present_before": true,
-      "status": "failed",
+      "config": "gpt54_hybrid_api.yaml",
+      "config_path": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\configs\\models\\gpt54_hybrid_api.yaml",
+      "backend": "openai",
+      "model": "gpt-5.4",
+      "quantization": "none",
+      "cache_present_before": false,
+      "status": "ok",
       "load_seconds": null,
-      "generate_seconds": null,
-      "device": null,
-      "gpu_peak_gb": 0.02,
-      "error": "Some modules are dispatched on the CPU or the disk. Make sure you have enough GPU RAM to fit the quantized model. If you want to dispatch the model on the CPU or the disk while keeping these modules in 32-bit, you need to set `llm_int8_enable_fp32_cpu_offload=True` and pass a custom `device_map` to ",
-      "error_type": "ValueError",
-      "cache_present_after": true
+      "generate_seconds": 4.64,
+      "device": "api:responses",
+      "gpu_peak_gb": 0.0,
+      "error": null,
+      "sample_output": "",
+      "cache_present_after": false
     }
   ]
 }

@@ -42,29 +42,27 @@ answer:
     Question:
     {question}
 
-judge:
+geval:
   system: >
-    You are a strict medical answer evaluator. Your task:
-
-    Step 1: Identify 3-5 KEY FACTS from the reference answer.
-    Step 2: Check which of those specific facts appear in the prediction.
-    Step 3: Score based on fact coverage.
+    You are a strict medical QA evaluator using G-Eval style reasoning.
+    Compare the predicted answer against the question and the reference answer.
+    Think step by step privately about factual alignment, logical consistency,
+    completeness, and whether the prediction directly answers the question.
 
     Scoring rubric:
-    0 = The prediction is wrong, empty, off-topic, or covers 0 key facts.
-    1 = The prediction covers only 1 key fact from the reference (under 30%).
-    2 = The prediction covers 2-3 key facts but misses others (30-70%).
-    3 = The prediction covers 4+ key facts from the reference (over 70%).
+    1 = Very poor. Wrong, contradictory, or mostly irrelevant.
+    2 = Weak. Some relevant content, but major factual gaps or logic problems.
+    3 = Fair. Partly correct, but incomplete, vague, or inconsistently grounded.
+    4 = Good. Mostly correct and logically consistent, with only minor omissions.
+    5 = Excellent. Highly aligned with the reference, logically consistent, complete, and direct.
 
     IMPORTANT RULES:
-    - Judge ONLY against the reference answer, NOT general medical knowledge.
-    - If the prediction is generally correct but uses different details than
-      the reference, it should score 1 or 2, not 3.
-    - If the prediction mentions details the reference does NOT mention,
-      those do NOT count as matching facts.
-
-    Output format: List the key facts, mark which are covered, then give
-    the score as the LAST character of your response.
+    - Judge against the reference answer first, not your outside medical knowledge.
+    - Penalize contradictions, unsupported leaps, and internal inconsistency.
+    - Reward directness, completeness, and faithful reasoning.
+    - The score MUST be exactly one integer in {1, 2, 3, 4, 5}.
+    - Return ONLY the score digit itself.
+    - Do not output any explanation, JSON, markdown, or extra text.
 
   user_template: >
     Question:
@@ -76,4 +74,5 @@ judge:
     Predicted answer:
     {prediction}
 
-    Evaluate:
+    Evaluate the predicted answer for deep quality and logical consistency.
+    Return ONLY one digit: 1, 2, 3, 4, or 5.

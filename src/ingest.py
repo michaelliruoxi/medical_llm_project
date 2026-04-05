@@ -95,6 +95,13 @@ def run(n_examples: int | None = None):
     raw_dir = PROJECT_ROOT / cfg["paths"]["raw_data"]
     out_dir = PROJECT_ROOT / cfg["paths"]["processed_data"]
     out_dir.mkdir(parents=True, exist_ok=True)
+    out_path = out_dir / "medquad.parquet"
+
+    if out_path.exists():
+        existing = pd.read_parquet(out_path)
+        if len(existing) == n:
+            logger.info("Reusing existing sampled dataset with %d rows from %s", len(existing), out_path)
+            return
 
     df = load_all_xml(raw_dir)
     if df.empty:
@@ -110,7 +117,6 @@ def run(n_examples: int | None = None):
     df = df.sample(n=n, random_state=seed).reset_index(drop=True)
     df.insert(0, "id", range(len(df)))
 
-    out_path = out_dir / "medquad.parquet"
     df.to_parquet(out_path, index=False)
     logger.info("Saved %d examples to %s", len(df), out_path)
 

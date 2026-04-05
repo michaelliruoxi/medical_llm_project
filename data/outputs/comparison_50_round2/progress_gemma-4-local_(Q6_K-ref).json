@@ -1,0 +1,11 @@
+{
+  "model": "gemma-4-local (Q6_K-ref)",
+  "config": "gemma4_31b_q6k_ref.yaml",
+  "status": "completed",
+  "rows_completed": 50,
+  "rows_expected": 50,
+  "error": null,
+  "samples_csv": "data\\outputs\\comparison_50_round2\\samples_gemma-4-local_(Q6_K-ref).csv",
+  "result_json": "data\\outputs\\comparison_50_round2\\result_gemma-4-local_(Q6_K-ref).json",
+  "updated_at_epoch": 1775382550.0048034
+}

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import os
 import re
 from collections import Counter
 
@@ -11,6 +12,9 @@ import sacrebleu
 _ARTICLES_RE = re.compile(r"\b(a|an|the)\b")
 _PUNCT_RE = re.compile(r"[^\w\s]")
 _WS_RE = re.compile(r"\s+")
+_DEFAULT_SBERT_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
+_sbert_encoder = None
+_sbert_model_name = None
 
 
 def normalize_text(text: str) -> str:
@@ -92,6 +96,109 @@ def compute_rouge_l_score(prediction: str, reference: str) -> float:
     recall = lcs / len(ref_tokens)
     f1 = (2 * precision * recall) / (precision + recall)
     return 100.0 * f1
+
+
+def _get_sbert_encoder(model_name: str | None = None):
+    global _sbert_encoder, _sbert_model_name
+
+    chosen_model = model_name or os.getenv("INTENT_PRESERVATION_MODEL", _DEFAULT_SBERT_MODEL)
+    if _sbert_encoder is not None and _sbert_model_name == chosen_model:
+        return _sbert_encoder
+
+    os.environ["USE_TF"] = "0"
+    os.environ["USE_TORCH"] = "1"
+
+    import torch
+    from transformers import AutoModel, AutoTokenizer
+
+    tokenizer = AutoTokenizer.from_pretrained(chosen_model)
+    model = AutoModel.from_pretrained(chosen_model)
+    model.to("cpu")
+    model.eval()
+
+    _sbert_model_name = chosen_model
+    _sbert_encoder = (tokenizer, model)
+    return _sbert_encoder
+
+
+def _encode_sbert_texts(texts: list[str], model_name: str | None = None, batch_size: int = 32):
+    import torch
+    import torch.nn.functional as F
+
+    tokenizer, model = _get_sbert_encoder(model_name=model_name)
+    embeddings = []
+
+    for start in range(0, len(texts), batch_size):
+        batch = [text or "" for text in texts[start:start + batch_size]]
+        encoded = tokenizer(
+            batch,
+            padding=True,
+            truncation=True,
+            max_length=256,
+            return_tensors="pt",
+        )
+        with torch.no_grad():
+            outputs = model(**encoded)
+            hidden = outputs.last_hidden_state
+            mask = encoded["attention_mask"].unsqueeze(-1)
+            pooled = (hidden * mask).sum(dim=1) / mask.sum(dim=1).clamp(min=1)
+            pooled = F.normalize(pooled, p=2, dim=1)
+        embeddings.append(pooled.cpu())
+
+    return torch.cat(embeddings, dim=0)
+
+
+def compute_intent_preservation_scores(
+    clean_questions: list[str],
+    candidate_questions: list[str],
+    model_name: str | None = None,
+) -> list[float]:
+    if len(clean_questions) != len(candidate_questions):
+        raise ValueError("clean_questions and candidate_questions must have the same length")
+
+    if not clean_questions:
+        return []
+
+    import torch
+
+    scores = [0.0] * len(clean_questions)
+    pairs_to_encode: list[tuple[int, str, str]] = []
+
+    for idx, (clean_q, candidate_q) in enumerate(zip(clean_questions, candidate_questions)):
+        clean_q = clean_q or ""
+        candidate_q = candidate_q or ""
+        if not clean_q and not candidate_q:
+            scores[idx] = 1.0
+        elif not clean_q or not candidate_q:
+            scores[idx] = 0.0
+        else:
+            pairs_to_encode.append((idx, clean_q, candidate_q))
+
+    if not pairs_to_encode:
+        return scores
+
+    left = [clean_q for _, clean_q, _ in pairs_to_encode]
+    right = [candidate_q for _, _, candidate_q in pairs_to_encode]
+    left_emb = _encode_sbert_texts(left, model_name=model_name)
+    right_emb = _encode_sbert_texts(right, model_name=model_name)
+    cosines = torch.sum(left_emb * right_emb, dim=1).tolist()
+
+    for (idx, _, _), cosine in zip(pairs_to_encode, cosines):
+        scores[idx] = float(max(-1.0, min(1.0, cosine)))
+
+    return scores
+
+
+def compute_intent_preservation_score(
+    clean_question: str,
+    candidate_question: str,
+    model_name: str | None = None,
+) -> float:
+    return compute_intent_preservation_scores(
+        [clean_question],
+        [candidate_question],
+        model_name=model_name,
+    )[0]
 
 
 def compute_reference_metrics(prediction: str, reference: str) -> dict[str, float]:

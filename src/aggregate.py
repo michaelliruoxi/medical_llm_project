@@ -11,7 +11,16 @@ from src.utils import PROJECT_ROOT, load_config, setup_logging
 
 logger = setup_logging()
 
-METRIC_COLS = ["bleu", "chrf", "rouge_l", "token_f1", "exact_match", "bertscore_f1", "judge_score"]
+METRIC_COLS = [
+    "bleu",
+    "chrf",
+    "rouge_l",
+    "token_f1",
+    "exact_match",
+    "bertscore_f1",
+    "intent_preservation",
+    "geval_score",
+]
 
 
 # ---------------------------------------------------------------------------

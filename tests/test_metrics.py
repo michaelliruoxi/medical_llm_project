@@ -3,6 +3,7 @@
 from src.metrics import (
     compute_chrf_score,
     compute_exact_match_score,
+    compute_intent_preservation_score,
     compute_rouge_l_score,
     compute_token_f1_score,
 )
@@ -23,3 +24,9 @@ class TestComparisonMetrics:
     def test_chrf_identical_strings_are_high(self):
         score = compute_chrf_score("hello world", "hello world")
         assert score > 95
+
+    def test_intent_preservation_empty_pair_is_one(self):
+        assert compute_intent_preservation_score("", "") == 1.0
+
+    def test_intent_preservation_one_empty_side_is_zero(self):
+        assert compute_intent_preservation_score("What causes asthma?", "") == 0.0

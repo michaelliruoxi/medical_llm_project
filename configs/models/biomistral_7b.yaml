@@ -3,6 +3,7 @@ backend: local
 run_priority: 10
 n_examples: 50
 noise_variants_per_question: 1
+noise_assignment: round_robin
 random_seed: 42
 
 noise_types:

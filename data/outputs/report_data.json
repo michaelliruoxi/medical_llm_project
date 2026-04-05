@@ -1,0 +1,125 @@
+{
+  "config": "experiment_local_gpu.yaml",
+  "model": "mistralai/Mistral-7B-Instruct-v0.3",
+  "samples": [
+    {
+      "id": 0,
+      "question_clean": "Do you have information about A1C",
+      "question_noisy": "I need some info 'bout my glucose levels test, is it called AIC?",
+      "question_repaired": "Is the glucose level test you're referring to known as Hemoglobin A1c (HbA1c) or AIC?",
+      "answer_ref": "Summary : A1C is a blood test for type 2 diabetes and prediabetes. It measures your average blood glucose, or blood sugar, level over the past 3 months. Doctors may use the A1C alone or in combination with other diabetes tests to make a diagnosis. They also use the A1C to see how well you are managing your diabetes. This test is different from the blood sugar checks that people with diabetes do every day. Your A1C test result is given in percentages. The higher the percentage, the higher your bl",
+      "answer_clean": "Yes, I do. The A1C test is a common blood test used to diagnose type 1 and type 2 diabetes, as well as gestational diabetes. It provides an average of your blood sugar levels over the past 2-3 months. A normal A1C level is below 5.7%, a level from 5.7% to 6.4% suggests prediabetes, and a level of 6.5% or higher on two separate tests indicates diabetes. However, specific values may vary depending on the laboratory and diagnostic criteria used.",
+      "answer_noisy": "No, your blood glucose level test is not referred to as A1C (Glycohemoglobin). The A1C test measures your average blood sugar level over the past 2-3 months by evaluating the percentage of sugar attached to hemoglobin in red blood cells. If you're referring to another specific test for blood glucose, please provide more details so I can help better.",
+      "answer_repaired": "The correct term for the blood test that measures average blood sugar levels over the past 2-3 months is Hemoglobin A1c (HbA1c), not AIC."
+    },
+    {
+      "id": 1,
+      "question_clean": "What is (are) Abdominal Pain ?",
+      "question_noisy": "Whats da abdominel pane? Its somethin that hurts in der belly area, na? Aint suwe 'bout specifics tho.",
+      "question_repaired": "What is an abdominal pain? It refers to discomfort located in the stomach/belly region. I'm not certain about its specific details though.",
+      "answer_ref": "Your abdomen extends from below your chest to your groin. Some people call it the stomach, but your abdomen contains many other important organs. Pain in the abdomen can come from any one of them. The pain may start somewhere else, such as your chest. Severe pain doesn't always mean a serious problem. Nor does mild pain mean a problem is not serious. Call your healthcare provider if mild pain lasts a week or more or if you have pain with other symptoms. Get medical help immediately if - You have",
+      "answer_clean": "Abdominal pain refers to any discomfort or aching sensation that occurs in the abdomen, which is the area between your chest and pelvis. The cause can vary widely, from minor issues like gas or constipation to serious conditions such as appendicitis, gallstones, or inflammatory bowel disease. It's important to consult with a healthcare professional if you experience persistent or severe abdominal pain.",
+      "answer_noisy": "Yes, you're correct. The abdomen is the part of the body between your chest and pelvis, often referred to as the \"belly.\" Abdominal pain can be caused by various conditions such as indigestion, gastritis, appendicitis, or kidney stones among others. However, without more specific symptoms, it's difficult to determine the exact cause. If you have persistent abdominal pain, please consult with a healthcare professional for an accurate diagnosis and treatment options.",
+      "answer_repaired": "Abdominal pain refers to any type of distress or uncomfortable sensation that occurs within your abdomen (stomach/belly area). The location, severity, frequency, and character (sharp, dull, crampy, constant, intermittent) can vary greatly depending on the cause. Common causes include gastritis, indigestion, irritable bowel syndrome, appendicitis, kidney stones, and infections. However, it's important to note that these symptoms could be indicative of many other conditions as well. If you experience persistent or severe abdominal pain, please consult with a healthcare professional for proper evaluation and treatment."
+    },
+    {
+      "id": 2,
+      "question_clean": "What is (are) Abortion ?",
+      "question_noisy": "Whats abourtionz thay they?",
+      "question_repaired": "What are abortions and their procedures?",
+      "answer_ref": "An abortion is a procedure to end a pregnancy. It uses medicine or surgery to remove the embryo or fetus and placenta from the uterus. The procedure is done by a licensed health care professional. The decision to end a pregnancy is very personal. If you are thinking of having an abortion, most healthcare providers advise counseling.",
+      "answer_clean": "An abortion is the termination of pregnancy by removing an embryo or fetus before it can survive outside the uterus. This process can be performed through various methods during different stages of pregnancy. It's important to note that the legality and availability of abortions vary greatly around the world due to cultural, religious, and political factors. Always consult with a healthcare professional for accurate information regarding specific circumstances.",
+      "answer_noisy": "Abortion refers to the termination of pregnancy before the fetus can survive outside the womb. It's important to note that laws regarding abortion vary widely around the world, and it's always best to consult with a healthcare professional or legal expert for specific information in your region. In general, abortions may be performed using medication (medical abortion) or surgical procedures (surgical abortion). Both methods have risks and benefits, which should be discussed thoroughly with a qualified healthcare provider.",
+      "answer_repaired": "Abortions refer to the termination of pregnancy by removing an embryo or fetus before it can survive outside the uterus. There are two types of abortion procedures:\n\n1. Medical (Medication) Abortion: This type uses drugs to end a pregnancy. The process typically involves taking mifepristone first, which blocks progesterone, and then misoprostol, which causes cramping and bleeding to expel the pregnancy tissue. It's usually done within the first 7-10 weeks of pregnancy.\n\n2. Surgical Abortion: This procedure removes the pregnancy tissue from the uterus with suction and/or surgical instruments. The most common methods include aspiration (suction curettage), dilation and evacuation (D&E), and dilatation and extraction (D&X). These procedures are generally performed between 6-14 weeks of pregnancy but may be used later in pregnancy as well.\n\nIt is important to note that these procedures should only be carried out under the supervision of qualified healthcare professionals in safe, legal settings. Always consult a trusted healthcare provider for accurate information regarding your specific situation."
+    },
+    {
+      "id": 3,
+      "question_clean": "What is (are) Abscess ?",
+      "question_noisy": "Whats da abcessses tha tey are? (Typo: \"da\" for \"the\") (Grammar error: present tense instead of third person singular)",
+      "question_repaired": "What is the abscess that they have? (Corrected typo and grammatical error)",
+      "answer_ref": "An abscess is a pocket of pus. You can get an abscess almost anywhere in your body. When an area of your body becomes infected, your body's immune system tries to fight the infection. White blood cells go to the infected area, collect within the damaged tissue, and cause inflammation. During this process, pus forms. Pus is a mixture of living and dead white blood cells, germs, and dead tissue. Bacteria, viruses, parasites and swallowed objects can all lead to abscesses. Skin abscesses are easy t",
+      "answer_clean": "An abscess is a localized infection that is surrounded by inflamed tissue. It's typically filled with pus, which consists of dead white blood cells, bacteria, and other debris. Abscesses can occur anywhere in the body but are most common in areas rich in bacterial colonies like the skin or internal organs such as the liver, kidneys, or brain. They usually form due to an injury or infection that causes tissue damage and allows bacteria to enter and multiply. Treatment often involves draining the abscess and administering antibiotics.",
+      "answer_noisy": "The correct term is an abscess. An abscess is a localized collection of pus that forms around tissue that has become infected. It's often caused by bacteria entering through a break in the skin or mucous membranes. If left untreated, it can cause serious complications such as sepsis.",
+      "answer_repaired": "To determine the type of abscess someone has, I would need to consider factors such as location, symptoms, and results from diagnostic tests like imaging or lab work. However, without specific details, it's not possible for me to provide an accurate diagnosis. Common types of abscesses include skin abscesses, tooth abscesses, and organ abscesses (like appendix or liver). If you suspect an abscess, please consult with a healthcare professional for proper evaluation and treatment."
+    },
+    {
+      "id": 4,
+      "question_clean": "What is (are) Acne ?",
+      "question_noisy": "What is acnes? A reasun they may appear on skin?",
+      "question_repaired": "1) \"What is acne?\"\n2) \"Why does acne occur on the skin?\"",
+      "answer_ref": "Acne is a common skin disease that causes pimples. Pimples form when hair follicles under your skin clog up. Most pimples form on the face, neck, back, chest, and shoulders. Anyone can get acne, but it is common in teenagers and young adults. It is not serious, but it can cause scars. No one knows exactly what causes acne. Hormone changes, such as those during the teenage years and pregnancy, probably play a role. There are many myths about what causes acne. Chocolate and greasy foods are often ",
+      "answer_clean": "Acne is a common skin condition characterized by clogged pores, inflammation, and the appearance of spots or pimples, primarily on the face but also on other areas such as the back, chest, neck, and shoulders. It occurs when hair follicles become plugged with dead skin cells, oil from the skin (sebum), and bacteria. There are several types of acne, including whiteheads, blackheads, papules, pustules, nodules, and cysts. The severity can range from mild to severe, depending on factors like the number and size of lesions, their location, and how deep they are in the skin.",
+      "answer_noisy": "Acne refers to a common skin condition that causes spots and pimples, particularly on the face, back, chest, and shoulders. It happens when hair follicles become plugged with oil and dead skin cells. The primary reasons for this include overproduction of sebum (oil) by the sebaceous glands, abnormal shedding of dead skin cells, and bacterial infection in the follicle. Hormonal changes during puberty, menstruation, pregnancy, or taking certain medications can trigger or worsen acne. Stress might also play a role as it can affect hormone levels leading to increased oil production.",
+      "answer_repaired": "1) Acne is a common skin condition that causes spots (often called pimples or zits) to appear on the face, back, neck, chest, and shoulders. It occurs when hair follicles become plugged with oil and dead skin cells.\n\n2) Acne occurs on the skin due to several factors:\n   - Excessive production of sebum (oil) by the sebaceous glands in the skin.\n   - Dead skin cells blocking the opening of hair follicles.\n   - Bacteria (Propionibacterium acnes) present in these blocked follicles causing inflammation.\n   - Hormonal changes during puberty, pregnancy, menstrual cycle, and some medications can also trigger acne."
+    }
+  ],
+  "bleu": {
+    "clean": [
+      4.801692922973027,
+      1.5111463341849138,
+      5.55259465486887,
+      6.714160830204342,
+      6.909021410787797
+    ],
+    "noisy": [
+      1.449905948247468,
+      1.2609599496901553,
+      0.8751612522727117,
+      1.5044951901378183,
+      7.210089292949444
+    ],
+    "repaired": [
+      0.01900653396348772,
+      1.31359108310798,
+      4.304150334921325,
+      1.1895131914139536,
+      7.855508334094018
+    ]
+  },
+  "bertscore": {
+    "clean": [
+      0.8773619532585144,
+      0.859592080116272,
+      0.8949632048606873,
+      0.8899300694465637,
+      0.866121768951416
+    ],
+    "noisy": [
+      0.8408851623535156,
+      0.854884684085846,
+      0.8827422261238098,
+      0.8698875308036804,
+      0.8730503916740417
+    ],
+    "repaired": [
+      0.8429775834083557,
+      0.8441177606582642,
+      0.8637672066688538,
+      0.8463292121887207,
+      0.8512982130050659
+    ]
+  },
+  "judge": {
+    "clean": [
+      3,
+      2,
+      3,
+      2,
+      3
+    ],
+    "noisy": [
+      1,
+      3,
+      3,
+      3,
+      1
+    ],
+    "repaired": [
+      1,
+      3,
+      3,
+      3,
+      2
+    ]
+  }
+}

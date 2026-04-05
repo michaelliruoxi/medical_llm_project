@@ -5,6 +5,7 @@ import argparse
 import pandas as pd
 from tqdm import tqdm
 
+from src.resume import build_completed_lookup, row_key, write_parquet_atomic
 from src.utils import PROJECT_ROOT, load_config, load_prompts, call_llm, setup_logging, get_token_tracker
 
 
@@ -68,19 +69,32 @@ def run(mode: str, n_examples: int | None = None):
     if n_examples is not None:
         df = df.head(n_examples)
 
-    answers = []
-    for _, row in tqdm(df.iterrows(), total=len(df), desc=f"Answering ({mode})"):
-        ans = answer_question(row[q_col], prompts, cfg)
-        answers.append(ans)
-
-    df = df.copy()
-    df["answer_pred"] = answers
-
     out_dir = PROJECT_ROOT / cfg["paths"]["outputs"]
     out_dir.mkdir(parents=True, exist_ok=True)
     out_path = out_dir / f"answers_{mode}.parquet"
-    df.to_parquet(out_path, index=False)
-    logger.info("Saved %d answers to %s", len(df), out_path)
+    existing_df = pd.read_parquet(out_path) if out_path.exists() else pd.DataFrame()
+    key_cols = ["id"] if mode == "clean" else ["id", "noise_type"]
+    completed_lookup = build_completed_lookup(existing_df, key_cols, ["answer_pred"])
+    if completed_lookup:
+        logger.info("Resuming answer stage (%s) with %d completed rows from %s", mode, len(completed_lookup), out_path)
+
+    rows = []
+    for _, row in tqdm(df.iterrows(), total=len(df), desc=f"Answering ({mode})"):
+        key = row_key(row, key_cols)
+        record = row.to_dict()
+
+        if key in completed_lookup:
+            record["answer_pred"] = completed_lookup[key]["answer_pred"]
+            rows.append(record)
+            continue
+
+        record["answer_pred"] = answer_question(row[q_col], prompts, cfg)
+        rows.append(record)
+        write_parquet_atomic(pd.DataFrame(rows), out_path)
+
+    answers_df = pd.DataFrame(rows)
+    write_parquet_atomic(answers_df, out_path)
+    logger.info("Saved %d answers to %s", len(answers_df), out_path)
 
     tracker = get_token_tracker()
     logger.info("Token usage: %s", tracker.summary())

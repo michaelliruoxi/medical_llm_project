@@ -1,330 +1,187 @@
-# MedQuAD Robustness: Prompt Repair Under Noisy User Input
+# MedQuAD Robustness
 
-This project tests whether **prompt repair systematically improves medical QA robustness under noisy input** using MedQuAD entries. Three parallel pipelines generate answers from clean, noisy, and repaired questions, then measure degradation and recovery with automatic metrics (BLEU, BERTScore) and an LLM-as-judge.
+This repo studies whether prompt repair helps medical QA systems stay accurate under noisy user input.
 
-| Pipeline | Flow |
-|----------|------|
-| **A (Baseline)** | Q_clean -> LLM -> A_clean |
-| **B (Noisy)** | Q_noisy -> LLM -> A_noisy |
-| **C (Repaired)** | Q_noisy -> Repair -> LLM -> A_repaired |
+There are two workflows:
 
----
+- `scripts/experiments/run_pipeline.py`: one-config sequential experiment
+- `scripts/benchmarks/run_comparison.py`: resumable multi-model benchmark
 
-## Prerequisites
+## What Is Going On Right Now
 
-| Requirement | Version | Notes |
-|-------------|---------|-------|
-| Python | >= 3.10 | Tested on 3.11 |
-| pip | latest | For installing dependencies |
-| Git | any | For cloning this repo and MedQuAD data |
-| NVIDIA GPU *(optional)* | CUDA-capable | Required for local GPU mode (Mistral-7B) |
-| OpenAI API key *(optional)* | — | Only needed for the OpenAI backend |
+The latest completed benchmark is:
 
----
+- [data/outputs/comparison_50_round2](C:/Users/Owner/OneDrive/Columbia%20University/Practicum/medical_llm_project/data/outputs/comparison_50_round2)
 
-## Quick Start
+That run contains:
 
-### 1. Clone the repository
+- 10 completed models
+- 50 questions per model
+- 1 deterministic noise type per question
+- 5 noise types total, evenly spread by round-robin assignment
+- 3 answer states per row: `clean`, `noisy`, `repaired`
 
-```bash
-git clone https://github.com/michaelliruoxi/medical_llm_project.git
-cd medical_llm_project
+Current enabled benchmark lineup:
+
+- `gemma-4-local (Q6_K-ref)`
+- `BioMistral-7B`
+- `Mistral-7B-Instruct-v0.3`
+- `gemma-2-9b-it`
+- `Llama-3.1-8B-Instruct`
+- `Phi-3-medium-4k-instruct (4bit)`
+- `Qwen2.5-14B-Instruct (4bit)`
+- `Qwen2.5-32B-Instruct (4bit)`
+- `Mixtral-8x7B-Instruct-v0.1 (4bit)`
+- `gpt-5.4`
+
+Current metrics in the benchmark:
+
+- BLEU
+- chrF
+- ROUGE-L
+- token F1
+- exact match
+- BERTScore
+- intent preservation (SBERT similarity to the clean question)
+- G-Eval via OpenAI API
+
+## Important Caveat
+
+The current benchmark is a good pilot, not final proof of the project claim.
+
+Why:
+
+- it is a `50`-example pilot, not the final `1,000`-example study
+- the benchmark is currently an end-to-end per-model pipeline comparison
+- each model generates its own noisy and repaired questions, so models are not yet being scored on identical noisy/repaired text
+- some repair outputs still need stricter validation to guarantee they are true rewrites
+- statistical testing and bootstrap confidence intervals are not implemented yet
+
+So the current results are legitimate as preliminary evidence, but not yet the final publishable answer to whether prompt repair systematically improves robustness.
+
+See:
+
+- [reports/next_steps_results_audit_2026-04-05.md](C:/Users/Owner/OneDrive/Columbia%20University/Practicum/medical_llm_project/reports/next_steps_results_audit_2026-04-05.md)
+- [data/outputs/comparison_50_round2/model_comparison.csv](C:/Users/Owner/OneDrive/Columbia%20University/Practicum/medical_llm_project/data/outputs/comparison_50_round2/model_comparison.csv)
+
+## Main Files
+
+```text
+configs/
+  models/
+  experiments/
+  prompts.yaml
+scripts/
+  benchmarks/
+    preflight.py
+    run_comparison.py
+  experiments/
+    run_pipeline.py
+    smoke_test.py
+src/
+data/
+reports/
+tests/
 ```
 
-### 2. Create a virtual environment (recommended)
+## Setup
 
-```bash
-python -m venv .venv
+Requirements:
 
-# Windows
-.venv\Scripts\activate
+- Python 3.11 recommended
+- local GPU for local-model benchmarks
+- OpenAI API key for API-backed models and G-Eval
 
-# macOS / Linux
-source .venv/bin/activate
-```
+Raw MedQuAD is not committed. Put it under:
 
-### 3. Install dependencies
+- `data/raw/MedQuAD`
 
-```bash
-pip install -r requirements.txt
-```
-
-**GPU users:** Make sure you have the CUDA-compatible version of PyTorch installed. If `pip install torch` installs CPU-only, follow the [PyTorch install guide](https://pytorch.org/get-started/locally/) for your CUDA version:
-
-```bash
-# Example for CUDA 12.4
-pip install torch --index-url https://download.pytorch.org/whl/cu124
-```
-
-### 4. Prepare the MedQuAD dataset
-
-The raw MedQuAD XML corpus is **not included** in this repository (it contains ~10,000 XML files). Clone it into the `data/raw/` directory:
-
-```bash
-git clone https://github.com/abachaa/MedQuAD.git data/raw/MedQuAD
-```
-
-### 5. Run data cleaning
-
-Open and execute `src/data_cleaning.ipynb` in Jupyter/VS Code to parse the XML files and produce the cleaned dataset. By default it processes `4_MPlus_Health_Topics_QA` and saves to:
+Cleaned dataset expected by the runners:
 
 - `data/processed/medquad_cleaned.csv`
 - `data/processed/medquad_cleaned.parquet`
 
-### 6. Configure the experiment
+For OpenAI runs, add your key to:
 
-Choose your backend:
+- `.env`
 
-| Config file | Backend | Models | GPU needed? |
-|-------------|---------|--------|-------------|
-| `configs/experiment.yaml` | OpenAI API | GPT-4o, GPT-4o-mini | No |
-| `configs/experiment_local.yaml` | Local (CPU) | BioGPT, Flan-T5-base | No |
-| `configs/experiment_local_gpu.yaml` | Local (GPU) | Mistral-7B-Instruct-v0.3 | Yes |
+Example:
 
-**For OpenAI mode only:** copy the environment template and add your key:
+```env
+OPENAI_API_KEY=your_key_here
+```
+
+## Run
+
+Preflight enabled benchmark configs:
 
 ```bash
-cp .env.example .env
-# Edit .env and set OPENAI_API_KEY=sk-...
+python scripts/benchmarks/preflight.py
 ```
 
-### 7. Run the experiment
-
-**Local GPU test (recommended for quick validation):**
+Run the resumable benchmark:
 
 ```bash
-python scripts/test_local.py --gpu --clear-cache
+python scripts/benchmarks/run_comparison.py
 ```
 
-**Local CPU test:**
+Run the benchmark into a separate output folder:
 
 ```bash
-python scripts/test_local.py
+python scripts/benchmarks/run_comparison.py --output-dir data/outputs/comparison_50_round2
 ```
 
-**Full OpenAI pipeline (1,000 samples):**
+Run the sequential experiment with the default API config:
 
 ```bash
-python scripts/run_all.py
+python scripts/experiments/run_pipeline.py
 ```
 
-**Pilot run (20 samples, OpenAI):**
+Run a 50-example experiment:
 
 ```bash
-python scripts/run_all.py --pilot
+python scripts/experiments/run_pipeline.py --n 50
 ```
 
-### 8. Run the resumable local multi-model comparison
+## Active Default API Config
 
-For the local Hugging Face comparison workflow, use the dedicated comparison
-scripts instead of `run_all.py`.
+The main API profile is:
 
-Preflight the enabled model configs:
+- [configs/models/gpt54_hybrid_api.yaml](C:/Users/Owner/OneDrive/Columbia%20University/Practicum/medical_llm_project/configs/models/gpt54_hybrid_api.yaml)
 
-```bash
-python scripts/preflight_models.py
-```
+It currently uses:
 
-Run the resumable comparison directly:
-
-```bash
-python scripts/run_model_comparison.py
-```
-
-On Windows, the helper launcher writes stdout/stderr logs into
-`data/outputs/comparison/`:
-
-```powershell
-.\scripts\start_full_model_run.cmd
-```
-
-Notes:
-
-- Default runs only include model configs in `configs/models/` where
-  `enabled` is not set to `false`.
-- Stronger API-backed configs are available in `configs/models/`, but they are
-  disabled by default to avoid accidental token spend. Run them explicitly, for
-  example:
-
-```bash
-python scripts/run_model_comparison.py --configs configs/models/gpt52_api.yaml configs/models/gpt41_api.yaml
-```
-
-- `gpt_oss_20b.yaml` is kept in the repo but disabled from default runs because
-  it was much slower than the rest of the local lineup in the March 29, 2026
-  comparison.
-- `scripts/run_model_comparison.py` is resumable at the sample-row level.
-  Stopping the run preserves `samples_<model>.csv` and `progress_<model>.json`
-  so a later restart can continue from the last completed row.
-
----
-
-## Project Structure
-
-```
-medical_llm_project/
-├── configs/
-│   ├── experiment.yaml              # OpenAI config (1,000 samples)
-│   ├── experiment_local.yaml        # Local CPU config (BioGPT + Flan-T5)
-│   ├── experiment_local_gpu.yaml    # Local GPU config (Mistral-7B-Instruct)
-│   └── prompts.yaml                 # All prompt templates (noise, repair, answer, judge)
-├── data/
-│   ├── raw/                         # MedQuAD XML files (not committed — see setup)
-│   ├── processed/                   # Cleaned parquet/csv (generated by data_cleaning)
-│   └── outputs/                     # Results, reports, LLM cache
-│       └── cache/                   # Cached LLM responses (not committed)
-├── notebooks/                       # Exploration notebooks
-├── scripts/
-│   ├── run_all.py                   # Full pipeline orchestrator (OpenAI)
-│   ├── run_all.sh                   # Bash wrapper for run_all.py
-│   └── test_local.py               # End-to-end local model test
-├── src/
-│   ├── __init__.py
-│   ├── __main__.py
-│   ├── ingest.py                    # Parse and sample MedQuAD data
-│   ├── noise.py                     # Generate noisy question variants
-│   ├── repair.py                    # Rewrite noisy questions (prompt repair)
-│   ├── answer.py                    # Generate LLM answers for each pipeline
-│   ├── evaluate_metrics.py          # Compute BLEU and BERTScore
-│   ├── judge.py                     # LLM-as-judge scoring (0-3 with CoT rubric)
-│   ├── aggregate.py                 # Summary statistics and robustness metrics
-│   ├── report_tables.py            # Publication-ready tables and charts
-│   ├── utils.py                     # Config, LLM wrapper, caching, local model loading
-│   └── data_cleaning.ipynb          # Interactive data cleaning notebook
-├── .env.example                     # Template for API key (committed)
-├── .gitignore                       # Excludes data, cache, .env, __pycache__
-├── MedQuAD_Robustness_Project_Plan.md  # Original project plan
-├── README.md                        # This file
-└── requirements.txt                 # Python dependencies
-```
-
----
-
-## Running Individual Pipeline Steps (OpenAI mode)
-
-```bash
-python -m src.ingest
-python -m src.noise
-python -m src.answer --mode clean
-python -m src.answer --mode noisy
-python -m src.repair
-python -m src.answer --mode repaired
-python -m src.evaluate_metrics
-python -m src.judge
-python -m src.aggregate
-python -m src.report_tables
-```
-
----
-
-## Evaluation
-
-| Category | Metrics |
-|----------|---------|
-| **Automatic** | BLEU, chrF, ROUGE-L F1, token F1, exact match, BERTScore (F1) |
-| **LLM Judge** | Correctness scored 0-3 via chain-of-thought fact-matching against MedQuAD reference answers |
-| **Robustness** | Degradation (clean - noisy), Recovery (repaired - noisy), Recovery Ratio |
-| **Statistical** | Wilcoxon signed-rank, bootstrap CIs, Cohen's d |
-
----
+- answer model: `gpt-5.4`
+- repair model: `gpt-5.4`
+- noise model: `gpt-5.4-mini`
+- G-Eval model: `gpt-5.4-mini`
 
 ## Outputs
 
-Results are saved to `data/outputs/`:
+Per-model benchmark artifacts:
 
-| File | Description |
-|------|-------------|
-| `report_data.json` | Raw per-sample results (generated texts, scores) |
-| `local_test_report.md` | Human-readable report from local model tests |
-| `cache/*.json` | Cached LLM responses (for reproducibility and cost savings) |
-| `*.csv`, `*.tex` | Aggregate summary tables (full pipeline) |
-| `*.png` | Bar charts of degradation vs recovery by noise type |
+- `samples_<model>.csv`: row-level durable outputs
+- `progress_<model>.json`: resumable checkpoint
+- `result_<model>.json`: per-model aggregate summary
 
-> **Note:** All files in `data/outputs/` are regenerated by the pipeline and are excluded from version control by default. If you want to preserve a specific report as a deliverable, you can force-add it: `git add -f data/outputs/local_test_report.md`
+Run-level benchmark artifacts:
 
-Local comparison outputs are written under `data/outputs/comparison/`:
+- `model_comparison.csv`
+- `model_comparison_full.json`
 
-| File | Description |
-|------|-------------|
-| `model_preflight.json` | JSON report from `scripts/preflight_models.py` |
-| `model_comparison.csv` | Per-model summary table for the local comparison run |
-| `model_comparison_full.json` | Full aggregate payload backing the summary table |
-| `samples_<model>.csv` | Per-sample rows, appended continuously while the run is active |
-| `progress_<model>.json` | Resume checkpoint for each model |
-| `run_<timestamp>.log` | Stdout log from the launcher |
-| `run_<timestamp>_stderr.log` | Stderr log from the launcher |
+Sequential experiment outputs go under:
 
-Checked-in narrative reports belong under `reports/` rather than
-`data/outputs/`. The current local-run summary is:
+- `data/outputs/experiments/<profile>/`
 
-- `reports/preliminary_local_model_comparison_2026-03-29.md`
+## Resume Behavior
 
----
+Both main workflows are designed to resume:
 
-## Current local comparison status
+- benchmark runs skip completed sample rows
+- sequential runs reuse saved stage outputs for the same config
 
-As of March 29, 2026, the default local lineup has 8 completed models:
+You can stop a long run and restart it without losing completed work.
 
-- BioMistral-7B
-- Mistral-7B-Instruct-v0.3
-- gemma-2-9b-it
-- Llama-3.1-8B-Instruct
-- Phi-3-medium-4k-instruct (4bit)
-- Qwen2.5-14B-Instruct (4bit)
-- Qwen2.5-32B-Instruct (4bit)
-- Mixtral-8x7B-Instruct-v0.1 (4bit)
+## Next Project Step
 
-`gpt-oss-20b` remains available as a config, but it is disabled from default
-preflight and default comparison runs because it was much slower than the rest
-of the lineup in the latest local benchmark pass.
-
-Two stronger API-backed comparison configs are also available for opt-in runs:
-
-- `configs/models/gpt52_api.yaml`
-- `configs/models/gpt41_api.yaml`
-
-See `reports/preliminary_local_model_comparison_2026-03-29.md` for the
-preliminary write-up and recommended next steps.
-
----
-
-## Known caveats
-
-- `scripts/run_model_comparison.py` is row-safe and resumable, but
-  `scripts/run_all.py` is still stage-safe rather than row-safe.
-- `src/judge.py` currently expects a 0-3 judge score. Some local judge outputs
-  returned `Score: 4` or `Score: 5`. The parser is now hardened to clamp those
-  out-of-rubric values to 3, but the March 29, 2026 saved comparison outputs
-  were produced before that fix, so the existing `judge_*` values should still
-  be treated as provisional until recomputed.
-
----
-
-## Troubleshooting
-
-### TensorFlow import errors
-
-If you have a broken or partial TensorFlow installation, the local model backend handles this automatically by stubbing out the `tensorflow` module before `transformers` loads. No action needed, but if issues persist, uninstall TensorFlow:
-
-```bash
-pip uninstall tensorflow tensorflow-intel tf-keras -y
-```
-
-### GPU not detected
-
-1. Verify PyTorch sees your GPU: `python -c "import torch; print(torch.cuda.is_available())"`
-2. If it prints `False`, reinstall PyTorch with CUDA support (see step 3 above).
-
-### HuggingFace model download
-
-Local models (Mistral-7B, BioGPT, Flan-T5) are downloaded automatically on first run from HuggingFace Hub. The Mistral-7B model is ~14 GB. Ensure you have sufficient disk space and a stable internet connection for the initial download. Models are cached in `~/.cache/huggingface/hub/`.
-
-### OneDrive file locking (Windows)
-
-If you see `PermissionError` when clearing cache, close OneDrive sync or move the project outside the OneDrive folder.
-
----
-
-## License
-
-This project uses the [MedQuAD dataset](https://github.com/abachaa/MedQuAD) which is provided for research purposes. See the MedQuAD repository for its license terms.
+The next serious improvement is to freeze one shared noisy-question set and one shared repaired-question set, then score all answer models on those exact same inputs. That will turn the current pilot into a much cleaner model comparison.

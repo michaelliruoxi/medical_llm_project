@@ -1,0 +1,11 @@
+{
+  "model": "BioMistral-7B",
+  "config": "biomistral_7b.yaml",
+  "status": "completed",
+  "rows_completed": 50,
+  "rows_expected": 50,
+  "error": null,
+  "samples_csv": "data\\outputs\\comparison_50_round2\\samples_BioMistral-7B.csv",
+  "result_json": "data\\outputs\\comparison_50_round2\\result_BioMistral-7B.json",
+  "updated_at_epoch": 1775383091.9376552
+}

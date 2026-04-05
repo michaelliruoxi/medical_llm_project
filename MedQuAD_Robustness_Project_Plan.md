@@ -28,7 +28,11 @@ Evaluation will compare degradation and recovery across pipelines.
       requirements.txt
       .env.example
       configs/
-        experiment.yaml
+        experiments/
+          local_cpu_smoke.yaml
+          local_gpu_smoke.yaml
+        models/
+          gpt54_hybrid_api.yaml
         prompts.yaml
       data/
         raw/
@@ -46,15 +50,20 @@ Evaluation will compare degradation and recovery across pipelines.
         utils.py
       notebooks/
       scripts/
-        run_all.sh
+        experiments/
+          run_pipeline.py
+          smoke_test.py
+        benchmarks/
+          preflight.py
+          run_comparison.py
 
 ------------------------------------------------------------------------
 
 ## 3. Configuration
 
-### experiment.yaml
+### gpt54_hybrid_api.yaml
 
--   n_examples: 1000\
+-   n_examples: 50 (current default profile; scale up later if desired)\
 -   noise_variants_per_question: 1\
 -   noise_types:
     -   typos_grammar
@@ -62,14 +71,17 @@ Evaluation will compare degradation and recovery across pipelines.
     -   layperson
     -   incomplete
     -   overgeneralization
--   answer_model: gpt-4o
--   noise_model: gpt-4o-mini
--   judge_model: gpt-4o-mini
+-   answer_model: gpt-5.4
+-   repair_model: gpt-5.4
+-   noise_model: gpt-5.4-mini
+-   judge_model: gpt-5.4-mini
 -   temperature_answer: 0.2
 -   temperature_noise: 0.8
 -   temperature_repair: 0.2
 -   max_tokens_answer: 300
 -   max_tokens_repair: 120
+-   processed_data: data/processed/experiments/gpt54_hybrid_api
+-   outputs: data/outputs/experiments/gpt54_hybrid_api
 
 ------------------------------------------------------------------------
 

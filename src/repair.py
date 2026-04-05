@@ -5,6 +5,7 @@ import argparse
 import pandas as pd
 from tqdm import tqdm
 
+from src.resume import build_completed_lookup, row_key, write_parquet_atomic
 from src.utils import PROJECT_ROOT, load_config, load_prompts, call_llm, setup_logging, get_token_tracker
 
 
@@ -43,17 +44,29 @@ def run(n_examples: int | None = None):
     if n_examples is not None:
         df = df.head(n_examples)
 
-    repaired = []
-    for _, row in tqdm(df.iterrows(), total=len(df), desc="Repairing questions"):
-        repaired_q = repair_question(row["question_noisy"], prompts, cfg)
-        repaired.append(repaired_q)
-
-    df = df.copy()
-    df["question_repaired"] = repaired
-
     out_path = processed_dir / "repaired.parquet"
-    df.to_parquet(out_path, index=False)
-    logger.info("Saved %d repaired questions to %s", len(df), out_path)
+    existing_df = pd.read_parquet(out_path) if out_path.exists() else pd.DataFrame()
+    completed_lookup = build_completed_lookup(existing_df, ["id", "noise_type"], ["question_repaired"])
+    if completed_lookup:
+        logger.info("Resuming repair stage with %d completed rows from %s", len(completed_lookup), out_path)
+
+    rows = []
+    for _, row in tqdm(df.iterrows(), total=len(df), desc="Repairing questions"):
+        key = row_key({"id": row["id"], "noise_type": row.get("noise_type", "")}, ["id", "noise_type"])
+        record = row.to_dict()
+
+        if key in completed_lookup:
+            record["question_repaired"] = completed_lookup[key]["question_repaired"]
+            rows.append(record)
+            continue
+
+        record["question_repaired"] = repair_question(row["question_noisy"], prompts, cfg)
+        rows.append(record)
+        write_parquet_atomic(pd.DataFrame(rows), out_path)
+
+    repaired_df = pd.DataFrame(rows)
+    write_parquet_atomic(repaired_df, out_path)
+    logger.info("Saved %d repaired questions to %s", len(repaired_df), out_path)
 
     tracker = get_token_tracker()
     logger.info("Token usage: %s", tracker.summary())

@@ -2,6 +2,7 @@ backend: local
 
 n_examples: 5
 noise_variants_per_question: 1
+noise_assignment: round_robin
 random_seed: 42
 
 noise_types:
@@ -24,6 +25,6 @@ max_tokens_judge: 10
 
 paths:
   raw_data: data/raw
-  processed_data: data/processed
-  outputs: data/outputs
-  cache: data/outputs/cache
+  processed_data: data/processed/experiments/local_cpu_smoke
+  outputs: data/outputs/experiments/local_cpu_smoke
+  cache: data/outputs/experiments/local_cpu_smoke/cache

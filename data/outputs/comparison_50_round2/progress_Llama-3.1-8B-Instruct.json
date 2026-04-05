@@ -1,0 +1,11 @@
+{
+  "model": "Llama-3.1-8B-Instruct",
+  "config": "llama3_8b.yaml",
+  "status": "completed",
+  "rows_completed": 50,
+  "rows_expected": 50,
+  "error": null,
+  "samples_csv": "data\\outputs\\comparison_50_round2\\samples_Llama-3.1-8B-Instruct.csv",
+  "result_json": "data\\outputs\\comparison_50_round2\\result_Llama-3.1-8B-Instruct.json",
+  "updated_at_epoch": 1775385544.5902703
+}
