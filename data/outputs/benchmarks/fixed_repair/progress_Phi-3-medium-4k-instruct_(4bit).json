@@ -1,0 +1,13 @@
+{
+  "model": "Phi-3-medium-4k-instruct (4bit)",
+  "config": "phi3_14b_4bit.yaml",
+  "benchmark_mode": "fixed_repair",
+  "question_set_dir": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\processed\\benchmarks\\fixed_question_sets_gpt54",
+  "status": "completed",
+  "rows_completed": 50,
+  "rows_expected": 50,
+  "error": null,
+  "samples_csv": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\outputs\\benchmarks\\fixed_repair\\samples_Phi-3-medium-4k-instruct_(4bit).csv",
+  "result_json": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\outputs\\benchmarks\\fixed_repair\\result_Phi-3-medium-4k-instruct_(4bit).json",
+  "updated_at_epoch": 1775607336.4532294
+}

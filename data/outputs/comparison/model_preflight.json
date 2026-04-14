@@ -1,38 +1,22 @@
 {
   "project_root": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project",
-  "generated_at_epoch": 1775376948.635576,
+  "generated_at_epoch": 1776137827.7103136,
   "results": [
     {
       "config": "gemma4_31b_q6k_ref.yaml",
       "config_path": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\configs\\models\\gemma4_31b_q6k_ref.yaml",
-      "backend": "openai_compatible",
-      "model": "gemma-4-local",
-      "quantization": "Q6_K-ref",
-      "cache_present_before": false,
+      "backend": "local",
+      "model": "google/gemma-4-31B-it",
+      "quantization": "4bit",
+      "cache_present_before": true,
       "status": "ok",
-      "load_seconds": null,
-      "generate_seconds": 0.57,
-      "device": "api:chat_completions",
-      "gpu_peak_gb": 0.0,
+      "load_seconds": 58.11,
+      "generate_seconds": 2.42,
+      "device": "cuda:0",
+      "gpu_peak_gb": 17.71,
       "error": null,
       "sample_output": "ready",
-      "cache_present_after": false
-    },
-    {
-      "config": "gpt54_hybrid_api.yaml",
-      "config_path": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\configs\\models\\gpt54_hybrid_api.yaml",
-      "backend": "openai",
-      "model": "gpt-5.4",
-      "quantization": "none",
-      "cache_present_before": false,
-      "status": "ok",
-      "load_seconds": null,
-      "generate_seconds": 4.64,
-      "device": "api:responses",
-      "gpu_peak_gb": 0.0,
-      "error": null,
-      "sample_output": "",
-      "cache_present_after": false
+      "cache_present_after": true
     }
   ]
 }

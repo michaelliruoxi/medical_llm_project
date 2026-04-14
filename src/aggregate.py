@@ -6,6 +6,7 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 
+from src.metrics import compute_recovery_statistics
 from src.utils import PROJECT_ROOT, load_config, setup_logging
 
 
@@ -91,19 +92,25 @@ def robustness_metrics(df: pd.DataFrame) -> pd.DataFrame:
         for col in METRIC_COLS:
             if col not in c.columns or col not in n.columns:
                 continue
-            degradation = c[col].mean() - n[col].mean()
-            recovery = (rep[col].mean() - n[col].mean()) if rep is not None and col in rep.columns else np.nan
-            recovery_ratio = (recovery / degradation) if degradation != 0 and not np.isnan(recovery) else np.nan
+            clean_mean = c[col].mean()
+            noisy_mean = n[col].mean()
+            repaired_mean = rep[col].mean() if rep is not None and col in rep.columns else np.nan
+            recovery_stats = compute_recovery_statistics(
+                clean_mean,
+                noisy_mean,
+                repaired_mean,
+                metric_name=col,
+            )
 
             rows.append({
                 "noise_type": nt,
                 "metric": col,
-                "clean_mean": c[col].mean(),
-                "noisy_mean": n[col].mean(),
-                "repaired_mean": rep[col].mean() if rep is not None and col in rep.columns else np.nan,
-                "degradation": degradation,
-                "recovery": recovery,
-                "recovery_ratio": recovery_ratio,
+                "clean_mean": clean_mean,
+                "noisy_mean": noisy_mean,
+                "repaired_mean": repaired_mean,
+                "degradation": recovery_stats["degradation"],
+                "recovery": recovery_stats["recovery"],
+                "recovery_ratio": recovery_stats["recovery_ratio"],
             })
 
     return pd.DataFrame(rows)

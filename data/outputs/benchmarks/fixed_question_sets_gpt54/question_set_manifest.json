@@ -1,0 +1,35 @@
+{
+  "config": "fixed_question_sets_gpt54.yaml",
+  "clean_rows": 50,
+  "noise_rows": 50,
+  "repaired_rows": 50,
+  "noise_assignment": "round_robin",
+  "noise_types": [
+    "typos_grammar",
+    "ambiguity",
+    "layperson",
+    "incomplete",
+    "overgeneralization"
+  ],
+  "noise_model": "gpt-5.4",
+  "repair_model": "gpt-5.4",
+  "clean_path": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\processed\\benchmarks\\fixed_question_sets_gpt54\\clean_fixed.csv",
+  "noisy_path": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\processed\\benchmarks\\fixed_question_sets_gpt54\\noisy_fixed_gpt54.csv",
+  "repaired_path": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\processed\\benchmarks\\fixed_question_sets_gpt54\\repaired_fixed_gpt54.csv",
+  "clean_parquet_path": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\processed\\benchmarks\\fixed_question_sets_gpt54\\clean_fixed.parquet",
+  "noisy_parquet_path": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\processed\\benchmarks\\fixed_question_sets_gpt54\\noisy_fixed_gpt54.parquet",
+  "repaired_parquet_path": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\processed\\benchmarks\\fixed_question_sets_gpt54\\repaired_fixed_gpt54.parquet",
+  "noise_counts": {
+    "typos_grammar": 10,
+    "ambiguity": 10,
+    "layperson": 10,
+    "incomplete": 10,
+    "overgeneralization": 10
+  },
+  "token_usage": {
+    "calls": 0,
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0
+  }
+}

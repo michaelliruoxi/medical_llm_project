@@ -1,187 +1,141 @@
 # MedQuAD Robustness
 
-This repo studies whether prompt repair helps medical QA systems stay accurate under noisy user input.
+This repo tests whether prompt repair helps medical QA models stay accurate under noisy user questions.
 
-There are two workflows:
+## Current State
 
-- `scripts/experiments/run_pipeline.py`: one-config sequential experiment
-- `scripts/benchmarks/run_comparison.py`: resumable multi-model benchmark
-
-## What Is Going On Right Now
-
-The latest completed benchmark is:
-
-- [data/outputs/comparison_50_round2](C:/Users/Owner/OneDrive/Columbia%20University/Practicum/medical_llm_project/data/outputs/comparison_50_round2)
-
-That run contains:
-
-- 10 completed models
+- Latest finished pilot benchmark: [data/outputs/comparison_50_round2](C:/Users/Owner/OneDrive/Columbia%20University/Practicum/medical_llm_project/data/outputs/comparison_50_round2)
+- 10 models completed
 - 50 questions per model
-- 1 deterministic noise type per question
-- 5 noise types total, evenly spread by round-robin assignment
-- 3 answer states per row: `clean`, `noisy`, `repaired`
+- 5 noise types, evenly assigned by round robin
+- Metrics: BLEU, chrF, ROUGE-L, token F1, exact match, BERTScore, intent preservation, and G-Eval
 
-Current enabled benchmark lineup:
-
-- `gemma-4-local (Q6_K-ref)`
-- `BioMistral-7B`
-- `Mistral-7B-Instruct-v0.3`
-- `gemma-2-9b-it`
-- `Llama-3.1-8B-Instruct`
-- `Phi-3-medium-4k-instruct (4bit)`
-- `Qwen2.5-14B-Instruct (4bit)`
-- `Qwen2.5-32B-Instruct (4bit)`
-- `Mixtral-8x7B-Instruct-v0.1 (4bit)`
-- `gpt-5.4`
-
-Current metrics in the benchmark:
-
-- BLEU
-- chrF
-- ROUGE-L
-- token F1
-- exact match
-- BERTScore
-- intent preservation (SBERT similarity to the clean question)
-- G-Eval via OpenAI API
-
-## Important Caveat
-
-The current benchmark is a good pilot, not final proof of the project claim.
-
-Why:
-
-- it is a `50`-example pilot, not the final `1,000`-example study
-- the benchmark is currently an end-to-end per-model pipeline comparison
-- each model generates its own noisy and repaired questions, so models are not yet being scored on identical noisy/repaired text
-- some repair outputs still need stricter validation to guarantee they are true rewrites
-- statistical testing and bootstrap confidence intervals are not implemented yet
-
-So the current results are legitimate as preliminary evidence, but not yet the final publishable answer to whether prompt repair systematically improves robustness.
-
-See:
+This pilot is useful, but it is not the final claim-ready study yet. The main audit note is here:
 
 - [reports/next_steps_results_audit_2026-04-05.md](C:/Users/Owner/OneDrive/Columbia%20University/Practicum/medical_llm_project/reports/next_steps_results_audit_2026-04-05.md)
-- [data/outputs/comparison_50_round2/model_comparison.csv](C:/Users/Owner/OneDrive/Columbia%20University/Practicum/medical_llm_project/data/outputs/comparison_50_round2/model_comparison.csv)
 
-## Main Files
+## Main Workflows
 
-```text
-configs/
-  models/
-  experiments/
-  prompts.yaml
-scripts/
-  benchmarks/
-    preflight.py
-    run_comparison.py
-  experiments/
-    run_pipeline.py
-    smoke_test.py
-src/
-data/
-reports/
-tests/
-```
+- `scripts/benchmarks/run_comparison.py`
+  Resumable multi-model benchmark
+- `scripts/benchmarks/build_fixed_question_sets.py`
+  Freezes one shared noisy dataset and one shared repaired dataset with GPT-5.4
+- `scripts/experiments/run_pipeline.py`
+  Sequential single-config pipeline
 
-## Setup
+## Benchmark Modes
 
-Requirements:
+- `end_to_end`
+  Each model generates its own noisy and repaired questions
+- `fixed_repair`
+  All models answer the same frozen noisy questions and the same frozen repaired questions
+- `self_repair`
+  All models answer the same frozen noisy questions, then repair those noisy questions themselves
 
-- Python 3.11 recommended
-- local GPU for local-model benchmarks
-- OpenAI API key for API-backed models and G-Eval
+The fixed question sets live by default under:
 
-Raw MedQuAD is not committed. Put it under:
+- [data/processed/benchmarks/fixed_question_sets_gpt54](C:/Users/Owner/OneDrive/Columbia%20University/Practicum/medical_llm_project/data/processed/benchmarks/fixed_question_sets_gpt54)
 
-- `data/raw/MedQuAD`
+The frozen question-set files are CSV-first:
 
-Cleaned dataset expected by the runners:
+- `clean_fixed.csv`
+- `noisy_fixed_gpt54.csv`
+- `repaired_fixed_gpt54.csv`
 
-- `data/processed/medquad_cleaned.csv`
-- `data/processed/medquad_cleaned.parquet`
+## New Benchmark Pipeline
 
-For OpenAI runs, add your key to:
+The new benchmark flow is:
 
-- `.env`
+1. Sample one clean MedQuAD subset.
+2. Use GPT-5.4 to generate one shared noisy-question set.
+3. Use GPT-5.4 to generate one shared repaired-question set from that noisy set.
+4. Run `fixed_repair`:
+   all answer models see the same clean, noisy, and repaired questions.
+5. Run `self_repair`:
+   all answer models see the same clean and noisy questions, then each model repairs the noisy question itself.
 
-Example:
+This gives two separate comparisons:
 
-```env
-OPENAI_API_KEY=your_key_here
-```
+- controlled input comparison: `fixed_repair`
+- end-to-end pipeline comparison: `self_repair`
 
-## Run
+## Active API Profile
 
-Preflight enabled benchmark configs:
-
-```bash
-python scripts/benchmarks/preflight.py
-```
-
-Run the resumable benchmark:
-
-```bash
-python scripts/benchmarks/run_comparison.py
-```
-
-Run the benchmark into a separate output folder:
-
-```bash
-python scripts/benchmarks/run_comparison.py --output-dir data/outputs/comparison_50_round2
-```
-
-Run the sequential experiment with the default API config:
-
-```bash
-python scripts/experiments/run_pipeline.py
-```
-
-Run a 50-example experiment:
-
-```bash
-python scripts/experiments/run_pipeline.py --n 50
-```
-
-## Active Default API Config
-
-The main API profile is:
+The main API-backed benchmark config is:
 
 - [configs/models/gpt54_hybrid_api.yaml](C:/Users/Owner/OneDrive/Columbia%20University/Practicum/medical_llm_project/configs/models/gpt54_hybrid_api.yaml)
 
 It currently uses:
 
-- answer model: `gpt-5.4`
-- repair model: `gpt-5.4`
-- noise model: `gpt-5.4-mini`
-- G-Eval model: `gpt-5.4-mini`
+- answer: `gpt-5.4`
+- repair: `gpt-5.4`
+- noise: `gpt-5.4-mini`
+- G-Eval: `gpt-5.4-mini`
+
+## Quick Start
+
+Put your OpenAI key in:
+
+- [.env](C:/Users/Owner/OneDrive/Columbia%20University/Practicum/medical_llm_project/.env)
+
+```env
+OPENAI_API_KEY=your_key_here
+```
+
+Build the shared GPT-5.4 question sets:
+
+```bash
+python scripts/benchmarks/build_fixed_question_sets.py --n 50
+```
+
+This build is resumable and writes:
+
+- `clean_fixed.csv`
+- `noisy_fixed_gpt54.csv`
+- `repaired_fixed_gpt54.csv`
+- `question_set_manifest.json`
+- `question_set_progress.json`
+
+Run the controlled fixed-repair benchmark:
+
+```bash
+python scripts/benchmarks/run_comparison.py --benchmark-mode fixed_repair
+```
+
+Run the shared-noisy self-repair benchmark:
+
+```bash
+python scripts/benchmarks/run_comparison.py --benchmark-mode self_repair
+```
+
+Run the legacy end-to-end benchmark:
+
+```bash
+python scripts/benchmarks/run_comparison.py --benchmark-mode end_to_end
+```
+
+Preflight enabled model configs:
+
+```bash
+python scripts/benchmarks/preflight.py
+```
+
+The Gemma 4 benchmark config [gemma4_31b_q6k_ref.yaml](C:/Users/Owner/OneDrive/Columbia%20University/Practicum/medical_llm_project/configs/models/gemma4_31b_q6k_ref.yaml) now runs directly through the local Transformers backend in `8bit`, so it no longer depends on a separate local HTTP server.
 
 ## Outputs
 
-Per-model benchmark artifacts:
+Each benchmark run writes:
 
-- `samples_<model>.csv`: row-level durable outputs
-- `progress_<model>.json`: resumable checkpoint
-- `result_<model>.json`: per-model aggregate summary
-
-Run-level benchmark artifacts:
-
+- `samples_<model>.csv`
+- `progress_<model>.json`
+- `result_<model>.json`
 - `model_comparison.csv`
 - `model_comparison_full.json`
 
-Sequential experiment outputs go under:
+Default benchmark output folders:
 
-- `data/outputs/experiments/<profile>/`
+- `end_to_end`: `data/outputs/comparison`
+- `fixed_repair`: `data/outputs/benchmarks/fixed_repair`
+- `self_repair`: `data/outputs/benchmarks/self_repair`
 
-## Resume Behavior
-
-Both main workflows are designed to resume:
-
-- benchmark runs skip completed sample rows
-- sequential runs reuse saved stage outputs for the same config
-
-You can stop a long run and restart it without losing completed work.
-
-## Next Project Step
-
-The next serious improvement is to freeze one shared noisy-question set and one shared repaired-question set, then score all answer models on those exact same inputs. That will turn the current pilot into a much cleaner model comparison.
+Runs are resumable. You can stop and restart without losing completed rows.

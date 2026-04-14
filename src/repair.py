@@ -5,6 +5,7 @@ import argparse
 import pandas as pd
 from tqdm import tqdm
 
+from src.question_validation import retry_feedback, validate_generated_question
 from src.resume import build_completed_lookup, row_key, write_parquet_atomic
 from src.utils import PROJECT_ROOT, load_config, load_prompts, call_llm, setup_logging, get_token_tracker
 
@@ -16,19 +17,55 @@ def repair_question(noisy_question: str, prompts: dict, cfg: dict) -> str:
     """Call the repair LLM to rewrite one noisy question."""
     system_msg = prompts["repair"]["system"]
     user_msg = prompts["repair"]["user_template"].format(question=noisy_question)
-    messages = [
+    base_messages = [
         {"role": "system", "content": system_msg},
         {"role": "user", "content": user_msg},
     ]
-    return call_llm(
-        messages=messages,
-        model=cfg["repair_model"],
-        temperature=cfg["temperature_repair"],
-        max_tokens=cfg["max_tokens_repair"],
-        backend=cfg.get("backend", "openai"),
-        quantization=cfg.get("quantization", "none"),
-        api_mode=cfg.get("api_mode", "chat_completions"),
-        reasoning_effort=cfg.get("reasoning_effort_repair", cfg.get("reasoning_effort")),
+    attempts = max(int(cfg.get("max_validation_retries_repair", 2)) + 1, 1)
+    last_candidate = ""
+    last_reason = "did not produce a valid repaired question"
+
+    for attempt in range(attempts):
+        messages = list(base_messages)
+        if attempt > 0:
+            messages.append(
+                {
+                    "role": "user",
+                    "content": retry_feedback("repair", last_reason),
+                }
+            )
+
+        raw = call_llm(
+            messages=messages,
+            model=cfg["repair_model"],
+            temperature=cfg["temperature_repair"],
+            max_tokens=cfg["max_tokens_repair"],
+            backend=cfg.get("backend", "openai"),
+            quantization=cfg.get("quantization", "none"),
+            api_mode=cfg.get("api_mode", "chat_completions"),
+            reasoning_effort=cfg.get("reasoning_effort_repair", cfg.get("reasoning_effort")),
+            use_cache=attempt == 0,
+        )
+        candidate, error = validate_generated_question(
+            raw,
+            stage="repair",
+            source_question=noisy_question,
+        )
+        if error is None:
+            return candidate
+
+        last_candidate = candidate
+        last_reason = error
+        logger.warning(
+            "Retrying repair-question generation (attempt %d/%d): %s",
+            attempt + 1,
+            attempts,
+            error,
+        )
+
+    raise ValueError(
+        f"Failed to generate a valid repaired question after {attempts} attempts: {last_reason}. "
+        f"Last candidate: {last_candidate!r}"
     )
 
 

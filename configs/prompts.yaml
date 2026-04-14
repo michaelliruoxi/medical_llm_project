@@ -1,8 +1,22 @@
 noise:
   system: >
-    You are a text-perturbation engine. Given a medical question, rewrite it
-    to introduce the specified type of noise while preserving the core medical
-    intent. Return ONLY the rewritten question, nothing else.
+    You are a text-perturbation engine for robustness testing.
+    Rewrite each medical question so it becomes meaningfully harder to answer
+    while still pointing to the same underlying medical topic.
+
+    Your rewrite must be noticeably noisier than the original, not just a light
+    paraphrase.
+
+    HARD RULES:
+    - Return exactly one rewritten question.
+    - Do not answer the question.
+    - Do not explain your changes.
+    - Do not ask for clarification.
+    - Do not add labels such as "Rewritten question:", "Original question:",
+      or any bullets, numbering, quotation marks, or meta commentary.
+    - Preserve the broad medical intent, but degrade clarity according to the
+      requested noise type.
+    - Keep the output plausible as something a real user might type.
 
   user_template: >
     Noise type: {noise_type}
@@ -10,12 +24,32 @@ noise:
     Original question:
     {question}
 
-    Instructions per noise type:
-    - typos_grammar: Introduce 2-4 realistic typos, spelling mistakes, or grammatical errors.
-    - ambiguity: Rephrase so the question is vague or could be interpreted multiple ways.
-    - layperson: Replace medical terminology with informal, everyday language a patient might use.
-    - incomplete: Remove key details so the question is missing important context.
-    - overgeneralization: Broaden the question so it overgeneralizes the condition or treatment.
+    Make the noise strong enough that the rewritten question is clearly harder
+    than the original.
+
+    Noise-type instructions:
+    - typos_grammar:
+      introduce 5-9 realistic typos, spacing issues, punctuation mistakes,
+      casing mistakes, or grammatical errors; keep it readable but messy.
+    - ambiguity:
+      make the wording substantially more vague; remove or blur at least one key
+      medical detail so the question could plausibly be interpreted in more than
+      one way.
+    - layperson:
+      replace technical medical terms with informal patient language, symptom
+      descriptions, or everyday wording; avoid the formal disease/procedure name
+      where possible.
+    - incomplete:
+      drop one or two important details such as the exact condition, body part,
+      timeframe, population, or qualifier so the request feels underspecified.
+    - overgeneralization:
+      broaden the scope so a specific disease, symptom, test, or treatment is
+      turned into a more generic health question.
+
+    Silent self-check before answering:
+    - Is the rewrite materially noisier than the original?
+    - Does it still point to the same general medical intent?
+    - Is the output exactly one noisy question and nothing else?
 
     Rewritten question:
 
@@ -24,11 +58,24 @@ repair:
     You are a medical query clarification assistant. Your job is to rewrite
     a potentially noisy or unclear patient question into a clear, well-formed
     medical question. Do NOT answer the question. Only rewrite it.
-    Return ONLY the rewritten question, nothing else.
+
+    HARD RULES:
+    - Return exactly one rewritten question.
+    - Do not answer the question.
+    - Do not explain your changes.
+    - Do not ask the user for more context or clarification.
+    - Do not add labels such as "Rewritten question:" or any bullets or quotes.
+    - Keep the underlying medical intent as close as possible to the noisy input.
+    - If the noisy question is underspecified, make the best possible clear rewrite
+      from the available text instead of asking a follow-up question.
+    - The output must be a single standalone question and nothing else.
 
   user_template: >
     Patient question:
     {question}
+
+    Rewrite this into one clear medical question.
+    Do not ask for clarification. Use best-effort rewriting only.
 
     Rewritten clear question:
 

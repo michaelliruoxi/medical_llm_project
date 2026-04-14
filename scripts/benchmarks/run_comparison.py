@@ -8,6 +8,8 @@ This version is resumable and fail-safe for long runs:
 Usage:
     python scripts/benchmarks/run_comparison.py
     python scripts/benchmarks/run_comparison.py --configs configs/models/mistral_7b.yaml
+    python scripts/benchmarks/run_comparison.py --benchmark-mode fixed_repair
+    python scripts/benchmarks/run_comparison.py --benchmark-mode self_repair
     python scripts/benchmarks/run_comparison.py --dry-run
 """
 
@@ -42,7 +44,11 @@ from bert_score import BERTScorer
 
 from src.answer import answer_question
 from src.judge import geval_answer
-from src.metrics import compute_intent_preservation_scores, compute_reference_metrics
+from src.metrics import (
+    compute_intent_preservation_scores,
+    compute_recovery_statistics,
+    compute_reference_metrics,
+)
 from src.noise import generate_noisy_variant
 from src.noise_schedule import build_noise_plan, expected_noise_rows, summarize_noise_plan
 from src.repair import repair_question
@@ -52,8 +58,10 @@ from src.utils import load_config, load_prompts, quantization_label, set_active_
 logger = setup_logging()
 
 PIPELINES = ("clean", "noisy", "repaired")
+BENCHMARK_MODES = ("end_to_end", "fixed_repair", "self_repair")
 REFERENCE_METRICS = ("bleu", "chrf", "rouge_l", "token_f1", "exact_match")
 METRICS = REFERENCE_METRICS + ("bertscore", "intent_preservation", "geval")
+DEFAULT_QUESTION_SET_DIR = PROJECT_ROOT / "data" / "processed" / "benchmarks" / "fixed_question_sets_gpt54"
 BASE_SAMPLE_FIELDS = [
     "model",
     "config",
@@ -117,6 +125,85 @@ def load_samples(n: int = 50) -> pd.DataFrame:
     return df
 
 
+def _default_output_dir(benchmark_mode: str) -> Path:
+    if benchmark_mode == "end_to_end":
+        return PROJECT_ROOT / "data" / "outputs" / "comparison"
+    return PROJECT_ROOT / "data" / "outputs" / "benchmarks" / benchmark_mode
+
+
+def _normalize_question_set_df(df: pd.DataFrame) -> pd.DataFrame:
+    rename_map = {}
+    if "question" in df.columns and "question_clean" not in df.columns:
+        rename_map["question"] = "question_clean"
+    if "answer" in df.columns and "answer_ref" not in df.columns:
+        rename_map["answer"] = "answer_ref"
+    if rename_map:
+        df = df.rename(columns=rename_map)
+    if "source" not in df.columns:
+        df["source"] = ""
+    return df
+
+
+def _read_question_set_file(path_csv: Path, path_parquet: Path) -> tuple[pd.DataFrame, Path]:
+    if path_csv.exists():
+        return pd.read_csv(path_csv), path_csv
+    if path_parquet.exists():
+        return pd.read_parquet(path_parquet), path_parquet
+    raise FileNotFoundError(
+        f"Missing frozen question set at {path_csv} (or fallback {path_parquet}). "
+        "Build it first with scripts/benchmarks/build_fixed_question_sets.py."
+    )
+
+
+def _load_fixed_question_rows(
+    cfg: dict,
+    benchmark_mode: str,
+    question_set_dir: Path | None,
+) -> tuple[pd.DataFrame, int, Path]:
+    question_set_dir = (question_set_dir or DEFAULT_QUESTION_SET_DIR).resolve()
+    if benchmark_mode == "fixed_repair":
+        path_csv = question_set_dir / "repaired_fixed_gpt54.csv"
+        path_parquet = question_set_dir / "repaired_fixed_gpt54.parquet"
+        required_cols = {"id", "question_clean", "question_noisy", "question_repaired", "answer_ref", "noise_type"}
+    else:
+        path_csv = question_set_dir / "noisy_fixed_gpt54.csv"
+        path_parquet = question_set_dir / "noisy_fixed_gpt54.parquet"
+        required_cols = {"id", "question_clean", "question_noisy", "answer_ref", "noise_type"}
+
+    df, loaded_path = _read_question_set_file(path_csv, path_parquet)
+    df = _normalize_question_set_df(df)
+    missing = sorted(required_cols - set(df.columns))
+    if missing:
+        raise ValueError(f"{loaded_path.name} is missing required columns: {missing}")
+
+    requested_n = int(cfg.get("n_examples", 50))
+    if len(df) < requested_n:
+        raise ValueError(
+            f"{loaded_path.name} has only {len(df)} rows but config requests {requested_n}. "
+            "Rebuild the frozen question set with a larger --n."
+        )
+
+    df = df.sort_values(["id", "noise_type"]).head(requested_n).reset_index(drop=True)
+    return df, len(df), question_set_dir
+
+
+def _build_end_to_end_rows(cfg: dict) -> tuple[pd.DataFrame, int]:
+    df = load_samples(int(cfg.get("n_examples", 50)))
+    plan = build_noise_plan(df, cfg)
+    rows = []
+    for row, noise_type in plan:
+        rows.append(
+            {
+                "id": int(row["id"]),
+                "question_clean": row["question"],
+                "answer_ref": row["answer"],
+                "source": row.get("source", ""),
+                "noise_type": noise_type,
+            }
+        )
+    return pd.DataFrame(rows), expected_noise_rows(len(df), cfg)
+
+
 def discover_configs(config_dir: Path) -> list[str]:
     """Find YAML configs in execution order.
 
@@ -156,6 +243,48 @@ def model_paths(output_dir: Path, label: str) -> dict[str, Path]:
         "result_json": output_dir / f"result_{stem}.json",
         "progress_json": output_dir / f"progress_{stem}.json",
     }
+
+
+def _read_json(path: Path) -> dict | None:
+    if not path.exists():
+        return None
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            payload = json.load(f)
+    except Exception:
+        return None
+    return payload if isinstance(payload, dict) else None
+
+
+def guard_resume_mode(paths: dict[str, Path], benchmark_mode: str, question_set_dir: Path | None):
+    """Archive stale resumable files when switching benchmark modes."""
+    desired_question_set = str(question_set_dir.resolve()) if question_set_dir is not None else None
+    metadata = _read_json(paths["progress_json"]) or _read_json(paths["result_json"]) or {}
+
+    existing_mode = metadata.get("benchmark_mode")
+    existing_question_set = metadata.get("question_set_dir")
+    if existing_mode is None and existing_question_set is None:
+        return
+
+    if existing_mode == benchmark_mode and existing_question_set == desired_question_set:
+        return
+
+    archived_any = False
+    for key in ("samples_csv", "result_json", "progress_json"):
+        path = paths[key]
+        if not path.exists():
+            continue
+        archive_path = path.with_name(path.stem + f"_{benchmark_mode}_archived" + path.suffix)
+        if archive_path.exists():
+            archive_path.unlink()
+        path.replace(archive_path)
+        archived_any = True
+
+    if archived_any:
+        logger.warning(
+            "Archived stale resumable files for %s because benchmark_mode/question_set changed.",
+            paths["samples_csv"].stem,
+        )
 
 
 def get_bert_scorer() -> BERTScorer:
@@ -497,6 +626,8 @@ def build_summary_from_samples(
     label: str,
     rows_expected: int,
     status: str,
+    benchmark_mode: str,
+    question_set_dir: Path | None = None,
     error: str | None = None,
 ) -> dict:
     model_name = cfg["answer_model"]
@@ -512,6 +643,8 @@ def build_summary_from_samples(
         "n_noise_types": len(noise_types),
         "noise_types": noise_types,
         "noise_assignment": cfg.get("noise_assignment", "cartesian"),
+        "benchmark_mode": benchmark_mode,
+        "question_set_dir": str(question_set_dir) if question_set_dir is not None else None,
         "status": status,
         "rows_completed": int(len(samples_df)),
         "rows_expected": int(rows_expected),
@@ -534,12 +667,15 @@ def build_summary_from_samples(
         clean_mean = summary.get(f"{metric}_clean_mean", float("nan"))
         noisy_mean = summary.get(f"{metric}_noisy_mean", float("nan"))
         repaired_mean = summary.get(f"{metric}_repaired_mean", float("nan"))
-        degradation = clean_mean - noisy_mean
-        recovery = repaired_mean - noisy_mean
-        ratio = recovery / degradation if not np.isnan(degradation) and degradation != 0 else float("nan")
-        summary[f"{metric}_degradation"] = degradation
-        summary[f"{metric}_recovery"] = recovery
-        summary[f"{metric}_recovery_ratio"] = ratio
+        recovery_stats = compute_recovery_statistics(
+            clean_mean,
+            noisy_mean,
+            repaired_mean,
+            metric_name=metric,
+        )
+        summary[f"{metric}_degradation"] = recovery_stats["degradation"]
+        summary[f"{metric}_recovery"] = recovery_stats["recovery"]
+        summary[f"{metric}_recovery_ratio"] = recovery_stats["recovery_ratio"]
 
     per_noise = []
     for noise_type, grp in samples_df.groupby("noise_type", sort=False):
@@ -584,6 +720,7 @@ def write_comparison_outputs(all_summaries: list[dict], output_dir: Path) -> pd.
     for s in all_summaries:
         row = {
             "Model": s.get("label", s.get("config", "UNKNOWN")),
+            "Mode": s.get("benchmark_mode", ""),
             "Status": format_status(s),
             "Quant": s.get("quantization", ""),
             "N": s.get("n_examples", ""),
@@ -634,15 +771,26 @@ def write_comparison_outputs(all_summaries: list[dict], output_dir: Path) -> pd.
     return comparison_df
 
 
-def process_sample(row: pd.Series, noise_type: str, prompts: dict, cfg: dict, label: str) -> dict:
-    question = row["question"]
-    reference = row["answer"]
+def process_sample(row: pd.Series, prompts: dict, cfg: dict, label: str, benchmark_mode: str) -> dict:
+    question = row["question_clean"]
+    reference = row["answer_ref"]
     question_id = int(row["id"])
+    noise_type = row["noise_type"]
 
-    noisy_q = generate_noisy_variant(question, noise_type, prompts, cfg)
+    if benchmark_mode == "end_to_end":
+        noisy_q = generate_noisy_variant(question, noise_type, prompts, cfg)
+        repaired_q = repair_question(noisy_q, prompts, cfg)
+    elif benchmark_mode == "fixed_repair":
+        noisy_q = row["question_noisy"]
+        repaired_q = row["question_repaired"]
+    elif benchmark_mode == "self_repair":
+        noisy_q = row["question_noisy"]
+        repaired_q = repair_question(noisy_q, prompts, cfg)
+    else:  # pragma: no cover - guarded by CLI choices
+        raise ValueError(f"Unknown benchmark_mode: {benchmark_mode}")
+
     answer_clean = answer_question(question, prompts, cfg)
     answer_noisy = answer_question(noisy_q, prompts, cfg)
-    repaired_q = repair_question(noisy_q, prompts, cfg)
     answer_repaired = answer_question(repaired_q, prompts, cfg)
 
     lexical_clean = compute_reference_metrics(answer_clean, reference)
@@ -657,8 +805,8 @@ def process_sample(row: pd.Series, noise_type: str, prompts: dict, cfg: dict, la
     )
 
     geval_clean = geval_answer(reference, answer_clean, prompts, cfg, question=question)
-    geval_noisy = geval_answer(reference, answer_noisy, prompts, cfg, question=question)
-    geval_repaired = geval_answer(reference, answer_repaired, prompts, cfg, question=question)
+    geval_noisy = geval_answer(reference, answer_noisy, prompts, cfg, question=noisy_q)
+    geval_repaired = geval_answer(reference, answer_repaired, prompts, cfg, question=repaired_q)
 
     return {
         "model": label,
@@ -688,32 +836,54 @@ def process_sample(row: pd.Series, noise_type: str, prompts: dict, cfg: dict, la
     }
 
 
-def run_single_model(config_path: str, output_dir: Path, on_progress=None) -> tuple[dict, bool]:
+def run_single_model(
+    config_path: str,
+    output_dir: Path,
+    benchmark_mode: str = "end_to_end",
+    question_set_dir: Path | None = None,
+    on_progress=None,
+) -> tuple[dict, bool]:
     """Run or resume one model config, persisting each completed sample row."""
     set_active_config(config_path)
     cfg = load_config(config_path)
     cfg["_config_path"] = config_path
     prompts = load_prompts()
-    n = cfg.get("n_examples", 50)
     model_name = cfg["answer_model"]
     quant = quantization_label(cfg)
     label = model_label(model_name, quant)
     paths = model_paths(output_dir, label)
+    desired_question_set_dir = (
+        None if benchmark_mode == "end_to_end" else (question_set_dir or DEFAULT_QUESTION_SET_DIR).resolve()
+    )
+    guard_resume_mode(paths, benchmark_mode, desired_question_set_dir)
     ensure_resume_csv(paths)
 
     logger.info("=" * 70)
     logger.info("  MODEL: %s", label)
     logger.info("  Config: %s", Path(config_path).name)
+    logger.info("  Benchmark mode: %s", benchmark_mode)
+    if desired_question_set_dir is not None:
+        logger.info("  Frozen question set: %s", desired_question_set_dir)
     logger.info("=" * 70)
 
-    df = load_samples(n)
-    plan = build_noise_plan(df, cfg)
-    expected_rows = expected_noise_rows(len(df), cfg)
-    planned_pairs = {(noise_type, int(row["id"])) for row, noise_type in plan}
-    logger.info("Noise assignment counts: %s", summarize_noise_plan(plan))
+    if benchmark_mode == "end_to_end":
+        plan_df, expected_rows = _build_end_to_end_rows(cfg)
+        logger.info("Noise assignment counts: %s", dict(plan_df["noise_type"].value_counts(sort=False)))
+        resolved_question_set_dir = None
+    else:
+        plan_df, expected_rows, resolved_question_set_dir = _load_fixed_question_rows(
+            cfg,
+            benchmark_mode,
+            desired_question_set_dir,
+        )
+        logger.info("Frozen noise assignment counts: %s", dict(plan_df["noise_type"].value_counts(sort=False)))
 
     completed_pairs = load_completed_pairs(paths["samples_csv"])
 
+    planned_pairs = {
+        (str(row["noise_type"]), int(row["id"]))
+        for _, row in plan_df.iterrows()
+    }
     align_resume_csv_to_plan(paths["samples_csv"], planned_pairs)
     completed_pairs = load_completed_pairs(paths["samples_csv"])
 
@@ -735,6 +905,8 @@ def run_single_model(config_path: str, output_dir: Path, on_progress=None) -> tu
             label,
             rows_expected=expected_rows,
             status=status_override,
+            benchmark_mode=benchmark_mode,
+            question_set_dir=resolved_question_set_dir if benchmark_mode != "end_to_end" else None,
             error=error_override,
         )
         on_progress(partial_summary)
@@ -742,6 +914,8 @@ def run_single_model(config_path: str, output_dir: Path, on_progress=None) -> tu
     write_progress(paths["progress_json"], {
         "model": label,
         "config": Path(config_path).name,
+        "benchmark_mode": benchmark_mode,
+        "question_set_dir": str(resolved_question_set_dir) if benchmark_mode != "end_to_end" else None,
         "status": "running",
         "rows_completed": len(completed_pairs),
         "rows_expected": expected_rows,
@@ -751,27 +925,35 @@ def run_single_model(config_path: str, output_dir: Path, on_progress=None) -> tu
     emit_partial_summary(status_override="running")
 
     try:
-        for row, noise_type in plan:
-            pair = (noise_type, int(row["id"]))
+        for _, row in plan_df.iterrows():
+            pair = (str(row["noise_type"]), int(row["id"]))
             if pair in completed_pairs:
                 continue
 
-            sample_row = process_sample(row, noise_type, prompts, cfg, label)
+            sample_row = process_sample(row, prompts, cfg, label, benchmark_mode)
             append_sample_row(paths["samples_csv"], sample_row)
             completed_pairs.add(pair)
 
             write_progress(paths["progress_json"], {
                 "model": label,
                 "config": Path(config_path).name,
+                "benchmark_mode": benchmark_mode,
+                "question_set_dir": str(resolved_question_set_dir) if benchmark_mode != "end_to_end" else None,
                 "status": "running",
                 "rows_completed": len(completed_pairs),
                 "rows_expected": expected_rows,
-                "last_noise_type": noise_type,
+                "last_noise_type": row["noise_type"],
                 "last_question_id": int(row["id"]),
                 "samples_csv": str(paths["samples_csv"]),
                 "updated_at_epoch": time.time(),
             })
             emit_partial_summary(status_override="running")
+
+            # Some very large local models are stable for a full sample but
+            # become flaky when the same loaded instance is reused across many
+            # benchmark rows. This opt-in hook trades speed for robustness.
+            if cfg.get("unload_local_model_after_sample") and cfg.get("backend", "local") == "local":
+                _unload_models()
     except KeyboardInterrupt:
         interrupted = True
         error = "Interrupted by user"
@@ -795,12 +977,16 @@ def run_single_model(config_path: str, output_dir: Path, on_progress=None) -> tu
         label,
         rows_expected=expected_rows,
         status=status,
+        benchmark_mode=benchmark_mode,
+        question_set_dir=resolved_question_set_dir if benchmark_mode != "end_to_end" else None,
         error=error,
     )
     write_json_atomic(paths["result_json"], summary)
     write_progress(paths["progress_json"], {
         "model": label,
         "config": Path(config_path).name,
+        "benchmark_mode": benchmark_mode,
+        "question_set_dir": str(resolved_question_set_dir) if benchmark_mode != "end_to_end" else None,
         "status": status,
         "rows_completed": summary["rows_completed"],
         "rows_expected": summary["rows_expected"],
@@ -826,7 +1012,12 @@ def _unload_models():
         pass
 
 
-def run_comparison(config_paths: list[str], output_dir: Path):
+def run_comparison(
+    config_paths: list[str],
+    output_dir: Path,
+    benchmark_mode: str = "end_to_end",
+    question_set_dir: Path | None = None,
+):
     """Run all model configs and produce/update a comparison table."""
     output_dir.mkdir(parents=True, exist_ok=True)
     all_summaries: list[dict] = []
@@ -842,7 +1033,13 @@ def run_comparison(config_paths: list[str], output_dir: Path):
             upsert_summary(all_summaries, partial)
             write_comparison_outputs(all_summaries, output_dir)
 
-        summary, was_interrupted = run_single_model(config_path, output_dir, on_progress=on_progress)
+        summary, was_interrupted = run_single_model(
+            config_path,
+            output_dir,
+            benchmark_mode=benchmark_mode,
+            question_set_dir=question_set_dir,
+            on_progress=on_progress,
+        )
         summary["runtime_seconds"] = time.time() - start
         upsert_summary(all_summaries, summary)
         write_json_atomic(model_paths(output_dir, summary["label"])["result_json"], summary)
@@ -869,12 +1066,24 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run multi-model comparison")
     parser.add_argument("--configs", nargs="+", default=None,
                         help="Specific config files to run (default: all in configs/models/)")
+    parser.add_argument(
+        "--benchmark-mode",
+        choices=BENCHMARK_MODES,
+        default="end_to_end",
+        help="Benchmark mode: current end-to-end flow, fixed repaired questions, or self-repair on shared noisy questions",
+    )
+    parser.add_argument(
+        "--question-set-dir",
+        type=str,
+        default=None,
+        help="Directory containing frozen noisy/repaired question sets for fixed_repair or self_repair modes",
+    )
     parser.add_argument("--clear-cache", action="store_true",
                         help="Clear cached LLM responses before running")
     parser.add_argument("--dry-run", action="store_true",
                         help="List configs without executing")
     parser.add_argument("--output-dir", type=str, default=None,
-                        help="Output directory (default: data/outputs/comparison)")
+                        help="Output directory (default depends on --benchmark-mode)")
     args = parser.parse_args()
 
     if args.configs:
@@ -897,5 +1106,11 @@ if __name__ == "__main__":
     if args.clear_cache:
         clear_cache(config_paths)
 
-    output_dir = Path(args.output_dir) if args.output_dir else PROJECT_ROOT / "data" / "outputs" / "comparison"
-    run_comparison(config_paths, output_dir)
+    output_dir = Path(args.output_dir) if args.output_dir else _default_output_dir(args.benchmark_mode)
+    question_set_dir = Path(args.question_set_dir) if args.question_set_dir else None
+    run_comparison(
+        config_paths,
+        output_dir,
+        benchmark_mode=args.benchmark_mode,
+        question_set_dir=question_set_dir,
+    )

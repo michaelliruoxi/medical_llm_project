@@ -1,0 +1,13 @@
+{
+  "model": "Mistral-7B-Instruct-v0.3",
+  "config": "mistral_7b.yaml",
+  "benchmark_mode": "fixed_repair",
+  "question_set_dir": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\processed\\benchmarks\\fixed_question_sets_gpt54",
+  "status": "completed",
+  "rows_completed": 50,
+  "rows_expected": 50,
+  "error": null,
+  "samples_csv": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\outputs\\benchmarks\\fixed_repair\\samples_Mistral-7B-Instruct-v0.3.csv",
+  "result_json": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\outputs\\benchmarks\\fixed_repair\\result_Mistral-7B-Instruct-v0.3.json",
+  "updated_at_epoch": 1775604991.1928506
+}

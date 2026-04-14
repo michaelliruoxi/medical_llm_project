@@ -1,0 +1,95 @@
+model,config,quantization,noise_type,question_id,question_clean,question_noisy,question_repaired,reference_answer,answer_clean,answer_noisy,answer_repaired,bleu_clean,bleu_noisy,bleu_repaired,chrf_clean,chrf_noisy,chrf_repaired,rouge_l_clean,rouge_l_noisy,rouge_l_repaired,token_f1_clean,token_f1_noisy,token_f1_repaired,exact_match_clean,exact_match_noisy,exact_match_repaired,bertscore_clean,bertscore_noisy,bertscore_repaired,intent_preservation_clean,intent_preservation_noisy,intent_preservation_repaired,geval_clean,geval_noisy,geval_repaired
+gemma-4-31B-it (4bit),gemma4_31b_q6k_ref.yaml,4bit,typos_grammar,0,Do you have information about A1C,"do you got any info rmation abotu A1C , like what it is an how it works?","What is A1C, and how does it work?","Summary : A1C is a blood test for type 2 diabetes and prediabetes. It measures your average blood glucose, or blood sugar, level over the past 3 months. Doctors may use the A1C alone or in combination with other diabetes tests to make a diagnosis. They also use the A1C to see how well you are managing your diabetes. This test is different from the blood sugar checks that people with diabetes do every day. Your A1C test result is given in percentages. The higher the percentage, the higher your blood sugar levels have been: - A normal A1C level is below 5.7 percent - Prediabetes is between 5.7 to 6.4 percent. Having prediabetes is a risk factor for getting type 2 diabetes. People with prediabetes may need retests every year. - Type 2 diabetes is above 6.5 percent - If you have diabetes, you should have the A1C test at least twice a year. The A1C goal for many people with diabetes is below 7. It may be different for you. Ask what your goal should be. If your A1C result is too high, you may need to change your diabetes care plan. NIH: National Institute of Diabetes and Digestive and Kidney Diseases","**Hemoglobin A1c (HbA1c)** is a blood test that measures your average blood sugar levels over the past two to three months. It is primarily used for screening, diagnosing, and monitoring diabetes.
+
+### How it Works
+Glucose in your bloodstream attaches to hemoglobin, the protein in red blood cells that carries oxygen. Because red blood cells live for approximately 3 months, measuring the percentage of ""glycated"" hemoglobin provides an average of your glucose levels over that period, rather than a snapshot of your current level (like a finger-stick glucose test).
+
+### Understanding the Results
+The results are reported as a percentage. While target ranges can vary by individual health needs, general guidelines are typically:
+
+*   **Normal:** Below 5.7%
+*   **Prediabetes:** 5.7% to 6.4%
+*   **Diabetes:** 6.5% or higher
+
+### Why it is Important
+*   **Diagnosis:** It helps doctors identify prediabetes and type 2 diabetes without requiring the patient to fast before the test.
+*   **Management:** For those with diabetes, tracking A1C helps determine if medications, diet, and exercise plans are working effectively.
+*   **Risk Reduction:** Maintaining a target A1C range reduces the risk of long-term complications, such as kidney disease, nerve damage (neuropathy), and vision loss (retinopathy).
+
+***Disclaimer:** I am an","**HbA1c**, commonly referred to as **A1C**, is a blood test that measures your average blood sugar levels over the past two to three months.
+
+### What it is
+Unlike a finger-stick glucose test, which shows your blood sugar at one specific moment (a ""snapshot""), the A1C provides a long-term average (a ""big picture""). It is primarily used to diagnose prediabetes and diabetes, and to monitor how well a diabetes treatment plan is working.
+
+### How it works
+The test relies on the biology of your red blood cells:
+1. **Glycation:** Glucose (sugar) in your bloodstream naturally attaches itself to **hemoglobin**, the protein in red blood cells that carries oxygen. This process is called glycation.
+2. **Permanent Record:** Once glucose sticks to hemoglobin, it stays there for the entire life of the red blood cell. 
+3. **Lifespan:** Red blood cells typically live for about 120 days. By measuring the percentage of hemoglobin that has glucose attached to it, doctors can determine the average amount of sugar that has been present in your blood over the last few months.
+
+### Understanding the Results
+Results are reported as a percentage. While ranges can vary slightly by laboratory, general guidelines include:
+*   **Normal:** Below 5.7%
+*   **Prediabetes:** 5.7% to 6.4%
+*   **","**A1C**, also known as hemoglobin A1c or glycated hemoglobin, is a blood test that measures your average blood sugar levels over the past two to three months. Unlike a finger-stick glucose test, which provides a ""snapshot"" of your current blood sugar, the A1C provides a long-term average.
+
+### How It Works
+The test relies on the biology of **hemoglobin**, the protein in red blood cells that carries oxygen throughout the body. 
+
+1.  **Glycation:** When glucose (sugar) enters your bloodstream, some of it naturally attaches to the hemoglobin molecules in your red blood cells. This process is called glycation.
+2.  **Cumulative Effect:** The more glucose present in your blood, the more hemoglobin becomes ""glycated."" Because this bond is permanent for the life of the cell, the amount of glycated hemoglobin serves as a record of recent blood sugar levels.
+3.  **Lifespan of Red Blood Cells:** Red blood cells typically live for about 120 days. Therefore, measuring the percentage of glycated hemoglobin reflects the average glucose concentration circulating in your blood over the preceding 8 to 12 weeks.
+
+### Interpretation of Results
+Results are reported as a percentage. Generally, the guidelines are as follows:
+*   **Normal:** Below 5.7%
+*   **Prediabetes:** 5.7% to 6.4%
+*   **",4.524684565691581,4.476230788014273,4.5580741724466405,40.10154110771793,38.38472043905426,36.03046434770506,23.180592991913745,19.098143236074268,18.428184281842817,38.81401617250674,36.07427055702918,31.97831978319783,0.0,0.0,0.0,0.8505961298942566,0.8455617427825928,0.8386415243148804,1.0,0.8034437298774719,0.872497022151947,4,4,4
+gemma-4-31B-it (4bit),gemma4_31b_q6k_ref.yaml,4bit,ambiguity,1,What is (are) Abdominal Pain ?,"what does it mean if your stomach/belly area is hurting inside, like that kind of pain in the middle, or around there, is that just a regular stomach ache or something else?","What could pain felt inside the abdomen, especially in the middle or central belly area, indicate, and how can I tell whether it is just a typical stomachache or a sign of something else?","Your abdomen extends from below your chest to your groin. Some people call it the stomach, but your abdomen contains many other important organs. Pain in the abdomen can come from any one of them. The pain may start somewhere else, such as your chest. Severe pain doesn't always mean a serious problem. Nor does mild pain mean a problem is not serious. Call your healthcare provider if mild pain lasts a week or more or if you have pain with other symptoms. Get medical help immediately if - You have abdominal pain that is sudden and sharp - You also have pain in your chest, neck or shoulder - You're vomiting blood or have blood in your stool - Your abdomen is stiff, hard and tender to touch - You can't move your bowels, especially if you're also vomiting","**Abdominal pain** is a broad clinical term describing discomfort or pain occurring anywhere between the chest (diaphragm) and the groin (inguinal ligament). Because this region contains numerous organs, abdominal pain can stem from various causes ranging from mild to life-threatening.
+
+### Classification by Location
+Medical professionals often categorize abdominal pain by its location to help diagnose the cause:
+*   **Upper Right:** Gallbladder (gallstones), liver issues.
+*   **Upper Left:** Spleen, stomach (gastritis/ulcers), pancreas.
+*   **Lower Right:** Appendix (appendicitis), cecum, right ovary/fallopian tube.
+*   **Lower Left:** Diverticulitis, left ovary/fallopian tube.
+*   **Central/Periumbilical:** Small intestine, early appendicitis, aortic aneurysm.
+*   **Epigastric (Top Center):** Stomach, esophagus, heart (referred pain from myocardial infarction).
+
+### Types of Pain
+1.  **Visceral Pain:** Dull, aching, or cramping pain caused by stretching or irritation of internal organs; it is often poorly localized.
+2.  **Somatic (Parietal) Pain:** Sharp, severe pain caused by inflammation of the peritoneum (the lining of the abdominal cavity); it is usually well-localized.
+3.  **Referred Pain:** Pain felt in one area but originating from another (e.g., shoulder pain resulting from","***Disclaimer:** I am an AI, not a doctor. If you are experiencing severe pain, high fever, persistent vomiting, or blood in your stool, seek immediate medical attention or go to an Urgent Care center.*
+
+Pain in the middle of the belly (the umbilical region) can range from a common ""stomach ache"" to more serious conditions. Because many organs are located in this area, doctors categorize the cause based on the type of pain and accompanying symptoms.
+
+### 1. Common/Minor Causes (""Regular Stomach Ache"")
+Most mid-abdominal pain is related to the digestive tract and is typically non-emergency:
+*   **Indigestion or Gas:** Often feels like bloating or sharp, shifting pains caused by trapped air.
+*   **Gastroenteritis (Stomach Flu):** Usually accompanied by nausea, diarrhea, or cramping.
+*   **Constipation:** A dull ache often relieved after a bowel movement.
+*   **Overeating or Food Intolerance:** Pain resulting from difficulty digesting certain foods (e.g., lactose intolerance).
+
+### 2. Moderate to Serious Causes
+If the pain persists or intensifies, it could be related to specific organs:
+*   **Gastritis or Peptic Ulcers:** Inflammation or sores in the stomach lining; often felt as a burning sensation in the upper-middle area.
+*   **Small Bowel Obstruction:** Severe cramping and inability to pass gas or stool.
+*","***Disclaimer:** I am an AI, not a doctor. Abdominal pain can range from benign to life-threatening. If you are experiencing severe pain, high fever, or persistent vomiting, seek immediate medical attention.*
+
+Pain in the center (periumbilical) or middle of the abdomen can originate from several different organ systems. Because many organs overlap in this region, localization can be difficult.
+
+### Potential Causes by System
+
+**1. Gastrointestinal (Most Common)**
+*   **Indigestion/Gastritis:** Inflammation of the stomach lining often causes burning or gnawing pain in the upper-middle area.
+*   **Gastroenteritis:** The ""stomach flu"" typically presents with cramping, nausea, and diarrhea.
+*   **Irritable Bowel Syndrome (IBS):** Chronic cramping often relieved by bowel movements.
+*   **Small Intestine Issues:** Obstructions or inflammation (like Crohn's disease).
+*   **Early Appendicitis:** Pain often starts as a dull ache around the belly button before migrating to the lower right quadrant.
+
+**2. Pancreatic and Biliary**
+*   **Pancreatitis:** Severe pain in the upper-center that may radiate to the back.
+*   **Gallstones:** While usually on the right, gallbladder pain can sometimes feel centralized in the upper abdomen.
+
+**3. Vascular (Medical Emergencies)**
+*   **Abdominal Aortic Aneurysm (AAA):**",0.551028092719775,2.043998209487973,1.5516736035092817,31.14060295912031,34.094756719303035,33.64708928352063,12.751677852348994,12.618296529968454,11.409395973154362,24.832214765100673,27.760252365930604,26.174496644295303,0.0,0.0,0.0,0.8063270449638367,0.82225102186203,0.8113307356834412,1.0,0.6781894564628601,0.7022386789321899,3,2,3

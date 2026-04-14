@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import math
 import os
 import re
 from collections import Counter
@@ -15,6 +16,18 @@ _WS_RE = re.compile(r"\s+")
 _DEFAULT_SBERT_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 _sbert_encoder = None
 _sbert_model_name = None
+_RECOVERY_GAP_FLOORS = {
+    "bleu": 1.0,
+    "chrf": 1.0,
+    "rouge_l": 1.0,
+    "token_f1": 1.0,
+    "exact_match": 1.0,
+    "bertscore": 0.01,
+    "bertscore_f1": 0.01,
+    "intent_preservation": 0.01,
+    "geval": 0.1,
+    "geval_score": 0.1,
+}
 
 
 def normalize_text(text: str) -> str:
@@ -96,6 +109,34 @@ def compute_rouge_l_score(prediction: str, reference: str) -> float:
     recall = lcs / len(ref_tokens)
     f1 = (2 * precision * recall) / (precision + recall)
     return 100.0 * f1
+
+
+def recovery_gap_floor(metric_name: str | None = None) -> float:
+    if not metric_name:
+        return 1.0
+    return float(_RECOVERY_GAP_FLOORS.get(metric_name, 1.0))
+
+
+def compute_recovery_statistics(
+    clean_mean: float,
+    noisy_mean: float,
+    repaired_mean: float,
+    metric_name: str | None = None,
+) -> dict[str, float]:
+    degradation = clean_mean - noisy_mean
+    recovery = repaired_mean - noisy_mean
+    floor = recovery_gap_floor(metric_name)
+
+    ratio = math.nan
+    if not any(math.isnan(v) for v in (degradation, recovery)) and degradation > floor:
+        bounded_recovery = max(-degradation, min(recovery, degradation))
+        ratio = bounded_recovery / degradation
+
+    return {
+        "degradation": degradation,
+        "recovery": recovery,
+        "recovery_ratio": ratio,
+    }
 
 
 def _get_sbert_encoder(model_name: str | None = None):

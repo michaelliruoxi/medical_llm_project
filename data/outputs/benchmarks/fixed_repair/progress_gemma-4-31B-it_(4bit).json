@@ -1,0 +1,13 @@
+{
+  "model": "gemma-4-31B-it (4bit)",
+  "config": "gemma4_31b_q6k_ref.yaml",
+  "benchmark_mode": "fixed_repair",
+  "question_set_dir": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\processed\\benchmarks\\fixed_question_sets_gpt54",
+  "status": "partial",
+  "rows_completed": 2,
+  "rows_expected": 50,
+  "error": "Process exited unexpectedly after saving partial progress.",
+  "samples_csv": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\outputs\\benchmarks\\fixed_repair\\samples_gemma-4-31B-it_(4bit).csv",
+  "result_json": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\outputs\\benchmarks\\fixed_repair\\result_gemma-4-31B-it_(4bit).json",
+  "updated_at_epoch": 1776141224.5031023
+}

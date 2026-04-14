@@ -4,6 +4,7 @@ import hashlib
 import json
 import logging
 import os
+import shutil
 import sys
 from collections import Counter
 from pathlib import Path
@@ -51,6 +52,10 @@ def load_config(path: str | os.PathLike | None = None) -> dict:
 
 def quantization_label(cfg: dict) -> str:
     return str(cfg.get("display_quantization", cfg.get("quantization", "none")))
+
+
+def _safe_cache_name(name: str) -> str:
+    return name.replace("/", "__").replace("\\", "__").replace(":", "_")
 
 
 def load_prompts(path: str | None = None) -> dict:
@@ -373,6 +378,81 @@ def _fold_system_into_user(messages: list[dict]) -> list[dict]:
     return chat_messages
 
 
+def _prefer_processor_chat_template(model_name: str) -> bool:
+    cfg = load_config()
+    if "use_processor_chat_template" in cfg:
+        return bool(cfg["use_processor_chat_template"])
+    return "gemma-4" in model_name.lower()
+
+
+def _tokenizer_fix_dir() -> Path:
+    root = PROJECT_ROOT / "data" / "outputs" / "cache" / "tokenizer_fixes"
+    root.mkdir(parents=True, exist_ok=True)
+    return root
+
+
+def _prepare_tokenizer_source(model_name: str) -> str:
+    if "gemma-4" not in model_name.lower():
+        return model_name
+
+    try:
+        from huggingface_hub import snapshot_download
+
+        snapshot_path = Path(
+            snapshot_download(
+                repo_id=model_name,
+                allow_patterns=[
+                    "tokenizer.json",
+                    "tokenizer_config.json",
+                    "special_tokens_map.json",
+                    "chat_template.jinja",
+                    "tokenizer.model",
+                    "tokenizer.model.v3",
+                ],
+            )
+        )
+    except Exception:
+        return model_name
+
+    cfg_path = snapshot_path / "tokenizer_config.json"
+    if not cfg_path.exists():
+        return str(snapshot_path)
+
+    try:
+        cfg = json.loads(cfg_path.read_text(encoding="utf-8"))
+    except Exception:
+        return str(snapshot_path)
+
+    extra_special_tokens = cfg.get("extra_special_tokens")
+    if not isinstance(extra_special_tokens, list):
+        return str(snapshot_path)
+
+    fixed_dir = _tokenizer_fix_dir() / _safe_cache_name(model_name)
+    fixed_dir.mkdir(parents=True, exist_ok=True)
+
+    for name in [
+        "tokenizer.json",
+        "tokenizer_config.json",
+        "special_tokens_map.json",
+        "chat_template.jinja",
+        "tokenizer.model",
+        "tokenizer.model.v3",
+    ]:
+        src = snapshot_path / name
+        if src.exists():
+            shutil.copy2(src, fixed_dir / name)
+
+    cfg["extra_special_tokens"] = {
+        ("video_token" if idx == 0 else f"extra_special_token_{idx}"): token
+        for idx, token in enumerate(extra_special_tokens)
+    }
+    (fixed_dir / "tokenizer_config.json").write_text(
+        json.dumps(cfg, indent=2),
+        encoding="utf-8",
+    )
+    return str(fixed_dir)
+
+
 def _get_local_model(model_name: str, quantization: str = "none"):
     """Lazy-load a HuggingFace model + tokenizer, cached by model name.
 
@@ -384,7 +464,8 @@ def _get_local_model(model_name: str, quantization: str = "none"):
         model_name: HuggingFace model identifier.
         quantization: "none", "4bit", or "8bit". Requires bitsandbytes.
     """
-    cache_key = f"{model_name}::{quantization}"
+    use_processor_chat_template = _prefer_processor_chat_template(model_name)
+    cache_key = f"{model_name}::{quantization}::processor={use_processor_chat_template}"
     if cache_key not in _local_models:
         os.environ["USE_TF"] = "0"
         os.environ["USE_TORCH"] = "1"
@@ -399,17 +480,19 @@ def _get_local_model(model_name: str, quantization: str = "none"):
         logger.info("Loading local model: %s (%s, gpu=%s, quant=%s)",
                      model_name, kind, use_gpu, quantization)
 
-        tokenizer = AutoTokenizer.from_pretrained(model_name)
+        tokenizer_source = _prepare_tokenizer_source(model_name)
+        tokenizer = AutoTokenizer.from_pretrained(tokenizer_source)
         if tokenizer.pad_token is None:
             tokenizer.pad_token = tokenizer.eos_token
 
         processor = None
-        if "gemma-4" in model_name.lower():
+        if use_processor_chat_template:
             try:
                 processor = AutoProcessor.from_pretrained(model_name)
             except Exception:
                 processor = None
 
+        cfg = load_config()
         load_kwargs: dict = {}
         if use_gpu:
             load_kwargs["device_map"] = "auto"
@@ -426,7 +509,10 @@ def _get_local_model(model_name: str, quantization: str = "none"):
             else:
                 load_kwargs["quantization_config"] = BitsAndBytesConfig(
                     load_in_8bit=True,
+                    llm_int8_enable_fp32_cpu_offload=bool(cfg.get("cpu_offload", False)),
                 )
+                if cfg.get("cpu_offload"):
+                    load_kwargs["offload_folder"] = str(PROJECT_ROOT / "data" / "outputs" / "cache" / "offload")
         elif use_gpu:
             # Let each model use its preferred precision instead of forcing fp16.
             # This avoids dtype mismatches for repos such as GPT-OSS that default
@@ -567,26 +653,38 @@ def _local_generate(model: str, messages: list, temperature: float, max_tokens: 
             chat_messages = _fold_system_into_user(chat_messages)
 
         try:
-            input_ids = tokenizer.apply_chat_template(
+            tokenized_chat = tokenizer.apply_chat_template(
                 chat_messages,
+                tokenize=True,
+                return_dict=True,
                 return_tensors="pt",
                 add_generation_prompt=True,
             )
         except Exception as exc:
             if "system role not supported" not in str(exc).lower():
                 raise
-            input_ids = tokenizer.apply_chat_template(
+            tokenized_chat = tokenizer.apply_chat_template(
                 _fold_system_into_user(messages),
+                tokenize=True,
+                return_dict=True,
                 return_tensors="pt",
                 add_generation_prompt=True,
             )
         device = next(model_obj.parameters()).device
-        input_ids = input_ids.to(device)
+        if hasattr(tokenized_chat, "items"):
+            model_inputs = {
+                key: (value.to(device) if hasattr(value, "to") else value)
+                for key, value in tokenized_chat.items()
+            }
+            input_ids = model_inputs["input_ids"]
+        else:
+            input_ids = tokenized_chat.to(device)
+            model_inputs = {
+                "input_ids": input_ids,
+            }
+        if "attention_mask" not in model_inputs:
+            model_inputs["attention_mask"] = torch.ones_like(input_ids)
         prompt_len = input_ids.shape[1]
-        model_inputs = {
-            "input_ids": input_ids,
-            "attention_mask": torch.ones_like(input_ids),
-        }
         decoder = tokenizer
     else:
         prompt = "\n\n".join(str(m["content"]) for m in messages)

@@ -28,6 +28,10 @@ data/outputs/comparison*/model_comparison.live.csv
 data/outputs/comparison*/*_legacy.csv
 data/outputs/comparison*/*_offplan.csv
 data/outputs/comparison*/*.tmp
+data/outputs/benchmarks/*/cache/
+data/outputs/benchmarks/*/archived/
+data/outputs/benchmarks/*/model_comparison.live.csv
+data/outputs/benchmarks/*debug*/
 
 # Local-only workspace artifacts
 .bundle_staging_*/

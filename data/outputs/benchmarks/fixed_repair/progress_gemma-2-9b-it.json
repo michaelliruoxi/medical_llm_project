@@ -1,0 +1,13 @@
+{
+  "model": "gemma-2-9b-it",
+  "config": "gemma2_9b.yaml",
+  "benchmark_mode": "fixed_repair",
+  "question_set_dir": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\processed\\benchmarks\\fixed_question_sets_gpt54",
+  "status": "completed",
+  "rows_completed": 50,
+  "rows_expected": 50,
+  "error": null,
+  "samples_csv": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\outputs\\benchmarks\\fixed_repair\\samples_gemma-2-9b-it.csv",
+  "result_json": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\outputs\\benchmarks\\fixed_repair\\result_gemma-2-9b-it.json",
+  "updated_at_epoch": 1775605664.1225946
+}

@@ -6,6 +6,7 @@ import pandas as pd
 from tqdm import tqdm
 
 from src.noise_schedule import build_noise_plan, summarize_noise_plan
+from src.question_validation import retry_feedback, validate_generated_question
 from src.resume import build_completed_lookup, row_key, write_parquet_atomic
 from src.utils import PROJECT_ROOT, load_config, load_prompts, call_llm, setup_logging, get_token_tracker
 
@@ -20,19 +21,56 @@ def generate_noisy_variant(question: str, noise_type: str,
     user_msg = prompts["noise"]["user_template"].format(
         noise_type=noise_type, question=question
     )
-    messages = [
+    base_messages = [
         {"role": "system", "content": system_msg},
         {"role": "user", "content": user_msg},
     ]
-    return call_llm(
-        messages=messages,
-        model=cfg["noise_model"],
-        temperature=cfg["temperature_noise"],
-        max_tokens=cfg["max_tokens_noise"],
-        backend=cfg.get("backend", "openai"),
-        quantization=cfg.get("quantization", "none"),
-        api_mode=cfg.get("api_mode", "chat_completions"),
-        reasoning_effort=cfg.get("reasoning_effort_noise", cfg.get("reasoning_effort")),
+    attempts = max(int(cfg.get("max_validation_retries_noise", 2)) + 1, 1)
+    last_candidate = ""
+    last_reason = "did not produce a valid noisy question"
+
+    for attempt in range(attempts):
+        messages = list(base_messages)
+        if attempt > 0:
+            messages.append(
+                {
+                    "role": "user",
+                    "content": retry_feedback("noise", last_reason),
+                }
+            )
+
+        raw = call_llm(
+            messages=messages,
+            model=cfg["noise_model"],
+            temperature=cfg["temperature_noise"],
+            max_tokens=cfg["max_tokens_noise"],
+            backend=cfg.get("backend", "openai"),
+            quantization=cfg.get("quantization", "none"),
+            api_mode=cfg.get("api_mode", "chat_completions"),
+            reasoning_effort=cfg.get("reasoning_effort_noise", cfg.get("reasoning_effort")),
+            use_cache=attempt == 0,
+        )
+        candidate, error = validate_generated_question(
+            raw,
+            stage="noise",
+            source_question=question,
+        )
+        if error is None:
+            return candidate
+
+        last_candidate = candidate
+        last_reason = error
+        logger.warning(
+            "Retrying noisy-question generation for %s (attempt %d/%d): %s",
+            noise_type,
+            attempt + 1,
+            attempts,
+            error,
+        )
+
+    raise ValueError(
+        f"Failed to generate a valid noisy question after {attempts} attempts: {last_reason}. "
+        f"Last candidate: {last_candidate!r}"
     )
 
 
