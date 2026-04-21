@@ -1,0 +1,1982 @@
+model,config,quantization,noise_type,question_id,question_clean,question_noisy,question_repaired,reference_answer,answer_clean,answer_noisy,answer_repaired,bleu_clean,bleu_noisy,bleu_repaired,chrf_clean,chrf_noisy,chrf_repaired,rouge_l_clean,rouge_l_noisy,rouge_l_repaired,token_f1_clean,token_f1_noisy,token_f1_repaired,exact_match_clean,exact_match_noisy,exact_match_repaired,med_coverage_clean,med_coverage_noisy,med_coverage_repaired,med_precision_clean,med_precision_noisy,med_precision_repaired,med_f1_clean,med_f1_noisy,med_f1_repaired,bertscore_clean,bertscore_noisy,bertscore_repaired,intent_preservation_clean,intent_preservation_noisy,intent_preservation_repaired,geval_clean,geval_noisy,geval_repaired
+gpt-5.4,gpt54_hybrid_api.yaml,none,typos_grammar,0,Do you have information about A1C,"do you got any info rmation abotu A1C , like what it is an how it works?","What is the A1C test, and how does it work?","Summary : A1C is a blood test for type 2 diabetes and prediabetes. It measures your average blood glucose, or blood sugar, level over the past 3 months. Doctors may use the A1C alone or in combination with other diabetes tests to make a diagnosis. They also use the A1C to see how well you are managing your diabetes. This test is different from the blood sugar checks that people with diabetes do every day. Your A1C test result is given in percentages. The higher the percentage, the higher your blood sugar levels have been: - A normal A1C level is below 5.7 percent - Prediabetes is between 5.7 to 6.4 percent. Having prediabetes is a risk factor for getting type 2 diabetes. People with prediabetes may need retests every year. - Type 2 diabetes is above 6.5 percent - If you have diabetes, you should have the A1C test at least twice a year. The A1C goal for many people with diabetes is below 7. It may be different for you. Ask what your goal should be. If your A1C result is too high, you may need to change your diabetes care plan. NIH: National Institute of Diabetes and Digestive and Kidney Diseases","Yes. **A1C** (also called **HbA1c** or **glycated hemoglobin**) is a blood test that shows your **average blood sugar over about the past 2–3 months**.
+
+### What it’s used for
+- **Diagnosing diabetes and prediabetes**
+- **Monitoring diabetes control** over time
+
+### Common A1C ranges
+For most adults:
+- **Normal:** below **5.7%**
+- **Prediabetes:** **5.7% to 6.4%**
+- **Diabetes:** **6.5% or higher** on testing
+
+### Typical treatment goal
+For many adults with diabetes, a common target is:
+- **Below 7%**
+But the best goal depends on age, other health conditions, and risk of low blood sugar.
+
+### Important notes
+A1C may be less accurate in some situations, such as:
+- **Anemia**
+- **Kidney disease**
+- **Pregnancy**
+- Certain **blood disorders** or recent blood loss/transfusion
+
+If you want, I can also explain:
+- how to lower A1C,
+-","Yes — **A1C** (also called **HbA1c** or **hemoglobin A1C**) is a blood test that shows your **average blood sugar level over about the last 2–3 months**.
+
+### What it is
+Red blood cells contain a protein called **hemoglobin**. Sugar (**glucose**) in your blood naturally sticks to hemoglobin.  
+The **A1C test measures how much hemoglobin has sugar attached to it**.
+
+Because red blood cells live for about **3 months**, the test gives a longer-term picture of blood sugar control — not just what your sugar is at one moment.
+
+### How it works
+- **Higher blood sugar over time** → more sugar sticks to hemoglobin  
+-","The **A1C test** (also called **hemoglobin A1C** or **HbA1c**) is a blood test that measures your **average blood sugar level over the past 2 to 3 months**.
+
+### How it works
+Glucose in the blood naturally attaches to **hemoglobin**, the protein in red blood cells that carries oxygen. The higher your blood sugar has been, the more glucose sticks to hemoglobin.  
+The A1C test measures the **percentage of hemoglobin that has glucose attached to it**.
+
+Because red blood cells live for about **120 days**, the result reflects your **long-term blood sugar control**, not just your level at one moment.
+
+### What it’s used for
+- **Diagnosing prediabetes and diabetes**
+- **Monitoring diabetes control over time**
+
+### Typical interpretation
+- **Normal:** below **5.7%**
+- **Prediabetes:** **5.7% to 6.4%**
+- **Diabetes:**",3.225707925095393,2.5741190222653523,6.497238131774573,29.973315502188395,22.818129700081283,33.48594495699188,26.282051282051285,19.08127208480565,23.60655737704918,42.94871794871795,30.3886925795053,41.967213114754095,0.0,0.0,0.0,21.333333333333336,14.666666666666666,26.666666666666668,30.76923076923077,28.94736842105264,41.66666666666667,25.196850393700792,19.469026548672566,32.52032520325203,0.847036600112915,0.8233662247657776,0.8431628942489624,1.0,0.8034437298774719,0.8129732012748718,4,3,4
+gpt-5.4,gpt54_hybrid_api.yaml,none,ambiguity,1,What is (are) Abdominal Pain ?,"what does it mean if your stomach/belly area is hurting inside, like that kind of pain in the middle, or around there, is that just a regular stomach ache or something else?","What could pain in the middle of the stomach or belly area mean, and how can I tell whether it is just a regular stomachache or something more serious?","Your abdomen extends from below your chest to your groin. Some people call it the stomach, but your abdomen contains many other important organs. Pain in the abdomen can come from any one of them. The pain may start somewhere else, such as your chest. Severe pain doesn't always mean a serious problem. Nor does mild pain mean a problem is not serious. Call your healthcare provider if mild pain lasts a week or more or if you have pain with other symptoms. Get medical help immediately if - You have abdominal pain that is sudden and sharp - You also have pain in your chest, neck or shoulder - You're vomiting blood or have blood in your stool - Your abdomen is stiff, hard and tender to touch - You can't move your bowels, especially if you're also vomiting","Abdominal pain is pain or discomfort felt anywhere in the area between the chest and the groin, often called the belly or abdomen.
+
+It can:
+- be mild or severe
+- come on suddenly or develop gradually
+- be constant or come and go
+- feel crampy, sharp, dull, burning, or aching
+
+Abdominal pain is a symptom, not a disease itself. It can be caused by many problems, including:
+- indigestion, gas, constipation
+- stomach flu or food poisoning
+- appendicitis
+- gallstones or kidney stones
+- ulcers
+- urinary or reproductive system problems
+- inflammatory or other serious conditions
+
+Some causes are minor, while others may need urgent medical care. Seek immediate medical attention if abdominal pain is severe, persistent, or occurs with fever, vomiting, fainting, trouble breathing, bloody stool or vomit, or a rigid/swollen abdomen.","Pain “in the middle” of the belly can be a simple stomach ache, but it can also come from other organs in the abdomen.
+
+Common, less serious causes:
+- Indigestion or acid reflux
+- Gas or bloating
+- Stomach bug
+- Constipation
+- Muscle strain
+
+Other possible causes, depending on the exact spot and symptoms:
+- Ulcer or gastritis
+- Appendicitis — often starts near the belly button, then moves to the lower right side
+- Gallbladder, pancreas, or intestinal problems
+- Kidney","Pain in the middle of the belly can mean many different things, from something minor to something urgent.
+
+### Common, less serious causes
+- **Indigestion, gas, or overeating**
+- **Stomach virus**
+- **Constipation**
+- **Acid reflux or gastritis**
+- **",1.1943151536602332,1.6650356798628845,0.8860669430229208,36.28592634368332,24.91290888242426,13.011113549936097,15.810276679841898,13.065326633165828,8.536585365853659,30.0395256916996,24.12060301507538,14.634146341463412,0.0,0.0,0.0,20.0,10.0,6.666666666666667,19.672131147540984,14.634146341463412,19.047619047619047,19.83471074380165,11.88118811881188,9.876543209876544,0.8425702452659607,0.8236315846443176,0.8134597539901733,1.0,0.6781894564628601,0.72308349609375,4,4,2
+gpt-5.4,gpt54_hybrid_api.yaml,none,layperson,2,What is (are) Abortion ?,"what does it mean when a pregancy gets ended early or the baby is not kept, like how does that whole thing happen and what is it exactly ?","What is abortion, and what does it mean medically when a pregnancy is ended early or does not continue?","An abortion is a procedure to end a pregnancy. It uses medicine or surgery to remove the embryo or fetus and placenta from the uterus. The procedure is done by a licensed health care professional. The decision to end a pregnancy is very personal. If you are thinking of having an abortion, most healthcare providers advise counseling.","Abortion is the termination or loss of a pregnancy before the fetus is viable outside the uterus.
+
+It may be:
+
+- **Spontaneous abortion**: a **miscarriage**, occurring naturally.
+- **Induced abortion**: deliberate ending of a pregnancy by **medication or a medical/surgical procedure**.
+
+In medical use, abortion generally refers to pregnancy ending in the early stages, before the fetus can survive independently.","When a pregnancy ends early, there are a few different medical terms, depending on **how** it happens:
+
+### 1. **Miscarriage**
+This means the pregnancy ends **on its own** before the baby can survive outside the uterus, usually before 20 weeks.
+
+- It often happens because the embryo/fetus was not developing normally, often due to chromosome problems.
+- It is **very common** and usually **not caused by something the pregnant person did**.
+- The body may respond with:
+  - vaginal bleeding
+  - cramping
+  - passing tissue
+- Sometimes a miscarriage happens naturally, and sometimes medical treatment or a procedure is needed to remove pregnancy tissue from the uterus.
+
+### 2. **Abortion**
+This means the pregnancy is **ended intentionally**.
+
+There are","Abortion is the ending of a pregnancy before the fetus is able to survive outside the uterus.
+
+Medically, this can mean either:
+- **Induced abortion**: a pregnancy is ended on purpose with medicine or a procedure.
+- **Spontaneous abortion**: the pregnancy ends on its own, which is commonly called a **miscarriage**.
+
+So, in medical terms, when a pregnancy is ended early or does not continue, it is called an abortion.",3.282830908427841,2.960175998548804,4.1447985975798165,36.46838576824171,37.06849271309609,38.76422544440935,16.49484536082474,15.068493150684931,20.952380952380956,30.927835051546392,27.3972602739726,30.47619047619048,0.0,0.0,0.0,23.809523809523807,28.57142857142857,28.57142857142857,23.809523809523807,12.0,26.08695652173913,23.809523809523807,16.90140845070422,27.27272727272727,0.8550016283988953,0.8417373895645142,0.8616718649864197,0.9999999403953552,0.4420582950115204,0.7771167159080505,4,3,4
+gpt-5.4,gpt54_hybrid_api.yaml,none,incomplete,3,What is (are) Abscess ?,what is that painful swollen thing with pus?,"What could cause a painful, swollen bump that contains pus?","An abscess is a pocket of pus. You can get an abscess almost anywhere in your body. When an area of your body becomes infected, your body's immune system tries to fight the infection. White blood cells go to the infected area, collect within the damaged tissue, and cause inflammation. During this process, pus forms. Pus is a mixture of living and dead white blood cells, germs, and dead tissue. Bacteria, viruses, parasites and swallowed objects can all lead to abscesses. Skin abscesses are easy to detect. They are red, raised and painful. Abscesses inside your body may not be obvious and can damage organs, including the brain, lungs and others. Treatments include drainage and antibiotics.","An **abscess** is a **localized collection of pus** that forms in body tissues, organs, or spaces, usually due to an **infection**.
+
+It develops when the body tries to fight infection, leading to a pocket filled with:
+- dead white blood cells
+- bacteria or other germs
+- tissue debris
+
+Common signs include:
+- **pain**
+- **swelling**
+- **redness**
+- **warmth**
+- sometimes **fever**
+
+Abscesses can occur **under the skin**, in the **mouth**, or **inside the body**. Treatment often involves **drainage** and sometimes **antibiotics**.","A painful, swollen bump with pus is often an **abscess** or **boil**.
+
+It usually means there is a **localized skin infection**, often caused by bacteria. Common features:
+- red, warm, tender swelling
+- pus or a white/yellow center
+- sometimes fever
+
+**Do not squeeze it**, because that can spread the infection.
+
+It should be checked by a clinician if:
+- it is getting bigger
+- the pain is severe
+- you have fever
+- it is on the face, near the anus/genitals, or over a joint
+- you have diabetes or a weak immune system
+
+Treatment may include **drainage** and sometimes **antibiotics**. If you want, I can also help you tell whether it sounds more like an abscess, pimple, cyst, or swollen lymph node.","A painful, swollen bump that contains pus is most commonly caused by a **skin infection**, such as:
+
+- **Abscess**: a pocket of pus caused by bacterial infection
+- **Boil (furuncle)**: an infected hair follicle
+- **Infected cyst**: a cyst that has become inflamed and infected
+- **Folliculitis**: infection of hair follicles
+- Sometimes **hidradenitis suppurativa** if it occurs repeatedly in areas like the armpits or groin
+
+Common signs include **redness, warmth, tenderness, swelling, and drainage of pus**.
+
+It should be evaluated by a clinician, especially if it is getting larger, very painful, accompanied by fever, or not improving, because it may need **drainage and/or antibiotics**.",4.130575441814051,2.022987025457778,2.821607079030965,32.87373209409287,32.99106047710441,32.07991817996003,29.714285714285715,10.280373831775702,13.861386138613858,37.71428571428572,22.42990654205608,24.75247524752475,0.0,0.0,0.0,25.86206896551724,15.517241379310343,17.24137931034483,45.45454545454545,20.0,23.25581395348837,32.967032967032964,17.475728155339805,19.8019801980198,0.8524174094200134,0.8282339572906494,0.8322485089302063,1.0,0.4006653428077698,0.3640264868736267,5,5,4
+gpt-5.4,gpt54_hybrid_api.yaml,none,overgeneralization,4,What is (are) Acne ?,"What is that skin break out stuff, like when your face an maybe back gets little bumps n red spots, is it just a normal skin problem or some bigger body thing?","What causes acne-like breakouts with small bumps and red spots on the face and back, and are they usually just a common skin condition or could they indicate a more serious underlying health problem?","Acne is a common skin disease that causes pimples. Pimples form when hair follicles under your skin clog up. Most pimples form on the face, neck, back, chest, and shoulders. Anyone can get acne, but it is common in teenagers and young adults. It is not serious, but it can cause scars. No one knows exactly what causes acne. Hormone changes, such as those during the teenage years and pregnancy, probably play a role. There are many myths about what causes acne. Chocolate and greasy foods are often blamed, but there is little evidence that foods have much effect on acne in most people. Another common myth is that dirty skin causes acne; however, blackheads and pimples are not caused by dirt. Stress doesn't cause acne, but stress can make it worse. If you have acne - Clean your skin gently - Try not to touch your skin - Avoid the sun Treatments for acne include medicines and creams. NIH: National Institute of Arthritis and Musculoskeletal and Skin Diseases","Acne is a common skin condition in which the hair follicles and oil (sebaceous) glands become clogged and inflamed. It causes lesions such as:
+
+- **Whiteheads and blackheads** (comedones)
+- **Pimples** (papules and pustules)
+- **Deeper lumps or cysts** in more severe cases
+
+It most often affects the **face, chest, shoulders, and back**. Acne is especially common during **adolescence**, but it can occur at any age. Factors that contribute include **increased oil production, clogged pores, bacteria, and inflammation**.","What you’re describing sounds most like **acne** — a very common **skin condition** that causes **little bumps, pimples, clogged pores, and red spots**, often on the **face, back, chest, and shoulders**.
+
+### What it is
+Acne happens when:
+- **pores get clogged** with oil and dead skin
+- the skin makes **too much oil**
+- **bacteria** and inflammation build up
+
+### Is it just a skin problem?
+Usually, **yes — it’s mainly a skin problem**, and it’s very common, especially in teens and young adults.
+
+### Can it be related to “bigger body things”?
+Sometimes **body factors trigger or worsen it**, such as:
+- **hormone changes** (puberty, periods, pregnancy)
+- **family/genetics**
+- **stress**
+- certain **skin/hair products**
+- some **medications** (like steroids, testosterone, lithium)
+
+Less commonly, acne can be a clue to a **hormonal problem**, especially if it’s severe or comes","Most often, this kind of breakout is due to a common skin condition, not a serious internal disease.
+
+Common causes include:
+- **Acne vulgaris**: clogged pores, excess oil, inflammation, and *Cutibacterium acnes* bacteria
+- **Folliculitis**: inflamed hair follicles, sometimes from bacteria, yeast, sweat, friction, or shaving
+- **Keratosis pilaris**: tiny rough bumps from keratin plugging hair follicles
+- **Rosacea or irritation/contact dermatitis** on the face in some cases
+
+Typical triggers:
+- Hormonal changes
+- Oily skin
+- Sweating/friction
+- Certain cosmetics or skin products
+- Stress
+- Some medicines, especially",4.873455686734344,6.084675221735875,1.9738656279760156,26.23505918841117,32.255310932797165,25.442422549999467,18.803418803418804,19.377162629757784,11.618257261410788,30.769230769230766,38.06228373702422,20.746887966804977,0.0,0.0,0.0,15.384615384615383,26.923076923076923,14.102564102564102,34.285714285714285,30.88235294117647,26.82926829268293,21.238938053097343,28.76712328767124,18.487394957983195,0.8459967374801636,0.8320533633232117,0.8248143196105957,1.0,0.4476477205753326,0.5776391625404358,4,3,3
+gpt-5.4,gpt54_hybrid_api.yaml,none,typos_grammar,5,What is (are) Acoustic Neuroma ?,what is/are accoustic neuoroma exacly ?,What exactly is an acoustic neuroma?,"An acoustic neuroma is a benign tumor that develops on the nerve that connects the ear to the brain. The tumor usually grows slowly. As it grows, it presses against the hearing and balance nerves. At first, you may have no symptoms or mild symptoms. They can include - Loss of hearing on one side - Ringing in ears - Dizziness and balance problems The tumor can also eventually cause numbness or paralysis of the face. If it grows large enough, it can press against the brain, becoming life-threatening. Acoustic neuroma can be difficult to diagnose, because the symptoms are similar to those of middle ear problems. Ear exams, hearing tests, and scans can show if you have it. If the tumor stays small, you may only need to have it checked regularly. If you do need treatment, surgery and radiation are options. If the tumors affect both hearing nerves, it is often because of a genetic disorder called neurofibromatosis. NIH: National Institute on Deafness and Communication Disorders","An acoustic neuroma, also called a **vestibular schwannoma**, is a **benign (noncancerous), usually slow-growing tumor** that develops from the **Schwann cells** covering the **vestibulocochlear nerve (cranial nerve VIII)**, most often the **vestibular branch**.
+
+It typically arises in the **internal auditory canal** or **cerebellopontine angle** and can cause:
+
+- **Unilateral hearing loss**
+- **Tinnitus** (ringing in one ear)
+- **Balance problems or dizziness**
+- Larger tumors may press on nearby nerves or the brainstem
+
+So, acoustic neuroma is not a cancer, but it can still cause important symptoms because of its location.","An **acoustic neuroma** is a **benign (non-cancerous), usually slow-growing tumor** that develops from **Schwann cells** on the **vestibular branch of the 8th cranial nerve** (the **vestibulocochlear nerve**), which helps with **hearing and balance**.
+
+### More exact name
+The more accurate medical term is **vestibular schwannoma**.
+
+### What it does
+Because it grows on the nerve between the **inner ear and the brain**, it can press on nearby structures and cause symptoms such as:
+- **Hearing loss** in one ear
+- **Ringing in the ear (tinnitus)**
+- **Dizziness or balance problems**
+- Sometimes **fullness in the ear**
+- If larger: **facial numbness**, headache, or pressure on the brain
+
+### Important points
+- It is **not usually malignant**
+- It usually affects **only one side**
+- Rarely, if both sides are affected, it may be linked to **neurofib","An acoustic neuroma, more accurately called a **vestibular schwannoma**, is a **usually benign, slow-growing tumor** that arises from the **Schwann cells** covering the **vestibular branch of the 8th cranial nerve** (the nerve for balance and hearing).
+
+Key points:
+- It is **not cancer in most cases**
+- It usually starts in the **internal auditory canal** and can grow into the **cerebellopontine angle**
+- It most often causes:
+  - **One-sided hearing loss**
+  - **Tinnitus** (ringing in the ear)
+  - **Unsteadiness or balance problems**
+- If it becomes large, it can press on nearby nerves or the brainstem
+
+So, in simple terms: it is a **noncancerous tumor on the balance/hearing nerve near the inner ear**.",2.2575367796681336,3.958583619031703,3.675976552388205,30.287239249729748,36.189038805077885,31.03372256073852,20.77922077922078,21.722846441947567,21.052631578947366,34.63203463203464,42.69662921348314,34.81781376518219,0.0,0.0,0.0,20.833333333333336,25.0,19.444444444444446,48.38709677419355,38.297872340425535,38.88888888888889,29.126213592233007,30.252100840336134,25.925925925925924,0.8429545164108276,0.8459531664848328,0.8461329936981201,1.0,0.3386049270629883,0.9454860091209412,4,4,5
+gpt-5.4,gpt54_hybrid_api.yaml,none,ambiguity,6,Do you have information about Acupuncture,"Do you know much about that needle kind of thing people do for pain n stuff, like what its for or if it actually helps?","What is acupuncture used for in pain treatment, and how effective is it?","Summary : Acupuncture has been practiced in China and other Asian countries for thousands of years. Acupuncture involves stimulating specific points on the body. This is most often done by inserting thin needles through the skin, to cause a change in the physical functions of the body. Research has shown that acupuncture reduces nausea and vomiting after surgery and chemotherapy. It can also relieve pain. Researchers don't fully understand how acupuncture works. It might aid the activity of your body's pain-killing chemicals. It also might affect how you release chemicals that regulate blood pressure and flow. NIH: National Center for Complementary and Integrative Health","Yes. **Acupuncture** is a component of traditional Chinese medicine in which very thin needles are inserted into specific points on the body. It is also used in some modern pain-management settings.
+
+### What it may help with
+Evidence is strongest for:
+- **Chronic pain**, especially:
+  - low back pain
+  - neck pain
+  - osteoarthritis knee pain
+  - some headache/migraine prevention
+- **Nausea/vomiting**, including postoperative or chemotherapy-related nausea
+- Some people also use it for **stress, insomnia, or other symptoms**, but evidence there is less consistent.
+
+### How it is thought to work
+From a biomedical perspective, acupuncture may:
+- stimulate nerves, muscles, and connective tissue
+- affect pain signaling
+- promote release of endorphins and other neurotransmitters
+
+### Risks and side effects
+When done by a **trained, licensed practitioner using sterile single-use needles**, it is generally safe. Possible side effects include:
+- soreness
+- minor bleeding or bruising
+- dizziness
+
+Rare but serious complications:
+- infection
+- puncture injury (for","You’re probably talking about **acupuncture**.
+
+### What it is
+Acupuncture is a treatment where a practitioner puts **very thin needles** into specific points on the body. It’s commonly used for:
+- **Chronic pain**: low back pain, neck pain, knee arthritis, shoulder pain
+- **Headaches/migraines**
+- Sometimes **nausea** (especially after surgery or chemo)
+
+### Does it actually help?
+**Sometimes, yes — but usually modestly.**
+
+Best evidence suggests it may help some people with:
+- **Chronic low back pain**
+- **Neck pain**
+- **Knee","Acupuncture is used as a **non-drug, complementary treatment for pain**, especially for:
+
+- **Chronic low back pain**
+- **Neck pain**
+- **Osteoarthritis pain** (such as knee OA)
+- **Tension headaches and migraines**
+- Sometimes other chronic musculoskeletal pain
+
+### How effective is it?
+- It can provide **modest pain relief** and improve function in some people, particularly for **chronic pain**.
+- Evidence is **strongest for chronic low back pain, osteoarthritis, and some headache disorders**.
+- Its benefit is generally **small to moderate**, and it is **not a cure**.
+- Studies show mixed results, partly because sham acupuncture can also produce improvement, so some of the effect may relate to **placebo, expectation, or nonspecific treatment effects**.
+
+### Bottom line
+Acupuncture may be worth trying as part of a **multimodal pain treatment plan**, especially when patients want to reduce medication use, but it is usually considered an **adjunct** rather than a",3.86984075390275,4.911446944330129,0.79813556691262,38.7446649223066,28.1754723866785,33.80241026053644,14.814814814814817,13.872832369942198,12.01716738197425,28.806584362139915,23.121387283236995,20.600858369098717,0.0,0.0,0.0,19.565217391304348,17.391304347826086,8.695652173913043,16.9811320754717,22.857142857142858,6.557377049180328,18.181818181818183,19.753086419753085,7.476635514018691,0.834347128868103,0.8316095471382141,0.8163002729415894,1.0,0.4658557176589966,0.7559788227081299,4,4,3
+gpt-5.4,gpt54_hybrid_api.yaml,none,layperson,7,What is (are) Acute Bronchitis ?,"what is that chest/throat thing called when u get a bad cough n lots of mucus cuz the breathing tubes are all irritated or infected for a short bit, like not pneumonia but kinda in there?","What is the medical term for a short-term irritation or infection of the airways that causes a bad cough and lots of mucus, affecting the chest or throat but not pneumonia?","Bronchitis is an inflammation of the bronchial tubes, the airways that carry air to your lungs. It causes a cough that often brings up mucus. It can also cause shortness of breath, wheezing, a low fever, and chest tightness. There are two main types of bronchitis: acute and chronic. Most cases of acute bronchitis get better within several days. But your cough can last for several weeks after the infection is gone. The same viruses that cause colds and the flu often cause acute bronchitis. These viruses spread through the air when people cough, or though physical contact (for example, on unwashed hands). Being exposed to tobacco smoke, air pollution, dusts, vapors, and fumes can also cause acute bronchitis. Less often, bacteria can also cause acute bronchitis. To diagnose acute bronchitis, your health care provider will ask about your symptoms and listen to your breathing. You may also have other tests. Treatments include rest, fluids, and aspirin (for adults) or acetaminophen to treat fever. A humidifier or steam can also help. You may need inhaled medicine to open your airways if you are wheezing. Antibiotics won't help if the cause is viral. You may get antibiotics if the cause is bacterial. NIH: National Heart, Lung, and Blood Institute","Acute bronchitis is a short-term inflammation of the bronchial tubes, the airways that carry air to and from the lungs. It usually causes:
+
+- Cough, often with mucus
+- Chest discomfort
+- Wheezing or mild shortness of breath
+- Low-grade fever and fatigue
+
+It is most often caused by a viral infection, often following a cold or flu, and usually lasts a few days to a few weeks. It is different from pneumonia because the infection/inflammation is mainly in the bronchial tubes rather than the lung tissue itself.","That’s usually called **acute bronchitis**.
+
+It means the **bronchial tubes** (the breathing tubes in your chest) get **inflamed**, often from a **viral infection**, and it can cause:
+
+- **bad cough**
+- **lots of mucus/phlegm**
+- **chest discomfort**
+- sometimes **wheezing** or a **sore throat**
+
+It’s **not the same as pneumonia** — pneumonia infects the **air sacs in the lungs**, while bronchitis mainly affects the **airways**.
+
+If you have **trouble breathing, high fever, chest pain, coughing up blood, or symptoms lasting more than a few weeks**, you should get checked by a clinician.","The medical term is **acute bronchitis**.
+
+It is a **short-term inflammation or infection of the bronchial tubes (airways)** that typically causes **cough, mucus/phlegm, and chest discomfort**, but it is **not pneumonia**.",4.059195747756616,0.9283033166381892,0.3112381532846676,24.341578821132725,21.40314879683532,11.255830790934205,23.44322344322344,13.718411552346572,13.215859030837004,32.234432234432234,27.436823104693143,18.50220264317181,0.0,0.0,0.0,16.161616161616163,15.151515151515152,10.1010101010101,45.71428571428572,39.47368421052632,62.5,23.88059701492537,21.897810218978105,17.39130434782609,0.8562992215156555,0.8341951370239258,0.8441804051399231,1.0,0.6061661839485168,0.6604061126708984,4,5,5
+gpt-5.4,gpt54_hybrid_api.yaml,none,incomplete,8,What is (are) Acute Lymphocytic Leukemia ?,"What is acute leukemia, exactly?",What exactly is acute leukemia?,"Leukemia is cancer of the white blood cells. White blood cells help your body fight infection. Your blood cells form in your bone marrow. In leukemia, however, the bone marrow produces abnormal white blood cells. These cells crowd out the healthy blood cells, making it hard for blood to do its work. In acute lymphocytic leukemia (ALL), also called acute lymphoblastic leukemia, there are too many of specific types of white blood cells called lymphocytes or lymphoblasts. ALL is the most common type of cancer in children. Possible risk factors for ALL include being male, being white, previous chemotherapy treatment, exposure to radiation, and for adults, being older than 70. Symptoms of ALL include: - Weakness or feeling tired - Fever - Easy bruising or bleeding - Bleeding under the skin - Shortness of breath - Weight loss or loss of appetite - Pain in the bones or stomach - Pain or a feeling of fullness below the ribs - Painless lumps in the neck, underarm, stomach, or groin Tests that examine the blood and bone marrow diagnose ALL. Treatments include chemotherapy, radiation therapy, stem cell transplants, and targeted therapy. Targeted therapy uses substances that attack cancer cells without harming normal cells. Once the leukemia is in remission, you need additional treatment to make sure that it does not come back. NIH: National Cancer Institute","Acute lymphocytic leukemia (ALL), also called **acute lymphoblastic leukemia**, is a **rapidly progressing cancer of the blood and bone marrow** in which the body makes large numbers of **immature white blood cells called lymphoblasts**.
+
+These abnormal cells crowd out normal blood-forming cells, which can lead to:
+- **Anemia** (low red blood cells)
+- **Infections** (low normal white blood cells)
+- **Bleeding/bruising** (low platelets)
+
+It occurs most often in **children**, but it can also affect **adults**.","Acute leukemia is a fast-growing cancer of the blood-forming cells in the bone marrow.
+
+“Acute” means it develops and worsens quickly. In this disease, the bone marrow starts making large numbers of abnormal, very immature white blood cells called blasts. These abnormal cells do not work properly and crowd out normal blood cell production, which leads to:
+
+- too few normal white blood cells → infections
+- too few red blood cells → anemia, fatigue, weakness
+- too few platelets → easy bruising or bleeding
+
+The two main types are:
+
+- Acute lymphoblastic leukemia (ALL) — from lymphoid precursor cells
+- Acute myeloid leukemia (AML) — from myeloid precursor cells
+
+So, exactly: acute leukemia is a rapidly progressive bone marrow and blood cancer caused by uncontrolled growth of immature blood cells. It is a medical emergency that usually requires prompt treatment.","Acute leukemia is a rapidly progressing cancer of the blood and bone marrow in which large numbers of abnormal, immature white blood cells (“blasts”) are produced.
+
+These abnormal cells:
+- do not function normally
+- multiply quickly
+- crowd out normal blood-forming cells in the bone marrow
+
+As a result, the body makes too few:
+- red blood cells → causing anemia and fatigue
+- normal white blood cells → causing infections
+- platelets → causing easy bruising or bleeding
+
+The main types are:
+- **Acute lymphoblastic leukemia (ALL)** – involves lymphoid cells
+- **Acute myeloid leukemia (AML)** – involves myeloid cells
+
+It is called **“acute”** because it develops and worsens quickly and usually needs prompt treatment.",5.714252369524544,5.736122515784511,4.742848380542456,25.58296753780176,35.448386784543985,29.81146613222493,18.115942028985508,22.9607250755287,21.05263157894737,33.333333333333336,41.08761329305136,35.526315789473685,0.0,0.0,0.0,17.82178217821782,22.77227722772277,17.82178217821782,50.0,38.333333333333336,33.9622641509434,26.277372262773724,28.571428571428577,23.37662337662337,0.8391197323799133,0.8437395095825195,0.8357203602790833,0.9999999403953552,0.836963951587677,0.8404322266578674,4,4,4
+gpt-5.4,gpt54_hybrid_api.yaml,none,overgeneralization,9,What is (are) Acute Myeloid Leukemia ?,"what is this kind of serious blood problem/cancer thing where the bone marrow makes too many bad white cells, and what does it even mean for someone health overall?","What is leukemia, a serious blood and bone marrow cancer in which the marrow makes too many abnormal white blood cells, and what does it mean for a person’s overall health?","Leukemia is cancer of the white blood cells. White blood cells help your body fight infection. Your blood cells form in your bone marrow. In leukemia, however, the bone marrow produces abnormal white blood cells. These cells crowd out the healthy blood cells, making it hard for blood to do its work. In acute myeloid leukemia (AML), there are too many of a specific type of white blood cell called a myeloblast. AML is the most common type of acute leukemia in adults. This type of cancer usually gets worse quickly if it is not treated. Possible risk factors include smoking, previous chemotherapy treatment, and exposure to radiation. Symptoms of AML include: - Fever - Shortness of breath - Easy bruising or bleeding - Bleeding under the skin - Weakness or feeling tired - Weight loss or loss of appetite Tests that examine the blood and bone marrow diagnose AML. Treatments include chemotherapy, other drugs, radiation therapy, stem cell transplants, and targeted therapy. Targeted therapy uses substances that attack cancer cells without harming normal cells. Once the leukemia is in remission, you need additional treatment to make sure that it does not come back. NIH: National Cancer Institute","Acute myeloid leukemia (AML) is a fast-growing cancer of the blood and bone marrow in which the marrow makes large numbers of abnormal, immature myeloid cells (called myeloblasts or blasts).
+
+These abnormal cells do not develop into normal blood cells and crowd out healthy cells, which can cause:
+- anemia,
+- infections,
+- easy bruising or bleeding.
+
+AML is called “acute” because it progresses quickly, and “myeloid” because it starts in the myeloid line of blood-forming cells. It is the most common acute leukemia in adults, but it can also occur in children.","That sounds like **leukemia**.
+
+**What it is:**  
+Leukemia is a **blood and bone marrow cancer** where the marrow makes **too many abnormal white blood cells**. These cells usually do **not work properly** to fight infection, and they can **crowd out normal blood cell production**.
+
+**What that means for health overall:**  
+Because the bone marrow gets filled with these abnormal cells, the body may not make enough:
+
+- **Red blood cells** → causes **anemia**, fatigue, weakness, shortness of breath
+- **Normal white blood cells** → causes **more infections**
+- **Platelets** → causes **easy bruising or bleeding**
+
+Other common problems can include:
+
+- fever
+- weight loss
+- swollen lymph nodes
+- bone pain
+- enlarged spleen or liver
+
+**How serious it is:**  
+It can be **very serious**, but the outlook depends","Leukemia is a **cancer of the blood-forming tissues**, especially the **bone marrow**, where blood cells are made. In leukemia, the marrow produces **too many abnormal white blood cells**. These cells do not work properly and can crowd out normal blood cells.
+
+For a person’s overall health, this can mean:
+
+- **Weakened ability to fight infection** because the white blood cells are abnormal
+- **Anemia and fatigue** from too few red blood cells
+- **Easy bruising or bleeding** from too few platelets
+- Possible **bone pain, fevers, weight loss, swollen lymph nodes, or enlarged spleen**
+
+Leukemia is a **serious, potentially life-threatening disease**, but many forms can be treated, and some can be controlled or cured depending on the type and how early it is treated.",6.1703030328008905,6.450084675766912,7.811987395724436,28.884835993743422,34.082062525378184,34.510997602885965,22.96296296296296,20.2020202020202,24.16107382550336,39.25925925925926,44.44444444444445,39.597315436241615,0.0,0.0,0.0,18.39080459770115,19.54022988505747,17.24137931034483,43.24324324324324,31.48148148148148,30.0,25.806451612903224,24.113475177304966,21.897810218978105,0.8528978228569031,0.8312615752220154,0.8511397838592529,1.0,0.4924977421760559,0.6577064990997314,4,4,4
+gpt-5.4,gpt54_hybrid_api.yaml,none,typos_grammar,10,What is (are) Addison Disease ?,"what is addison disease ,, like what does it actualy do to youre body ?","What is Addison disease, and how does it affect the body?","Your adrenal glands are just above your kidneys. The outside layer of these glands makes hormones that help your body respond to stress and regulate your blood pressure and water and salt balance. Addison disease happens if the adrenal glands don't make enough of these hormones. A problem with your immune system usually causes Addison disease. The immune system mistakenly attacks your own tissues, damaging your adrenal glands. Other causes include infections and cancer. Symptoms include - Weight loss - Muscle weakness - Fatigue that gets worse over time - Low blood pressure - Patchy or dark skin Lab tests can confirm that you have Addison disease. If you don't treat it, it can be fatal. You will need to take hormone pills for the rest of your life. If you have Addison disease, you should carry an emergency ID. It should say that you have the disease, list your medicines and say how much you need in an emergency. NIH: National Institute of Diabetes and Digestive and Kidney Diseases","Addison disease is **primary adrenal insufficiency**: a disorder in which the **adrenal glands do not make enough steroid hormones**, especially **cortisol** and often **aldosterone**.
+
+### What causes it?
+It most often happens because the adrenal cortex is damaged, commonly by:
+- **Autoimmune destruction** of the adrenal glands
+- Less commonly: **tuberculosis**, infections, bleeding into the glands, cancer spread, or certain inherited disorders
+
+### What does it cause?
+Low adrenal hormones can lead to:
+- **Fatigue, weakness**
+- **Weight loss, poor appetite**
+- **Low blood pressure**
+- **Salt craving**
+- **Nausea, vomiting, abdominal pain**
+- **Darkening of the skin** (hyperpigmentation), especially in primary Addison disease
+
+### Why is it important?
+If untreated, it can cause an **Addisonian crisis**, a life-threatening emergency with severe low blood pressure, dehydration, and shock.
+
+### Treatment
+Treatment is **lifelong hormone replacement**, usually:
+- **Glucocorticoid** replacement (such as hydrocortisone)
+- **Mineralocorticoid** replacement (such as fludrocortisone), if aldosterone is low
+
+If you want,","Addison disease is **adrenal insufficiency**: your **adrenal glands** (small glands on top of the kidneys) do **not make enough hormones**, mainly:
+
+- **Cortisol** — helps your body handle stress, keep blood sugar normal, support blood pressure, and energy
+- **Aldosterone** — helps control **salt, water, and potassium**, which affects blood pressure and hydration
+
+## What it actually does to your body
+When these hormones are too low, your body has trouble:
+
+- **keeping blood pressure up** → dizziness, fainting, low blood pressure
+- **holding onto salt and water** → dehydration, salt craving
+- **keeping blood sugar normal** → weakness, shakiness, fatigue
+- **handling stress/illness** → you can get very sick from infections, injury, or surgery
+- **balancing potassium** → potassium can go too high, which can be dangerous
+
+## Common symptoms
+Addison disease often causes:
+
+- extreme **tiredness**
+- **weight loss**
+- **muscle weakness**
+- **nausea, vomiting, abdominal pain**
+- **dizziness**, especially when","Addison disease is **primary adrenal insufficiency**—a condition in which the **adrenal glands do not produce enough cortisol and usually not enough aldosterone**.
+
+### How it affects the body
+Because these hormones help regulate **blood pressure, salt and water balance, blood sugar, and the body’s response to stress**, low levels can cause:
+
+- **Chronic fatigue and weakness**
+- **Weight loss and loss of appetite**
+- **Low blood pressure**, sometimes causing dizziness or fainting
+- **Salt craving**
+- **Nausea, vomiting, abdominal pain**
+- **Low sodium and high potassium**
+- **Low blood sugar**
+- **Skin darkening (hyperpigmentation)**, especially in primary Addison disease
+
+If untreated, it can lead to an **adrenal crisis**, a medical emergency causing severe low blood pressure, dehydration, vomiting, confusion, and shock.
+
+The most common cause is **autoimmune destruction of the adrenal cortex**, though infections, bleeding, or certain diseases can also cause it.",2.2904473595000034,2.063571060090996,2.5137066397864407,38.5889329762862,36.89362947642152,37.72179466078724,18.43003412969283,17.182130584192436,20.27972027972028,34.129692832764505,32.98969072164948,36.36363636363637,0.0,0.0,0.0,21.428571428571427,27.142857142857142,21.428571428571427,24.59016393442623,27.94117647058824,22.727272727272727,22.900763358778622,27.536231884057965,22.058823529411764,0.8294209241867065,0.8236486911773682,0.8425748944282532,1.0,0.8497042655944824,0.8935813903808594,5,4,4
+gpt-5.4,gpt54_hybrid_api.yaml,none,ambiguity,11,What is (are) Adhesions ?,"What does it mean when stuff inside your body kind of sticks together after something, like is that the same as those internal scar-band things?","What does it mean when tissues or organs inside the body stick together after surgery or inflammation, and is that the same as internal scar bands called adhesions?","Adhesions are bands of scar-like tissue. Normally, internal tissues and organs have slippery surfaces so they can shift easily as the body moves. Adhesions cause tissues and organs to stick together. They might connect the loops of the intestines to each other, to nearby organs, or to the wall of the abdomen. They can pull sections of the intestines out of place. This may block food from passing through the intestine. Adhesions can occur anywhere in the body. But they often form after surgery on the abdomen. Almost everyone who has surgery on the abdomen gets adhesions. Some adhesions don't cause any problems. But when they partly or completely block the intestines, they cause symptoms such as - Severe abdominal pain or cramping - Vomiting - Bloating - An inability to pass gas - Constipation Adhesions can sometimes cause infertility in women by preventing fertilized eggs from reaching the uterus. No tests are available to detect adhesions. Doctors usually find them during surgery to diagnose other problems. Some adhesions go away by themselves. If they partly block your intestines, a diet low in fiber can allow food to move easily through the affected area. If you have a complete intestinal obstruction, it is life threatening. You should get immediate medical attention and may need surgery. NIH: National Institute of Diabetes and Digestive and Kidney Diseases","Adhesions are bands of scar-like fibrous tissue that form abnormally between internal tissues or organs, causing them to stick together.
+
+They most commonly develop after:
+- Surgery
+- Inflammation
+- Infection
+- Injury
+
+Adhesions can occur in the abdomen, pelvis, or around joints. Some cause no symptoms, but others may lead to:
+- Pain
+- Restricted movement
+- Bowel obstruction
+- Fertility problems if they involve reproductive organs","Yes. That usually refers to **adhesions**.
+
+**Adhesions** are **bands of internal scar tissue** that form after things like:
+- **surgery**
+- **infection**
+- **inflammation**
+- **injury**
+- sometimes conditions like **endometriosis**
+
+They can make organs or tissues that normally **slide freely** start to **stick to each other**.
+
+So if you mean “stuff inside the body sticking together,” that is essentially the same idea as those **internal scar-band things**.
+
+They may cause no symptoms, but sometimes they can lead to problems such as:
+- **pain**
+- **pulling/tightness**
+- **bowel blockage** if in the abdomen
+- **fertility issues**","Yes. When tissues or organs inside the body abnormally stick to each other after surgery, infection, or inflammation, that is usually called an adhesion.
+
+Adhesions are internal bands or sheets of scar tissue that form during healing and can cause normally separate surfaces to bind together. So “tissues sticking together” internally and “scar bands called adhesions” generally mean the same thing.",1.6421918279805123,1.5491846992106648,0.3687320782721783,21.06600527082377,23.500070497281527,18.622156735380017,19.54887218045113,16.43835616438356,12.12121212121212,28.57142857142857,33.56164383561644,26.51515151515152,0.0,0.0,0.0,15.95744680851064,13.829787234042554,14.893617021276595,42.85714285714285,33.33333333333333,56.00000000000001,23.25581395348837,19.54887218045113,23.52941176470588,0.8540692329406738,0.8318127989768982,0.8450305461883545,1.0,0.4365291595458984,0.5344809293746948,4,5,5
+gpt-5.4,gpt54_hybrid_api.yaml,none,layperson,12,Do you have information about Adoption,"do u have any info or stuff abt, like, when a kid gets taken in by another family n how that all works maybe?","What is the process of adoption for a child being taken in by another family, and how does it work?","Summary : Adoption brings a child born to other parents into a new family. Birth parents have a number of reasons for placing children for adoption. Overall, they want better lives for their children than they think they can give them. Children who are eligible for adoption come from many different settings. Some are in foster care, a temporary home setting. Other children live in orphanages or with birth relatives until they can be adopted. There are different kinds of adoption. Children may be adopted by a relative or a new family. Some parents adopt children from the U.S, and some adopt from abroad.","Yes. Adoption is the legal process in which a person or couple becomes the permanent parent(s) of a child who is not biologically theirs.
+
+Common types of adoption include:
+- Domestic infant adoption
+- Foster care adoption
+- International adoption
+- Stepparent or relative adoption
+
+Typical steps may include:
+- Choosing an agency, attorney, or public child welfare program
+- Completing an application and background checks
+- Home study and interviews
+- Matching with a child
+- Placement period
+- Final court approval
+
+Important considerations:
+- Laws vary by country and state
+- Costs and waiting times vary widely
+- Medical, developmental, and mental health history may be part of the process when available
+- Adoptive families and adoptees may benefit from counseling and support services
+
+If you want, I can give information about:
+- how adoption works
+- adoption eligibility
+- medical issues in adoption
+- foster-to-adopt
+- international adoption
+- emotional effects of adoption","Yes — if you mean **adoption**, **foster care**, or **legal guardianship**, here’s the basic difference:
+
+- **Adoption**: a child legally becomes part of a new family permanently. The adoptive parents get full parental rights and responsibilities.
+- **Foster care**: a child stays with another family temporarily, usually because their birth parents can’t safely care for them at that time. The state or court is usually involved.
+- **Legal guardianship**: another adult is given legal authority to care for the child, but it may not fully end the birth parents’ rights like adoption does.
+
+### How adoption usually works
+1. **A child needs placement**
+   - This may happen through private adoption, agency adoption, stepparent adoption, kinship adoption, or adoption from foster care.
+
+2. **Screening of the new family**
+   - Background checks
+   - Home study
+   - Interviews
+   - Financial and safety review
+
+3. **Matching and placement","Adoption is the legal process by which a child becomes the permanent child of someone other than their birth parents.
+
+How it typically works:
+1. **Decision/placement**: A child may be placed for adoption by birth parents, through foster care, or through an agency/private arrangement.
+2. **Consent or termination of parental rights**: The birth parents must voluntarily consent, or a court must legally end their parental rights if they cannot care for the child.
+3. **Screening of adoptive family**: The prospective adoptive parents usually complete a **home study**, background checks, interviews, and sometimes training.
+4. **Matching and placement**: The child is matched with the adoptive family and begins living with them, sometimes first in a trial or supervisory period.
+5. **Court approval**: A judge reviews the case and, if all legal requirements are met, issues an **adoption order/finalization**.
+6. **New legal parent-child relationship**: After finalization, the adoptive parents have the same legal rights and responsibilities as biological parents. A new birth",1.2647600660651963,1.6152529636583393,1.6766905568080253,34.450995952514255,38.6006334603237,39.4501648877511,13.157894736842108,15.246636771300444,14.876033057851238,24.561403508771928,28.699551569506728,28.925619834710748,0.0,0.0,0.0,16.216216216216218,32.432432432432435,32.432432432432435,11.76470588235294,21.818181818181817,21.428571428571427,13.636363636363637,26.086956521739136,25.806451612903224,0.8270502686500549,0.8385844230651855,0.8466126918792725,0.9999998807907104,0.5078020691871643,0.6497977375984192,4,4,4
+gpt-5.4,gpt54_hybrid_api.yaml,none,incomplete,13,What is (are) Adrenal Gland Cancer ?,"wht is that kinda cancer in the little glands on top the kidneys, like what does it even mean ?","What does adrenal gland cancer, which affects the small glands on top of the kidneys, mean?","Your adrenal, or suprarenal, glands are located on the top of each kidney. These glands produce hormones that you can't live without, including sex hormones and cortisol, which helps you respond to stress and has many other functions. A number of disorders can affect the adrenal glands, including tumors. Tumors can be either benign or malignant. Benign tumors aren't cancer. Malignant ones are. Most adrenal gland tumors are benign. They usually do not cause symptoms and may not require treatment. Malignant adrenal gland cancers are uncommon. Types of tumors include - Adrenocortical carcinoma - cancer in the outer part of the gland - Neuroblastoma, a type of childhood cancer - Pheochromocytoma - a rare tumor that is usually benign Symptoms depend on the type of cancer you have. Treatments may include surgery, chemotherapy, or radiation therapy.","Adrenal gland cancer is a rare cancer that starts in one or both adrenal glands, which sit on top of the kidneys and make hormones.
+
+There are two main types:
+- **Adrenocortical carcinoma**: starts in the outer layer (cortex) of the adrenal gland
+- **Pheochromocytoma/paraganglioma**: tumors of the inner part (medulla); many are not cancer, but some can be malignant
+
+Adrenal cancers may:
+- **Produce excess hormones**, causing symptoms such as high blood pressure, weight gain, muscle weakness, high blood sugar, or abnormal hair growth
+- **Cause mass-related symptoms**, such as abdominal/back pain or a lump
+
+In short, adrenal gland cancer is a malignant tumor of the adrenal gland, most commonly **adrenocortical carcinoma**.","The “little glands on top of the kidneys” are the **adrenal glands**.
+
+So cancer there usually means **adrenal cancer**","Adrenal gland cancer means a malignant tumor has developed in one or both adrenal glands, the small glands located on top of the kidneys.
+
+These glands normally make hormones such as:
+- cortisol
+- aldosterone
+- adrenaline-related hormones
+- sex hormones
+
+When cancer occurs there, it can:
+- form a mass in the adrenal gland
+- make too much hormone, causing symptoms
+- invade nearby tissues or spread to other parts of the body
+
+The most common adrenal gland cancer is **adrenocortical carcinoma**. It is rare.",3.5978102642823173,0.0612837527922423,2.953851514328204,40.12045474870813,8.620051843280041,33.979227899837014,18.3406113537118,14.184397163120568,21.21212121212121,45.414847161572055,15.602836879432624,38.38383838383839,0.0,0.0,0.0,32.142857142857146,10.714285714285714,30.35714285714285,33.9622641509434,75.0,42.5,33.02752293577982,18.75,35.416666666666664,0.8562570214271545,0.8271110653877258,0.8569243550300598,0.9999998807907104,0.6013485789299011,0.8335727453231812,4,3,4
+gpt-5.4,gpt54_hybrid_api.yaml,none,overgeneralization,14,What is (are) Adrenal Gland Disorders ?,"what are the diff kinds of hormone gland problems in the body, esp the little ones by the kidneys, and how do those issues usually mess you up or make you feel off ?","What are the different types of endocrine gland disorders in the body, especially disorders of the adrenal glands above the kidneys, and what symptoms do they usually cause?","The adrenal glands are small glands located on top of each kidney. They produce hormones that you can't live without, including sex hormones and cortisol. Cortisol helps you respond to stress and has many other important functions. With adrenal gland disorders, your glands make too much or not enough hormones. In Cushing's syndrome, there's too much cortisol, while with Addison's disease, there is too little. Some people are born unable to make enough cortisol. Causes of adrenal gland disorders include - Genetic mutations - Tumors including pheochromocytomas - Infections - A problem in another gland, such as the pituitary, which helps to regulate the adrenal gland - Certain medicines Treatment depends on which problem you have. Surgery or medicines can treat many adrenal gland disorders. NIH: National Institute of Child Health and Human Development","Adrenal gland disorders are conditions in which the adrenal glands—small glands located on top of each kidney—do not work normally.
+
+The adrenal glands make important hormones, including:
+- **Cortisol** – helps regulate stress response, metabolism, and immunity
+- **Aldosterone** – helps control blood pressure and salt/potassium balance
+- **Adrenaline (epinephrine)** and related hormones – involved in the “fight-or-flight” response
+- Small amounts of **sex hormones**
+
+Adrenal disorders happen when the glands:
+- make **too little hormone**, or
+- make **too much hormone**, or
+- develop **growths/tumors**
+
+Common adrenal gland disorders include:
+- **Addison’s disease (adrenal insufficiency)** – too little cortisol, often also too little aldosterone
+- **Cushing syndrome**","The body’s **hormone glands** are part of the **endocrine system**. When they have problems, they usually cause symptoms by making **too much hormone, too little hormone, or an abnormal growth/tumor**.
+
+## Main hormone glands and common problems
+
+### 1. **Thyroid** (front of neck)
+- **Too little thyroid hormone (hypothyroidism):**
+  - fatigue, feeling cold, weight gain, constipation, dry skin, depression, slow heart rate
+- **Too much thyroid hormone (hyperthyroidism):**
+  - anxiety, shakiness, sweating, weight loss, fast heartbeat, diarrhea, heat intolerance
+
+### 2. **Pituitary gland** (base of brain)
+The “master gland”","Endocrine gland disorders are conditions in which a hormone-producing gland makes **too much hormone, too little hormone, or an abnormal hormone**, or develops a **tumor/inflammation**.
+
+## Main types of endocrine gland disorders in the body
+Common endocrine glands and their typical disorders include:
+
+- **Pituitary gland**
+  - Too much or too little pituitary hormones
+  - Examples: acromegaly, prolactinoma, hypopituitarism
+  - Common symptoms: headaches, vision changes, abnormal growth, infertility, fatigue
+
+- **Thyroid gland",8.38245969455459,1.118697534294526,1.4546792863107614,44.16045064698721,25.54837886751848,28.4054919337034,26.431718061674008,11.483253588516746,15.544041450777202,50.22026431718062,19.138755980861244,26.943005181347147,0.0,0.0,0.0,42.10526315789473,3.508771929824561,10.526315789473683,48.0,4.166666666666666,18.75,44.85981308411214,3.8095238095238098,13.48314606741573,0.84351646900177,0.8193550705909729,0.8344868421554565,1.0,0.5124713182449341,0.6885803937911987,4,2,2
+gpt-5.4,gpt54_hybrid_api.yaml,none,typos_grammar,15,Do you have information about Advance Directives,"Do u have any informaiton abotu Advance Directvies, like what it is an how they work ?","What are advance directives, and how do they work?","Summary : What kind of medical care would you want if you were too ill or hurt to express your wishes? Advance directives are legal documents that allow you to spell out your decisions about end-of-life care ahead of time. They give you a way to tell your wishes to family, friends, and health care professionals and to avoid confusion later on. A living will tells which treatments you want if you are dying or permanently unconscious. You can accept or refuse medical care. You might want to include instructions on - The use of dialysis and breathing machines - If you want to be resuscitated if your breathing or heartbeat stops - Tube feeding - Organ or tissue donation A durable power of attorney for health care is a document that names your health care proxy. Your proxy is someone you trust to make health decisions for you if you are unable to do so. NIH: National Cancer Institute","Yes. Advance directives are legal documents that let you state your medical care preferences in case you cannot speak for yourself.
+
+Common types include:
+
+- Living will: says what treatments you do or do not want, such as CPR, mechanical ventilation, tube feeding, dialysis, or comfort-focused care.
+- Durable power of attorney for health care / health care proxy: names a person to make medical decisions for you if you are unable.
+- Do Not Resuscitate (DNR) / Do Not Intubate (DNI) orders: specific medical orders about CPR or breathing tube use, usually completed with a clinician.
+- POLST/MOLST: medical orders for people with serious illness or frailty that translate wishes into actionable treatment orders.
+
+Why they matter:
+- Help ensure your wishes are followed
+- Reduce stress for family members
+- Guide doctors during emergencies or serious illness
+
+General steps:
+1. Think about your values and goals for care.
+2. Choose a trusted decision-maker.
+3. Complete the forms required where you live.
+4. Sign and witness/notar","Yes. An **advance directive** is a legal document that explains your medical wishes **in case you cannot speak for yourself** because of illness or injury.
+
+### Main types of advance directives
+1. **Living will**
+   - Says what kinds of medical treatments you do or do not want.
+   - Examples:
+     - CPR
+     - breathing machine/ventilator
+     - feeding tube
+     - dialysis
+     - comfort-focused care only
+
+2. **Medical power of attorney / health care proxy**
+   - Names a person to make medical decisions for you if you are unable to do so.
+   - This person is sometimes called a **health care agent** or **surrogate**.
+
+3. **DNR / DNI orders**
+   - **DNR** = Do Not Resuscitate
+   - **DNI** = Do Not Intubate
+   - These are specific medical orders about emergency treatment, usually written with a clinician.
+
+### How they work
+- You complete the forms while you are able to make your own decisions.
+- If you later cannot communicate, doctors and your chosen decision-maker use the document to guide care.
+- It helps your family and medical team know your wishes.
+
+### Why they are useful
+- They reduce confusion","Advance directives are legal documents that let a person state their medical care wishes in case they become unable to make or communicate decisions.
+
+Common types include:
+
+- **Living will:** Says which treatments you do or do not want in certain situations, such as CPR, mechanical ventilation, tube feeding, dialysis, or comfort-focused care.
+- **Durable power of attorney for health care / health care proxy:** Names a trusted person to make medical decisions for you if you cannot.
+- **Do-not-resuscitate (DNR) order / POLST or MOLST forms:** Medical orders used in some settings for specific treatment choices, especially about resuscitation and other life-sustaining care.
+
+How they work:
+1. **You complete the forms** while you still have decision-making capacity.
+2. **You describe your preferences** and/or appoint a surrogate decision-maker.
+3. **The documents are signed** according to your state or country’s legal requirements, often with witnesses or notarization.
+4. If you later **cannot make decisions**, doctors and your surrogate use the directive to guide your care.
+5. These documents can usually be **updated or revoked at any time** while you still have capacity.
+
+Advance directives help ensure that medical treatment matches your values and reduce uncertainty for family and clinicians. Laws and forms vary by location.",11.112024846995435,8.666591151311666,7.984543917241554,45.94071883340951,46.52145295481105,44.86805780698146,25.161290322580644,20.51282051282051,21.52974504249292,41.29032258064516,47.435897435897445,43.626062322946176,0.0,0.0,0.0,35.0,35.0,36.66666666666666,35.0,35.59322033898305,30.985915492957744,35.0,35.29411764705882,33.58778625954198,0.8614826798439026,0.8457215428352356,0.8541889786720276,0.9999999403953552,0.3716906011104584,0.9194046258926392,3,4,4
+gpt-5.4,gpt54_hybrid_api.yaml,none,ambiguity,16,Do you have information about African American Health,"Do you have any info on health stuff for Black people, like the kinds of problems that come up more or things they should watch for?","What health conditions are more common in Black people, and which symptoms or risk factors should they pay particular attention to?","Summary : Every racial or ethnic group has specific health concerns. Differences in the health of groups can result from - Genetics - Environmental factors - Access to care - Cultural factors On this page, you'll find links to health issues that affect African Americans.","Yes. I can provide information about African American health, including:
+
+- Common health concerns that disproportionately affect African Americans, such as:
+  - High blood pressure
+  - Stroke
+  - Heart disease
+  - Diabetes
+  - Kidney disease
+  - Obesity
+  - Certain cancers, including colorectal and prostate cancer
+  - Maternal health complications
+
+- Contributing factors, such as:
+  - Access to healthcare
+  - Preventive screening rates
+  - Stress and racism-related health effects
+  - Diet, exercise, sleep, and environmental factors
+  - Family history and, in some cases, genetic conditions like sickle cell disease
+
+- Prevention and screening guidance, including:
+  - Blood pressure checks
+  - Diabetes screening
+  - Cholesterol testing
+  - Cancer screenings
+  - Prenatal care
+  - Vaccinations
+  - Healthy lifestyle changes
+
+- Reliable resources from organizations like:
+  - CDC
+  - NIH Office of Minority Health
+  - American Heart Association
+  - National Medical Association
+
+If you want, I can give",,"In the U.S. and some other countries, **Black people have higher rates of several conditions**, but this is driven by a mix of **genetics, family history, environment, stress, access to care, and social inequities**—not race alone.
+
+Conditions that are more common or often more severe include:
+
+- **High blood",2.257237740382789,0.0,1.5699590360613205,34.17405409337828,0.0,28.02313083706924,10.19108280254777,0.0,15.909090909090912,24.20382165605096,0.0,20.454545454545457,0.0,0.0,0.0,25.0,0.0,0.0,6.153846153846154,0.0,0.0,9.876543209876544,0.0,0.0,0.8235703110694885,0.0,0.8572474122047424,1.0,0.794005274772644,0.6449320316314697,3,1,2
+gpt-5.4,gpt54_hybrid_api.yaml,none,layperson,17,What is (are) After Surgery ?,"what all can happn after you get somthing done at the hospitol, like after they fix stuff and your home agian ?",What complications or symptoms can occur after a hospital procedure or treatment once you have returned home?,"After any operation, you'll have some side effects. There is usually some pain with surgery. There may also be swelling and soreness around the area that the surgeon cut. Your surgeon can tell you which side effects to expect. There can also be complications. These are unplanned events linked to the operation. Some complications are infection, too much bleeding, reaction to anesthesia, or accidental injury. Some people have a greater risk of complications because of other medical conditions. Your surgeon can tell you how you might feel and what you will be able to do - or not do - the first few days, weeks, or months after surgery. Some other questions to ask are - How long you will be in the hospital - What kind of supplies, equipment, and help you might need when you go home - When you can go back to work - When it is ok to start exercising again - Are they any other restrictions in your activities Following your surgeon's advice can help you recover as soon as possible. Agency for Healthcare Quality and Research","“After surgery” refers to the **postoperative period** — the time after an operation when the body is recovering.
+
+This period usually includes:
+- **Immediate recovery** in the recovery room as anesthesia wears off
+- **Monitoring** for pain, bleeding, infection, breathing problems, and other complications
+- **Healing** of the surgical site over days to weeks, sometimes longer
+- **Postoperative care**, such as pain control, wound care, activity restrictions, diet instructions, and follow-up visits
+
+In short, it is the recovery phase following a surgical procedure.","After you go home from the hospital, a few different things can happen. Some are normal parts of healing, and some can be warning signs.
+
+### Common/normal after-effects
+Depending on what was done, you might have:
+- **Pain or soreness**
+- **Tiredness / low energy**
+- **Swelling or bruising**
+- **Nausea, constipation, or poor appetite** from anesthesia, pain medicine, or antibiotics
+- **Sleep changes**
+- **Mood changes** like feeling anxious, down, or emotional
+- **Need for help** with walking, bathing, dressing, or daily tasks for a while
+
+### Things you may need after going home
+- **Medicines**: pain meds, antibiotics, blood thinners, etc.
+- **Wound or bandage care**
+- **Physical therapy or exercises**
+- **","After a hospital procedure or treatment, possible problems once you are home can include:
+
+- **Worsening pain** or pain not relieved by prescribed medicine
+- **Fever or chills**
+- **Redness, warmth, swelling, pus, or bad-smelling drainage** from a wound or IV site
+- **Bleeding** or increasing bruising
+- **Swelling** of the operated/treated area
+- **Shortness of breath**, wheezing, or trouble breathing
+- **Chest pain**
+- **Nausea or vomiting** that does not stop
+- **Dizziness, fainting, confusion**, or",1.0578944520164335,1.994471043561317,0.7563002998249152,26.957755526218584,26.248273338676665,18.10298875846318,11.522633744855968,11.07011070110701,9.205020920502092,23.868312757201647,24.354243542435423,15.062761506276152,0.0,0.0,0.0,15.625,12.5,12.5,23.25581395348837,15.68627450980392,21.62162162162162,18.691588785046733,13.91304347826087,15.84158415841584,0.8311120271682739,0.8278937935829163,0.8202629089355469,1.0,0.2722005844116211,0.4667199254035949,4,4,4
+gpt-5.4,gpt54_hybrid_api.yaml,none,incomplete,18,Do you have information about Air Pollution,do u have any info on bad air stuff and what it can do?,What health effects can poor air quality or air pollution have on the body?,"Summary : Air pollution is a mixture of solid particles and gases in the air. Car emissions, chemicals from factories, dust, pollen and mold spores may be suspended as particles. Ozone, a gas, is a major part of air pollution in cities. When ozone forms air pollution, it's also called smog. Some air pollutants are poisonous. Inhaling them can increase the chance you'll have health problems. People with heart or lung disease, older adults and children are at greater risk from air pollution. Air pollution isn't just outside - the air inside buildings can also be polluted and affect your health. Environmental Protection Agency","Yes. Air pollution is the contamination of indoor or outdoor air by harmful substances that can affect health.
+
+Common air pollutants include:
+- Particulate matter: PM2.5 and PM10
+- Ozone
+- Nitrogen dioxide
+- Sulfur dioxide
+- Carbon monoxide
+- Volatile organic compounds
+- Smoke from vehicles, industry, wildfires, and tobacco
+
+Health effects can include:
+- Eye, nose, and throat irritation
+- Coughing and shortness of breath
+- Worsening of asthma and COPD
+- Reduced lung function
+- Increased risk of respiratory infections
+- Higher risk of heart attack, stroke, and lung cancer with long-term exposure
+- Greater risk for children, older adults, pregnant people, and those with heart or lung disease
+
+Ways to reduce exposure:
+- Check local air quality reports
+- Limit outdoor activity when air quality is poor
+- Keep windows closed during high-pollution days
+- Use HEPA air filtration indoors
+- Avoid smoking and secondhand smoke
+- Use a well-fitted N95 mask during heavy smoke or severe pollution
+
+If you want, I can also give:
+- symptoms caused by air pollution
+- long-term health risks
+- indoor air pollution",Yes — “bad air”,"Poor air quality can affect many parts of the body, especially the lungs and heart.
+
+Common health effects include:
+
+- **Eye, nose, and throat irritation**
+- **Coughing, wheezing, shortness of breath**
+- **Worsening of asthma, COPD, and allergies**
+- **Reduced lung function** and increased risk of respiratory infections like bronchitis
+
+More serious or long-term effects can include:
+
+- **Chronic lung disease** or worsening of existing lung disease
+- **Heart problems**, including higher risk of heart attack, stroke, irregular heartbeat, and high blood pressure
+- **Increased inflammation** throughout the body
+- **Higher risk of lung cancer** with long-term exposure to certain pollutants
+- **Pregnancy and child health effects**, such as preterm birth, low birth weight, and impaired lung development
+- In some studies, possible links to **worsened cognitive function** and other neurologic effects
+
+People most at risk include **children, older adults, pregnant people, and those with asthma, heart disease, or other chronic illnesses**.",4.79881205954722,0.0,1.3687582220365286,40.54246939665108,0.5499354670698781,33.75774358166049,16.03053435114504,1.9607843137254903,10.833333333333332,32.82442748091604,1.9607843137254903,23.33333333333333,0.0,0.0,0.0,27.08333333333333,2.083333333333333,16.666666666666664,17.105263157894736,50.0,10.126582278481012,20.96774193548387,4.0,12.598425196850393,0.8313960433006287,0.8270416259765625,0.8214257955551147,0.9999998807907104,0.6020172238349915,0.6214293241500854,4,1,4
+gpt-5.4,gpt54_hybrid_api.yaml,none,overgeneralization,19,Do you have information about Alcohol,do you have any info on things people use or drink and how that,What information is available about substances people use or drink and how they affect health?,"Summary : If you are like many Americans, you drink alcohol at least occasionally. For many people, moderate drinking is probably safe. It may even have health benefits, including reducing your risk of certain heart problems. For most women and for most people over 65, moderate drinking is no more than three drinks a day or seven drinks per week. For men under 65, it is no more than four drinks a day or 14 drinks per week. Some people should not drink at all, including alcoholics, children, pregnant women, people taking certain medicines, and people with certain medical conditions. If you have questions about whether it is safe for you to drink, speak with your health care provider. Anything more than moderate drinking can be risky. Heavy drinking can lead to alcoholism and alcohol abuse, as well as injuries, liver disease, heart disease, cancer, and other health problems. It can also cause problems at home, at work, and with friends. NIH: National Institute on Alcohol Abuse and Alcoholism","Yes. **Alcohol** usually refers to **ethanol**, the substance in beer, wine, and liquor. It is a **central nervous system depressant**, meaning it slows brain and body function.
+
+### Common short-term effects
+- Relaxation, lowered inhibition
+- Impaired judgment and coordination
+- Slurred speech
+- Drowsiness
+- Nausea/vomiting
+- At high levels: blackouts, slowed breathing, coma, death
+
+### Long-term health risks
+Heavy or repeated alcohol use can increase the risk of:
+- **Liver disease**: fatty liver, hepatitis, cirrhosis
+- **Pancreatitis**
+- **High blood pressure** and heart problems
+- **Depression, anxiety**, and sleep problems
+- **Memory and nerve damage**
+- **Alcohol use disorder (addiction)**
+- Several **cancers**","Yes—I can give general information about things people take, use, or drink and what effects they can have, including:
+
+- Medications
+- Alcohol
+- Energy drinks/caffeine
+- Supplements or herbal products
+- Recreational drugs
+- Household chemicals or accidental ingestions
+
+I can help with:
+- Common effects
+- Side effects
+- Drug/alcohol interactions
+- Overdose or poisoning risks
+- When to get medical help
+
+If you tell me the specific substance or drink, how much, and when it was used, I can give more useful information.
+
+If this is about a possible overdose, poisoning, trouble breathing, chest pain, seizure, severe confusion, or someone hard to wake up, call emergency services right away. In the U.S., you can also call Poison Control at 1-800-222-1222.","There is extensive health information available about commonly used or consumed substances, including:
+
+- **Alcohol**: Can impair judgment and coordination short term; long-term use can cause liver disease, heart problems, pancreatitis, cancer risk, and alcohol use disorder.
+- **Tobacco and nicotine**: Increase the risk of lung disease, heart disease, stroke, and many cancers. Nicotine is addictive.
+- **Caffeine and energy drinks**: May cause insomnia, anxiety, palpitations, tremor, high blood pressure, and, in excess, dangerous heart rhythm problems.
+- **Cannabis",1.1335296930735927,1.2758981357020551,4.127140884247595,25.77102698441556,27.56197275758764,26.381084182924603,11.718750000000002,11.347517730496454,11.618257261410788,19.531250000000004,20.56737588652482,24.89626556016597,0.0,0.0,0.0,5.333333333333334,5.333333333333334,8.0,8.88888888888889,7.017543859649122,14.634146341463412,6.666666666666668,6.0606060606060606,10.3448275862069,0.8059775829315186,0.8106410503387451,0.8298423886299133,1.0,0.6680300831794739,0.6871041059494019,4,3,2
+gpt-5.4,gpt54_hybrid_api.yaml,none,typos_grammar,20,What is (are) Alcoholism and Alcohol Abuse ?,"What is alchoholism and alchohol abuse, are they the same thing or not ?","What is the difference between alcoholism and alcohol abuse, and are they the same condition?","For most adults, moderate alcohol use is probably not harmful. However, about 18 million adult Americans have an alcohol use disorder. This means that their drinking causes distress and harm. It includes alcoholism and alcohol abuse. Alcoholism, or alcohol dependence, is a disease that causes - Craving - a strong need to drink - Loss of control - not being able to stop drinking once you've started - Physical dependence - withdrawal symptoms - Tolerance - the need to drink more alcohol to feel the same effect With alcohol abuse, you are not physically dependent, but you still have a serious problem. The drinking may cause problems at home, work, or school. It may cause you to put yourself in dangerous situations, or lead to legal or social problems. Another common problem is binge drinking. It is drinking about five or more drinks in two hours for men. For women, it is about four or more drinks in two hours. Too much alcohol is dangerous. Heavy drinking can increase the risk of certain cancers. It can cause damage to the liver, brain, and other organs. Drinking during pregnancy can harm your baby. Alcohol also increases the risk of death from car crashes, injuries, homicide, and suicide. If you want to stop drinking, there is help. Start by talking to your health care provider. Treatment may include medicines, counseling, and support groups. NIH: National Institute on Alcohol Abuse and Alcoholism","Alcoholism and alcohol abuse are forms of harmful alcohol use.
+
+- **Alcohol abuse** means drinking in a way that leads to problems, such as failure at work or school, risky behavior, relationship trouble, accidents, or legal problems.
+- **Alcoholism** usually refers to **alcohol dependence**, a more severe condition in which a person:
+  - craves alcohol,
+  - cannot reliably control drinking,
+  - continues drinking despite harm,
+  - develops **tolerance**,
+  - and may have **withdrawal symptoms** when stopping.
+
+Today, both are commonly grouped under **alcohol use disorder (AUD)**, which ranges from mild to severe.","They are **not exactly the same**, though they are closely related.
+
+- **Alcohol abuse**: drinking in a way that causes **problems or harm**, such as trouble at work/school, unsafe behavior, legal problems, or relationship issues.
+- **Alcoholism**: an older, nontechnical term usually used to mean **alcohol dependence/addiction** — a stronger pattern where a person has **cravings, loss of control, tolerance, withdrawal**, and keeps drinking despite harm.
+
+### Important update
+In modern medicine, doctors now usually use the term **Alcohol Use Disorder (AUD)** instead of separating “abuse” and “alcoholism.”  
+AUD can be **mild, moderate, or severe**.
+
+So:
+- **Alcohol abuse** = harmful drinking pattern
+- **Alcoholism** = more severe/addictive form
+- **Today** both are generally grouped under **Alcohol Use Disorder**
+
+If you want, I can also give you the **signs of alcohol use disorder** in simple terms.","They are related, but not exactly the same.
+
+- **Alcohol abuse** is an older medical term for a pattern of drinking that causes harm, such as problems at work, school, relationships, or legal trouble, even if the person is not physically dependent on alcohol.
+- **Alcoholism** is a nontechnical term commonly used to describe **more severe, compulsive alcohol use**, often including **craving, loss of control, tolerance, and sometimes withdrawal**. It roughly overlaps with what used to be called **alcohol dependence**.
+
+So, **alcoholism and alcohol abuse are not identical**, though both involve unhealthy alcohol use.
+
+Today, doctors usually use the term **alcohol use disorder (AUD)** instead, which covers a range from mild to severe. In that system:
+- what was called **alcohol abuse** often fits **milder AUD**
+- what people call **alcoholism** often fits **more severe AUD**",1.3983593858500043,2.0441532435859457,3.198862854572971,25.685956794277608,30.63646999564166,31.74611833065103,17.10526315789474,13.91304347826087,14.985590778097984,30.26315789473684,33.62318840579711,35.158501440922194,0.0,0.0,0.0,18.181818181818183,19.090909090909093,18.181818181818183,47.61904761904761,32.8125,37.03703703703704,26.315789473684216,24.13793103448276,24.39024390243903,0.8369497656822205,0.8269142508506775,0.8326538801193237,1.0,0.7763404846191406,0.8178256750106812,5,5,5
+gpt-5.4,gpt54_hybrid_api.yaml,none,ambiguity,21,What is (are) Allergy ?,"when your body acts up around certain stuff and you get weird reactions, what is that whole thing actually?",What is it called when your body reacts abnormally to certain substances or triggers?,"An allergy is a reaction by your immune system to something that does not bother most other people. People who have allergies often are sensitive to more than one thing. Substances that often cause reactions are - Pollen - Dust mites - Mold spores - Pet dander - Food - Insect stings - Medicines Normally, your immune system fights germs. It is your body's defense system. In most allergic reactions, however, it is responding to a false alarm. Genes and the environment probably both play a role. Allergies can cause a variety of symptoms such as a runny nose, sneezing, itching, rashes, swelling, or asthma. Allergies can range from minor to severe. Anaphylaxis is a severe reaction that can be life-threatening. Doctors use skin and blood tests to diagnose allergies. Treatments include medicines, allergy shots, and avoiding the substances that cause the reactions. NIH: National Institute of Allergy and Infectious Diseases","Allergy is an exaggerated immune system reaction to a usually harmless substance, called an allergen.
+
+Common allergens include:
+- Pollen
+- Dust mites
+- Animal dander
+- Foods
+- Medicines
+- Insect stings
+
+Allergic reactions can cause:
+- Sneezing
+- Runny nose
+- Itching
+- Rash or hives
+- Swelling
+- Wheezing
+
+In severe cases, allergy can cause anaphylaxis, a life-threatening reaction.","Usually, that’s called a **hypersensitivity reaction**.
+
+- If your **immune system overreacts** to something like pollen, food, pet dander, or medicine, it’s an **allergy** or **allergic reaction**.
+- If you get symptoms from something but it’s **not caused by the immune system**, it may be called an **intolerance** or **sensitivity** instead.
+
+If you mean things like hives, swelling, wheezing, or trouble breathing, that suggests an **allergic reaction**. Severe symptoms need urgent medical care.",It’s commonly called an **allergic reaction**. The broader medical term is **hypersensitivity**.,3.103642192667875,1.8664638962887805,0.0026993034888863,29.08062286436996,27.04189633715297,5.721707415073029,25.136612021857925,15.609756097560975,5.442176870748299,36.0655737704918,27.31707317073171,6.802721088435375,0.0,0.0,0.0,26.76056338028169,12.676056338028168,0.0,67.85714285714286,33.33333333333333,0.0,38.38383838383838,18.367346938775512,0.0,0.8615179061889648,0.8370805382728577,0.8219947218894958,1.0,0.4340211749076843,0.3788885176181793,4,4,4
+gpt-5.4,gpt54_hybrid_api.yaml,none,layperson,22,What is (are) Alpha-1 Antitrypsin Deficiency ?,"what is that inherted thing where your body doesnt make enough of some protien to protect the lungs n maybe liver too, like why do ppl get it and what does it even do ?","What is alpha-1 antitrypsin deficiency, why do some people inherit it, and how does the lack of this protective protein affect the lungs and liver?","Alpha-1 antitrypsin deficiency (AAT deficiency) is an inherited condition that raises your risk for lung and liver disease. Alpha-1 antitrypsin (AAT) is a protein that protects the lungs. The liver makes it. If the AAT proteins aren't the right shape, they get stuck in the liver cells and can't reach the lungs. Symptoms of AAT deficiency include - Shortness of breath and wheezing - Repeated lung infections - Tiredness - Rapid heartbeat upon standing - Vision problems - Weight loss Some people have no symptoms and do not develop complications. Blood tests and genetic tests can tell if you have it. If your lungs are affected, you may also have lung tests. Treatments include medicines, pulmonary rehab, and extra oxygen, if needed. Severe cases may need a lung transplant. Not smoking can prevent or delay lung symptoms. NIH: National Heart, Lung, and Blood Institute","Alpha-1 antitrypsin deficiency is an **inherited genetic disorder** in which the body makes **too little alpha-1 antitrypsin (AAT)** or makes an **abnormal form** of it.
+
+- **AAT** is a protein produced mainly by the **liver**.
+- Its job is to **protect the lungs** from damage by enzymes such as **neutrophil elastase**.
+- When AAT is deficient or abnormal, it can cause:
+  - **Lung disease**: especially **early-onset emphysema/COPD**
+  - **Liver disease**: because the abnormal protein can build up in the liver, causing **hepatitis, cirrhosis, or liver failure**
+  - Less commonly, **panniculitis** (painful skin inflammation)
+
+It is usually caused by mutations in the **SERPINA1","You’re probably talking about **alpha-1 antitrypsin deficiency (AAT deficiency)**.
+
+### What it is
+It’s an **inherited genetic condition** where the body doesn’t make enough **alpha-1 antitrypsin (AAT)**, or makes an abnormal version of it.
+
+### What that protein does
+AAT is made mostly in the **liver** and its job is to **protect the lungs** from damage caused by normal inflammation and enzymes like **neutrophil elastase**.
+
+### Why people get it
+People get it because of **mutations in the SERPINA1 gene**, passed down from their parents.  
+You inherit **two copies** of this gene, one from each parent. Some abnormal combinations can cause low AAT levels or make the protein misfold.
+
+### What happens if you don’t have enough
+- **Lungs:** Without enough AAT, the lungs are less protected, so tissue can be damaged over time. This can lead to:
+  - **early emphysema/COPD**
+  - shortness of breath
+  - wheezing","Alpha-1 antitrypsin deficiency is an **inherited genetic disorder** in which the body makes **too little alpha-1 antitrypsin (AAT)** or makes an **abnormal form** of it.
+
+### What alpha-1 antitrypsin normally does
+AAT is a protein made mainly in the **liver**. Its job is to protect the **lungs** from damage caused by enzymes released by inflammatory cells, especially **neutrophil elastase**.
+
+### Why some people inherit it
+It is caused by mutations in the **SERPINA1 gene**. A person inherits one copy of this gene from each parent.  
+- If someone inherits **abnormal copies**, they may have deficiency or dysfunction of AAT.  
+- It is usually inherited in a **codominant** pattern, meaning the specific combination of gene variants affects how severe the deficiency is.
+
+### How it affects the lungs
+Without enough normal AAT, elastase can damage lung tissue unchecked. This leads to:
+- **Destruction of alveoli**
+- **Early-onset emphysema/COPD**
+- Shortness of breath, wheezing, chronic cough  
+Lung damage is often worse in **smokers",4.462040543717619,5.793113534222669,4.620385232042405,30.61305612573253,38.8189502654413,39.08826320384647,17.857142857142858,22.14022140221402,18.63799283154122,25.89285714285714,35.42435424354244,30.107526881720432,0.0,0.0,0.0,11.940298507462686,17.91044776119403,22.388059701492537,19.51219512195122,19.672131147540984,23.07692307692308,14.814814814814811,18.750000000000004,22.727272727272727,0.8330264091491699,0.8382993340492249,0.8383118510246277,1.0,0.3786769509315491,0.8430435061454773,3,4,2
+gpt-5.4,gpt54_hybrid_api.yaml,none,incomplete,23,What is (are) Alzheimer's Caregivers ?,"what are the people who take care of someone like this with bad memory stuff called, and what do they even do for them?","What are the healthcare professionals who care for someone with significant memory problems called, and what do they do for the patient?","Caring for someone who has Alzheimer's disease (AD) can be stressful and overwhelming. It's important to take care of yourself. Ask for and accept help. Talk to the doctor. Find out what treatments might help control symptoms or address behavior problems. Find a support group. Others who have ""been there"" may be able to help and will understand. If there are times of day that the person is less confused or more cooperative, take advantage of that in daily routines. Consider using adult day care or respite services. These offer a break with the peace of mind that the patient is being taken care of. Begin to plan for the future. This may include - Getting financial and legal documents in order - Looking into assisted living or nursing homes - Finding out what your health insurance and Medicare will cover NIH: National Institute on Aging","Alzheimer’s caregivers are the people who help care for someone with Alzheimer’s disease. They may be:
+
+- **Family members or friends** providing unpaid care
+- **Professional caregivers** such as home health aides, nurses, or staff in assisted living/nursing facilities
+
+They often help with:
+
+- Daily activities like bathing, dressing, eating, and taking medicines
+- Safety and supervision
+- Managing behavior, memory problems, and confusion
+- Emotional support and medical appointments
+
+In short, an Alzheimer’s caregiver is anyone who provides ongoing support to a person with Alzheimer’s disease.","People who care for someone with serious memory problems are usually called **caregivers**.
+
+Depending on the situation, they may be:
+
+- **Family caregivers** — spouse, adult child, sibling, etc.
+- **Professional caregivers / home health aides / personal care aides**
+- **Certified nursing assistants (CNAs)**
+- **Nurses**
+- **Memory care staff** in assisted living or nursing homes
+- **Geriatric care managers** or **social workers** who help organize care
+
+What they do can include:
+
+- **Supervision and safety**
+  - making sure the person doesn’t wander, fall, forget the stove, or miss emergencies
+- **Help with daily activities**
+  - bathing, dressing, toileting, grooming, eating
+- **Medication help**
+  - reminding or giving medicines correctly
+- **Meal preparation**
+  - cooking, helping with feeding, making sure they drink enough
+- **Transportation**
+  - taking them to doctor visits or errands
+- **Memory support**
+  - reminding them of names, dates, routines, and appointments
+- **Emotional support and companionship**
+  - keeping them calm, engaged, and less isolated
+- **Managing behavior","They’re often cared for by a **memory specialist** or **memory care team**—most commonly a **neurologist**, **geriat",1.108495489162206,3.426291582218372,0.0302755507758265,30.30611178755013,37.42387823604865,4.883301911891929,13.574660633484164,12.408759124087592,3.896103896103896,31.674208144796378,31.38686131386861,3.896103896103896,0.0,0.0,0.0,12.698412698412698,20.63492063492064,0.0,19.51219512195122,20.63492063492064,0.0,15.384615384615383,20.63492063492064,0.0,0.8343112468719482,0.8126866817474365,0.8018757700920105,1.0,0.5579156279563904,0.590978741645813,4,2,1
+gpt-5.4,gpt54_hybrid_api.yaml,none,overgeneralization,24,What is (are) Alzheimer's Disease ?,"what is that kind of old-age brain/memory problem where poeple get real forgetfull and confused over time, like is it just normal aging or some bigger mental health thing or what dose it even mean?","What is the medical term for the progressive memory loss and confusion that can happen in older adults, and how is it different from normal aging or a mental health condition?","Alzheimer's disease (AD) is the most common form of dementia among older people. Dementia is a brain disorder that seriously affects a person's ability to carry out daily activities. AD begins slowly. It first involves the parts of the brain that control thought, memory and language. People with AD may have trouble remembering things that happened recently or names of people they know. A related problem, mild cognitive impairment (MCI), causes more memory problems than normal for people of the same age. Many, but not all, people with MCI will develop AD. In AD, over time, symptoms get worse. People may not recognize family members. They may have trouble speaking, reading or writing. They may forget how to brush their teeth or comb their hair. Later on, they may become anxious or aggressive, or wander away from home. Eventually, they need total care. This can cause great stress for family members who must care for them. AD usually begins after age 60. The risk goes up as you get older. Your risk is also higher if a family member has had the disease. No treatment can stop the disease. However, some drugs may help keep symptoms from getting worse for a limited time. NIH: National Institute on Aging","Alzheimer’s disease is a progressive neurodegenerative brain disorder and the most common cause of dementia.
+
+It is characterized by:
+- Gradual loss of memory, especially recent memory
+- Decline in thinking, reasoning, language, and judgment
+- Changes in behavior and personality
+- Increasing difficulty with daily activities over time
+
+In the brain, it is associated with:
+- Abnormal buildup of beta-amyloid plaques
+- Tau protein tangles
+- Progressive loss of nerve cells and brain shrinkage
+
+It usually affects older adults and worsens over time.","What you’re describing is often called **dementia**, but **not all forgetfulness in older age is dementia**.
+
+### The main possibilities:
+- **Normal aging:** mild slowing, occasionally forgetting names or where you put things, but still able to function normally.
+- **Mild cognitive impairment (MCI):** more memory trouble than expected for age, but daily life is still mostly intact.
+- **Dementia:** a **syndrome** where memory, thinking, judgment, language, or orientation decline enough to interfere with daily life. People may get increasingly forgetful, confused, repeat themselves, get lost, or have trouble managing medications, money, or cooking.
+- **Alzheimer’s disease:** the **most common cause of dementia**.
+- Other causes of dementia include **vascular dementia**, **Lewy body dementia**, and **frontotemporal dementia**.
+
+### Important point:
+Dementia is **not considered a normal part of aging**, and it is **not just a “mental health problem.”** It usually reflects an underlying **brain disease or damage**.","The medical term is **dementia**. If it is caused specifically by Alzheimer disease, it may be called **Alzheimer dementia**.
+
+**How it differs from normal aging:**
+- **Normal aging:** occasional forgetfulness, slower recall, but the person can still function independently.
+- **Dementia:** **progressive decline** in memory, thinking, judgment, language, or orientation that **interferes with daily life**.
+
+**How it differs from a mental health condition:**
+- Dementia is usually due to a **brain disease or damage** causing ongoing cognitive decline.
+- Mental health conditions such as **depression** can cause poor concentration or memory problems, but these are not the same as dementia and may improve with treatment.",0.8203918745611514,4.073424195419359,0.9590365388414251,23.64526625894928,34.31461717900795,26.76850290480785,13.13868613138686,14.37125748502994,10.8843537414966,24.08759124087592,35.92814371257486,29.25170068027211,0.0,0.0,0.0,9.090909090909092,19.318181818181817,13.636363636363637,25.806451612903224,26.5625,31.57894736842105,13.445378151260504,22.36842105263158,19.047619047619047,0.8381450176239014,0.8340082168579102,0.8319241404533386,1.0,0.4827484786510467,0.5523945093154907,4,5,4
+gpt-5.4,gpt54_hybrid_api.yaml,none,typos_grammar,25,What is (are) Amblyopia ?,"what is amblyopai exactly , and how dose it affect the eye ?","What exactly is amblyopia, and how does it affect the eye?","Amblyopia, or ""lazy eye,"" is the most common cause of visual impairment in children. It happens when an eye fails to work properly with the brain. The eye may look normal, but the brain favors the other eye. In some cases, it can affect both eyes. Causes include - Strabismus - a disorder in which the two eyes don't line up in the same direction - Refractive error in an eye - when one eye cannot focus as well as the other, because of a problem with its shape. This includes nearsightedness, farsightedness, and astigmatism. - Cataract - a clouding in the lens of the eye It can be hard to diagnose amblyopia. It is often found during a routine vision exam. Treatment for amblyopia forces the child to use the eye with weaker vision. There are two common ways to do this. One is to have the child wear a patch over the good eye for several hours each day, over a number of weeks to months. The other is with eye drops that temporarily blur vision. Each day, the child gets a drop of a drug called atropine in the stronger eye. It is also sometimes necessary to treat the underlying cause. This could include glasses or surgery. NIH: National Eye Institute","Amblyopia, or “lazy eye,” is decreased vision in one eye, and less commonly both eyes, caused by abnormal visual development early in life. The eye itself may look normal, but the brain does not properly process input from that eye, so vision does not develop normally.
+
+Common causes include:
+- **Strabismus** (eyes not aligned)
+- **Unequal refractive error** between the eyes
+- **Visual deprivation** such as from a cataract or droopy eyelid
+
+It usually begins in childhood and can become permanent if not treated early.","**Amblyopia** (often called **“lazy eye”**) is a **reduced vision in one eye** — or sometimes both eyes — that happens because the **brain does not learn to use that eye normally during early childhood**.
+
+### What it is exactly
+It is **not usually a problem with the eyeball itself**.  
+Instead, it is mainly a **brain-and-vision development problem**: the brain starts favoring one eye and pays less attention to the other, so the weaker eye’s vision does not develop properly.
+
+### How it affects the eye
+Amblyopia can cause:
+
+- **Blurred or reduced vision** in the affected eye
+- **Poor depth perception** (trouble judging distances)
+- Sometimes an eye that **drifts inward or outward**
+- Difficulty with tasks needing","Amblyopia, often called **“lazy eye,”** is a **developmental vision problem** in which the **brain does not learn to see clearly from one eye** (less commonly both eyes), usually during early childhood.
+
+### What it is
+- The **eye itself may look normal**
+- The problem is mainly in the **brain’s visual processing**, not that the eye is “lazy” or weak
+- It happens when one eye sends a **blurrier or misaligned image** to the brain, so the brain begins to **favor the stronger eye** and suppress the weaker one
+
+### Common causes
+- **Strabismus**: eyes are misaligned
+- **Anisometropia**: one eye has a much different prescription than the other
+- **Visual deprivation**: something blocks vision early in life, such as a **congenital cataract**, droopy eyelid, or corneal opacity
+
+### How it affects the eye/vision
+Amblyopia can cause:
+- **Reduced vision** in the affected",3.298060446347216,2.1788189784692533,3.402147837245657,24.477913905656028,28.703469311920944,33.85562697046587,18.53281853281853,17.667844522968196,18.666666666666668,28.57142857142857,36.04240282685512,40.66666666666666,0.0,0.0,0.0,18.9873417721519,24.050632911392405,31.64556962025317,41.66666666666667,41.30434782608695,43.85964912280701,26.086956521739136,30.4,36.76470588235294,0.868226945400238,0.839793860912323,0.8436101078987122,1.0,0.5316331386566162,0.8022564649581909,5,4,3
+gpt-5.4,gpt54_hybrid_api.yaml,none,ambiguity,26,What is (are) Amyloidosis ?,What is that condition where some kind of stuff builds up in the body/organs and starts causing problems?,What is the medical term for a condition in which abnormal substances build up in the body's organs and cause problems?,"Amyloidosis occurs when abnormal proteins called amyloids build up and form deposits. The deposits can collect in organs such as the kidney and heart. This can cause the organs to become stiff and unable to work the way they should. There are three main types of amyloidosis: - Primary - with no known cause - Secondary - caused by another disease, including some types of cancer - Familial - passed down through genes Symptoms can vary, depending upon which organs are affected. Treatment depends on the type of amyloidosis you have. The goal is to help with symptoms and limit the production of proteins. If another disease is the cause, it needs to be treated.","Amyloidosis is a group of diseases in which abnormal proteins called **amyloid** build up in tissues and organs. These deposits can interfere with normal organ function and may affect the **kidneys, heart, liver, nerves, gastrointestinal tract, or other tissues**.
+
+It may be:
+- **Localized**: limited to one organ or tissue
+- **Systemic**: affecting multiple organs throughout the body
+
+Amyloidosis can occur on its own or secondary to other conditions such as **chronic inflammatory diseases, certain blood/plasma cell disorders, or inherited genetic mutations**. Symptoms depend on which organs are involved.","There isn’t just one condition for that. The general idea is a **storage/deposition disorder** — when a substance builds up in tissues or organs and causes damage.
+
+Common examples:
+- **Amyloidosis**: abnormal protein builds up in organs
+- **Hemochromatosis**: too much **iron** builds up
+- **Wilson disease**: too much **copper** builds up
+- **Lysosomal storage diseases**: fats/sugars build up because the body can’t break them down properly
+
+If you mean a specific organ or substance, I can help narrow it down.",The medical term is **storage disease** (also called a **deposit/storage disorder**). It refers to conditions in which abnormal substances accumulate in organs and interfere with their function.,3.3975353074795165,1.5672363107124665,0.359686153556809,39.8259356190293,29.04874279171305,14.455178998716711,19.35483870967742,12.5,7.874015748031496,33.33333333333333,21.59090909090909,17.322834645669293,0.0,0.0,0.0,24.444444444444443,17.77777777777778,6.666666666666667,23.404255319148938,21.62162162162162,27.27272727272727,23.913043478260867,19.51219512195122,10.714285714285715,0.8718216419219971,0.8369522094726562,0.8423230648040771,1.0,0.4672171473503113,0.4663598835468292,3,4,2
+gpt-5.4,gpt54_hybrid_api.yaml,none,layperson,27,What is (are) Amyotrophic Lateral Sclerosis ?,"what is that nerve/muscle wasting thing called, where a person gets weaker n weaker, cant move right or talk good after awhile, is it like a body shutting down disease or somthing?","What is the name of the disease that causes progressive nerve and muscle wasting, leading to increasing weakness, impaired movement, and difficulty speaking over time?","Amyotrophic lateral sclerosis (ALS) is a nervous system disease that attacks nerve cells called neurons in your brain and spinal cord. These neurons transmit messages from your brain and spinal cord to your voluntary muscles - the ones you can control, like in your arms and legs. At first, this causes mild muscle problems. Some people notice - Trouble walking or running - Trouble writing - Speech problems Eventually, you lose your strength and cannot move. When muscles in your chest fail, you cannot breathe. A breathing machine can help, but most people with ALS die from respiratory failure. The disease usually strikes between age 40 and 60. More men than women get it. No one knows what causes ALS. It can run in families, but usually it strikes at random. There is no cure. Medicines can relieve symptoms and, sometimes, prolong survival. NIH: National Institute of Neurological Disorders and Stroke","Amyotrophic lateral sclerosis (ALS), also called **Lou Gehrig disease**, is a **progressive neurodegenerative disease** that destroys **motor neurons** in the brain and spinal cord.
+
+**What it causes:**
+- Gradually worsening **muscle weakness**
+- **Muscle wasting (atrophy)**
+- Trouble **speaking, swallowing, and breathing**
+- Eventually **paralysis**
+
+**Key point:**  
+ALS mainly affects **voluntary muscle control**. Sensation is usually preserved, and thinking may remain normal, especially early on, although some patients can have cognitive changes. It is a serious, ultimately fatal disease.","You might be thinking of **ALS** — **amyotrophic lateral sclerosis**, also called **Lou Gehrig’s disease**.
+
+It’s a **motor neuron disease** where the nerves that control muscles gradually stop working, causing:
+
+- progressive **muscle weakness/wasting**
+- trouble **moving**
+- slurred speech or trouble **talking/swallowing**
+- later, trouble **breathing**
+
+It’s **not usually described as “the body shutting down,”** but it is a **progressive neurodegenerative disease** that gets worse over time.
+
+That said, **other","The disease is **amyotrophic lateral sclerosis (ALS)**, also known as **motor neurone disease (MND)** in some countries.
+
+It is a progressive neurodegenerative disease that causes **wasting of nerves and muscles**, leading to **increasing weakness, loss of movement, and difficulty speaking and swallowing** over time.",6.815365407271898,0.9156469856525604,1.9828096454217847,30.961405818968256,24.584345134197367,19.025383097828684,22.32558139534884,14.285714285714288,12.972972972972974,29.76744186046512,22.857142857142858,20.54054054054054,0.0,0.0,0.0,16.666666666666664,10.606060606060606,9.090909090909092,29.72972972972973,25.0,30.0,21.35922330097087,14.893617021276595,13.953488372093023,0.8478272557258606,0.8259283900260925,0.8425653576850891,1.0,0.4054456949234009,0.5227686166763306,4,4,5
+gpt-5.4,gpt54_hybrid_api.yaml,none,incomplete,28,Do you have information about Anabolic Steroids,do you hav any info on those muscle-building stuff?,What medical information is available about muscle-building supplements and their health effects?,"Summary : Anabolic steroids are man-made substances related to male sex hormones. Doctors use anabolic steroids to treat some hormone problems in men, delayed puberty, and muscle loss from some diseases. Bodybuilders and athletes often use anabolic steroids to build muscles and improve athletic performance. Using them this way is not legal or safe. Abuse of anabolic steroids has been linked with many health problems. They include - Acne - Breast growth and shrinking of testicles in men - Voice deepening and growth of facial hair in women - High blood pressure - Heart problems, including heart attack - Liver disease, including cancer - Kidney damage - Aggressive behavior NIH: National Institute on Drug Abuse","Yes. **Anabolic steroids** usually refers to **anabolic-androgenic steroids (AAS)**, which are **synthetic versions of testosterone**.
+
+### What they do
+They can:
+- **Increase muscle mass and strength**
+- Promote **protein synthesis**
+- Affect male sexual characteristics because of their **androgenic** effects
+
+### Legitimate medical uses
+Doctors may prescribe them for certain conditions, such as:
+- **Delayed puberty**
+- **Low testosterone (hypogonadism)**
+- **Muscle loss** from some illnesses
+- Some forms of **anemia**
+
+### Commonly misused for
+- Bodybuilding
+- Athletic performance enhancement
+- Appearance/strength gains
+
+### Risks and side effects
+Misuse can cause serious health problems, including:
+
+**In men**
+- Testicular shrinkage
+- Reduced sperm production/infertility
+- Breast enlargement
+- Acne, hair loss
+
+**In women**
+- Deepened voice
+- Increased body/facial hair
+- Menstrual changes","Yes — if you mean **muscle-building supplements or drugs**, here’s the short version:
+
+### Things that actually help
+- **Protein powder**: useful if you’re not getting enough protein from food.  
+  - Aim for about **1.6–2.2 g protein/kg body weight/day** if trying to build muscle.
+- **Creatine monohydrate**: one of the best-studied supplements for strength and muscle gain.  
+  - Typical dose: **3–5 g daily**.
+  - Common side effect: mild water weight gain, sometimes stomach upset.
+- **Calories + resistance training + sleep** matter more than any supplement.
+  - Progressive weight training
+  - Slight calorie surplus if trying to gain size
+  - **7–9 hours sleep**
+
+### Things with mixed or smaller benefit
+- **Caffeine**: can improve workout performance.
+- **Beta-alanine**: may","Muscle-building supplements include protein powders, creatine, amino acids, “pre-workouts,” and testosterone/prohormone products. The medical evidence and",1.845289472840956,1.0230987982600956,0.0393483291169692,41.22122435053887,29.38625296679166,11.049951863160688,18.6046511627907,6.363636363636364,6.4,33.48837209302326,10.909090909090908,6.4,0.0,0.0,0.0,28.30188679245283,7.547169811320755,0.0,27.77777777777778,7.142857142857142,0.0,28.03738317757009,7.339449541284402,0.0,0.8336594700813293,0.7993550300598145,0.8232555985450745,1.0,0.4884521961212158,0.5396832227706909,4,2,2
+gpt-5.4,gpt54_hybrid_api.yaml,none,overgeneralization,29,What is (are) Anal Cancer ?,"what is it called when theres a really bad growth or sick problem down there in the bottom area, like cancer or somthing, and what does that even mean for a person?","What is a serious disease or abnormal growth in the genital or anal area, such as cancer, called, and what does that diagnosis mean for a person?","The anus is where stool leaves your body when you go to the bathroom. It is made up of your outer layers of skin and the end of your large intestine. Anal cancer is a disease in which cancer cells form in the tissues of the anus. Anal cancer is rare. It is more common in smokers and people over 50. You are also at higher risk if you have HPV, have anal sex, or have many sexual partners. Symptoms include bleeding, pain, or lumps in the anal area. Anal itching and discharge can also be signs of anal cancer. Doctors use tests that examine the anus to diagnose anal cancer. They include a physical exam, endoscopy, ultrasound, and biopsy. Treatments include radiation therapy, chemotherapy, and surgery. NIH: National Cancer Institute","Anal cancer is a cancer that starts in the tissues of the anus, the opening at the end of the rectum through which stool leaves the body. It occurs when abnormal cells in the anal canal grow uncontrollably and form a tumor.
+
+Most anal cancers are **squamous cell carcinomas**, arising from the lining of the anal canal. Less common types include adenocarcinoma, melanoma, and basal cell carcinoma.
+
+It is different from **colorectal cancer**, which begins higher up in the colon or rectum.","A “really bad growth” in the **bottom area** is often called a **mass**, **tumor**, **lesion**, or **malignancy** if it is cancer.
+
+Because “down there” can mean different places, the exact name depends on location:
+
+- **Anus/rectum** → anal cancer, rectal cancer, rectal mass
+- **Colon lower down** → colorectal cancer
+- **Vulva/vagina/cervix** → vulvar, vaginal, or cervical cancer","A serious disease or abnormal growth in the genital or anal area is generally called a **malignancy** or **cancer**. It may also be described as a **tumor**, **neoplasm**, or **cancerous lesion** if an abnormal growth is found.
+
+What that diagnosis means:
+- It means **abnormal cells are growing uncontrollably**.
+- These cells can **invade nearby tissue** and sometimes **spread to other parts of the body**.
+- For the person, it is a **serious medical diagnosis** that needs **prompt evaluation and treatment**.
+- The outlook depends on the **type of cancer, its size, stage, and how early it is treated**.
+
+If a",8.175929655133313,1.2567592679698485,1.6819266437402616,31.409751185467588,18.229430825335456,28.37316548467301,17.708333333333332,11.560693641618496,11.538461538461538,38.54166666666667,18.4971098265896,26.923076923076923,0.0,0.0,0.0,25.0,8.928571428571429,7.142857142857142,40.0,14.705882352941178,11.11111111111111,30.76923076923077,11.111111111111112,8.695652173913043,0.8574293255805969,0.8096489906311035,0.8237699866294861,1.0,0.459678053855896,0.6581576466560364,4,3,3
+gpt-5.4,gpt54_hybrid_api.yaml,none,typos_grammar,30,What is (are) Anal Disorders ?,"what are anal disordrs exacly, and how do they happn ?","What exactly are anal disorders, and how do they develop?","The anus is the opening of the rectum through which stool passes out of your body. Problems with the anus are common. They include hemorrhoids, abscesses, fissures (cracks), and cancer. You may be embarrassed to talk about your anal troubles. But it is important to let your doctor know, especially if you have pain or bleeding. The more details you can give about your problem, the better your doctor will be able to help you. Treatments vary depending on the particular problem. NIH: National Institute of Diabetes and Digestive and Kidney Diseases","Anal disorders are problems affecting the anus, the opening at the end of the digestive tract where stool leaves the body.
+
+Common anal disorders include:
+- Hemorrhoids: swollen veins in or around the anus
+- Anal fissures: small tears in the anal lining
+- Anal abscesses: infected pockets of pus
+- Anal fistulas: abnormal tunnels between the anus and skin
+- Anal warts or infections
+- Anal itching, pain, or irritation
+- Less commonly, anal cancer
+
+Typical symptoms may include:
+- Pain or burning
+- Itching
+- Bleeding, especially with bowel movements
+- Swelling or a lump
+- Discharge or drainage
+
+Causes vary and can include constipation, straining, diarrhea, infection, inflammation, or trauma. Persistent anal pain or bleeding should be evaluated by a healthcare professional.","“Anal disorders” is a broad term for problems affecting the anus and the tissue just around it. The anus is the opening at the end of the digestive tract where stool leaves the body.
+
+Common anal disorders include:
+
+- **Hemorrhoids**: swollen veins in or around the anus
+- **Anal fissures**: small tears in the lining of the anus
+- **Anal abscess**: a pocket of infection with pus near the anus
+- **Anal fistula**: an abnormal tunnel between the anal canal and the skin
+- **Pruritus ani**: anal itching/irritation
+- **Rectal or anal prolapse**: tissue bulging out through the anus
+- **Warts or sexually transmitted infections**
+- **Less commonly, anal cancer**
+
+### How they happen
+They can happen for different reasons, depending on the disorder:
+
+- **","Anal disorders are problems affecting the anus and anal canal, the last part of the digestive tract where stool leaves the body. They include conditions such as:
+
+- **Hemorrhoids**: swollen veins in or around the anus  
+- **Anal fissures**: small tears in the lining of the anus  
+- **Anal abscesses and fistulas**: infections that form pus-filled pockets and sometimes abnormal tunnels  
+- **Anal itching (pruritus ani)**  
+- **Anal warts**, prolapse, or less commonly tumors/cancer
+
+### How they develop
+Anal disorders usually develop from one or more of these factors:
+
+- **Straining and constipation**: increases pressure in the anal area, often causing hemorrhoids or fissures  
+- **Diarrhea or frequent bowel movements**: irritates the anal lining  
+- **Trauma**: from hard stools, childbirth, anal intercourse, or injury  
+- **Infection or blocked anal glands**: can lead to abscesses and fistulas  
+- **Inflammation**: from conditions like Crohn disease or other bowel disorders  
+- **Poor hygiene or excess moisture/irritants**: can cause itching and skin irritation  
+- **Aging,",2.4641060801311143,4.222383348539661,1.3806195933359589,36.888556980678686,36.24370257119188,33.303831541291906,18.08510638297873,17.48633879781421,14.977973568281936,29.787234042553184,31.693989071038253,21.145374449339204,0.0,0.0,0.0,33.33333333333333,22.22222222222222,25.0,17.91044776119403,13.333333333333334,10.714285714285714,23.300970873786405,16.666666666666668,15.0,0.8488333821296692,0.8366870880126953,0.8173081874847412,0.9999998807907104,0.6989064812660217,0.8812440037727356,4,3,2
+gpt-5.4,gpt54_hybrid_api.yaml,none,ambiguity,31,What is (are) Anaphylaxis ?,"when somebody suddenly has a really bad allergic thing, like throat geting tight, cant breath good, maybe rash n swelling all at once, what is that even called or is it just a severe reaction?","What is the medical term for a sudden severe allergic reaction that causes throat tightness, difficulty breathing, rash, and swelling?","Anaphylaxis is a serious allergic reaction. It can begin very quickly, and symptoms may be life-threatening. The most common causes are reactions to foods (especially peanuts), medications, and stinging insects. Other causes include exercise and exposure to latex. Sometimes no cause can be found. It can affect many organs: - Skin - itching, hives, redness, swelling - Nose - sneezing, stuffy nose, runny nose - Mouth - itching, swelling of the lips or tongue - Throat - itching, tightness, trouble swallowing, swelling of the back of the throat - Chest - shortness of breath, coughing, wheezing, chest pain or tightness - Heart - weak pulse, passing out, shock - Gastrointestinal tract - vomiting, diarrhea, cramps - Nervous system - dizziness or fainting If someone is having a serious allergic reaction, call 9-1-1. If an auto-injector is available, give the person the injection right away. NIH: National Institute of Allergy and Infectious Diseases","Anaphylaxis is a severe, rapid-onset, life-threatening allergic reaction involving the whole body.
+
+It happens when the immune system overreacts to a trigger such as:
+- foods
+- medications
+- insect stings
+- latex
+
+Typical features can include:
+- hives, itching, flushing
+- swelling of the lips, tongue, or throat
+- trouble breathing or wheezing
+- dizziness, fainting, or low blood pressure
+- vomiting or abdominal cramps
+
+Anaphylaxis is a medical emergency and is treated immediately with epinephrine.","That’s called **anaphylaxis** — a **severe, life-threatening allergic reaction**.
+
+Typical signs can include:
+- **Throat tightness**
+- **Trouble breathing / wheezing**
+- **Swelling** of the lips, tongue, or throat
+- **Hives or rash**
+- Dizziness, fainting, vomiting, or a fast heartbeat
+
+It is a **medical emergency**.
+
+If this is happening:
+1. **Use an epinephrine auto-injector (EpiPen) immediately** if available.
+2. **Call emergency services right away**.
+3. Go to the **ER even if symptoms improve**, because symptoms can come back.
+
+So yes — it is more than “just a severe reaction”; the medical term is **anaphylaxis**.","The medical term is **anaphylaxis**.
+
+It is a **severe, sudden allergic reaction** that can cause:
+- **Throat tightness**
+- **Difficulty breathing**
+- **Rash or hives**
+- **Swelling**, especially of the face, lips, or throat
+
+It is a **medical emergency** and typically requires **immediate treatment with epinephrine**.",2.591546106222212,2.2042473013599984,0.7654722819260567,29.46162638036196,30.18598019254685,16.052648626237694,24.615384615384617,20.657276995305164,16.56804733727811,33.84615384615384,39.436619718309856,24.85207100591716,0.0,0.0,0.0,17.333333333333336,20.0,13.333333333333334,40.625,40.54054054054054,50.0,24.299065420560748,26.785714285714285,21.05263157894737,0.8579251766204834,0.8398482203483582,0.8284609913825989,0.9999998807907104,0.4931648671627044,0.5291287899017334,5,5,5
+gpt-5.4,gpt54_hybrid_api.yaml,none,layperson,32,Do you have information about Anatomy,"do u got any info on how the body is put togther, like where all the inside parts are and what they kinda do maybe?","Can you explain basic human anatomy, including where the major internal organs are located and what their main functions are?","Summary : Anatomy is the science that studies the structure of the body. On this page, you'll find links to descriptions and pictures of the human body's parts and organ systems from head to toe.","Yes. I can help with anatomy, including:
+
+- Basic human anatomy
+- Body systems like skeletal, muscular, nervous, cardiovascular, respiratory, digestive, urinary, and reproductive
+- Organs and their functions
+- Bones, muscles, nerves, and blood vessels
+- Anatomical terminology such as anterior/posterior, medial/lateral, proximal/distal
+- Regional anatomy such as head and neck, thorax, abdomen, pelvis, limbs
+
+If you want, ask about a specific body part or system.","Yep — here’s a simple **inside-the-body map** of the main parts, **where they are**, and **what they do**.
+
+## 1. Head and neck
+
+### **Brain**
+- **Where:** Inside the skull
+- **What it does:** Control center of the body — handles thinking, memory, movement, emotions, breathing, and more
+
+### **Eyes**
+- **Where:** Front of the skull
+- **What they do:** Vision
+
+### **Ears**
+- **Where:** Sides of the head
+- **What they do:** Hearing and balance
+
+### **Nose / sinuses**
+- **Where:** Center of the face
+- **What they do:** Smell, help warm/filter air
+
+### **Mouth, teeth, tongue**
+- **Where:** Lower face
+- **What they do:** Eating, chewing, swallowing, speaking, taste
+
+### **Throat (pharynx)**
+- **Where:** Behind the mouth and nose
+- **What it does:** Passageway for food and air
+
+### **Voice box (lary","Yes. A simple way to understand basic human anatomy is by dividing the body into regions: **head/neck, chest, abdomen, and pelvis**.
+
+## 1. Head and neck
+
+### **Brain**
+- **Location:** Inside the skull
+- **Main function:** Control center of the body; manages thinking, memory, emotions, movement, sensation, breathing, and many automatic functions
+
+### **Eyes**
+- **Location:** In the eye sockets of the skull
+- **Main function:** Vision
+
+### **Ears**
+- **Location:** On the sides of the head
+- **Main function:** Hearing and balance
+
+### **Thyroid gland**
+- **Location:** Front of the neck, below the voice box
+- **Main function:** Produces hormones that regulate metabolism, energy use, and growth
+
+### **Trachea (windpipe)**
+- **Location:** Front of the neck, extending into the chest
+- **Main function:** Carries air to and from the lungs",0.6797434024593766,0.817244935720728,1.0017315363326666,26.612947261049648,21.18329831704209,23.92757326713164,10.526315789473683,8.695652173913045,13.333333333333334,18.94736842105263,13.043478260869565,22.222222222222225,0.0,0.0,0.0,30.76923076923077,23.07692307692308,23.07692307692308,13.333333333333334,5.769230769230769,4.411764705882353,18.6046511627907,9.230769230769232,7.407407407407408,0.8243839740753174,0.7917286157608032,0.8012883067131042,0.9999999403953552,0.5539615154266357,0.6065834164619446,4,4,3
+gpt-5.4,gpt54_hybrid_api.yaml,none,incomplete,33,What is (are) Anemia ?,what does it mean when your blood is low or you dont have enough of it?,What does it mean medically to have low blood levels or not have enough blood in your body?,"If you have anemia, your blood does not carry enough oxygen to the rest of your body. The most common cause of anemia is not having enough iron. Your body needs iron to make hemoglobin. Hemoglobin is an iron-rich protein that gives the red color to blood. It carries oxygen from the lungs to the rest of the body. Anemia has three main causes: blood loss, lack of red blood cell production, and high rates of red blood cell destruction. Conditions that may lead to anemia include - Heavy periods - Pregnancy - Ulcers - Colon polyps or colon cancer - Inherited disorders - A diet that does not have enough iron, folic acid or vitamin B12 - Blood disorders such as sickle cell anemia and thalassemia, or cancer - Aplastic anemia, a condition that can be inherited or acquired - G6PD deficiency, a metabolic disorder Anemia can make you feel tired, cold, dizzy, and irritable. You may be short of breath or have a headache. Your doctor will diagnose anemia with a physical exam and blood tests. Treatment depends on the kind of anemia you have. NIH: National Heart, Lung, and Blood Institute","Anemia is a condition in which the blood has too few red blood cells or too little hemoglobin, so it cannot carry enough oxygen to the body’s tissues.
+
+Common causes include:
+- Iron deficiency
+- Blood loss
+- Vitamin B12 or folate deficiency
+- Chronic disease
+- Bone marrow disorders
+- Increased destruction of red blood cells
+
+Common symptoms may include:
+- Fatigue
+- Weakness
+- Pale skin
+- Shortness of breath
+- Dizziness
+- Rapid heartbeat
+
+Anemia is usually diagnosed with a blood test, especially a complete blood count (CBC).","“Your blood is low” can mean two different things:
+
+1. **Anemia** — the most common meaning  
+   This means you don’t have enough **red blood cells** or **hemoglobin** to carry oxygen well.  
+   Common symptoms:
+   - Tiredness
+   - Weakness
+   - Dizziness
+   - Pale skin
+   - Shortness of breath
+   - Fast heartbeat
+
+   Common causes:
+   - Iron deficiency
+   - Blood loss (heavy periods, bleeding)
+   - Low vitamin B12 or folate
+   - Kidney disease or other chronic illness
+
+2. **Low blood volume (hypovolem","Medically, this can mean two different things:
+
+- **Anemia**: you have **too few red blood cells or too little hemoglobin** in the blood. This means your blood carries less oxygen.
+- **Hypovolemia**: you have **too little total blood volume or body fluid** circulating, often from bleeding, dehydration, or fluid loss.
+
+So if someone says “low blood levels,” they often mean **anemia**. If they mean “not enough blood in your body,” that more often means **low blood volume (hypovolemia)**.",2.603934018555077,0.7949182520608729,0.9341837223913522,27.820079884307365,21.41951104305817,20.22298129402136,17.741935483870968,15.833333333333332,12.903225806451616,30.64516129032258,25.833333333333336,25.0,0.0,0.0,0.0,20.0,15.294117647058824,10.588235294117649,42.5,34.21052631578947,29.03225806451613,27.200000000000003,21.138211382113823,15.517241379310343,0.852177619934082,0.8262643814086914,0.830484926700592,0.9999999403953552,0.4307384788990021,0.4530364274978637,4,3,4
+gpt-5.4,gpt54_hybrid_api.yaml,none,overgeneralization,34,What is (are) Anesthesia ?,"what is that stuff doctors use to make you not feel anything or kinda go out durring medical things, like how does it even work and what is it exactly?","What is anesthesia, what types are used during medical procedures to prevent pain or make you unconscious, and how does it work?","If you are having surgery, your doctor will give you medicine called an anesthetic. Anesthetics reduce or prevent pain. There are three main types: - Local - numbs one small area of the body. You stay awake and alert. - Regional - blocks pain in an area of the body, such an arm or leg. A common type is epidural anesthesia, which is often used during childbirth. - General - makes you unconscious. You do not feel any pain, and you do not remember the procedure afterwards. You may also get a mild sedative to relax you. You stay awake but may not remember the procedure afterwards. Sedation can be used with or without anesthesia. The type of anesthesia or sedation you get depends on many factors. They include the procedure you are having and your current health.","Anesthesia is the loss of sensation or awareness caused by medicines so medical procedures can be done without pain.
+
+Main types are:
+- **Local anesthesia:** numbs a small area
+- **Regional anesthesia:** numbs a larger part of the body
+- **General anesthesia:** causes unconsciousness
+- **Sedation:** relaxes and reduces awareness, sometimes with pain control
+
+It is used during surgery, procedures, and some diagnostic tests.","Doctors usually use **anesthesia** or **sedation** to make you not feel pain, relax you, or make you partly or fully unconscious during medical procedures.
+
+### The main kinds are:
+
+- **Local anesthesia**
+  - Numbs a small area only.
+  - Example: lidocaine at the dentist.
+  - **How it works:** it blocks nerves from sending pain signals to the brain.
+
+- **Regional anesthesia**
+  - Numbs a larger part of the body.
+  - Examples: **epidural** during childbirth, spinal anesthesia.
+  - **How it works:** it blocks nerve signals in a whole region, like from the lower body.
+
+- **Sedation**
+  - Makes you relaxed, sleepy, and sometimes you won’t remember much.
+  - Can be mild, moderate, or deep.
+  - **How it works:** drugs slow activity in the brain, often by boosting calming brain signals.
+
+- **General anesthesia**
+  - Makes you fully unconscious so you don’t feel pain or remember the procedure.
+  - Usually given through an IV, gases you breathe, or both.
+  - **How it works:** it changes brain activity so you lose awareness, don’t form memories, and don’t","Anesthesia is the use of medicines to prevent pain during medical procedures. Depending on the type, it can numb a small area, block sensation in part of the body, make you relaxed or sleepy, or make you fully unconscious.
+
+Main types:
+
+1. Local anesthesia  
+- Numbs a small, specific area, such as skin or a tooth.  
+- You stay fully awake.  
+- Examples: lidocaine, bupivacaine.
+
+2. Regional anesthesia  
+- Numbs a larger part of the body by blocking nerves.  
+- You may stay awake or also get sedation.  
+- Examples: spinal anesthesia, epidural anesthesia, nerve blocks.
+
+3. Sedation  
+- Reduces anxiety, discomfort, and awareness.  
+- Can range from mild drowsiness to deep sedation.  
+- You may be awake, sleepy, or barely aware, depending on the level.
+
+4. General anesthesia  
+- Makes you fully unconscious and unable to feel pain during surgery.  
+- Often also causes amnesia, muscle relaxation, and loss of reflexes.  
+- Breathing may need support",2.0124459305070563,3.0727227409800246,4.755933057899432,30.57392652599324,42.28730112025255,43.640387407306896,18.07909604519774,20.664206642066425,21.011673151750973,33.89830508474576,38.37638376383764,46.69260700389105,0.0,0.0,0.0,28.57142857142857,36.734693877551024,38.775510204081634,46.66666666666666,26.08695652173913,27.536231884057973,35.44303797468354,30.508474576271187,32.20338983050847,0.8634694814682007,0.8448938131332397,0.8611152172088623,1.0,0.3666716814041137,0.7373520731925964,5,4,4
+gpt-5.4,gpt54_hybrid_api.yaml,none,typos_grammar,35,What is (are) Aneurysms ?,"What are aneurisims exactly , and what does that even mean in the body ?","What exactly is an aneurysm, and what does it mean when one occurs in the body?","An aneurysm is a bulge or ""ballooning"" in the wall of an artery. Arteries are blood vessels that carry oxygen-rich blood from the heart to other parts of the body. If an aneurysm grows large, it can burst and cause dangerous bleeding or even death. Most aneurysms occur in the aorta, the main artery that runs from the heart through the chest and abdomen. Aneurysms also can happen in arteries in the brain, heart and other parts of the body. If an aneurysm in the brain bursts, it causes a stroke. Aneurysms can develop and become large before causing any symptoms. Often doctors can stop aneurysms from bursting if they find and treat them early. They use imaging tests to find aneurysms. Often aneurysms are found by chance during tests done for other reasons. Medicines and surgery are the two main treatments for aneurysms. NIH: National Heart, Lung, and Blood Institute","An aneurysm is an abnormal bulge or ballooning in the wall of a blood vessel, usually an artery, caused by weakening of the vessel wall.
+
+Common sites include:
+- The aorta, the body’s main artery
+- Arteries in the brain
+
+Aneurysms may cause no symptoms, but if they enlarge or rupture they can lead to life-threatening bleeding. Symptoms, when present, depend on the location and size.","An **aneurysm** is an **abnormal bulge or ballooning in the wall of a blood vessel**, usually an **artery**.
+
+### What it means in the body
+Normally, blood vessel walls are strong and elastic. If part of the wall becomes **weakened**, the pressure of blood pushing through can make that area **stretch outward**, like a weak spot on a tire.
+
+### Why it matters
+An aneurysm can:
+- **Stay small and cause no symptoms**
+- **Grow larger over time**
+- **Leak or rupture**, causing dangerous internal bleeding
+- Sometimes cause **clots** or press on nearby structures
+
+### Common places aneurysms happen
+- **Aorta**: the body’s main artery  
+  - In the chest: **thoracic aortic aneurysm**
+  - In the abdomen: **abdominal aortic aneurysm**
+- **Brain arteries**: called **cerebral or brain aneurysms**
+
+### What causes them
+Things that can weaken blood vessels include:
+- **High blood pressure**
+- **Smoking**
+- **A","An aneurysm is an abnormal bulge or ballooning in the wall of a blood vessel, usually an artery, caused by weakness in that vessel wall.
+
+When an aneurysm occurs in the body, it means:
+- part of the blood vessel wall has become weakened,
+- pressure from blood flow causes that area to stretch outward,
+- the aneurysm may stay small and cause no symptoms, or it may enlarge over time.
+
+Why it matters:
+- it can rupture, causing dangerous internal bleeding,
+- it can press on nearby structures,
+- sometimes blood clots can form inside it and block blood flow elsewhere.
+
+Common places aneurysms occur:
+- aorta, the body’s main artery,
+- brain arteries.
+
+So, in simple terms, an aneurysm is a weak, bulging spot in a blood vessel that can become serious if it grows or bursts.",2.912886167738836,2.829012260411894,5.446354237942246,25.72882332548112,38.42145971423623,38.85837729664261,24.083769633507853,23.715415019762844,23.62204724409449,31.413612565445025,41.897233201581024,40.94488188976378,0.0,0.0,0.0,20.0,34.285714285714285,32.857142857142854,46.66666666666666,33.80281690140845,35.38461538461539,28.0,34.04255319148936,34.07407407407408,0.8827624320983887,0.8429672718048096,0.8641334772109985,0.9999998211860656,0.7902332544326782,0.8275031447410583,4,3,5
+gpt-5.4,gpt54_hybrid_api.yaml,none,ambiguity,36,What is (are) Angina ?,"what is that chest/heart thing people mean when they say angina, like is it just pain or some kind of attack or blood flow problem or what?","What is angina, and does it refer to chest pain caused by reduced blood flow to the heart or to a type of heart attack?","Angina is chest pain or discomfort you feel when there is not enough blood flow to your heart muscle. Your heart muscle needs the oxygen that the blood carries. Angina may feel like pressure or a squeezing pain in your chest. It may feel like indigestion. You may also feel pain in your shoulders, arms, neck, jaw, or back. Angina is a symptom of coronary artery disease (CAD), the most common heart disease. CAD happens when a sticky substance called plaque builds up in the arteries that supply blood to the heart, reducing blood flow. There are three types of angina: - Stable angina is the most common type. It happens when the heart is working harder than usual. Stable angina has a regular pattern. Rest and medicines usually help. - Unstable angina is the most dangerous. It does not follow a pattern and can happen without physical exertion. It does not go away with rest or medicine. It is a sign that you could have a heart attack soon. - Variant angina is rare. It happens when you are resting. Medicines can help. Not all chest pain or discomfort is angina. If you have chest pain, you should see your health care provider. NIH: National Heart, Lung, and Blood Institute","Angina, or **angina pectoris**, is **chest pain or discomfort caused by reduced blood flow and oxygen to the heart muscle** (myocardial ischemia), most often due to **coronary artery disease**.
+
+It may feel like:
+- Pressure, squeezing, tightness, or heaviness in the chest
+- Pain that can spread to the **arm, neck, jaw, shoulder, or back**
+
+It is often triggered by **physical exertion, emotional stress, cold, or heavy meals**, and may improve with **rest or nitroglycerin**.
+
+**Important:** New, worsening, or pain occurring at rest can be a medical emergency.","Angina is **not the name of a heart attack**. It means **chest pain or discomfort caused by the heart muscle not getting enough oxygen-rich blood**, usually because the coronary arteries are narrowed.
+
+So, in simple terms:
+
+- **What it is:** a **symptom**
+- **What causes it:** **reduced blood flow to the heart**
+- **What it feels like:** often **pressure, squeezing, tightness, heaviness, or burning** in the chest; it can also spread to the **arm, neck, jaw, back, or shoulder**
+- **When it happens:** often with **exercise, stress, cold weather, or heavy meals**, when the heart needs more oxygen
+
+Important distinction:
+- **Stable angina:** predictable, comes on with exertion, improves with rest or nitroglycerin
+- **Unstable angina:** new, worsening, or happening at rest — this is **an emergency** because it can lead to or be part of a heart attack
+
+So yes: angina is **pain/dis","Angina is chest pain or discomfort caused by reduced blood flow to the heart muscle (myocardial ischemia).
+
+It is not the same as a heart attack. A heart attack occurs when blood flow is blocked long enough to cause damage to heart muscle. Angina means the heart isn’t getting enough oxygen-rich blood, but it does not necessarily mean permanent damage has occurred.
+
+So, the correct choice is: angina refers to chest pain caused by reduced blood flow to the heart, not a type of heart attack.",6.011740039780663,6.714652454562993,3.5342200243466837,25.84371967562053,34.827468597401825,23.97190665045617,23.27272727272728,25.545171339563865,20.51282051282051,34.90909090909091,42.36760124610592,31.5018315018315,0.0,0.0,0.0,22.727272727272727,29.545454545454547,13.636363636363637,54.054054054054056,45.614035087719294,35.294117647058826,32.0,35.86206896551724,19.672131147540984,0.8510081171989441,0.8494524955749512,0.8533317446708679,1.0,0.7251951098442078,0.7440868616104126,5,4,5
+gpt-5.4,gpt54_hybrid_api.yaml,none,layperson,37,Do you have information about Angioplasty,"do u have any info on that thing where they go in n kinda open up a blocked blood vessel or heart tube thing, like how it works an if its a big deal?","How does a procedure to open a blocked blood vessel or coronary artery, such as angioplasty with or without a stent, work, and how serious is it?","Summary : If you have coronary artery disease, the arteries in your heart are narrowed or blocked by a sticky material called plaque. Angioplasty is a procedure to restore blood flow through the artery. You have angioplasty in a hospital. The doctor threads a thin tube through a blood vessel in the arm or groin up to the involved site in the artery. The tube has a tiny balloon on the end. When the tube is in place, the doctor inflates the balloon to push the plaque outward against the wall of the artery. This widens the artery and restores blood flow. Doctors may use angioplasty to - Reduce chest pain caused by reduced blood flow to the heart - Minimize damage to heart muscle from a heart attack Many people go home the day after angioplasty, and are able to return to work within a week of coming home. NIH: National Heart, Lung, and Blood Institute","Yes. **Angioplasty** is a procedure used to **open narrowed or blocked blood vessels**, most commonly the **coronary arteries** that supply the heart.
+
+### What it is
+The most common type is **balloon angioplasty**:
+- A doctor inserts a thin tube (**catheter**) into an artery, often in the **wrist or groin**
+- The catheter is guided to the blocked area
+- A small balloon is inflated to widen the artery
+- Often a **stent** (a small metal mesh tube) is placed to help keep the artery open
+
+### Why it is done
+Angioplasty is commonly used to treat:
+- **Coronary artery disease**
+- **Chest pain (angina)**
+- **Heart attack** caused by a blocked coronary artery
+
+It can also be used in other arteries, such as those in the **legs, neck, kidneys, or brain**, depending on the condition.
+
+### Benefits
+- Improves blood flow
+- Relieves symptoms like chest pain
+- Can reduce heart damage during a heart attack
+- Usually less invasive than open surgery
+
+### Risks
+Possible risks include:
+- Bleeding or bruising at","Yeah — you’re probably talking about **angioplasty** and often **stent placement** for a blocked **artery** (most commonly a heart artery).
+
+### What it is
+A doctor threads a **thin tube called a catheter** into a blood vessel, usually from the **wrist or groin**, and guides it to the blockage.
+
+### How it works
+- A **tiny balloon** on the catheter is inflated at the blockage
+- That **pushes plaque aside** and opens the artery
+- Often they leave behind a **stent** — a small metal mesh tube — to help keep it open
+
+### Is it a big deal?
+**Yes,","A procedure to open a blocked artery is usually called **angioplasty** or **percutaneous coronary intervention (PCI)** when it is done in a heart artery.
+
+### How it works
+- A doctor inserts a **thin tube (catheter)** into an artery, usually in the **wrist or groin**.
+- Using **X-ray guidance** and contrast dye, the catheter is moved to the blocked area.
+- A **small balloon** at the tip is inflated to **compress the plaque** against the artery wall and widen the vessel.
+- Often, a **stent** is then placed. This is a **small metal mesh tube** that stays in the artery to help keep it open.
+- In some cases, special tools may be used to remove or break up plaque before or during stenting",3.1369168011786,2.8627863235965867,2.7260321487393644,43.796652744778974,27.793451712483208,34.19037857631903,22.388059701492537,19.41747572815534,19.04761904761905,35.82089552238805,28.15533980582525,35.497835497835496,0.0,0.0,0.0,36.36363636363637,19.69696969696969,24.24242424242424,36.36363636363637,44.82758620689656,40.0,36.36363636363637,27.36842105263157,30.188679245283023,0.8536670207977295,0.8462719321250916,0.8550659418106079,1.0,0.4293389916419983,0.4984679222106933,3,4,4
+gpt-5.4,gpt54_hybrid_api.yaml,none,incomplete,38,What is (are) Animal Bites ?,"what does it mean if some thing bit you, like from an animal or whatever, is that a big deal or just a normal skin thing?","What does it mean if I was bitten by an animal or another creature—could it be a serious medical issue, or is it usually just a minor skin problem?","Wild animals usually avoid people. They might attack, however, if they feel threatened, are sick, or are protecting their young or territory. Attacks by pets are more common. Animal bites rarely are life-threatening, but if they become infected, you can develop serious medical problems. To prevent animal bites and complications from bites - Never pet, handle, or feed unknown animals - Leave snakes alone - Watch your children closely around animals - Vaccinate your cats, ferrets, and dogs against rabies - Spay or neuter your dog to make it less aggressive - Get a tetanus booster if you have not had one recently - Wear boots and long pants when you are in areas with venomous snakes If an animal bites you, clean the wound with soap and water as soon as possible. Get medical attention if necessary. Centers for Disease Control and Prevention","Animal bites are injuries caused by an animal’s teeth breaking or damaging the skin and underlying tissue. They can range from minor scratches or puncture wounds to severe tearing injuries, and they carry a risk of infection, including tetanus and, in some cases, rabies.","A bite is **not just a normal skin thing**. It can be minor, but **animal or human bites can become serious** because they can cause:
+
+- **Skin infection**
+- **Deeper tissue damage**
+- **Tetanus**
+- **Rabies** in some animal bites
+
+### Often less serious
+Small **insect bites/stings** usually cause:
+- itching
+- a small bump
+- mild redness
+
+These are often minor unless you have:
+- worsening swelling
+- severe pain
+- trouble breathing
+- signs of infection
+
+### More concerning
+**Dog, cat, human, bat, raccoon, fox, skunk, or unknown animal bites** should be taken more seriously.
+
+Especially seek medical care if:
+- the skin is **broken**
+- the bite is on the **hand, face, foot, or genitals**
+- it is **deep, puncture-like, or bleeding a lot**
+- there is **redness, warmth, swelling, pus, fever, or increasing","An animal or creature bite can be either a minor skin injury or a serious medical problem, depending on what bit you, how deep the bite is, and whether infection or toxins are involved.
+
+Possible concerns include:
+- **Simple skin wound**: small bite with mild pain, redness, or swelling
+- **Infection**: bites often introduce bacteria and can cause cellulitis, abscess, or spreading infection
+- **Rabies risk**: from certain mammals, especially if the animal is wild, stray, or acting unusually
+- **Venom or toxin effects**: from snakes, spiders, scorpions, marine animals, etc.
+- **Severe tissue damage or bleeding**
+- **Allergic reaction**: sometimes severe
+
+Seek urgent medical care if:
+- the bite is **deep**, bleeding heavily, or on the **face, hand, foot, or genitals**
+- there is **increasing redness, warmth, swelling, pus, or fever**
+- you were bitten by a **wild animal**, **bat**, **stray dog/cat**, or possibly venomous creature
+- you",0.3958139617013865,1.1641529211737571,1.0118149419181657,15.641527366693596,29.85245751293345,34.66670769340682,12.429378531073448,10.4,11.235955056179774,20.338983050847457,24.8,23.220973782771537,0.0,0.0,0.0,6.944444444444445,16.666666666666664,16.666666666666664,23.809523809523807,19.35483870967742,17.647058823529413,10.75268817204301,17.91044776119403,17.142857142857142,0.8356218338012695,0.808036744594574,0.8229760527610779,0.9999999403953552,0.4406617879867553,0.6364266276359558,4,4,4
+gpt-5.4,gpt54_hybrid_api.yaml,none,overgeneralization,39,What is (are) Animal Diseases and Your Health ?,"how do health problms from animals or pets even work, like can being around them make pepole sick in genral and affect your health n stuff?","How can exposure to animals or pets affect human health, and can being around them cause illness?","Animal diseases that people can catch are called zoonoses. Many diseases affecting humans can be traced to animals or animal products. You can get a disease directly from an animal, or indirectly, through the environment. Farm animals can carry diseases. If you touch them or things they have touched, like fencing or buckets, wash your hands thoroughly. Adults should make sure children who visit farms or petting zoos wash up as well. Though they may be cute and cuddly, wild animals may carry germs, viruses, and parasites. Deer and deer mice carry ticks that cause Lyme disease. Some wild animals may carry rabies. Enjoy wildlife from a distance. Pets can also make you sick. Reptiles pose a particular risk. Turtles, snakes and iguanas can transmit Salmonella bacteria to their owners. You can get rabies from an infected dog or toxoplasmosis from handling kitty litter of an infected cat. The chance that your dog or cat will make you sick is small. You can reduce the risk by practicing good hygiene, keeping pet areas clean and keeping your pets' shots up-to-date.","“Animal Diseases and Your Health” refers to illnesses that can pass between animals and people, called zoonotic diseases or zoonoses.
+
+Key points:
+- Many infectious diseases in humans come from animals.
+- Germs involved can include bacteria, viruses, parasites, and fungi.
+- People can get these diseases through bites, scratches, direct contact with animals, contact with animal waste, contaminated food or water, or insect vectors such as ticks and mosquitoes.
+- Examples include rabies, Lyme disease, salmonellosis, cat-scratch disease, and certain influenzas.
+
+Prevention includes:
+- Washing hands after handling animals
+- Keeping pets healthy and vaccinated
+- Avoiding contact with wild or sick animals
+- Using insect/tick protection
+- Practicing safe food handling and cooking
+
+So, “Animal Diseases and Your Health” is the topic of how animal-related diseases affect human health and how to prevent them.","Yes. Being around animals or pets can affect health in both good and bad ways.
+
+### How animals can make people sick
+This is usually through **zoonotic diseases** — infections that pass from animals to humans.
+
+Common ways it happens:
+- **Bites or scratches**  
+  - Can cause skin infections
+  - Cat scratches can spread **cat scratch disease**
+  - Animal bites can rarely spread **rabies**
+- **Contact with saliva, urine, feces, or vomit**
+  - Example: **Salmonella** from reptiles, chicks, or pet feces
+  - **Toxoplasmosis** from cat litter
+  - **Roundworms/hookworms** from contaminated soil or feces
+- **Ticks, fleas, or mosquitoes carried by animals**
+  - Can spread diseases indirectly
+- **Breathing in dander, hair, dust, or particles from cages/litter**
+  - Can trigger **allergies** or **asthma**
+- **Mold/bacteria in dirty cages, tanks, litter boxes, or water bowls**
+
+### Other health effects from pets","Yes. Being around animals or pets can affect health in both helpful and harmful ways.
+
+**Possible health benefits**
+- Companionship can reduce stress, anxiety, and loneliness.
+- Pet ownership may encourage exercise and social interaction.
+
+**Ways animals can cause illness**
+1. **Allergies**
+   - Pet dander, saliva, urine, or feathers can trigger **allergic rhinitis**, eczema, or **asthma**.
+
+2. **Infections passed from animals to humans (zoonoses)**
+   Examples include:
+   - **Cat scratch disease** from cats
+   - **Ringworm** (fungal skin infection)
+   - **Salmonella** from reptiles, chicks, or contaminated pet food
+   - **Toxoplasmosis** from cat feces
+   - **Rabies** from bites of infected animals
+   - **Psittacosis** from birds
+   - **Leptospirosis** from animal urine
+   - **Ticks/fleas** carried by pets can spread other infections
+
+3.",1.8352209734452265,0.979816990235354,1.1670422112684398,36.75584339233537,32.6024483523369,29.810335761569025,19.20529801324503,13.377926421404682,13.571428571428571,37.08609271523179,34.11371237458194,29.28571428571429,0.0,0.0,0.0,28.915662650602407,24.09638554216868,20.48192771084337,36.92307692307693,30.76923076923077,29.310344827586203,32.432432432432435,27.027027027027028,24.113475177304963,0.8478817343711853,0.8221129775047302,0.8163161277770996,1.0,0.6223942637443542,0.6745379567146301,4,3,2
+gpt-5.4,gpt54_hybrid_api.yaml,none,typos_grammar,40,What is (are) Ankle Injuries and Disorders ?,"What is/are ankle injurys and disorder's, like what do that even mean for the ankle ?","What are ankle injuries and disorders, and what do these terms mean for the ankle?","Your ankle bone and the ends of your two lower leg bones make up the ankle joint. Your ligaments, which connect bones to one another, stabilize and support it. Your muscles and tendons move it. The most common ankle problems are sprains and fractures. A sprain is an injury to the ligaments. It may take a few weeks to many months to heal completely. A fracture is a break in a bone. You can also injure other parts of the ankle such as tendons, which join muscles to bone, and cartilage, which cushions your joints. Ankle sprains and fractures are common sports injuries.","Ankle injuries and disorders are problems that affect the ankle joint and surrounding tissues, including the bones, ligaments, tendons, muscles, cartilage, and nerves.
+
+Common types include:
+- Sprains: stretched or torn ligaments
+- Strains: injured muscles or tendons
+- Fractures: broken ankle bones
+- Tendinitis/tendon tears: especially the Achilles tendon
+- Arthritis: joint inflammation causing pain and stiffness
+- Instability or dislocation
+- Overuse injuries and swelling
+
+Typical symptoms are:
+- Pain
+- Swelling
+- Bruising
+- Stiffness
+- Trouble walking or bearing weight
+- Weakness or a feeling that the ankle “gives out”
+
+These problems can result from sports injuries, twisting the ankle, falls, overuse, or chronic joint disease.","“Ankle injuries and disorders” is a general term for problems that affect the ankle joint and the tissues around it.
+
+### What the ankle is
+The ankle is where the **shin bones** (tibia and fibula) meet the **foot bone** (talus). It also includes:
+- **Ligaments** – hold the bones together
+- **Tendons** – connect muscles to bones
+- **Cartilage** – cushions the joint
+- **Muscles, nerves, and blood vessels**
+
+### What “injuries” means
+An **ankle injury** usually means damage from a specific event, such as:
+- **Sprain** – stretched or torn ligaments, often from twisting the ankle
+- **Strain** – stretched or torn muscle or tendon
+- **Fracture** – broken bone
+- **Dislocation** – bones move out of place
+- **Tendon injury** – such as Achilles tendon irritation or tear
+
+### What “disorders” means
+An **ankle disorder** usually means a medical condition affecting the ankle, not always from a sudden injury. Examples:
+- **Arth","Ankle injuries and disorders are conditions that affect the **ankle joint**, which connects the **leg to the foot** and allows movement and weight-bearing.
+
+### What they include
+- **Sprain**: overstretching or tearing of the **ligaments** (most common ankle injury)
+- **Strain**: injury to a **muscle or tendon**
+- **Fracture**: a **broken ankle bone**
+- **Dislocation**: the bones of the ankle are forced **out of",2.7114856790232804,1.7530890369825605,3.565495800684048,39.80098556522314,39.25393498371719,30.9567311475891,17.391304347826086,17.224880382775122,25.0,31.521739130434785,35.4066985645933,36.11111111111111,0.0,0.0,0.0,40.0,48.0,30.0,31.746031746031743,33.80281690140845,53.57142857142857,35.39823008849557,39.66942148760331,38.46153846153847,0.8362910747528076,0.8367418050765991,0.8461084961891174,1.0,0.9147992730140686,0.920392632484436,4,3,2
+gpt-5.4,gpt54_hybrid_api.yaml,none,ambiguity,41,What is (are) Ankylosing Spondylitis ?,"What is that long-term thing where your lower back/spine gets really stiff and inflamed over time, maybe even starts sort of fusing together or","What is the chronic condition in which the lower back and spine become progressively inflamed, stiff, and may eventually start to fuse together?","Ankylosing spondylitis is a type of arthritis of the spine. It causes inflammation between your vertebrae, which are the bones that make up your spine, and in the joints between your spine and pelvis. In some people, it can affect other joints. AS is more common and more severe in men. It often runs in families. The cause is unknown, but it is likely that both genes and factors in the environment play a role. Early symptoms of AS include back pain and stiffness. These problems often start in late adolescence or early adulthood. Over time, AS can fuse your vertebrae together, limiting movement. Some people have symptoms that come and go. Others have severe, ongoing pain. A diagnosis of AS is based on your medical history and a physical examination. You may also have imaging or blood tests. AS has no cure, but medicines can relieve symptoms and may keep the disease from getting worse. Eating a healthy diet, not smoking, and exercising can also help. In rare cases, you may need surgery to straighten the spine. NIH: National Institute of Arthritis and Musculoskeletal and Skin Disease","Ankylosing spondylitis is a **chronic inflammatory rheumatic disease** that mainly affects the **spine and sacroiliac joints** (where the spine meets the pelvis). It causes **back pain and stiffness**, especially in the morning or after inactivity, and over time can lead to **fusion of the vertebrae** (“ankylosis”), reducing spinal flexibility.
+
+It is part of the **spondyloarthritis** group of disorders and may also affect other joints, the **eyes** (uveitis), and less commonly other organs. It often begins in **young adults** and is associated with the **HLA-B27** gene in many patients.","That sounds like **ankylosing spondylitis (AS)**, also called **axial spondyloarthritis**.
+
+It’s a **chronic inflammatory disease** that mainly affects the **lower back and sacroiliac joints**, causing:
+
+- **Long-term back stiffness**
+- **Pain that’s often worse after rest**
+- **Improvement with movement**
+- Over time, in some people, **new bone formation** that can make parts of the spine **fuse**
+
+If you want, I can also give you the **main symptoms, how it’s diagnosed, and how it’s different from ordinary back pain**.","The condition is **ankylosing spondylitis** — a chronic inflammatory disease that mainly affects the spine and sacroiliac joints, causing back pain, stiffness, and in some cases gradual fusion of the vertebrae.",4.600380889649328,1.992502613822895,0.0830742089455852,28.07698614706681,23.586810881369846,13.65737639967684,21.09375,15.873015873015872,12.871287128712872,32.81250000000001,29.365079365079367,16.83168316831683,0.0,0.0,0.0,16.43835616438356,15.068493150684931,8.21917808219178,34.285714285714285,34.375,50.0,22.22222222222222,20.95238095238096,14.117647058823527,0.8482089638710022,0.8276354670524597,0.8543748259544373,1.0,0.48198401927948,0.5180355310440063,4,5,5
+gpt-5.4,gpt54_hybrid_api.yaml,none,layperson,42,What is (are) Anthrax ?,"what is that bad infection thing people can get from animals or weird powder in the mail,, like what even is it and how does a person catch it?","What is anthrax, and how can a person become infected from animals or contaminated powders such as those sent through the mail?","Anthrax is a disease caused by Bacillus anthracis, a germ that lives in soil. Many people know about it from the 2001 bioterror attacks. In the attacks, someone purposely spread anthrax through the U.S. mail. This killed five people and made 22 sick. Anthrax is rare. It affects animals such as cattle, sheep, and goats more often than people. People can get anthrax from contact with infected animals, wool, meat, or hides. It can cause three forms of disease in people. They are - Cutaneous, which affects the skin. People with cuts or open sores can get it if they touch the bacteria. - Inhalation, which affects the lungs. You can get this if you breathe in spores of the bacteria. - Gastrointestinal, which affects the digestive system. You can get it by eating infected meat. Antibiotics often cure anthrax if it is diagnosed early. But many people don't know they have anthrax until it is too late to treat. A vaccine to prevent anthrax is available for people in the military and others at high risk. NIH: National Institute of Allergy and Infectious Diseases","Anthrax is a serious infectious disease caused by the spore-forming bacterium **_Bacillus anthracis_**. It mainly affects **hoofed animals** such as cattle, sheep, and goats, but humans can become infected through contact with infected animals or their products, or by inhaling spores.
+
+Human anthrax can occur in several forms:
+- **Cutaneous anthrax**: affects the skin; causes a painless ulcer with a black center
+- **Inhalation anthrax**: affects the lungs; severe and potentially fatal
+- **Gastrointestinal anthrax**: from eating contaminated meat
+- **Injection anthrax**: seen rarely, linked to contaminated injected drugs
+
+Anthrax is **not usually spread from person to person**. It can be treated with **antibiotics**, and prevention includes animal vaccination and, in some cases, human vaccination for high-risk groups.","That’s **anthrax**.
+
+- **What it is:** a serious infection caused by the bacterium **_Bacillus anthracis_**. It forms **spores**, which can survive a long time in soil, animal products, or contaminated materials.
+
+- **How people catch it:**
+  - **Skin contact** with infected animals or animal products like hides, wool, or hair
+  - **Breathing in spores** (the form associated with contaminated powder or dust)
+  - **Eating contaminated meat**
+  - Less commonly, **injection** of contaminated drugs
+
+- **From animals:** usually from livestock or wild animals that were infected.
+- **From “powder in the mail”:** anthrax spores can be deliberately spread","Anthrax is a serious infection caused by **_Bacillus anthracis_**, a **spore-forming bacterium**. It mainly affects grazing animals such as cattle, sheep, and goats, but humans can become infected if they are exposed to the bacteria or its spores.
+
+A person can become infected in several ways:
+
+- **Through the skin (cutaneous anthrax):** by handling infected animals or animal products such as hides, wool, or hair, especially if there is a cut or abrasion in the skin.
+- **By inhalation (inhalation anthrax):** by breathing in airborne spores, which can happen from contaminated animal materials or from **contaminated powders**, including powders dispersed through the mail.
+- **By ingestion (gastrointestinal anthrax):** by eating undercooked meat from an infected animal.
+- **Rarely by injection:** in people who inject contaminated drugs.
+
+Anthrax is **not usually spread person-to-person**. The",8.920735891260444,2.3776799577296472,9.47575159339292,40.47859668971973,26.871013096651232,39.67484624158036,27.659574468085108,15.56420233463035,22.44897959183674,43.97163120567376,30.35019455252918,38.0952380952381,0.0,0.0,0.0,24.285714285714285,17.142857142857142,18.571428571428573,31.48148148148148,27.27272727272727,27.08333333333333,27.41935483870968,21.052631578947366,22.033898305084747,0.8609226942062378,0.833821713924408,0.8604986071586609,1.0,0.3414725661277771,0.7453964948654175,4,5,4
+gpt-5.4,gpt54_hybrid_api.yaml,none,incomplete,43,Do you have information about Antibiotic Resistance,Do you have any info on when germs kinda stop responding to medicine and what that means?,"What is antimicrobial resistance, when do germs stop responding to medicines, and what does that mean?","Summary : Antibiotics are medicines that fight bacterial infections. Used properly, they can save lives. But there is a growing problem of antibiotic resistance. It happens when bacteria change and become able to resist the effects of an antibiotic. Using antibiotics can lead to resistance. Each time you take antibiotics, sensitive bacteria are killed. But resistant germs may be left to grow and multiply. They can spread to other people. They can also cause infections that certain antibiotics cannot cure. Methicillin-resistant Staphylococcus aureus (MRSA) is one example. It causes infections that are resistant to several common antibiotics. To help prevent antibiotic resistance - Don't use antibiotics for viruses like colds or flu. Antibiotics don't work on viruses. - Don't pressure your doctor to give you an antibiotic. - When you take antibiotics, follow the directions carefully. Finish your medicine even if you feel better. If you stop treatment too soon, some bacteria may survive and re-infect you. - Don't save antibiotics for later or use someone else's prescription. Centers for Disease Control and Prevention","Yes. **Antibiotic resistance** is when bacteria change in ways that make **antibiotics less effective or ineffective**. This means infections can become harder to treat, last longer, and may lead to more serious illness.
+
+### Key points
+- **Antibiotics only treat bacterial infections**, not viral infections like colds or the flu.
+- Resistance develops mainly through:
+  - **Overuse** of antibiotics
+  - **Incorrect use** (wrong drug, dose, or duration)
+  - Not finishing treatment when prescribed
+  - Use of antibiotics in agriculture and animal production
+
+### Why it matters
+Antibiotic-resistant infections can cause:
+- Longer illness
+- More hospitalizations
+- Need for stronger or IV antibiotics
+- Higher risk of complications or death in severe cases
+
+### Common examples
+- **MRSA** (methicillin-resistant *Staphylococcus aureus*)
+- Drug-resistant **tuberculosis**
+- Resistant **E. coli**, **Klebsiella**, and **gonorrhea**
+
+### How to help prevent it
+- Only take antibiotics **when prescribed**
+-","Yes — this is usually called **antimicrobial resistance** (or **antibiotic resistance** when talking about bacteria).
+
+### What it means
+It means **germs change over time so a medicine that used to kill them or stop them from growing no longer works well**.  
+The **germ becomes resistant**, not your body.
+
+### When it happens
+It can happen **gradually over time** as germs are repeatedly exposed to medicines, especially when:
+- antibiotics are used a lot
+- antibiotics are used when they aren’t needed (like for viral infections)
+- a full prescribed course isn’t completed
+- doses are too low or taken inconsistently
+- resistant germs spread from person to person
+
+### Why it happens
+A few germs may naturally survive treatment because of genetic changes. Those surviving germs multiply, and then the medicine works less well against that strain.
+
+### What it can lead to
+If resistance develops:
+- infections can last longer
+- the usual medicine may not work
+- stronger or different drugs may be needed
+- hospital treatment may sometimes be","Antimicrobial resistance (AMR) is when germs such as bacteria, viruses, fungi, and parasites change over time so that medicines designed to kill them or stop their growth no longer work well.
+
+Germs “stop responding” to medicines when they develop or acquire resistance mechanisms, often promoted by repeated exposure to antimicrobials, especially when these medicines are overused, misused, or not taken correctly.
+
+What that means:
+- The medicine becomes less effective or ineffective.
+- Infections become harder to treat and may last longer.
+- Illness can worsen and spread to others more easily.
+- Doctors may need to use stronger, more toxic, or more expensive treatments.
+- The risk of complications and death increases.",2.372789615923145,1.8018519508308088,1.120280124467956,41.98908342659442,36.86880619928113,27.73249384210493,16.778523489932883,13.538461538461538,12.274368231046932,37.58389261744966,35.69230769230769,27.436823104693136,0.0,0.0,0.0,30.107526881720432,25.806451612903224,12.903225806451612,45.16129032258064,30.76923076923077,24.0,36.12903225806452,28.07017543859649,16.78321678321678,0.837989330291748,0.8329431414604187,0.8478812575340271,1.0,0.3930296003818512,0.6243208646774292,4,4,4
+gpt-5.4,gpt54_hybrid_api.yaml,none,overgeneralization,44,Do you have information about Antibiotics,"do you have any info on meds people take when theyre sick, like the stuff for infections and other health problems in general?","What medications are commonly used to treat illnesses, including infections and other general health conditions?","Summary : Antibiotics are powerful medicines that fight bacterial infections. Used properly, antibiotics can save lives. They either kill bacteria or keep them from reproducing. Your body's natural defenses can usually take it from there. Antibiotics do not fight infections caused by viruses, such as - Colds - Flu - Most coughs and bronchitis - Sore throats, unless caused by strep If a virus is making you sick, taking antibiotics may do more harm than good. Using antibiotics when you don't need them, or not using them properly, can add to antibiotic resistance. This happens when bacteria change and become able to resist the effects of an antibiotic. When you take antibiotics, follow the directions carefully. It is important to finish your medicine even if you feel better. If you stop treatment too soon, some bacteria may survive and re-infect you. Do not save antibiotics for later or use someone else's prescription. Centers for Disease Control and Prevention","Yes. **Antibiotics** are medicines used to treat **bacterial infections**. They do **not** work against **viral infections** like colds, flu, or most sore throats.
+
+### Key points:
+- **Common uses:** pneumonia, strep throat, urinary tract infections, some skin infections
+- **Examples:** amoxicillin, azithromycin, doxycycline, cephalexin
+- **Common side effects:** nausea, diarrhea, rash, yeast infection
+- **Important risks:** allergic reactions, antibiotic resistance, and sometimes *C. difficile* diarrhea
+- **Safe use:**
+  - Take them exactly as prescribed
+  - Do not share them
+  - Do not use leftover antibiotics
+  - Finish the course if your clinician instructed you to do so
+
+### Seek urgent help if you have:
+- Trouble breathing
+- Facial/throat swelling
+- Severe rash
+- Severe or bloody diarrhea
+
+If you want, I can also give information about:
+- a **specific antibiotic**
+- **side effects**
+-","Yes—there are many kinds of medicines people take when they’re sick, and the right one depends on the cause of the illness.
+
+### For infections
+- **Antibiotics**: treat **bacterial** infections, such as some cases of strep throat, UTIs, or pneumonia.  
+  - Examples: amoxicillin, azithromycin, cephalexin
+  - **Do not work for viruses** like colds or flu.
+- **Antivirals**: treat some **viral** infections.  
+  - Examples: oseltamivir for flu, acyclovir for herpes viruses
+- **Antifungals**: treat **","Common medications used to treat illnesses depend on the cause:
+
+- **Antibiotics** – treat **bacterial infections**  
+  Examples: amoxicillin, azithromycin, cephalexin
+
+- **Antivirals** – treat some **viral infections**  
+  Examples: oseltamivir, acyclovir
+
+- **Antifungals** – treat **fungal infections**  
+  Examples: fluconazole, clotrimazole
+
+- **Pain relievers / fever reducers** – for pain, fever, inflammation  
+  Examples: acetaminophen, ibuprofen, naproxen
+
+- **Decongestants / antihistamines** – for colds, allergies, sinus symptoms  
+  Examples: pseudoephedrine, cetirizine, loratadine
+
+- **Cough medicines** – for cough symptoms  
+  Examples: dextromethorphan, guaifenesin
+
+- **Stomach medicines** – for nausea, reflux, diarrhea, constipation  
+  Examples: ondansetron, omeprazole, loperamide, polyethylene glycol
+
+- **Chronic disease medications** – for",1.2934293249410629,1.7160050315456368,0.7416284874383384,34.50294395215135,21.70875896124799,26.92073707593544,19.33085501858736,12.844036697247704,6.866952789699571,34.20074349442378,24.770642201834864,10.300429184549357,0.0,0.0,0.0,21.052631578947366,7.894736842105263,5.263157894736842,27.11864406779661,22.22222222222222,10.256410256410255,23.703703703703702,11.650485436893202,6.956521739130435,0.821511447429657,0.8161835670471191,0.7727034687995911,1.0,0.5710306763648987,0.4803089201450348,4,3,3
+gpt-5.4,gpt54_hybrid_api.yaml,none,typos_grammar,45,Do you have information about Antidepressants,do u have any infoormation abot anti depressnts and how they work maybe?,How do antidepressants work?,"Summary : Antidepressants are medicines that treat depression. Your doctor can prescribe them for you. They work to balance some of the natural chemicals in our brains. It may take several weeks for them to help. There are several types of antidepressants. You and your doctor may have to try a few before finding what works best for you. Antidepressants may cause mild side effects that usually do not last long. These may include headache, nausea, sleep problems, restlessness, and sexual problems. Tell your doctor if you have any side effects. You should also let your doctor know if you take any other medicines, vitamins, or herbal supplements. It is important to keep taking your medicines, even if you feel better. Do not stop taking your medicines without talking to your doctor. You often need to stop antidepressants gradually. NIH: National Institute of Mental Health","Yes. Antidepressants are medications used mainly to treat **depression**, and they are also commonly used for **anxiety disorders**, **OCD**, **PTSD**, **panic disorder**, some **chronic pain conditions**, and sometimes **sleep or menopausal symptoms** depending on the drug.
+
+### Main types
+- **SSRIs**: sertraline, fluoxetine, escitalopram, citalopram  
+  - Often first-choice because they are generally effective and better tolerated.
+- **SNRIs**: venlafaxine, duloxetine, desvenlafaxine  
+  - Can help with depression/anxiety and sometimes nerve pain.
+- **Atypical antidepressants**: bupropion, mirtazapine, trazodone  
+  - Different side-effect profiles; chosen based on symptoms.
+- **TCAs**: amitriptyline, nortriptyline  
+  - Older drugs; effective but more side effects.
+- **MAOIs**: phenelzine, tranylcypromine  
+  - Effective but used less often","Yes — antidepressants are medicines used to treat **depression** and sometimes **anxiety, OCD, PTSD, chronic pain, and other conditions**.
+
+## How they work
+Most antidepressants affect **brain chemicals called neurotransmitters**, especially:
+
+- **Serotonin**
+- **Norepinephrine**
+- **Dopamine**
+
+These chemicals help regulate **mood, motivation, sleep, appetite, and anxiety**.
+
+Antidepressants don’t usually work like a “happy pill.” Instead, they gradually **change signaling between brain cells** over time, which can improve mood and emotional stability.
+
+## Main types
+
+### 1. **SSRIs** (Selective Serotonin Reuptake Inhibitors)
+Examples: **sertraline, fluoxetine, escitalopram, citalopram**
+- Increase **serotonin** levels/signaling
+- Often first choice because they’re commonly effective and generally well tolerated
+
+### 2. **SNRIs** (Serotonin-Norepinephrine Reuptake Inhibitors)
+Examples: **venlafaxine, duloxetine","Antidepressants work by changing signaling between brain cells, mainly in pathways that regulate mood, anxiety, sleep, and motivation.
+
+Most commonly, they increase the availability of certain neurotransmitters, especially:
+
+- **Serotonin**
+- **Norepinephrine**
+- sometimes **dopamine**
+
+Examples:
+- **SSRIs** (like sertraline, fluoxetine) block the reuptake of **serotonin**
+- **SNRIs** block reuptake of **serotonin and norepinephrine**
+- **Tricyclics** also reduce reuptake of these chemicals
+- **MAOIs** prevent breakdown of monoamine neurotransmitters
+- Some newer antidepressants act on **specific receptors** or on **glutamate pathways** (for example, ketamine/esketamine)
+
+Although neurotransmitter levels can change quickly, **symptom improvement usually takes 2–6 weeks** because the brain also needs time to make downstream changes, such as:
+- adjusting receptor sensitivity
+- improving communication",1.6694454430648784,1.0429367842220862,0.9117944123315558,30.139285227624413,33.12494304922017,30.264974577193787,10.87866108786611,11.336032388663966,8.94308943089431,19.2468619246862,17.813765182186234,17.88617886178862,0.0,0.0,0.0,10.0,16.666666666666664,6.666666666666667,17.142857142857142,23.809523809523807,10.81081081081081,12.63157894736842,19.607843137254903,8.247422680412372,0.7912508845329285,0.8085733652114868,0.806531548500061,1.0,0.7713297009468079,0.7394939661026001,3,3,4
+gpt-5.4,gpt54_hybrid_api.yaml,none,ambiguity,46,Do you have information about Antioxidants,Do you know much about those things people take or eat that are supposed to help with damage or aging or like cell stuff?,What supplements or foods are thought to help reduce cellular damage or slow aging?,"Summary : Antioxidants are man-made or natural substances that may prevent or delay some types of cell damage. Antioxidants are found in many foods, including fruits and vegetables. They are also available as dietary supplements. Examples of antioxidants include - Beta-carotene - Lutein - Lycopene - Selenium - Vitamin A - Vitamin C - Vitamin E Vegetables and fruits are rich sources of antioxidants. There is good evidence that eating a diet with lots of vegetables and fruits is healthy and lowers risks of certain diseases. But it isn't clear whether this is because of the antioxidants, something else in the foods, or other factors. High-dose supplements of antioxidants may be linked to health risks in some cases. For example, high doses of beta-carotene may increase the risk of lung cancer in smokers. High doses of vitamin E may increase risks of prostate cancer and one type of stroke. Antioxidant supplements may also interact with some medicines. To minimize risk, tell you of your health care providers about any antioxidants you use. NIH: National Center for Complementary and Integrative Health","Yes. **Antioxidants** are substances that help protect cells from damage caused by **free radicals** and **oxidative stress**.
+
+### Common antioxidants
+- **Vitamins:** Vitamin C, Vitamin E, beta-carotene (a precursor to vitamin A)
+- **Minerals:** Selenium, zinc
+- **Plant compounds:** Flavonoids, polyphenols, carotenoids, lycopene, lutein
+
+### Food sources
+- Fruits and vegetables, especially berries, citrus, leafy greens, carrots, tomatoes
+- Nuts and seeds
+- Whole grains
+- Beans
+- Tea, cocoa, and some spices
+
+### What they may do
+Antioxidants are important for normal health, and diets rich in antioxidant-containing foods are associated with lower risk of some chronic diseases. However:
+
+- **Getting antioxidants from food is preferred**
+- **High-dose antioxidant supplements have not consistently shown benefit**
+- Some supplements can be harmful in certain people:
+  - **Beta-carotene** may increase lung cancer risk in smokers
+  - High doses of **vitamin E** may increase bleeding risk
+  - Supplements can interact with medications","Yes—people usually mean **supplements or foods marketed for “cellular health,” repair, or anti-aging**.
+
+The short version: **some help in specific situations, but none are proven to meaningfully “reverse aging” in humans**. The best-supported ways to reduce cellular damage are still:
+
+- **not smoking**
+- **regular exercise**
+- **good sleep**
+- **healthy weight**
+- **blood pressure, cholesterol, and blood","No food or supplement has been proven to “stop aging,” but some are associated with less oxidative stress, lower inflammation, and better healthy aging overall.
+
+Most supported foods:
+- Fruits and vegetables, especially berries, leafy greens, tomatoes, cruciferous vegetables
+- Nuts and seeds
+- Beans and whole grains
+- Olive oil
+- Fatty fish like salmon, sardines, mackerel
+- Green tea
+- Fermented foods if tolerated
+
+Helpful food components:
+- Antioxidants/polyphenols: berries, cocoa, tea, colorful plants
+- Omega-3 fats: fatty fish, flax, chia, walnuts
+- Fiber: plants, legumes, whole grains
+- Adequate protein: helps preserve muscle with aging
+
+Supplements sometimes considered:
+- Omega-3 fish oil: may help if intake from fish is low
+- Vitamin D: useful if you are deficient",2.2477251135864003,0.5029466769132551,0.854338444281367,44.1843493962156,14.5706632657925,26.543871411248794,27.36156351791531,7.964601769911504,10.60070671378092,46.25407166123778,15.929203539823009,16.96113074204947,0.0,0.0,0.0,37.5,5.555555555555555,12.5,44.26229508196721,14.814814814814811,16.363636363636363,40.6015037593985,8.08080808080808,14.173228346456693,0.8558769226074219,0.8098575472831726,0.8134284615516663,1.0,0.5183303952217102,0.4266843199729919,4,3,3
+gpt-5.4,gpt54_hybrid_api.yaml,none,layperson,47,What is (are) Anxiety ?,"what is it called when a person gets all nervouse n worked up for no real reason, like heart racing, cant calm down, mind wont stop etc and is that just a normal thing or some kinda problem?","What is it called when someone becomes suddenly very nervous and worked up for no clear reason, with symptoms like a racing heart, inability to calm down, and nonstop thoughts, and is this considered normal or a sign of an anxiety-related problem?","Fear and anxiety are part of life. You may feel anxious before you take a test or walk down a dark street. This kind of anxiety is useful - it can make you more alert or careful. It usually ends soon after you are out of the situation that caused it. But for millions of people in the United States, the anxiety does not go away, and gets worse over time. They may have chest pains or nightmares. They may even be afraid to leave home. These people have anxiety disorders. Types include - Panic disorder - Obsessive-compulsive disorder - Post-traumatic stress disorder - Phobias - Generalized anxiety disorder Treatment can involve medicines, therapy or both. NIH: National Institute of Mental Health","Anxiety is a feeling of fear, uneasiness, worry, or nervousness. It is a normal reaction to stress or danger, but when it is excessive, persistent, or interferes with daily life, it may be part of an anxiety disorder. Common symptoms can include restlessness, rapid heartbeat, sweating, trouble concentrating, and muscle tension.","What you’re describing sounds most like **anxiety**. If it comes on suddenly with **heart racing, feeling worked up, can’t calm down, and your mind won’t stop**, it could also be a **panic attack**.
+
+A certain amount of anxiety is **normal** sometimes, but it may be a **problem** if:
+- it happens often
+- it feels out of proportion to what’s going on
+- it interferes with sleep, work, school, or relationships
+- you start avoiding things because of it
+
+Other things can cause similar symptoms too, including:
+- too much **caffeine** or stimulants
+- **stress**
+- lack of sleep
+- some medications or drugs
+- medical problems such as **thyroid issues**, low blood sugar, or heart rhythm problems
+
+So: **yes, it can be a normal stress response**, but **if it happens “for no real reason,” keeps happening, or is hard to control, it may be an anxiety disorder and is worth getting checked out**.
+
+Get urgent help right away if you have:
+- chest pain
+- trouble breathing
+- fainting
+- thoughts of harming yourself
+
+If you want, I can also help you figure out whether it sounds more like **general anxiety**, a **panic","That kind of sudden episode is often described as an **anxiety attack**; if it comes on abruptly and includes intense fear, a **racing heart**, feeling unable to calm down, and spiraling thoughts, it may be a **panic attack**.
+
+Some anxiety is **normal**—people can get worked up during stress. But if it happens **for no clear reason**, is **intense**, **keeps happening**, or interferes with daily life, it can be a sign of an **anxiety disorder**, such as **panic disorder** or **generalized anxiety disorder**.
+
+So: **occasional anxiety can be normal; sudden severe unexplained episodes are not something to ignore and may warrant evaluation by a healthcare professional.** If there is chest pain, fainting, trouble breathing,",1.0378243754522156,1.3751108718575074,1.3499240373782302,20.75670047261627,33.2428510961959,35.17780229701852,14.906832298136646,12.32876712328767,15.384615384615383,28.57142857142857,27.3972602739726,34.38914027149321,0.0,0.0,0.0,7.6923076923076925,13.461538461538462,17.307692307692307,23.52941176470588,9.45945945945946,21.951219512195124,11.594202898550726,11.111111111111112,19.354838709677416,0.8513274192810059,0.8193949460983276,0.8314765095710754,0.9999999403953552,0.4932754039764404,0.556328296661377,4,4,4
+gpt-5.4,gpt54_hybrid_api.yaml,none,incomplete,48,What is (are) Aortic Aneurysm ?,"what is that aneurysm thing in the big artery, like what does it mean?",What does it mean to have an aneurysm in a major artery?,"An aneurysm is a bulge or ""ballooning"" in the wall of an artery. Arteries are blood vessels that carry oxygen-rich blood from the heart to other parts of the body. If an aneurysm grows large, it can burst and cause dangerous bleeding or even death. Most aneurysms are in the aorta, the main artery that runs from the heart through the chest and abdomen. There are two types of aortic aneurysm: - Thoracic aortic aneurysms - these occur in the part of the aorta running through the chest - Abdominal aortic aneurysms - these occur in the part of the aorta running through the abdomen Most aneurysms are found during tests done for other reasons. Some people are at high risk for aneurysms. It is important for them to get screening, because aneurysms can develop and become large before causing any symptoms Screening is recommended for people between the ages of 65 and 75 if they have a family history, or if they are men who have smoked. Doctors use imaging tests to find aneurysms. Medicines and surgery are the two main treatments. NIH: National Heart, Lung, and Blood Institute","An **aortic aneurysm** is an **abnormal bulging or widening of the aorta**, the body’s main artery, caused by **weakness in the artery wall**.
+
+It can occur in:
+- the **chest** (**thoracic aortic aneurysm**), or
+- the **abdomen** (**abdominal aortic aneurysm**)
+
+Aortic aneurysms may grow slowly and cause no symptoms at first, but they are dangerous because they can:
+- **rupture** (burst), causing life-threatening bleeding, or
+- **dissect**, meaning the wall of the aorta tears
+
+Common risk factors include **older age, smoking, high blood pressure, atherosclerosis, and certain inherited connective tissue disorders**.","It usually means an **aortic aneurysm**.
+
+The **aorta** is the body’s biggest artery. An **aneurysm** is a **weak, bulging area in the artery wall**—like a worn-out spot in a hose that starts to balloon.
+
+### What it means
+- The artery wall has become **stretched and weaker than normal**
+- If it gets too large, it can:
+  - **tear** (**dissection**)
+  -","An aneurysm in a major artery means a section of that artery has become weakened and bulges outward abnormally.
+
+Why it matters:
+- **The artery wall is weaker than normal**
+- The aneurysm can **grow over time**
+- It may **rupture (burst)**, causing dangerous internal bleeding
+- It can also **form clots** or **reduce blood flow** to organs or limbs
+
+Common major arteries affected include the **aorta**, **brain arteries**, and other large vessels.
+
+Some aneurysms cause no symptoms and are found incidentally, while others may cause **pain, pressure, pulsation, or sudden severe symptoms** if they leak or rupture.
+
+In short: it is a **serious blood vessel abnormality** that may need monitoring, medicines, or surgery depending on its **size, location, and symptoms**.",2.9250687805054287,1.6723084508773003,1.3434941188446246,30.560456030718854,15.289750897855972,29.7512014361436,16.194331983805668,10.138248847926269,16.60649819494585,37.24696356275304,19.35483870967742,33.2129963898917,0.0,0.0,0.0,25.64102564102564,11.538461538461538,20.51282051282051,45.45454545454545,39.130434782608695,27.58620689655172,32.78688524590163,17.821782178217823,23.52941176470588,0.8555008172988892,0.8349561095237732,0.8486323356628418,0.9999998807907104,0.7426072359085083,0.7581508159637451,4,3,4
+gpt-5.4,gpt54_hybrid_api.yaml,none,overgeneralization,49,What is (are) Aphasia ?,"what does it usually mean when some1 suddenly has big problems talking or getting words out and maybe not understanding stuff right, is that like a general brain/language issue or just speech trouble?","What does it usually indicate when someone suddenly has major difficulty speaking, finding words, or understanding language, and is this more likely a language-related brain problem or a speech disorder?","Aphasia is a disorder caused by damage to the parts of the brain that control language. It can make it hard for you to read, write, and say what you mean to say. It is most common in adults who have had a stroke. Brain tumors, infections, injuries, and dementia can also cause it. The type of problem you have and how bad it is depends on which part of your brain is damaged and how much damage there is. There are four main types: - Expressive aphasia - you know what you want to say, but you have trouble saying or writing what you mean - Receptive aphasia - you hear the voice or see the print, but you can't make sense of the words - Anomic aphasia - you have trouble using the correct word for objects, places, or events - Global aphasia - you can't speak, understand speech, read, or write Some people recover from aphasia without treatment. Most, however, need language therapy as soon as possible. NIH: National Institute of Neurological Disorders and Stroke","Aphasia is an acquired disorder of language caused by damage to the brain, usually in the dominant (usually left) hemisphere. It impairs the ability to speak, understand spoken language, read, and/or write, while the muscles for speech may be normal.
+
+It commonly occurs after:
+- Stroke
+- Head injury
+- Brain tumor
+- Brain infection or other neurologic disease
+
+Types include expressive (difficulty producing language), receptive (difficulty understanding language), and global aphasia (both severely affected).","Sudden trouble **getting words out, speaking correctly, or understanding language** usually suggests a **language problem in the brain**, called **aphasia**, not just a simple “speech” problem.
+
+Quick distinction:
+
+- **Aphasia** = brain/language problem  
+  - trouble finding words  
+  - speaking nonsense or wrong words  
+  - trouble understanding what others say  
+  - may also affect reading/writing  
+  - often caused by **stroke** or other brain injury
+
+- **Dysarthria** = speech-muscle problem  
+  - words are **slurred** or hard to pronounce  
+  - but the person usually **knows what they want to say** and understands language
+
+- **Apraxia of speech** = brain problem with","Sudden major trouble speaking, finding words, or understanding language usually suggests **aphasia**, which is a **language problem caused by the brain**, most often from a **stroke** or other acute brain injury.
+
+So this is **more likely a language-related brain problem** than a simple **speech disorder** (like slurred speech from weak mouth muscles, called dysarthria).
+
+Because sudden aphasia can be a sign of **stroke, it is a medical emergency and needs immediate evaluation.**",3.3513955998518865,1.726632161136545,0.8692768248925901,28.69768167735968,27.69714262181322,23.12252842795739,18.26086956521739,12.145748987854253,13.100436681222709,28.69565217391304,27.530364372469634,24.45414847161572,0.0,0.0,0.0,21.333333333333336,24.0,17.333333333333336,42.10526315789473,36.734693877551024,38.23529411764706,28.31858407079646,29.03225806451613,23.85321100917431,0.8659601211547852,0.8287296891212463,0.8350886702537537,1.0,0.2442886382341385,0.3004124760627746,4,4,5
