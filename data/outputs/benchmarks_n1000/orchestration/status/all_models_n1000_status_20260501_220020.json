@@ -1,0 +1,9 @@
+{
+    "updated_at":  "2026-05-02T19:41:08",
+    "step":  "supervisor",
+    "state":  "completed",
+    "message":  "Fixed-repair and self-repair n=1000 are complete.",
+    "extra":  {
+                  "report":  "reports/fixed_vs_self_repair_n1000_2026-05-01.md"
+              }
+}

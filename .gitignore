@@ -9,6 +9,7 @@ build/
 # ---- Environment ----
 .env
 .venv/
+.venv-wsl/
 venv/
 env/
 
@@ -20,6 +21,7 @@ data/raw/MedQuAD/
 data/processed/experiments/
 data/outputs/cache/
 data/outputs/experiments/
+data/outputs/outdated_data/experiments/
 
 # Comparison scratch artifacts
 data/outputs/comparison*/run_*.log
@@ -32,11 +34,15 @@ data/outputs/benchmarks/*/cache/
 data/outputs/benchmarks/*/archived/
 data/outputs/benchmarks/*/model_comparison.live.csv
 data/outputs/benchmarks/*debug*/
+data/outputs/**/cache/
+data/outputs/**/*.log
+data/outputs/**/logs/
 
 # Local-only workspace artifacts
 .bundle_staging_*/
 Models/
 gcm-diagnose.log
+server_test_*.log
 
 # ---- Jupyter ----
 .ipynb_checkpoints/

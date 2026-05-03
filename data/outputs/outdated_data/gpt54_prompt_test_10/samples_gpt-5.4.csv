@@ -1,0 +1,512 @@
+model,config,quantization,noise_type,question_id,question_clean,question_noisy,question_repaired,reference_answer,answer_clean,answer_noisy,answer_repaired,bleu_clean,bleu_noisy,bleu_repaired,chrf_clean,chrf_noisy,chrf_repaired,rouge_l_clean,rouge_l_noisy,rouge_l_repaired,token_f1_clean,token_f1_noisy,token_f1_repaired,exact_match_clean,exact_match_noisy,exact_match_repaired,bertscore_clean,bertscore_noisy,bertscore_repaired,intent_preservation_clean,intent_preservation_noisy,intent_preservation_repaired,geval_clean,geval_noisy,geval_repaired
+gpt-5.4,gpt54_hybrid_api.yaml,none,typos_grammar,0,Do you have information about A1C,Do yu have any informaiton abot A1C??,"What is A1C, and what information should I know about it?","Summary : A1C is a blood test for type 2 diabetes and prediabetes. It measures your average blood glucose, or blood sugar, level over the past 3 months. Doctors may use the A1C alone or in combination with other diabetes tests to make a diagnosis. They also use the A1C to see how well you are managing your diabetes. This test is different from the blood sugar checks that people with diabetes do every day. Your A1C test result is given in percentages. The higher the percentage, the higher your blood sugar levels have been: - A normal A1C level is below 5.7 percent - Prediabetes is between 5.7 to 6.4 percent. Having prediabetes is a risk factor for getting type 2 diabetes. People with prediabetes may need retests every year. - Type 2 diabetes is above 6.5 percent - If you have diabetes, you should have the A1C test at least twice a year. The A1C goal for many people with diabetes is below 7. It may be different for you. Ask what your goal should be. If your A1C result is too high, you may need to change your diabetes care plan. NIH: National Institute of Diabetes and Digestive and Kidney Diseases","Yes. **A1C** (also called **HbA1c** or **glycated hemoglobin**) is a blood test that shows your **average blood sugar over about the past 2–3 months**.
+
+### What it’s used for
+- **Diagnosing diabetes and prediabetes**
+- **Monitoring diabetes control** over time
+
+### Common A1C ranges
+For most adults:
+- **Normal:** below **5.7%**
+- **Prediabetes:** **5.7% to 6.4%**
+- **Diabetes:** **6.5% or higher** on testing
+
+### Typical treatment goal
+For many adults with diabetes, a common target is:
+- **Below 7%**
+But the best goal depends on age, other health conditions, and risk of low blood sugar.
+
+### Important notes
+A1C may be less accurate in some situations, such as:
+- **Anemia**
+- **Kidney disease**
+- **Pregnancy**
+- Certain **blood disorders** or recent blood loss/transfusion
+
+If you want, I can also explain:
+- how to lower A1C,
+-","Yes — **A1C** (also called **HbA1c** or **hemoglobin A1C**) is a blood test that shows your **average blood sugar level over about the past 2–3 months**.
+
+### What it measures
+It looks at how much sugar is attached to hemoglobin in red blood cells.
+
+### Common A1C ranges
+- **Normal:** **below 5.7%**
+- **Prediabetes:** **5.7% to 6.4%**
+- **Diabetes:** **6.5% or higher** on testing
+
+### For people with diabetes
+Many adults aim for an A1C **below 7%**, but the goal can vary depending on age, health, and risk of low blood sugar.
+
+### Why it matters
+A higher A1C means blood sugar has been running high, which can increase the risk of:
+- nerve damage
+- kidney disease
+- eye problems
+- heart disease
+
+### Important limits
+A1C may be less accurate in some cases, such as:
+- anemia
+- recent blood loss or transfusion
+- kidney disease
+- certain hemoglobin disorders
+
+If you want, I can also explain:
+1. **how to lower A","**A1C** (also called **hemoglobin A1C** or **HbA1c**) is a **blood test that shows your average blood sugar level over the past about 2–3 months**.
+
+### How it works
+Sugar in the blood attaches to hemoglobin, a protein in red blood cells. The A1C measures the **percentage of hemoglobin that has sugar attached**.
+
+### Why it matters
+It is used to:
+- **Screen for and diagnose** **prediabetes** and **diabetes**
+- **Monitor diabetes control** over time
+- Help estimate risk of diabetes-related complications
+
+### Typical A1C ranges
+- **Normal:** **below 5.7%**
+- **Prediabetes:** **5.7% to 6.4%**
+- **Diabetes:** **6.5% or higher** on testing
+
+### Common target for people with diabetes
+For many nonpregnant adults with diabetes,",3.225707925095393,3.377842705326077,3.9813188240336848,29.973315502188395,31.083876265980166,31.179791200643248,26.282051282051285,25.748502994011975,26.621160409556317,42.94871794871795,43.712574850299404,45.05119453924914,0.0,0.0,0.0,0.847036600112915,0.84625244140625,0.848076581954956,1.0,0.7733116745948792,0.9319746494293213,4,4,4
+gpt-5.4,gpt54_hybrid_api.yaml,none,ambiguity,1,What is (are) Abdominal Pain ?,"What does it mean when you’ve got pain in the stomach area, and can it be from different things?","What can pain in the stomach or abdominal area indicate, and what different conditions or causes can lead to it?","Your abdomen extends from below your chest to your groin. Some people call it the stomach, but your abdomen contains many other important organs. Pain in the abdomen can come from any one of them. The pain may start somewhere else, such as your chest. Severe pain doesn't always mean a serious problem. Nor does mild pain mean a problem is not serious. Call your healthcare provider if mild pain lasts a week or more or if you have pain with other symptoms. Get medical help immediately if - You have abdominal pain that is sudden and sharp - You also have pain in your chest, neck or shoulder - You're vomiting blood or have blood in your stool - Your abdomen is stiff, hard and tender to touch - You can't move your bowels, especially if you're also vomiting","Abdominal pain is pain or discomfort felt anywhere in the area between the chest and the groin, often called the belly or abdomen.
+
+It can:
+- be mild or severe
+- come on suddenly or develop gradually
+- be constant or come and go
+- feel crampy, sharp, dull, burning, or aching
+
+Abdominal pain is a symptom, not a disease itself. It can be caused by many problems, including:
+- indigestion, gas, constipation
+- stomach flu or food poisoning
+- appendicitis
+- gallstones or kidney stones
+- ulcers
+- urinary or reproductive system problems
+- inflammatory or other serious conditions
+
+Some causes are minor, while others may need urgent medical care. Seek immediate medical attention if abdominal pain is severe, persistent, or occurs with fever, vomiting, fainting, trouble breathing, bloody stool or vomit, or a rigid/swollen abdomen.","Pain in the “stomach area” usually means **abdominal pain**—pain anywhere between the chest and pelvis. It does **not always come from the stomach itself**.
+
+Yes, it can be caused by **many different things**, including:
+
+- **Indigestion, gas, or constipation**
+- **Stomach virus or food poisoning**
+- **Acid reflux or ulcers**
+- **Irritable bowel syndrome**
+- **Appendicitis**
+- **Gallbladder problems**
+- **Pancreatitis**
+- **Kidney stones or urinary infection**
+- **Muscle strain**
+- In women, **menstrual cramps, ovarian cysts, or other reproductive causes**
+
+The **location, type, and timing** of the pain matter:
+- **Upper abdomen**: reflux, ulcer, gallbladder, pancreas
+- **Lower right side**: append","Pain in the stomach or abdominal area is a **symptom, not a diagnosis**. It can come from many organs in the abdomen and range from **minor digestive problems to medical emergencies**.
+
+### Common possible causes
+- **Indigestion, gas, bloating**
+- **Stomach flu (gastroenteritis)**
+- **Constipation**
+- **Food poisoning**
+- **Acid reflux or gastritis**
+- **Stomach or duodenal ulcer**
+- **Irritable bowel syndrome (IBS)**
+
+### Inflammatory or infectious causes
+- **Appendicitis**
+- **Gallbladder disease** or **gallstones**
+- **Pancreatitis**
+- **Hepatitis**
+- **Urinary tract infection** or **kidney infection**
+- **Inflammatory bowel disease** (Crohn disease, ulcerative colitis)
+
+### Obstruction or structural problems
+- **Bowel obstruction**
+- **Hernia**
+- **Kidney stones",1.1943151536602332,1.712470688558704,2.1055612889520425,36.285926343683315,29.690616336271685,28.372139736280467,15.810276679841898,10.95890410958904,9.216589861751153,30.039525691699602,23.74429223744292,20.276497695852534,0.0,0.0,0.0,0.8425702452659607,0.8058530688285828,0.7905220985412598,1.0,0.7265933156013489,0.7881773114204407,4,4,4
+gpt-5.4,gpt54_hybrid_api.yaml,none,layperson,2,What is (are) Abortion ?,"What does abortion mean exactly, like is it the same as ending a pregancy or something else?","What exactly does the term “abortion” mean, and is it the same as ending a pregnancy?","An abortion is a procedure to end a pregnancy. It uses medicine or surgery to remove the embryo or fetus and placenta from the uterus. The procedure is done by a licensed health care professional. The decision to end a pregnancy is very personal. If you are thinking of having an abortion, most healthcare providers advise counseling.","Abortion is the termination or loss of a pregnancy before the fetus is viable outside the uterus.
+
+It may be:
+
+- **Spontaneous abortion**: a **miscarriage**, occurring naturally.
+- **Induced abortion**: deliberate ending of a pregnancy by **medication or a medical/surgical procedure**.
+
+In medical use, abortion generally refers to pregnancy ending in the early stages, before the fetus can survive independently.","In medical terms, **abortion** means the **ending of a pregnancy before the fetus is able to survive outside the uterus**.
+
+There are **two main meanings**:
+
+- **Induced abortion**: a pregnancy is **ended on purpose** using medication or a procedure.
+- **Spontaneous abortion**: the pregnancy **ends on its own**, which is what people usually call a **miscarriage**.
+
+So yes, abortion can mean **ending a pregnancy**, but in medicine the word can refer to **either a planned termination or a miscarriage**, depending on the context.","Medically, **“abortion” means the ending of a pregnancy before the fetus is viable** outside the uterus.
+
+There are **two main types**:
+
+- **Spontaneous abortion**: this is a **miscarriage**, when the pregnancy ends on its own.
+- **Induced abortion**: this is a **deliberate medical or surgical termination** of a pregnancy.
+
+So, **ending a pregnancy can mean abortion**, but the term **“abortion” is broader** than just a planned procedure, because it also includes miscarriage in medical terminology.
+
+In everyday conversation, people usually use **“abortion” to mean induced abortion**, while doctors may use it more broadly.",3.2828309084278415,2.166748353636259,2.4801597374051236,36.46838576824171,35.9587616040859,37.25225003240158,16.49484536082474,15.652173913043477,14.173228346456693,30.927835051546392,29.565217391304348,23.62204724409449,0.0,0.0,0.0,0.8550016283988953,0.842546820640564,0.8399978876113892,0.9999999403953552,0.7511570453643799,0.7952948212623596,4,4,4
+gpt-5.4,gpt54_hybrid_api.yaml,none,incomplete,3,What is (are) Abscess ?,what is an absess and why does it happen in the body?,"What is an abscess, and why does it develop in the body?","An abscess is a pocket of pus. You can get an abscess almost anywhere in your body. When an area of your body becomes infected, your body's immune system tries to fight the infection. White blood cells go to the infected area, collect within the damaged tissue, and cause inflammation. During this process, pus forms. Pus is a mixture of living and dead white blood cells, germs, and dead tissue. Bacteria, viruses, parasites and swallowed objects can all lead to abscesses. Skin abscesses are easy to detect. They are red, raised and painful. Abscesses inside your body may not be obvious and can damage organs, including the brain, lungs and others. Treatments include drainage and antibiotics.","An **abscess** is a **localized collection of pus** that forms in body tissues, organs, or spaces, usually due to an **infection**.
+
+It develops when the body tries to fight infection, leading to a pocket filled with:
+- dead white blood cells
+- bacteria or other germs
+- tissue debris
+
+Common signs include:
+- **pain**
+- **swelling**
+- **redness**
+- **warmth**
+- sometimes **fever**
+
+Abscesses can occur **under the skin**, in the **mouth**, or **inside the body**. Treatment often involves **drainage** and sometimes **antibiotics**.","An **abscess** is a **localized collection of pus** inside the body, usually caused by an **infection**.
+
+### What it is
+Pus is made of:
+- **White blood cells**
+- **Bacteria or other germs**
+- **Dead tissue**
+- **Fluid**
+
+An abscess can form:
+- **In the skin** (like a boil)
+- **In the gums or teeth**
+- **Inside the body** (such as in the liver, brain, or abdomen)
+
+### Why it happens
+It happens when the body’s immune system tries to **fight an infection**. White blood cells move to the infected area, causing inflammation. Tissue breaks down, and a pocket of pus forms. The body may wall off the infection to keep it from spreading, which creates the abscess.
+
+### Common causes
+- **Bacterial infection** is the most common cause
+- Blocked glands or hair follicles
+- Cuts, wounds, or splinters
+- Dental infections
+- Sometimes after surgery or in areas of inflammation
+
+### Common signs
+- Pain
+- Swelling
+- Redness
+- Warmth
+- Sometimes fever
+- If internal, symptoms depend on where it is
+
+### Treatment
+Many abscesses need:
+- **Drainage** of the pus
+- Sometimes **antibiotics**
+- Dental or surgical treatment if deeper
+
+### Important
+Do **not** squeeze or pop an abscess yourself, because that","An **abscess** is a **localized collection of pus** that forms within tissue, an organ, or a confined body space.
+
+It develops when the body responds to an **infection**—most often bacterial, but sometimes fungal or parasitic. The immune system sends **white blood cells** to the area to fight the infection. As these cells, bacteria, damaged tissue, and fluid accumulate, they form **pus**. The body may wall off this infected area, creating a swollen, often painful pocket called an abscess.
+
+Common reasons abscesses develop include:
+- **Bacterial infection**
+- **Blocked glands or ducts**
+- **Infected wounds or skin injuries**
+- **Foreign bodies** or irritation in tissue
+
+Typical signs can include **pain, swelling, redness, warmth, and sometimes fever**.",4.130575441814051,5.701129824544524,7.215922236326385,32.87373209409287,44.15440919125794,42.051657469644475,29.714285714285715,23.04832713754647,22.115384615384613,37.714285714285715,38.66171003717472,41.34615384615385,0.0,0.0,0.0,0.8524172902107239,0.8439401388168335,0.8687686324119568,1.0,0.5876433849334717,0.8117824792861938,5,4,5
+gpt-5.4,gpt54_hybrid_api.yaml,none,overgeneralization,4,What is (are) Acne ?,"What are common skin problems, and how do they usually show up?","What are some common skin conditions, and what symptoms or signs do they typically cause?","Acne is a common skin disease that causes pimples. Pimples form when hair follicles under your skin clog up. Most pimples form on the face, neck, back, chest, and shoulders. Anyone can get acne, but it is common in teenagers and young adults. It is not serious, but it can cause scars. No one knows exactly what causes acne. Hormone changes, such as those during the teenage years and pregnancy, probably play a role. There are many myths about what causes acne. Chocolate and greasy foods are often blamed, but there is little evidence that foods have much effect on acne in most people. Another common myth is that dirty skin causes acne; however, blackheads and pimples are not caused by dirt. Stress doesn't cause acne, but stress can make it worse. If you have acne - Clean your skin gently - Try not to touch your skin - Avoid the sun Treatments for acne include medicines and creams. NIH: National Institute of Arthritis and Musculoskeletal and Skin Diseases","Acne is a common skin condition in which the hair follicles and oil (sebaceous) glands become clogged and inflamed. It causes lesions such as:
+
+- **Whiteheads and blackheads** (comedones)
+- **Pimples** (papules and pustules)
+- **Deeper lumps or cysts** in more severe cases
+
+It most often affects the **face, chest, shoulders, and back**. Acne is especially common during **adolescence**, but it can occur at any age. Factors that contribute include **increased oil production, clogged pores, bacteria, and inflammation**.","Common skin problems include:
+
+- **Acne**: pimples, blackheads, whiteheads, or deeper tender lumps, usually on the face, chest, or back.  
+- **Eczema (atopic dermatitis)**: dry, itchy, red, inflamed patches; may crack or ooze.  
+- **Contact dermatitis**: red, itchy, sometimes blistering rash after touching an irritant or allergen.  
+- **Psoriasis**: thick, well-defined red patches with silvery scales, often on elbows, knees, or scalp.  
+- **Fungal infections**  
+  - **Ringworm**: ring-shaped, scaly, itchy rash  
+  - **Athlete’s foot**: itching, peeling, cracking between toes  
+  - **Yeast infections**: red, moist, itchy rash in skin folds  
+- **Hives (urticaria)**: raised, itchy welts that can appear suddenly and move around.  
+- **Warts**: small rough skin growths caused by HPV.  
+- **Impetigo**: contagious bacterial infection causing red sores and honey-colored crusts, often around the nose or","Some common skin conditions and their typical signs/symptoms include:
+
+- **Acne**: Blackheads, whiteheads, pimples, inflamed bumps, and sometimes cysts, usually on the face, chest, or back.
+- **Eczema (atopic dermatitis)**: Dry, itchy, red, inflamed skin; may crack, ooze, or become thickened from scratching.
+- **Psoriasis**: Well-defined red plaques with silvery scale, often on the scalp, elbows, knees, and lower back; may itch or crack.
+- **Contact dermatitis**: Red, itchy, sometimes blistering rash after contact with an irritant or allergen.
+- **Urticaria (hives)**: Raised, itchy welts that appear suddenly and can move around the body.
+- **Fungal infections**
+  - **Ringworm (tinea corporis)**: Circular, scaly, itchy rash with clearer skin in the center.
+  - **Athlete’s foot (tinea pedis)**: Itching, scaling, peeling, or cracking between the toes or on the soles.
+- **Impetigo**: Superficial bacterial infection causing red sores or blisters that rupture and form honey-colored crusts.
+- **Cellulitis**: Painful",4.873455686734344,2.5703756351479434,2.3768213461385916,26.235059188411174,28.374671621985964,30.34143666990019,18.803418803418804,10.03584229390681,8.783783783783784,30.769230769230766,15.053763440860212,16.216216216216218,0.0,0.0,0.0,0.8459967374801636,0.8073808550834656,0.8162743449211121,1.0,0.36652469635009766,0.3793940246105194,4,1,1
+gpt-5.4,gpt54_hybrid_api.yaml,none,typos_grammar,5,What is (are) Acoustic Neuroma ?,wht is (are) Acostic Neuroma??,What is an acoustic neuroma?,"An acoustic neuroma is a benign tumor that develops on the nerve that connects the ear to the brain. The tumor usually grows slowly. As it grows, it presses against the hearing and balance nerves. At first, you may have no symptoms or mild symptoms. They can include - Loss of hearing on one side - Ringing in ears - Dizziness and balance problems The tumor can also eventually cause numbness or paralysis of the face. If it grows large enough, it can press against the brain, becoming life-threatening. Acoustic neuroma can be difficult to diagnose, because the symptoms are similar to those of middle ear problems. Ear exams, hearing tests, and scans can show if you have it. If the tumor stays small, you may only need to have it checked regularly. If you do need treatment, surgery and radiation are options. If the tumors affect both hearing nerves, it is often because of a genetic disorder called neurofibromatosis. NIH: National Institute on Deafness and Communication Disorders","An acoustic neuroma, also called a **vestibular schwannoma**, is a **benign (noncancerous), usually slow-growing tumor** that develops from the **Schwann cells** covering the **vestibulocochlear nerve (cranial nerve VIII)**, most often the **vestibular branch**.
+
+It typically arises in the **internal auditory canal** or **cerebellopontine angle** and can cause:
+
+- **Unilateral hearing loss**
+- **Tinnitus** (ringing in one ear)
+- **Balance problems or dizziness**
+- Larger tumors may press on nearby nerves or the brainstem
+
+So, acoustic neuroma is not a cancer, but it can still cause important symptoms because of its location.","**Acoustic neuroma** is a **usually benign (non-cancerous) tumor** that grows on the **vestibulocochlear nerve (8th cranial nerve)**, which connects the inner ear to the brain. It is also called a **vestibular schwannoma**.
+
+### Common symptoms
+- **Hearing loss** in one ear
+- **Ringing in the ear (tinnitus)**
+- **Balance problems or dizziness**
+- Sometimes **facial numbness or weakness** if the tumor gets large
+
+### Important points
+- It typically **grows slowly**
+- It is **not a brain cancer**, but a large tumor can press on nearby brain structures
+- Diagnosis is usually made with **hearing tests** and **MRI**
+
+### Treatment
+Depends on the size and symptoms:
+- **Observation** with repeat MRIs
+- **Radiation (radiosurgery)**
+- **Surgical removal**
+
+If you want, I can also explain it in very simple language.","An acoustic neuroma, also called a vestibular schwannoma, is a usually benign, slow-growing tumor that arises from the Schwann cells covering the vestibular portion of the eighth cranial nerve (the vestibulocochlear nerve), which connects the inner ear to the brain.
+
+It can cause:
+- Gradual hearing loss, usually on one side
+- Tinnitus (ringing in the ear)
+- Dizziness or balance problems
+- If larger, pressure on nearby nerves or brain structures, causing facial numbness or weakness
+
+Despite the name, it is not a cancer of the “acoustic” part itself, but a nerve-sheath tumor near the hearing and balance nerve.",2.2575367796681336,4.373217900063025,7.004308835854431,30.287239249729748,36.12837888772306,33.31199420351008,20.77922077922078,28.571428571428577,24.680851063829788,34.63203463203464,43.24324324324324,37.4468085106383,0.0,0.0,0.0,0.8429545164108276,0.8502326607704163,0.8670094013214111,1.0,0.5812037587165833,0.9461374878883362,4,5,4
+gpt-5.4,gpt54_hybrid_api.yaml,none,ambiguity,6,Do you have information about Acupuncture,"Do you have any info on that needle treatment thing people get, like for pain or stress or whatever?","What is acupuncture, and how is it used to treat pain, stress, or other health conditions?","Summary : Acupuncture has been practiced in China and other Asian countries for thousands of years. Acupuncture involves stimulating specific points on the body. This is most often done by inserting thin needles through the skin, to cause a change in the physical functions of the body. Research has shown that acupuncture reduces nausea and vomiting after surgery and chemotherapy. It can also relieve pain. Researchers don't fully understand how acupuncture works. It might aid the activity of your body's pain-killing chemicals. It also might affect how you release chemicals that regulate blood pressure and flow. NIH: National Center for Complementary and Integrative Health","Yes. **Acupuncture** is a component of traditional Chinese medicine in which very thin needles are inserted into specific points on the body. It is also used in some modern pain-management settings.
+
+### What it may help with
+Evidence is strongest for:
+- **Chronic pain**, especially:
+  - low back pain
+  - neck pain
+  - osteoarthritis knee pain
+  - some headache/migraine prevention
+- **Nausea/vomiting**, including postoperative or chemotherapy-related nausea
+- Some people also use it for **stress, insomnia, or other symptoms**, but evidence there is less consistent.
+
+### How it is thought to work
+From a biomedical perspective, acupuncture may:
+- stimulate nerves, muscles, and connective tissue
+- affect pain signaling
+- promote release of endorphins and other neurotransmitters
+
+### Risks and side effects
+When done by a **trained, licensed practitioner using sterile single-use needles**, it is generally safe. Possible side effects include:
+- soreness
+- minor bleeding or bruising
+- dizziness
+
+Rare but serious complications:
+- infection
+- puncture injury (for","You’re probably thinking of **acupuncture**.
+
+- **What it is:** A treatment where a practitioner places **very thin needles** into specific points on the body.
+- **What people use it for:** Most commonly **chronic pain** (like low back pain, neck pain, knee arthritis, headaches/migraines). Some people also try it for **stress, anxiety, insomnia, or nausea","Acupuncture is a therapy in which a trained practitioner inserts very thin needles into specific points on the body. It is a traditional Chinese medicine technique, but it is also used in modern integrative medicine.
+
+### How it is thought to work
+From a modern medical perspective, acupuncture may help by:
+- stimulating nerves, muscles, and connective tissue
+- triggering the release of natural pain-relieving chemicals such as endorphins
+- affecting brain pathways involved in pain, stress, and mood
+- promoting relaxation and altering autonomic nervous system activity
+
+### What it is used for
+Acupuncture is most commonly used for:
+- **Pain conditions:** low back pain, neck pain, osteoarthritis, knee pain, headaches, and some types of chronic pain
+- **Stress and anxiety symptoms:** to promote relaxation and reduce tension
+- **Other symptoms/conditions:** nausea and vomiting (such as after surgery or chemotherapy), some sleep problems, and certain chronic symptom syndromes
+
+### How it is used
+Treatment usually involves:
+- a visit with a licensed or certified acupuncturist
+- placement of needles for about 15–30 minutes
+- a series of sessions rather than a single treatment
+
+### Effect",3.86984075390275,5.474984726783374,4.067081803126725,38.7446649223066,21.3408202425862,43.68233502531657,14.814814814814817,14.569536423841061,15.094339622641511,28.806584362139915,26.490066225165563,33.9622641509434,0.0,0.0,0.0,0.834347128868103,0.8437029123306274,0.8452605605125427,1.0,0.5253356099128723,0.7749202251434326,4,4,4
+gpt-5.4,gpt54_hybrid_api.yaml,none,layperson,7,What is (are) Acute Bronchitis ?,what is this chest cough thing where you get a lot of mucus and your lungs feel all irritated?,What condition causes a chesty cough with a lot of mucus and a feeling of irritation in the lungs?,"Bronchitis is an inflammation of the bronchial tubes, the airways that carry air to your lungs. It causes a cough that often brings up mucus. It can also cause shortness of breath, wheezing, a low fever, and chest tightness. There are two main types of bronchitis: acute and chronic. Most cases of acute bronchitis get better within several days. But your cough can last for several weeks after the infection is gone. The same viruses that cause colds and the flu often cause acute bronchitis. These viruses spread through the air when people cough, or though physical contact (for example, on unwashed hands). Being exposed to tobacco smoke, air pollution, dusts, vapors, and fumes can also cause acute bronchitis. Less often, bacteria can also cause acute bronchitis. To diagnose acute bronchitis, your health care provider will ask about your symptoms and listen to your breathing. You may also have other tests. Treatments include rest, fluids, and aspirin (for adults) or acetaminophen to treat fever. A humidifier or steam can also help. You may need inhaled medicine to open your airways if you are wheezing. Antibiotics won't help if the cause is viral. You may get antibiotics if the cause is bacterial. NIH: National Heart, Lung, and Blood Institute","Acute bronchitis is a short-term inflammation of the bronchial tubes, the airways that carry air to and from the lungs. It usually causes:
+
+- Cough, often with mucus
+- Chest discomfort
+- Wheezing or mild shortness of breath
+- Low-grade fever and fatigue
+
+It is most often caused by a viral infection, often following a cold or flu, and usually lasts a few days to a few weeks. It is different from pneumonia because the infection/inflammation is mainly in the bronchial tubes rather than the lung tissue itself.","That often describes **bronchitis**, especially **acute bronchitis**—inflammation of the **bronchial tubes** in the chest that causes:
+
+- **Cough**
+- **Mucus/phlegm**
+- A feeling of **chest irritation**, tightness, or “rattling”
+
+People sometimes call it a **“chest cold.”**
+
+Other possible causes include:
+- **Pneumonia**
+- **Asthma**
+- **COPD/smoker’s cough**
+- A lingering **post-viral cough**
+
+If you have **trouble breathing, high fever, chest pain, wheezing, cough up blood, or symptoms lasting more than about 3 weeks**, you should get checked by a clinician.","A **chesty cough with a lot of mucus and a feeling of irritation in the lungs** is commonly caused by **bronchitis**, especially **acute bronchitis**.
+
+Bronchitis is inflammation of the **bronchial tubes** in the lungs, and it often causes:
+- **Productive cough** with mucus/phlegm
+- **Chest discomfort or irritation**
+- **Wheezing**
+- **Mild shortness of breath**
+- Sometimes a **low fever**
+
+If symptoms are severe, last more than a few weeks, or include high fever, chest pain, or trouble breathing, medical evaluation is important because **pneumonia** or other lung conditions can cause similar symptoms.",4.059195747756616,1.2399891204772147,1.7181170770696896,24.341578821132725,21.920666785846805,25.30713305267144,23.44322344322344,14.869888475836431,17.985611510791365,32.234432234432234,28.25278810408922,31.654676258992804,0.0,0.0,0.0,0.8562992215156555,0.826600193977356,0.8350681662559509,1.0,0.5762957334518433,0.571372926235199,4,3,4
+gpt-5.4,gpt54_hybrid_api.yaml,none,incomplete,8,What is (are) Acute Lymphocytic Leukemia ?,"what is this leukemia thing, the one with the lymph cells?",What is lymphocytic leukemia?,"Leukemia is cancer of the white blood cells. White blood cells help your body fight infection. Your blood cells form in your bone marrow. In leukemia, however, the bone marrow produces abnormal white blood cells. These cells crowd out the healthy blood cells, making it hard for blood to do its work. In acute lymphocytic leukemia (ALL), also called acute lymphoblastic leukemia, there are too many of specific types of white blood cells called lymphocytes or lymphoblasts. ALL is the most common type of cancer in children. Possible risk factors for ALL include being male, being white, previous chemotherapy treatment, exposure to radiation, and for adults, being older than 70. Symptoms of ALL include: - Weakness or feeling tired - Fever - Easy bruising or bleeding - Bleeding under the skin - Shortness of breath - Weight loss or loss of appetite - Pain in the bones or stomach - Pain or a feeling of fullness below the ribs - Painless lumps in the neck, underarm, stomach, or groin Tests that examine the blood and bone marrow diagnose ALL. Treatments include chemotherapy, radiation therapy, stem cell transplants, and targeted therapy. Targeted therapy uses substances that attack cancer cells without harming normal cells. Once the leukemia is in remission, you need additional treatment to make sure that it does not come back. NIH: National Cancer Institute","Acute lymphocytic leukemia (ALL), also called **acute lymphoblastic leukemia**, is a **rapidly progressing cancer of the blood and bone marrow** in which the body makes large numbers of **immature white blood cells called lymphoblasts**.
+
+These abnormal cells crowd out normal blood-forming cells, which can lead to:
+- **Anemia** (low red blood cells)
+- **Infections** (low normal white blood cells)
+- **Bleeding/bruising** (low platelets)
+
+It occurs most often in **children**, but it can also affect **adults**.","The leukemia “with the lymph cells” is usually called **lymphocytic leukemia** or **lymphoblastic leukemia**. It’s a cancer of **lymphocytes**, which are a type of white blood cell.
+
+The main types are:
+
+- **ALL (Acute Lymphoblastic Leukemia)**  
+  - Fast-growing  
+  - More common in children, but can happen in adults
+
+- **CLL (Chronic Lymphocytic Leukemia)**  
+  - Slow-growing  
+  - More common in older adults
+
+In both, abnormal lymphocytes build up in the **bone marrow and blood** and can crowd out normal blood cells.
+
+Common symptoms can include:
+- Fatigue
+- Frequent infections
+- Easy bruising or bleeding
+- Swollen lymph nodes
+- Fever
+- Weight loss
+
+If you want, I can also explain the difference between **lymphocytic leukemia** and **myeloid leukemia** in simple terms.","Lymphocytic leukemia is a cancer of the blood and bone marrow in which the body makes too many abnormal lymphocytes, a type of white blood cell involved in immune defense.
+
+Main forms:
+- **Acute lymphocytic leukemia (ALL):** fast-growing, involves immature lymphocytes.
+- **Chronic lymphocytic leukemia (CLL):** slower-growing, involves more mature but abnormal lymphocytes.
+
+These abnormal cells crowd out normal blood-forming cells, which can cause:
+- fatigue or weakness
+- frequent infections
+- easy bruising or bleeding
+- swollen lymph nodes
+- fever or weight loss
+
+Diagnosis usually involves blood tests, bone marrow testing, and sometimes genetic studies. Treatment depends on the type and severity and may include chemotherapy, targeted therapy, immunotherapy, or stem cell transplant.",5.7142523695245435,5.198247803191707,6.19858744997473,25.58296753780176,29.442632436072554,34.399436935920555,18.115942028985508,18.064516129032256,22.508038585209007,33.333333333333336,36.7741935483871,35.369774919614144,0.0,0.0,0.0,0.8391197323799133,0.8368881344795227,0.8540346622467041,0.9999998807907104,0.7389110326766968,0.90718674659729,4,4,4
+gpt-5.4,gpt54_hybrid_api.yaml,none,overgeneralization,9,What is (are) Acute Myeloid Leukemia ?,"What is a blood cancer, like leukemia, and how does it usually affect the body?","What is blood cancer, such as leukemia, and how does it typically affect the body?","Leukemia is cancer of the white blood cells. White blood cells help your body fight infection. Your blood cells form in your bone marrow. In leukemia, however, the bone marrow produces abnormal white blood cells. These cells crowd out the healthy blood cells, making it hard for blood to do its work. In acute myeloid leukemia (AML), there are too many of a specific type of white blood cell called a myeloblast. AML is the most common type of acute leukemia in adults. This type of cancer usually gets worse quickly if it is not treated. Possible risk factors include smoking, previous chemotherapy treatment, and exposure to radiation. Symptoms of AML include: - Fever - Shortness of breath - Easy bruising or bleeding - Bleeding under the skin - Weakness or feeling tired - Weight loss or loss of appetite Tests that examine the blood and bone marrow diagnose AML. Treatments include chemotherapy, other drugs, radiation therapy, stem cell transplants, and targeted therapy. Targeted therapy uses substances that attack cancer cells without harming normal cells. Once the leukemia is in remission, you need additional treatment to make sure that it does not come back. NIH: National Cancer Institute","Acute myeloid leukemia (AML) is a fast-growing cancer of the blood and bone marrow in which the marrow makes large numbers of abnormal, immature myeloid cells (called myeloblasts or blasts).
+
+These abnormal cells do not develop into normal blood cells and crowd out healthy cells, which can cause:
+- anemia,
+- infections,
+- easy bruising or bleeding.
+
+AML is called “acute” because it progresses quickly, and “myeloid” because it starts in the myeloid line of blood-forming cells. It is the most common acute leukemia in adults, but it can also occur in children.","A blood cancer is a cancer of the blood, bone marrow, or lymphatic system. In leukemia, the bone marrow makes large numbers of abnormal white blood cells.
+
+These abnormal cells do not work properly and can crowd out normal blood cells, which can cause:
+
+- **Too few red blood cells** → fatigue, weakness, shortness of breath, anemia  
+- **Too few normal white blood cells** → frequent infections  
+- **Too few platelets** → easy bruising, bleeding, or petechiae  
+
+It can also cause **fever, weight loss, swollen lymph nodes, bone pain, and an enlarged spleen or liver**. In short, blood cancers disrupt normal blood cell production and weaken the body’s ability to carry oxygen, fight infection, and control bleeding.","Blood cancer is a cancer of the blood-forming tissues, mainly the **bone marrow** and **lymphatic system**. **Leukemia** is one of the main types. In leukemia, the bone marrow makes large numbers of **abnormal white blood cells** that do not work properly.
+
+These abnormal cells can:
+- **Crowd out normal blood cells** in the bone marrow
+- Lower **red blood cells**, causing **anemia** and fatigue
+- Lower **platelets**, causing **easy bruising or bleeding**
+- Reduce healthy white blood cells, leading to **frequent infections**
+
+It can also cause:
+- **Swollen lymph nodes**
+- **Bone or joint pain**
+- **Fever**
+- **Weight loss**
+- **Enlarged spleen or liver**
+
+So, leukemia typically affects the body by disrupting normal blood cell production and weakening the body’s ability to carry oxygen, fight infection, and control bleeding.",6.1703030328008905,7.548891227878886,7.093153930824038,28.884835993743422,31.97693498048164,34.330119533193695,22.962962962962962,24.913494809688583,23.48993288590604,39.25925925925926,41.522491349480966,41.61073825503356,0.0,0.0,0.0,0.8528978228569031,0.8443684577941895,0.8398732542991638,1.0,0.6316607594490051,0.6246050596237183,4,3,3
+gpt-5.4,gpt54_hybrid_api.yaml,none,typos_grammar,10,What is (are) Addison Disease ?,what is (are) Addisons Diseae ?,What is Addison's disease?,"Your adrenal glands are just above your kidneys. The outside layer of these glands makes hormones that help your body respond to stress and regulate your blood pressure and water and salt balance. Addison disease happens if the adrenal glands don't make enough of these hormones. A problem with your immune system usually causes Addison disease. The immune system mistakenly attacks your own tissues, damaging your adrenal glands. Other causes include infections and cancer. Symptoms include - Weight loss - Muscle weakness - Fatigue that gets worse over time - Low blood pressure - Patchy or dark skin Lab tests can confirm that you have Addison disease. If you don't treat it, it can be fatal. You will need to take hormone pills for the rest of your life. If you have Addison disease, you should carry an emergency ID. It should say that you have the disease, list your medicines and say how much you need in an emergency. NIH: National Institute of Diabetes and Digestive and Kidney Diseases","Addison disease is **primary adrenal insufficiency**: a disorder in which the **adrenal glands do not make enough steroid hormones**, especially **cortisol** and often **aldosterone**.
+
+### What causes it?
+It most often happens because the adrenal cortex is damaged, commonly by:
+- **Autoimmune destruction** of the adrenal glands
+- Less commonly: **tuberculosis**, infections, bleeding into the glands, cancer spread, or certain inherited disorders
+
+### What does it cause?
+Low adrenal hormones can lead to:
+- **Fatigue, weakness**
+- **Weight loss, poor appetite**
+- **Low blood pressure**
+- **Salt craving**
+- **Nausea, vomiting, abdominal pain**
+- **Darkening of the skin** (hyperpigmentation), especially in primary Addison disease
+
+### Why is it important?
+If untreated, it can cause an **Addisonian crisis**, a life-threatening emergency with severe low blood pressure, dehydration, and shock.
+
+### Treatment
+Treatment is **lifelong hormone replacement**, usually:
+- **Glucocorticoid** replacement (such as hydrocortisone)
+- **Mineralocorticoid** replacement (such as fludrocortisone), if aldosterone is low
+
+If you want,","**Addison’s disease** is **primary adrenal insufficiency**—a condition in which the **adrenal glands** do not make enough **cortisol** and often **aldosterone**.
+
+### What it means
+The adrenal glands sit on top of the kidneys and help regulate:
+- blood pressure
+- salt and water balance
+- blood sugar
+- response to stress
+
+### Common causes
+- **Autoimmune destruction** of the adrenal glands (most common)
+- infections such as **tuberculosis**
+- bleeding into the adrenal glands
+- cancer or other damage to the glands
+
+### Symptoms
+- chronic **fatigue**
+- **weight loss**
+- **loss of appetite**
+- **low blood pressure**
+- **dizziness**
+- **nausea, vomiting, abdominal pain**
+- **salt craving**
+- **darkening of the skin** (hyperpigmentation)
+
+### Why it matters
+If severe, it can cause an **Addisonian crisis**, a medical emergency with:
+- very low blood pressure
+- dehydration
+- weakness
+- confusion
+- vomiting
+
+### Treatment
+It is","Addison’s disease is **primary adrenal insufficiency**—a condition in which the **adrenal glands do not produce enough cortisol, and often not enough aldosterone**.
+
+It is most commonly caused by **autoimmune destruction of the adrenal cortex**, but can also result from infections, bleeding, cancer, or certain genetic disorders.
+
+Common features include:
+- **Fatigue and weakness**
+- **Weight loss**
+- **Low blood pressure**
+- **Salt craving**
+- **Nausea or abdominal pain**
+- **Darkening of the skin (hyperpigmentation)**
+
+If severe, it can lead to an **Addisonian crisis**, a medical emergency with shock, severe low blood pressure, and electrolyte abnormalities. Treatment is **lifelong hormone replacement**.",2.2904473595000034,2.5471859160724466,2.508664279006871,38.5889329762862,36.78479301801536,31.635621469066123,18.43003412969283,19.85294117647059,18.47389558232932,34.129692832764505,37.49999999999999,29.71887550200803,0.0,0.0,0.0,0.8294209241867065,0.8270089030265808,0.846794605255127,1.0,0.7968354821205139,0.9411981105804443,5,3,5

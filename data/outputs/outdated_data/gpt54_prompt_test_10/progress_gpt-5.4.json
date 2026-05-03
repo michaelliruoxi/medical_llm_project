@@ -1,0 +1,11 @@
+{
+  "model": "gpt-5.4",
+  "config": "gpt54_hybrid_api.yaml",
+  "status": "partial",
+  "rows_completed": 11,
+  "rows_expected": 50,
+  "error": "[Errno 13] Permission denied: 'data\\\\outputs\\\\gpt54_prompt_test_10\\\\samples_gpt-5.4.csv'",
+  "samples_csv": "data\\outputs\\gpt54_prompt_test_10\\samples_gpt-5.4.csv",
+  "result_json": "data\\outputs\\gpt54_prompt_test_10\\result_gpt-5.4.json",
+  "updated_at_epoch": 1775599456.8180053
+}

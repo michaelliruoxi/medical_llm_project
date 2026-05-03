@@ -1,0 +1,1001 @@
+[
+  {
+    "model": "gpt-5.4",
+    "label": "gpt-5.4",
+    "config": "gpt54_hybrid_api.yaml",
+    "quantization": "none",
+    "n_examples": 50,
+    "n_noise_types": 5,
+    "noise_types": [
+      "typos_grammar",
+      "ambiguity",
+      "layperson",
+      "incomplete",
+      "overgeneralization"
+    ],
+    "noise_assignment": "round_robin",
+    "status": "partial",
+    "rows_completed": 11,
+    "rows_expected": 50,
+    "error": "[Errno 13] Permission denied: 'data\\\\outputs\\\\gpt54_prompt_test_10\\\\samples_gpt-5.4.csv'",
+    "detailed_results": [
+      {
+        "noise_type": "ambiguity",
+        "question_ids": [
+          1,
+          6
+        ],
+        "questions_clean": [
+          "What is (are) Abdominal Pain ?",
+          "Do you have information about Acupuncture"
+        ],
+        "questions_noisy": [
+          "What does it mean when you’ve got pain in the stomach area, and can it be from different things?",
+          "Do you have any info on that needle treatment thing people get, like for pain or stress or whatever?"
+        ],
+        "questions_repaired": [
+          "What can pain in the stomach or abdominal area indicate, and what different conditions or causes can lead to it?",
+          "What is acupuncture, and how is it used to treat pain, stress, or other health conditions?"
+        ],
+        "answers_clean": [
+          "Abdominal pain is pain or discomfort felt anywhere in the area between the chest and the groin, often called the belly or abdomen.\n\nIt can:\n- be mild or severe\n- come on suddenly or develop gradually\n- be constant or come and go\n- feel crampy, sharp, dull, burning, or aching\n\nAbdominal pain is a symptom, not a disease itself. It can be caused by many problems, including:\n- indigestion, gas, constipation\n- stomach flu or food poisoning\n- appendicitis\n- gallstones or kidney stones\n- ulcers\n- urinary or reproductive system problems\n- inflammatory or other serious conditions\n\nSome causes are minor, while others may need urgent medical care. Seek immediate medical attention if abdominal pain is severe, persistent, or occurs with fever, vomiting, fainting, trouble breathing, bloody stool or vomit, or a rigid/swollen abdomen.",
+          "Yes. **Acupuncture** is a component of traditional Chinese medicine in which very thin needles are inserted into specific points on the body. It is also used in some modern pain-management settings.\n\n### What it may help with\nEvidence is strongest for:\n- **Chronic pain**, especially:\n  - low back pain\n  - neck pain\n  - osteoarthritis knee pain\n  - some headache/migraine prevention\n- **Nausea/vomiting**, including postoperative or chemotherapy-related nausea\n- Some people also use it for **stress, insomnia, or other symptoms**, but evidence there is less consistent.\n\n### How it is thought to work\nFrom a biomedical perspective, acupuncture may:\n- stimulate nerves, muscles, and connective tissue\n- affect pain signaling\n- promote release of endorphins and other neurotransmitters\n\n### Risks and side effects\nWhen done by a **trained, licensed practitioner using sterile single-use needles**, it is generally safe. Possible side effects include:\n- soreness\n- minor bleeding or bruising\n- dizziness\n\nRare but serious complications:\n- infection\n- puncture injury (for"
+        ],
+        "answers_noisy": [
+          "Pain in the “stomach area” usually means **abdominal pain**—pain anywhere between the chest and pelvis. It does **not always come from the stomach itself**.\n\nYes, it can be caused by **many different things**, including:\n\n- **Indigestion, gas, or constipation**\n- **Stomach virus or food poisoning**\n- **Acid reflux or ulcers**\n- **Irritable bowel syndrome**\n- **Appendicitis**\n- **Gallbladder problems**\n- **Pancreatitis**\n- **Kidney stones or urinary infection**\n- **Muscle strain**\n- In women, **menstrual cramps, ovarian cysts, or other reproductive causes**\n\nThe **location, type, and timing** of the pain matter:\n- **Upper abdomen**: reflux, ulcer, gallbladder, pancreas\n- **Lower right side**: append",
+          "You’re probably thinking of **acupuncture**.\n\n- **What it is:** A treatment where a practitioner places **very thin needles** into specific points on the body.\n- **What people use it for:** Most commonly **chronic pain** (like low back pain, neck pain, knee arthritis, headaches/migraines). Some people also try it for **stress, anxiety, insomnia, or nausea"
+        ],
+        "answers_repaired": [
+          "Pain in the stomach or abdominal area is a **symptom, not a diagnosis**. It can come from many organs in the abdomen and range from **minor digestive problems to medical emergencies**.\n\n### Common possible causes\n- **Indigestion, gas, bloating**\n- **Stomach flu (gastroenteritis)**\n- **Constipation**\n- **Food poisoning**\n- **Acid reflux or gastritis**\n- **Stomach or duodenal ulcer**\n- **Irritable bowel syndrome (IBS)**\n\n### Inflammatory or infectious causes\n- **Appendicitis**\n- **Gallbladder disease** or **gallstones**\n- **Pancreatitis**\n- **Hepatitis**\n- **Urinary tract infection** or **kidney infection**\n- **Inflammatory bowel disease** (Crohn disease, ulcerative colitis)\n\n### Obstruction or structural problems\n- **Bowel obstruction**\n- **Hernia**\n- **Kidney stones",
+          "Acupuncture is a therapy in which a trained practitioner inserts very thin needles into specific points on the body. It is a traditional Chinese medicine technique, but it is also used in modern integrative medicine.\n\n### How it is thought to work\nFrom a modern medical perspective, acupuncture may help by:\n- stimulating nerves, muscles, and connective tissue\n- triggering the release of natural pain-relieving chemicals such as endorphins\n- affecting brain pathways involved in pain, stress, and mood\n- promoting relaxation and altering autonomic nervous system activity\n\n### What it is used for\nAcupuncture is most commonly used for:\n- **Pain conditions:** low back pain, neck pain, osteoarthritis, knee pain, headaches, and some types of chronic pain\n- **Stress and anxiety symptoms:** to promote relaxation and reduce tension\n- **Other symptoms/conditions:** nausea and vomiting (such as after surgery or chemotherapy), some sleep problems, and certain chronic symptom syndromes\n\n### How it is used\nTreatment usually involves:\n- a visit with a licensed or certified acupuncturist\n- placement of needles for about 15–30 minutes\n- a series of sessions rather than a single treatment\n\n### Effect"
+        ],
+        "reference_answers": [
+          "Your abdomen extends from below your chest to your groin. Some people call it the stomach, but your abdomen contains many other important organs. Pain in the abdomen can come from any one of them. The pain may start somewhere else, such as your chest. Severe pain doesn't always mean a serious problem. Nor does mild pain mean a problem is not serious. Call your healthcare provider if mild pain lasts a week or more or if you have pain with other symptoms. Get medical help immediately if - You have abdominal pain that is sudden and sharp - You also have pain in your chest, neck or shoulder - You're vomiting blood or have blood in your stool - Your abdomen is stiff, hard and tender to touch - You can't move your bowels, especially if you're also vomiting",
+          "Summary : Acupuncture has been practiced in China and other Asian countries for thousands of years. Acupuncture involves stimulating specific points on the body. This is most often done by inserting thin needles through the skin, to cause a change in the physical functions of the body. Research has shown that acupuncture reduces nausea and vomiting after surgery and chemotherapy. It can also relieve pain. Researchers don't fully understand how acupuncture works. It might aid the activity of your body's pain-killing chemicals. It also might affect how you release chemicals that regulate blood pressure and flow. NIH: National Center for Complementary and Integrative Health"
+        ],
+        "bleu": {
+          "clean": [
+            1.1943151536602332,
+            3.86984075390275
+          ],
+          "noisy": [
+            1.712470688558704,
+            5.474984726783374
+          ],
+          "repaired": [
+            2.1055612889520425,
+            4.067081803126725
+          ]
+        },
+        "chrf": {
+          "clean": [
+            36.28592634368332,
+            38.7446649223066
+          ],
+          "noisy": [
+            29.690616336271685,
+            21.3408202425862
+          ],
+          "repaired": [
+            28.372139736280467,
+            43.68233502531657
+          ]
+        },
+        "rouge_l": {
+          "clean": [
+            15.810276679841898,
+            14.814814814814817
+          ],
+          "noisy": [
+            10.95890410958904,
+            14.56953642384106
+          ],
+          "repaired": [
+            9.216589861751151,
+            15.094339622641511
+          ]
+        },
+        "token_f1": {
+          "clean": [
+            30.0395256916996,
+            28.806584362139915
+          ],
+          "noisy": [
+            23.74429223744292,
+            26.490066225165563
+          ],
+          "repaired": [
+            20.27649769585253,
+            33.9622641509434
+          ]
+        },
+        "exact_match": {
+          "clean": [
+            0.0,
+            0.0
+          ],
+          "noisy": [
+            0.0,
+            0.0
+          ],
+          "repaired": [
+            0.0,
+            0.0
+          ]
+        },
+        "bertscore": {
+          "clean": [
+            0.8425702452659607,
+            0.834347128868103
+          ],
+          "noisy": [
+            0.8058530688285828,
+            0.8437029123306274
+          ],
+          "repaired": [
+            0.7905220985412598,
+            0.8452605605125427
+          ]
+        },
+        "intent_preservation": {
+          "clean": [
+            1.0,
+            1.0
+          ],
+          "noisy": [
+            0.7265933156013489,
+            0.5253356099128723
+          ],
+          "repaired": [
+            0.7881773114204407,
+            0.7749202251434326
+          ]
+        },
+        "geval": {
+          "clean": [
+            4.0,
+            4.0
+          ],
+          "noisy": [
+            4.0,
+            4.0
+          ],
+          "repaired": [
+            4.0,
+            4.0
+          ]
+        }
+      },
+      {
+        "noise_type": "incomplete",
+        "question_ids": [
+          3,
+          8
+        ],
+        "questions_clean": [
+          "What is (are) Abscess ?",
+          "What is (are) Acute Lymphocytic Leukemia ?"
+        ],
+        "questions_noisy": [
+          "what is an absess and why does it happen in the body?",
+          "what is this leukemia thing, the one with the lymph cells?"
+        ],
+        "questions_repaired": [
+          "What is an abscess, and why does it develop in the body?",
+          "What is lymphocytic leukemia?"
+        ],
+        "answers_clean": [
+          "An **abscess** is a **localized collection of pus** that forms in body tissues, organs, or spaces, usually due to an **infection**.\n\nIt develops when the body tries to fight infection, leading to a pocket filled with:\n- dead white blood cells\n- bacteria or other germs\n- tissue debris\n\nCommon signs include:\n- **pain**\n- **swelling**\n- **redness**\n- **warmth**\n- sometimes **fever**\n\nAbscesses can occur **under the skin**, in the **mouth**, or **inside the body**. Treatment often involves **drainage** and sometimes **antibiotics**.",
+          "Acute lymphocytic leukemia (ALL), also called **acute lymphoblastic leukemia**, is a **rapidly progressing cancer of the blood and bone marrow** in which the body makes large numbers of **immature white blood cells called lymphoblasts**.\n\nThese abnormal cells crowd out normal blood-forming cells, which can lead to:\n- **Anemia** (low red blood cells)\n- **Infections** (low normal white blood cells)\n- **Bleeding/bruising** (low platelets)\n\nIt occurs most often in **children**, but it can also affect **adults**."
+        ],
+        "answers_noisy": [
+          "An **abscess** is a **localized collection of pus** inside the body, usually caused by an **infection**.\n\n### What it is\nPus is made of:\n- **White blood cells**\n- **Bacteria or other germs**\n- **Dead tissue**\n- **Fluid**\n\nAn abscess can form:\n- **In the skin** (like a boil)\n- **In the gums or teeth**\n- **Inside the body** (such as in the liver, brain, or abdomen)\n\n### Why it happens\nIt happens when the body’s immune system tries to **fight an infection**. White blood cells move to the infected area, causing inflammation. Tissue breaks down, and a pocket of pus forms. The body may wall off the infection to keep it from spreading, which creates the abscess.\n\n### Common causes\n- **Bacterial infection** is the most common cause\n- Blocked glands or hair follicles\n- Cuts, wounds, or splinters\n- Dental infections\n- Sometimes after surgery or in areas of inflammation\n\n### Common signs\n- Pain\n- Swelling\n- Redness\n- Warmth\n- Sometimes fever\n- If internal, symptoms depend on where it is\n\n### Treatment\nMany abscesses need:\n- **Drainage** of the pus\n- Sometimes **antibiotics**\n- Dental or surgical treatment if deeper\n\n### Important\nDo **not** squeeze or pop an abscess yourself, because that",
+          "The leukemia “with the lymph cells” is usually called **lymphocytic leukemia** or **lymphoblastic leukemia**. It’s a cancer of **lymphocytes**, which are a type of white blood cell.\n\nThe main types are:\n\n- **ALL (Acute Lymphoblastic Leukemia)**  \n  - Fast-growing  \n  - More common in children, but can happen in adults\n\n- **CLL (Chronic Lymphocytic Leukemia)**  \n  - Slow-growing  \n  - More common in older adults\n\nIn both, abnormal lymphocytes build up in the **bone marrow and blood** and can crowd out normal blood cells.\n\nCommon symptoms can include:\n- Fatigue\n- Frequent infections\n- Easy bruising or bleeding\n- Swollen lymph nodes\n- Fever\n- Weight loss\n\nIf you want, I can also explain the difference between **lymphocytic leukemia** and **myeloid leukemia** in simple terms."
+        ],
+        "answers_repaired": [
+          "An **abscess** is a **localized collection of pus** that forms within tissue, an organ, or a confined body space.\n\nIt develops when the body responds to an **infection**—most often bacterial, but sometimes fungal or parasitic. The immune system sends **white blood cells** to the area to fight the infection. As these cells, bacteria, damaged tissue, and fluid accumulate, they form **pus**. The body may wall off this infected area, creating a swollen, often painful pocket called an abscess.\n\nCommon reasons abscesses develop include:\n- **Bacterial infection**\n- **Blocked glands or ducts**\n- **Infected wounds or skin injuries**\n- **Foreign bodies** or irritation in tissue\n\nTypical signs can include **pain, swelling, redness, warmth, and sometimes fever**.",
+          "Lymphocytic leukemia is a cancer of the blood and bone marrow in which the body makes too many abnormal lymphocytes, a type of white blood cell involved in immune defense.\n\nMain forms:\n- **Acute lymphocytic leukemia (ALL):** fast-growing, involves immature lymphocytes.\n- **Chronic lymphocytic leukemia (CLL):** slower-growing, involves more mature but abnormal lymphocytes.\n\nThese abnormal cells crowd out normal blood-forming cells, which can cause:\n- fatigue or weakness\n- frequent infections\n- easy bruising or bleeding\n- swollen lymph nodes\n- fever or weight loss\n\nDiagnosis usually involves blood tests, bone marrow testing, and sometimes genetic studies. Treatment depends on the type and severity and may include chemotherapy, targeted therapy, immunotherapy, or stem cell transplant."
+        ],
+        "reference_answers": [
+          "An abscess is a pocket of pus. You can get an abscess almost anywhere in your body. When an area of your body becomes infected, your body's immune system tries to fight the infection. White blood cells go to the infected area, collect within the damaged tissue, and cause inflammation. During this process, pus forms. Pus is a mixture of living and dead white blood cells, germs, and dead tissue. Bacteria, viruses, parasites and swallowed objects can all lead to abscesses. Skin abscesses are easy to detect. They are red, raised and painful. Abscesses inside your body may not be obvious and can damage organs, including the brain, lungs and others. Treatments include drainage and antibiotics.",
+          "Leukemia is cancer of the white blood cells. White blood cells help your body fight infection. Your blood cells form in your bone marrow. In leukemia, however, the bone marrow produces abnormal white blood cells. These cells crowd out the healthy blood cells, making it hard for blood to do its work. In acute lymphocytic leukemia (ALL), also called acute lymphoblastic leukemia, there are too many of specific types of white blood cells called lymphocytes or lymphoblasts. ALL is the most common type of cancer in children. Possible risk factors for ALL include being male, being white, previous chemotherapy treatment, exposure to radiation, and for adults, being older than 70. Symptoms of ALL include: - Weakness or feeling tired - Fever - Easy bruising or bleeding - Bleeding under the skin - Shortness of breath - Weight loss or loss of appetite - Pain in the bones or stomach - Pain or a feeling of fullness below the ribs - Painless lumps in the neck, underarm, stomach, or groin Tests that examine the blood and bone marrow diagnose ALL. Treatments include chemotherapy, radiation therapy, stem cell transplants, and targeted therapy. Targeted therapy uses substances that attack cancer cells without harming normal cells. Once the leukemia is in remission, you need additional treatment to make sure that it does not come back. NIH: National Cancer Institute"
+        ],
+        "bleu": {
+          "clean": [
+            4.130575441814051,
+            5.714252369524544
+          ],
+          "noisy": [
+            5.701129824544524,
+            5.198247803191707
+          ],
+          "repaired": [
+            7.215922236326385,
+            6.19858744997473
+          ]
+        },
+        "chrf": {
+          "clean": [
+            32.87373209409287,
+            25.58296753780176
+          ],
+          "noisy": [
+            44.15440919125794,
+            29.442632436072557
+          ],
+          "repaired": [
+            42.05165746964448,
+            34.399436935920555
+          ]
+        },
+        "rouge_l": {
+          "clean": [
+            29.714285714285715,
+            18.115942028985508
+          ],
+          "noisy": [
+            23.04832713754647,
+            18.064516129032256
+          ],
+          "repaired": [
+            22.115384615384613,
+            22.508038585209007
+          ]
+        },
+        "token_f1": {
+          "clean": [
+            37.71428571428572,
+            33.333333333333336
+          ],
+          "noisy": [
+            38.66171003717472,
+            36.7741935483871
+          ],
+          "repaired": [
+            41.34615384615385,
+            35.369774919614144
+          ]
+        },
+        "exact_match": {
+          "clean": [
+            0.0,
+            0.0
+          ],
+          "noisy": [
+            0.0,
+            0.0
+          ],
+          "repaired": [
+            0.0,
+            0.0
+          ]
+        },
+        "bertscore": {
+          "clean": [
+            0.8524172902107239,
+            0.8391197323799133
+          ],
+          "noisy": [
+            0.8439401388168335,
+            0.8368881344795227
+          ],
+          "repaired": [
+            0.8687686324119568,
+            0.8540346622467041
+          ]
+        },
+        "intent_preservation": {
+          "clean": [
+            1.0,
+            0.9999998807907104
+          ],
+          "noisy": [
+            0.5876433849334717,
+            0.7389110326766968
+          ],
+          "repaired": [
+            0.8117824792861938,
+            0.90718674659729
+          ]
+        },
+        "geval": {
+          "clean": [
+            5.0,
+            4.0
+          ],
+          "noisy": [
+            4.0,
+            4.0
+          ],
+          "repaired": [
+            5.0,
+            4.0
+          ]
+        }
+      },
+      {
+        "noise_type": "layperson",
+        "question_ids": [
+          2,
+          7
+        ],
+        "questions_clean": [
+          "What is (are) Abortion ?",
+          "What is (are) Acute Bronchitis ?"
+        ],
+        "questions_noisy": [
+          "What does abortion mean exactly, like is it the same as ending a pregancy or something else?",
+          "what is this chest cough thing where you get a lot of mucus and your lungs feel all irritated?"
+        ],
+        "questions_repaired": [
+          "What exactly does the term “abortion” mean, and is it the same as ending a pregnancy?",
+          "What condition causes a chesty cough with a lot of mucus and a feeling of irritation in the lungs?"
+        ],
+        "answers_clean": [
+          "Abortion is the termination or loss of a pregnancy before the fetus is viable outside the uterus.\n\nIt may be:\n\n- **Spontaneous abortion**: a **miscarriage**, occurring naturally.\n- **Induced abortion**: deliberate ending of a pregnancy by **medication or a medical/surgical procedure**.\n\nIn medical use, abortion generally refers to pregnancy ending in the early stages, before the fetus can survive independently.",
+          "Acute bronchitis is a short-term inflammation of the bronchial tubes, the airways that carry air to and from the lungs. It usually causes:\n\n- Cough, often with mucus\n- Chest discomfort\n- Wheezing or mild shortness of breath\n- Low-grade fever and fatigue\n\nIt is most often caused by a viral infection, often following a cold or flu, and usually lasts a few days to a few weeks. It is different from pneumonia because the infection/inflammation is mainly in the bronchial tubes rather than the lung tissue itself."
+        ],
+        "answers_noisy": [
+          "In medical terms, **abortion** means the **ending of a pregnancy before the fetus is able to survive outside the uterus**.\n\nThere are **two main meanings**:\n\n- **Induced abortion**: a pregnancy is **ended on purpose** using medication or a procedure.\n- **Spontaneous abortion**: the pregnancy **ends on its own**, which is what people usually call a **miscarriage**.\n\nSo yes, abortion can mean **ending a pregnancy**, but in medicine the word can refer to **either a planned termination or a miscarriage**, depending on the context.",
+          "That often describes **bronchitis**, especially **acute bronchitis**—inflammation of the **bronchial tubes** in the chest that causes:\n\n- **Cough**\n- **Mucus/phlegm**\n- A feeling of **chest irritation**, tightness, or “rattling”\n\nPeople sometimes call it a **“chest cold.”**\n\nOther possible causes include:\n- **Pneumonia**\n- **Asthma**\n- **COPD/smoker’s cough**\n- A lingering **post-viral cough**\n\nIf you have **trouble breathing, high fever, chest pain, wheezing, cough up blood, or symptoms lasting more than about 3 weeks**, you should get checked by a clinician."
+        ],
+        "answers_repaired": [
+          "Medically, **“abortion” means the ending of a pregnancy before the fetus is viable** outside the uterus.\n\nThere are **two main types**:\n\n- **Spontaneous abortion**: this is a **miscarriage**, when the pregnancy ends on its own.\n- **Induced abortion**: this is a **deliberate medical or surgical termination** of a pregnancy.\n\nSo, **ending a pregnancy can mean abortion**, but the term **“abortion” is broader** than just a planned procedure, because it also includes miscarriage in medical terminology.\n\nIn everyday conversation, people usually use **“abortion” to mean induced abortion**, while doctors may use it more broadly.",
+          "A **chesty cough with a lot of mucus and a feeling of irritation in the lungs** is commonly caused by **bronchitis**, especially **acute bronchitis**.\n\nBronchitis is inflammation of the **bronchial tubes** in the lungs, and it often causes:\n- **Productive cough** with mucus/phlegm\n- **Chest discomfort or irritation**\n- **Wheezing**\n- **Mild shortness of breath**\n- Sometimes a **low fever**\n\nIf symptoms are severe, last more than a few weeks, or include high fever, chest pain, or trouble breathing, medical evaluation is important because **pneumonia** or other lung conditions can cause similar symptoms."
+        ],
+        "reference_answers": [
+          "An abortion is a procedure to end a pregnancy. It uses medicine or surgery to remove the embryo or fetus and placenta from the uterus. The procedure is done by a licensed health care professional. The decision to end a pregnancy is very personal. If you are thinking of having an abortion, most healthcare providers advise counseling.",
+          "Bronchitis is an inflammation of the bronchial tubes, the airways that carry air to your lungs. It causes a cough that often brings up mucus. It can also cause shortness of breath, wheezing, a low fever, and chest tightness. There are two main types of bronchitis: acute and chronic. Most cases of acute bronchitis get better within several days. But your cough can last for several weeks after the infection is gone. The same viruses that cause colds and the flu often cause acute bronchitis. These viruses spread through the air when people cough, or though physical contact (for example, on unwashed hands). Being exposed to tobacco smoke, air pollution, dusts, vapors, and fumes can also cause acute bronchitis. Less often, bacteria can also cause acute bronchitis. To diagnose acute bronchitis, your health care provider will ask about your symptoms and listen to your breathing. You may also have other tests. Treatments include rest, fluids, and aspirin (for adults) or acetaminophen to treat fever. A humidifier or steam can also help. You may need inhaled medicine to open your airways if you are wheezing. Antibiotics won't help if the cause is viral. You may get antibiotics if the cause is bacterial. NIH: National Heart, Lung, and Blood Institute"
+        ],
+        "bleu": {
+          "clean": [
+            3.282830908427841,
+            4.059195747756616
+          ],
+          "noisy": [
+            2.166748353636259,
+            1.2399891204772149
+          ],
+          "repaired": [
+            2.480159737405124,
+            1.7181170770696896
+          ]
+        },
+        "chrf": {
+          "clean": [
+            36.46838576824171,
+            24.341578821132725
+          ],
+          "noisy": [
+            35.9587616040859,
+            21.920666785846805
+          ],
+          "repaired": [
+            37.25225003240158,
+            25.30713305267144
+          ]
+        },
+        "rouge_l": {
+          "clean": [
+            16.49484536082474,
+            23.44322344322344
+          ],
+          "noisy": [
+            15.652173913043477,
+            14.869888475836431
+          ],
+          "repaired": [
+            14.173228346456693,
+            17.985611510791365
+          ]
+        },
+        "token_f1": {
+          "clean": [
+            30.927835051546392,
+            32.234432234432234
+          ],
+          "noisy": [
+            29.565217391304348,
+            28.25278810408922
+          ],
+          "repaired": [
+            23.62204724409449,
+            31.654676258992804
+          ]
+        },
+        "exact_match": {
+          "clean": [
+            0.0,
+            0.0
+          ],
+          "noisy": [
+            0.0,
+            0.0
+          ],
+          "repaired": [
+            0.0,
+            0.0
+          ]
+        },
+        "bertscore": {
+          "clean": [
+            0.8550016283988953,
+            0.8562992215156555
+          ],
+          "noisy": [
+            0.842546820640564,
+            0.826600193977356
+          ],
+          "repaired": [
+            0.8399978876113892,
+            0.8350681662559509
+          ]
+        },
+        "intent_preservation": {
+          "clean": [
+            0.9999999403953552,
+            1.0
+          ],
+          "noisy": [
+            0.7511570453643799,
+            0.5762957334518433
+          ],
+          "repaired": [
+            0.7952948212623596,
+            0.571372926235199
+          ]
+        },
+        "geval": {
+          "clean": [
+            4.0,
+            4.0
+          ],
+          "noisy": [
+            4.0,
+            3.0
+          ],
+          "repaired": [
+            4.0,
+            4.0
+          ]
+        }
+      },
+      {
+        "noise_type": "overgeneralization",
+        "question_ids": [
+          4,
+          9
+        ],
+        "questions_clean": [
+          "What is (are) Acne ?",
+          "What is (are) Acute Myeloid Leukemia ?"
+        ],
+        "questions_noisy": [
+          "What are common skin problems, and how do they usually show up?",
+          "What is a blood cancer, like leukemia, and how does it usually affect the body?"
+        ],
+        "questions_repaired": [
+          "What are some common skin conditions, and what symptoms or signs do they typically cause?",
+          "What is blood cancer, such as leukemia, and how does it typically affect the body?"
+        ],
+        "answers_clean": [
+          "Acne is a common skin condition in which the hair follicles and oil (sebaceous) glands become clogged and inflamed. It causes lesions such as:\n\n- **Whiteheads and blackheads** (comedones)\n- **Pimples** (papules and pustules)\n- **Deeper lumps or cysts** in more severe cases\n\nIt most often affects the **face, chest, shoulders, and back**. Acne is especially common during **adolescence**, but it can occur at any age. Factors that contribute include **increased oil production, clogged pores, bacteria, and inflammation**.",
+          "Acute myeloid leukemia (AML) is a fast-growing cancer of the blood and bone marrow in which the marrow makes large numbers of abnormal, immature myeloid cells (called myeloblasts or blasts).\n\nThese abnormal cells do not develop into normal blood cells and crowd out healthy cells, which can cause:\n- anemia,\n- infections,\n- easy bruising or bleeding.\n\nAML is called “acute” because it progresses quickly, and “myeloid” because it starts in the myeloid line of blood-forming cells. It is the most common acute leukemia in adults, but it can also occur in children."
+        ],
+        "answers_noisy": [
+          "Common skin problems include:\n\n- **Acne**: pimples, blackheads, whiteheads, or deeper tender lumps, usually on the face, chest, or back.  \n- **Eczema (atopic dermatitis)**: dry, itchy, red, inflamed patches; may crack or ooze.  \n- **Contact dermatitis**: red, itchy, sometimes blistering rash after touching an irritant or allergen.  \n- **Psoriasis**: thick, well-defined red patches with silvery scales, often on elbows, knees, or scalp.  \n- **Fungal infections**  \n  - **Ringworm**: ring-shaped, scaly, itchy rash  \n  - **Athlete’s foot**: itching, peeling, cracking between toes  \n  - **Yeast infections**: red, moist, itchy rash in skin folds  \n- **Hives (urticaria)**: raised, itchy welts that can appear suddenly and move around.  \n- **Warts**: small rough skin growths caused by HPV.  \n- **Impetigo**: contagious bacterial infection causing red sores and honey-colored crusts, often around the nose or",
+          "A blood cancer is a cancer of the blood, bone marrow, or lymphatic system. In leukemia, the bone marrow makes large numbers of abnormal white blood cells.\n\nThese abnormal cells do not work properly and can crowd out normal blood cells, which can cause:\n\n- **Too few red blood cells** → fatigue, weakness, shortness of breath, anemia  \n- **Too few normal white blood cells** → frequent infections  \n- **Too few platelets** → easy bruising, bleeding, or petechiae  \n\nIt can also cause **fever, weight loss, swollen lymph nodes, bone pain, and an enlarged spleen or liver**. In short, blood cancers disrupt normal blood cell production and weaken the body’s ability to carry oxygen, fight infection, and control bleeding."
+        ],
+        "answers_repaired": [
+          "Some common skin conditions and their typical signs/symptoms include:\n\n- **Acne**: Blackheads, whiteheads, pimples, inflamed bumps, and sometimes cysts, usually on the face, chest, or back.\n- **Eczema (atopic dermatitis)**: Dry, itchy, red, inflamed skin; may crack, ooze, or become thickened from scratching.\n- **Psoriasis**: Well-defined red plaques with silvery scale, often on the scalp, elbows, knees, and lower back; may itch or crack.\n- **Contact dermatitis**: Red, itchy, sometimes blistering rash after contact with an irritant or allergen.\n- **Urticaria (hives)**: Raised, itchy welts that appear suddenly and can move around the body.\n- **Fungal infections**\n  - **Ringworm (tinea corporis)**: Circular, scaly, itchy rash with clearer skin in the center.\n  - **Athlete’s foot (tinea pedis)**: Itching, scaling, peeling, or cracking between the toes or on the soles.\n- **Impetigo**: Superficial bacterial infection causing red sores or blisters that rupture and form honey-colored crusts.\n- **Cellulitis**: Painful",
+          "Blood cancer is a cancer of the blood-forming tissues, mainly the **bone marrow** and **lymphatic system**. **Leukemia** is one of the main types. In leukemia, the bone marrow makes large numbers of **abnormal white blood cells** that do not work properly.\n\nThese abnormal cells can:\n- **Crowd out normal blood cells** in the bone marrow\n- Lower **red blood cells**, causing **anemia** and fatigue\n- Lower **platelets**, causing **easy bruising or bleeding**\n- Reduce healthy white blood cells, leading to **frequent infections**\n\nIt can also cause:\n- **Swollen lymph nodes**\n- **Bone or joint pain**\n- **Fever**\n- **Weight loss**\n- **Enlarged spleen or liver**\n\nSo, leukemia typically affects the body by disrupting normal blood cell production and weakening the body’s ability to carry oxygen, fight infection, and control bleeding."
+        ],
+        "reference_answers": [
+          "Acne is a common skin disease that causes pimples. Pimples form when hair follicles under your skin clog up. Most pimples form on the face, neck, back, chest, and shoulders. Anyone can get acne, but it is common in teenagers and young adults. It is not serious, but it can cause scars. No one knows exactly what causes acne. Hormone changes, such as those during the teenage years and pregnancy, probably play a role. There are many myths about what causes acne. Chocolate and greasy foods are often blamed, but there is little evidence that foods have much effect on acne in most people. Another common myth is that dirty skin causes acne; however, blackheads and pimples are not caused by dirt. Stress doesn't cause acne, but stress can make it worse. If you have acne - Clean your skin gently - Try not to touch your skin - Avoid the sun Treatments for acne include medicines and creams. NIH: National Institute of Arthritis and Musculoskeletal and Skin Diseases",
+          "Leukemia is cancer of the white blood cells. White blood cells help your body fight infection. Your blood cells form in your bone marrow. In leukemia, however, the bone marrow produces abnormal white blood cells. These cells crowd out the healthy blood cells, making it hard for blood to do its work. In acute myeloid leukemia (AML), there are too many of a specific type of white blood cell called a myeloblast. AML is the most common type of acute leukemia in adults. This type of cancer usually gets worse quickly if it is not treated. Possible risk factors include smoking, previous chemotherapy treatment, and exposure to radiation. Symptoms of AML include: - Fever - Shortness of breath - Easy bruising or bleeding - Bleeding under the skin - Weakness or feeling tired - Weight loss or loss of appetite Tests that examine the blood and bone marrow diagnose AML. Treatments include chemotherapy, other drugs, radiation therapy, stem cell transplants, and targeted therapy. Targeted therapy uses substances that attack cancer cells without harming normal cells. Once the leukemia is in remission, you need additional treatment to make sure that it does not come back. NIH: National Cancer Institute"
+        ],
+        "bleu": {
+          "clean": [
+            4.873455686734344,
+            6.1703030328008905
+          ],
+          "noisy": [
+            2.5703756351479434,
+            7.548891227878886
+          ],
+          "repaired": [
+            2.376821346138592,
+            7.093153930824038
+          ]
+        },
+        "chrf": {
+          "clean": [
+            26.23505918841117,
+            28.884835993743422
+          ],
+          "noisy": [
+            28.374671621985964,
+            31.97693498048164
+          ],
+          "repaired": [
+            30.34143666990019,
+            34.330119533193695
+          ]
+        },
+        "rouge_l": {
+          "clean": [
+            18.803418803418804,
+            22.96296296296296
+          ],
+          "noisy": [
+            10.03584229390681,
+            24.913494809688583
+          ],
+          "repaired": [
+            8.783783783783784,
+            23.48993288590604
+          ]
+        },
+        "token_f1": {
+          "clean": [
+            30.769230769230766,
+            39.25925925925926
+          ],
+          "noisy": [
+            15.053763440860212,
+            41.522491349480966
+          ],
+          "repaired": [
+            16.216216216216218,
+            41.61073825503356
+          ]
+        },
+        "exact_match": {
+          "clean": [
+            0.0,
+            0.0
+          ],
+          "noisy": [
+            0.0,
+            0.0
+          ],
+          "repaired": [
+            0.0,
+            0.0
+          ]
+        },
+        "bertscore": {
+          "clean": [
+            0.8459967374801636,
+            0.8528978228569031
+          ],
+          "noisy": [
+            0.8073808550834656,
+            0.8443684577941895
+          ],
+          "repaired": [
+            0.8162743449211121,
+            0.8398732542991638
+          ]
+        },
+        "intent_preservation": {
+          "clean": [
+            1.0,
+            1.0
+          ],
+          "noisy": [
+            0.3665246963500976,
+            0.6316607594490051
+          ],
+          "repaired": [
+            0.3793940246105194,
+            0.6246050596237183
+          ]
+        },
+        "geval": {
+          "clean": [
+            4.0,
+            4.0
+          ],
+          "noisy": [
+            1.0,
+            3.0
+          ],
+          "repaired": [
+            1.0,
+            3.0
+          ]
+        }
+      },
+      {
+        "noise_type": "typos_grammar",
+        "question_ids": [
+          0,
+          5,
+          10
+        ],
+        "questions_clean": [
+          "Do you have information about A1C",
+          "What is (are) Acoustic Neuroma ?",
+          "What is (are) Addison Disease ?"
+        ],
+        "questions_noisy": [
+          "Do yu have any informaiton abot A1C??",
+          "wht is (are) Acostic Neuroma??",
+          "what is (are) Addisons Diseae ?"
+        ],
+        "questions_repaired": [
+          "What is A1C, and what information should I know about it?",
+          "What is an acoustic neuroma?",
+          "What is Addison's disease?"
+        ],
+        "answers_clean": [
+          "Yes. **A1C** (also called **HbA1c** or **glycated hemoglobin**) is a blood test that shows your **average blood sugar over about the past 2–3 months**.\n\n### What it’s used for\n- **Diagnosing diabetes and prediabetes**\n- **Monitoring diabetes control** over time\n\n### Common A1C ranges\nFor most adults:\n- **Normal:** below **5.7%**\n- **Prediabetes:** **5.7% to 6.4%**\n- **Diabetes:** **6.5% or higher** on testing\n\n### Typical treatment goal\nFor many adults with diabetes, a common target is:\n- **Below 7%**\nBut the best goal depends on age, other health conditions, and risk of low blood sugar.\n\n### Important notes\nA1C may be less accurate in some situations, such as:\n- **Anemia**\n- **Kidney disease**\n- **Pregnancy**\n- Certain **blood disorders** or recent blood loss/transfusion\n\nIf you want, I can also explain:\n- how to lower A1C,\n-",
+          "An acoustic neuroma, also called a **vestibular schwannoma**, is a **benign (noncancerous), usually slow-growing tumor** that develops from the **Schwann cells** covering the **vestibulocochlear nerve (cranial nerve VIII)**, most often the **vestibular branch**.\n\nIt typically arises in the **internal auditory canal** or **cerebellopontine angle** and can cause:\n\n- **Unilateral hearing loss**\n- **Tinnitus** (ringing in one ear)\n- **Balance problems or dizziness**\n- Larger tumors may press on nearby nerves or the brainstem\n\nSo, acoustic neuroma is not a cancer, but it can still cause important symptoms because of its location.",
+          "Addison disease is **primary adrenal insufficiency**: a disorder in which the **adrenal glands do not make enough steroid hormones**, especially **cortisol** and often **aldosterone**.\n\n### What causes it?\nIt most often happens because the adrenal cortex is damaged, commonly by:\n- **Autoimmune destruction** of the adrenal glands\n- Less commonly: **tuberculosis**, infections, bleeding into the glands, cancer spread, or certain inherited disorders\n\n### What does it cause?\nLow adrenal hormones can lead to:\n- **Fatigue, weakness**\n- **Weight loss, poor appetite**\n- **Low blood pressure**\n- **Salt craving**\n- **Nausea, vomiting, abdominal pain**\n- **Darkening of the skin** (hyperpigmentation), especially in primary Addison disease\n\n### Why is it important?\nIf untreated, it can cause an **Addisonian crisis**, a life-threatening emergency with severe low blood pressure, dehydration, and shock.\n\n### Treatment\nTreatment is **lifelong hormone replacement**, usually:\n- **Glucocorticoid** replacement (such as hydrocortisone)\n- **Mineralocorticoid** replacement (such as fludrocortisone), if aldosterone is low\n\nIf you want,"
+        ],
+        "answers_noisy": [
+          "Yes — **A1C** (also called **HbA1c** or **hemoglobin A1C**) is a blood test that shows your **average blood sugar level over about the past 2–3 months**.\n\n### What it measures\nIt looks at how much sugar is attached to hemoglobin in red blood cells.\n\n### Common A1C ranges\n- **Normal:** **below 5.7%**\n- **Prediabetes:** **5.7% to 6.4%**\n- **Diabetes:** **6.5% or higher** on testing\n\n### For people with diabetes\nMany adults aim for an A1C **below 7%**, but the goal can vary depending on age, health, and risk of low blood sugar.\n\n### Why it matters\nA higher A1C means blood sugar has been running high, which can increase the risk of:\n- nerve damage\n- kidney disease\n- eye problems\n- heart disease\n\n### Important limits\nA1C may be less accurate in some cases, such as:\n- anemia\n- recent blood loss or transfusion\n- kidney disease\n- certain hemoglobin disorders\n\nIf you want, I can also explain:\n1. **how to lower A",
+          "**Acoustic neuroma** is a **usually benign (non-cancerous) tumor** that grows on the **vestibulocochlear nerve (8th cranial nerve)**, which connects the inner ear to the brain. It is also called a **vestibular schwannoma**.\n\n### Common symptoms\n- **Hearing loss** in one ear\n- **Ringing in the ear (tinnitus)**\n- **Balance problems or dizziness**\n- Sometimes **facial numbness or weakness** if the tumor gets large\n\n### Important points\n- It typically **grows slowly**\n- It is **not a brain cancer**, but a large tumor can press on nearby brain structures\n- Diagnosis is usually made with **hearing tests** and **MRI**\n\n### Treatment\nDepends on the size and symptoms:\n- **Observation** with repeat MRIs\n- **Radiation (radiosurgery)**\n- **Surgical removal**\n\nIf you want, I can also explain it in very simple language.",
+          "**Addison’s disease** is **primary adrenal insufficiency**—a condition in which the **adrenal glands** do not make enough **cortisol** and often **aldosterone**.\n\n### What it means\nThe adrenal glands sit on top of the kidneys and help regulate:\n- blood pressure\n- salt and water balance\n- blood sugar\n- response to stress\n\n### Common causes\n- **Autoimmune destruction** of the adrenal glands (most common)\n- infections such as **tuberculosis**\n- bleeding into the adrenal glands\n- cancer or other damage to the glands\n\n### Symptoms\n- chronic **fatigue**\n- **weight loss**\n- **loss of appetite**\n- **low blood pressure**\n- **dizziness**\n- **nausea, vomiting, abdominal pain**\n- **salt craving**\n- **darkening of the skin** (hyperpigmentation)\n\n### Why it matters\nIf severe, it can cause an **Addisonian crisis**, a medical emergency with:\n- very low blood pressure\n- dehydration\n- weakness\n- confusion\n- vomiting\n\n### Treatment\nIt is"
+        ],
+        "answers_repaired": [
+          "**A1C** (also called **hemoglobin A1C** or **HbA1c**) is a **blood test that shows your average blood sugar level over the past about 2–3 months**.\n\n### How it works\nSugar in the blood attaches to hemoglobin, a protein in red blood cells. The A1C measures the **percentage of hemoglobin that has sugar attached**.\n\n### Why it matters\nIt is used to:\n- **Screen for and diagnose** **prediabetes** and **diabetes**\n- **Monitor diabetes control** over time\n- Help estimate risk of diabetes-related complications\n\n### Typical A1C ranges\n- **Normal:** **below 5.7%**\n- **Prediabetes:** **5.7% to 6.4%**\n- **Diabetes:** **6.5% or higher** on testing\n\n### Common target for people with diabetes\nFor many nonpregnant adults with diabetes,",
+          "An acoustic neuroma, also called a vestibular schwannoma, is a usually benign, slow-growing tumor that arises from the Schwann cells covering the vestibular portion of the eighth cranial nerve (the vestibulocochlear nerve), which connects the inner ear to the brain.\n\nIt can cause:\n- Gradual hearing loss, usually on one side\n- Tinnitus (ringing in the ear)\n- Dizziness or balance problems\n- If larger, pressure on nearby nerves or brain structures, causing facial numbness or weakness\n\nDespite the name, it is not a cancer of the “acoustic” part itself, but a nerve-sheath tumor near the hearing and balance nerve.",
+          "Addison’s disease is **primary adrenal insufficiency**—a condition in which the **adrenal glands do not produce enough cortisol, and often not enough aldosterone**.\n\nIt is most commonly caused by **autoimmune destruction of the adrenal cortex**, but can also result from infections, bleeding, cancer, or certain genetic disorders.\n\nCommon features include:\n- **Fatigue and weakness**\n- **Weight loss**\n- **Low blood pressure**\n- **Salt craving**\n- **Nausea or abdominal pain**\n- **Darkening of the skin (hyperpigmentation)**\n\nIf severe, it can lead to an **Addisonian crisis**, a medical emergency with shock, severe low blood pressure, and electrolyte abnormalities. Treatment is **lifelong hormone replacement**."
+        ],
+        "reference_answers": [
+          "Summary : A1C is a blood test for type 2 diabetes and prediabetes. It measures your average blood glucose, or blood sugar, level over the past 3 months. Doctors may use the A1C alone or in combination with other diabetes tests to make a diagnosis. They also use the A1C to see how well you are managing your diabetes. This test is different from the blood sugar checks that people with diabetes do every day. Your A1C test result is given in percentages. The higher the percentage, the higher your blood sugar levels have been: - A normal A1C level is below 5.7 percent - Prediabetes is between 5.7 to 6.4 percent. Having prediabetes is a risk factor for getting type 2 diabetes. People with prediabetes may need retests every year. - Type 2 diabetes is above 6.5 percent - If you have diabetes, you should have the A1C test at least twice a year. The A1C goal for many people with diabetes is below 7. It may be different for you. Ask what your goal should be. If your A1C result is too high, you may need to change your diabetes care plan. NIH: National Institute of Diabetes and Digestive and Kidney Diseases",
+          "An acoustic neuroma is a benign tumor that develops on the nerve that connects the ear to the brain. The tumor usually grows slowly. As it grows, it presses against the hearing and balance nerves. At first, you may have no symptoms or mild symptoms. They can include - Loss of hearing on one side - Ringing in ears - Dizziness and balance problems The tumor can also eventually cause numbness or paralysis of the face. If it grows large enough, it can press against the brain, becoming life-threatening. Acoustic neuroma can be difficult to diagnose, because the symptoms are similar to those of middle ear problems. Ear exams, hearing tests, and scans can show if you have it. If the tumor stays small, you may only need to have it checked regularly. If you do need treatment, surgery and radiation are options. If the tumors affect both hearing nerves, it is often because of a genetic disorder called neurofibromatosis. NIH: National Institute on Deafness and Communication Disorders",
+          "Your adrenal glands are just above your kidneys. The outside layer of these glands makes hormones that help your body respond to stress and regulate your blood pressure and water and salt balance. Addison disease happens if the adrenal glands don't make enough of these hormones. A problem with your immune system usually causes Addison disease. The immune system mistakenly attacks your own tissues, damaging your adrenal glands. Other causes include infections and cancer. Symptoms include - Weight loss - Muscle weakness - Fatigue that gets worse over time - Low blood pressure - Patchy or dark skin Lab tests can confirm that you have Addison disease. If you don't treat it, it can be fatal. You will need to take hormone pills for the rest of your life. If you have Addison disease, you should carry an emergency ID. It should say that you have the disease, list your medicines and say how much you need in an emergency. NIH: National Institute of Diabetes and Digestive and Kidney Diseases"
+        ],
+        "bleu": {
+          "clean": [
+            3.225707925095393,
+            2.2575367796681336,
+            2.2904473595000034
+          ],
+          "noisy": [
+            3.377842705326077,
+            4.373217900063025,
+            2.5471859160724466
+          ],
+          "repaired": [
+            3.9813188240336848,
+            7.004308835854431,
+            2.508664279006871
+          ]
+        },
+        "chrf": {
+          "clean": [
+            29.973315502188395,
+            30.287239249729748,
+            38.5889329762862
+          ],
+          "noisy": [
+            31.08387626598017,
+            36.12837888772306,
+            36.78479301801536
+          ],
+          "repaired": [
+            31.179791200643248,
+            33.31199420351008,
+            31.635621469066123
+          ]
+        },
+        "rouge_l": {
+          "clean": [
+            26.282051282051285,
+            20.77922077922078,
+            18.43003412969283
+          ],
+          "noisy": [
+            25.74850299401197,
+            28.571428571428577,
+            19.85294117647059
+          ],
+          "repaired": [
+            26.62116040955632,
+            24.680851063829788,
+            18.47389558232932
+          ]
+        },
+        "token_f1": {
+          "clean": [
+            42.94871794871795,
+            34.63203463203464,
+            34.129692832764505
+          ],
+          "noisy": [
+            43.71257485029941,
+            43.24324324324324,
+            37.49999999999999
+          ],
+          "repaired": [
+            45.05119453924914,
+            37.4468085106383,
+            29.71887550200803
+          ]
+        },
+        "exact_match": {
+          "clean": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "noisy": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "repaired": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "bertscore": {
+          "clean": [
+            0.847036600112915,
+            0.8429545164108276,
+            0.8294209241867065
+          ],
+          "noisy": [
+            0.84625244140625,
+            0.8502326607704163,
+            0.8270089030265808
+          ],
+          "repaired": [
+            0.848076581954956,
+            0.8670094013214111,
+            0.846794605255127
+          ]
+        },
+        "intent_preservation": {
+          "clean": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "noisy": [
+            0.7733116745948792,
+            0.5812037587165833,
+            0.7968354821205139
+          ],
+          "repaired": [
+            0.9319746494293212,
+            0.9461374878883362,
+            0.9411981105804444
+          ]
+        },
+        "geval": {
+          "clean": [
+            4.0,
+            4.0,
+            5.0
+          ],
+          "noisy": [
+            4.0,
+            5.0,
+            3.0
+          ],
+          "repaired": [
+            4.0,
+            4.0,
+            5.0
+          ]
+        }
+      }
+    ],
+    "per_noise_type": [
+      {
+        "noise_type": "typos_grammar",
+        "bleu_clean_mean": 2.5912306880878435,
+        "bleu_noisy_mean": 3.4327488404871827,
+        "bleu_repaired_mean": 4.498097312964996,
+        "chrf_clean_mean": 32.94982924273478,
+        "chrf_noisy_mean": 34.665682723906194,
+        "chrf_repaired_mean": 32.04246895773982,
+        "rouge_l_clean_mean": 21.830435396988296,
+        "rouge_l_noisy_mean": 24.72429091397038,
+        "rouge_l_repaired_mean": 23.258635685238477,
+        "token_f1_clean_mean": 37.23681513783903,
+        "token_f1_noisy_mean": 41.485272697847556,
+        "token_f1_repaired_mean": 37.40562618396516,
+        "exact_match_clean_mean": 0.0,
+        "exact_match_noisy_mean": 0.0,
+        "exact_match_repaired_mean": 0.0,
+        "bertscore_clean_mean": 0.8398040135701498,
+        "bertscore_noisy_mean": 0.8411646684010824,
+        "bertscore_repaired_mean": 0.8539601961771647,
+        "intent_preservation_clean_mean": 1.0,
+        "intent_preservation_noisy_mean": 0.7171169718106588,
+        "intent_preservation_repaired_mean": 0.9397700826327006,
+        "geval_clean_mean": 4.333333333333333,
+        "geval_noisy_mean": 4.0,
+        "geval_repaired_mean": 4.333333333333333
+      },
+      {
+        "noise_type": "ambiguity",
+        "bleu_clean_mean": 2.5320779537814917,
+        "bleu_noisy_mean": 3.593727707671039,
+        "bleu_repaired_mean": 3.086321546039384,
+        "chrf_clean_mean": 37.51529563299496,
+        "chrf_noisy_mean": 25.515718289428943,
+        "chrf_repaired_mean": 36.02723738079852,
+        "rouge_l_clean_mean": 15.312545747328357,
+        "rouge_l_noisy_mean": 12.76422026671505,
+        "rouge_l_repaired_mean": 12.155464742196331,
+        "token_f1_clean_mean": 29.423055026919755,
+        "token_f1_noisy_mean": 25.11717923130424,
+        "token_f1_repaired_mean": 27.119380923397962,
+        "exact_match_clean_mean": 0.0,
+        "exact_match_noisy_mean": 0.0,
+        "exact_match_repaired_mean": 0.0,
+        "bertscore_clean_mean": 0.8384586870670319,
+        "bertscore_noisy_mean": 0.8247779905796051,
+        "bertscore_repaired_mean": 0.8178913295269012,
+        "intent_preservation_clean_mean": 1.0,
+        "intent_preservation_noisy_mean": 0.6259644627571106,
+        "intent_preservation_repaired_mean": 0.7815487682819366,
+        "geval_clean_mean": 4.0,
+        "geval_noisy_mean": 4.0,
+        "geval_repaired_mean": 4.0
+      },
+      {
+        "noise_type": "layperson",
+        "bleu_clean_mean": 3.6710133280922284,
+        "bleu_noisy_mean": 1.703368737056737,
+        "bleu_repaired_mean": 2.099138407237407,
+        "chrf_clean_mean": 30.404982294687215,
+        "chrf_noisy_mean": 28.939714194966353,
+        "chrf_repaired_mean": 31.279691542536508,
+        "rouge_l_clean_mean": 19.969034402024093,
+        "rouge_l_noisy_mean": 15.261031194439955,
+        "rouge_l_repaired_mean": 16.079419928624027,
+        "token_f1_clean_mean": 31.581133642989315,
+        "token_f1_noisy_mean": 28.909002747696782,
+        "token_f1_repaired_mean": 27.63836175154365,
+        "exact_match_clean_mean": 0.0,
+        "exact_match_noisy_mean": 0.0,
+        "exact_match_repaired_mean": 0.0,
+        "bertscore_clean_mean": 0.8556504249572754,
+        "bertscore_noisy_mean": 0.83457350730896,
+        "bertscore_repaired_mean": 0.83753302693367,
+        "intent_preservation_clean_mean": 0.9999999701976776,
+        "intent_preservation_noisy_mean": 0.6637263894081116,
+        "intent_preservation_repaired_mean": 0.6833338737487793,
+        "geval_clean_mean": 4.0,
+        "geval_noisy_mean": 3.5,
+        "geval_repaired_mean": 4.0
+      },
+      {
+        "noise_type": "incomplete",
+        "bleu_clean_mean": 4.9224139056692975,
+        "bleu_noisy_mean": 5.449688813868116,
+        "bleu_repaired_mean": 6.707254843150558,
+        "chrf_clean_mean": 29.22834981594732,
+        "chrf_noisy_mean": 36.79852081366525,
+        "chrf_repaired_mean": 38.22554720278252,
+        "rouge_l_clean_mean": 23.91511387163561,
+        "rouge_l_noisy_mean": 20.55642163328936,
+        "rouge_l_repaired_mean": 22.31171160029681,
+        "token_f1_clean_mean": 35.52380952380953,
+        "token_f1_noisy_mean": 37.71795179278091,
+        "token_f1_repaired_mean": 38.35796438288399,
+        "exact_match_clean_mean": 0.0,
+        "exact_match_noisy_mean": 0.0,
+        "exact_match_repaired_mean": 0.0,
+        "bertscore_clean_mean": 0.8457685112953186,
+        "bertscore_noisy_mean": 0.8404141366481781,
+        "bertscore_repaired_mean": 0.8614016473293304,
+        "intent_preservation_clean_mean": 0.9999999403953552,
+        "intent_preservation_noisy_mean": 0.6632772088050842,
+        "intent_preservation_repaired_mean": 0.8594846129417419,
+        "geval_clean_mean": 4.5,
+        "geval_noisy_mean": 4.0,
+        "geval_repaired_mean": 4.5
+      },
+      {
+        "noise_type": "overgeneralization",
+        "bleu_clean_mean": 5.521879359767617,
+        "bleu_noisy_mean": 5.059633431513415,
+        "bleu_repaired_mean": 4.734987638481315,
+        "chrf_clean_mean": 27.559947591077297,
+        "chrf_noisy_mean": 30.175803301233803,
+        "chrf_repaired_mean": 32.33577810154694,
+        "rouge_l_clean_mean": 20.88319088319088,
+        "rouge_l_noisy_mean": 17.4746685517977,
+        "rouge_l_repaired_mean": 16.136858334844913,
+        "token_f1_clean_mean": 35.01424501424501,
+        "token_f1_noisy_mean": 28.28812739517059,
+        "token_f1_repaired_mean": 28.91347723562489,
+        "exact_match_clean_mean": 0.0,
+        "exact_match_noisy_mean": 0.0,
+        "exact_match_repaired_mean": 0.0,
+        "bertscore_clean_mean": 0.8494472801685333,
+        "bertscore_noisy_mean": 0.8258746564388275,
+        "bertscore_repaired_mean": 0.8280737996101379,
+        "intent_preservation_clean_mean": 1.0,
+        "intent_preservation_noisy_mean": 0.4990927278995514,
+        "intent_preservation_repaired_mean": 0.5019995421171188,
+        "geval_clean_mean": 4.0,
+        "geval_noisy_mean": 2.0,
+        "geval_repaired_mean": 2.0
+      }
+    ],
+    "bleu_clean_mean": 3.7334964689895274,
+    "bleu_clean_std": 1.4337651266299196,
+    "bleu_noisy_mean": 3.810098536516378,
+    "bleu_noisy_std": 1.8972537338615147,
+    "bleu_repaired_mean": 4.249972437155665,
+    "bleu_repaired_std": 2.111688451343815,
+    "chrf_clean_mean": 31.66060349069254,
+    "chrf_clean_std": 5.014034901391289,
+    "chrf_noisy_mean": 31.532414670027936,
+    "chrf_noisy_std": 6.33892369476955,
+    "chrf_repaired_mean": 33.80581048441349,
+    "chrf_repaired_std": 5.253991568204105,
+    "rouge_l_clean_mean": 20.513734181756618,
+    "rouge_l_clean_std": 4.434808557392314,
+    "rouge_l_noisy_mean": 18.753232366763207,
+    "rouge_l_noisy_std": 5.895729020802577,
+    "rouge_l_repaired_mean": 18.4675287516036,
+    "rouge_l_repaired_std": 5.794595376526592,
+    "token_f1_clean_mean": 34.07226652994948,
+    "token_f1_clean_std": 4.133991954711188,
+    "token_f1_noisy_mean": 33.13821276613161,
+    "token_f1_noisy_std": 8.75475995633833,
+    "token_f1_repaired_mean": 32.38865883079968,
+    "token_f1_repaired_std": 8.818079264568993,
+    "exact_match_clean_mean": 0.0,
+    "exact_match_clean_std": 0.0,
+    "exact_match_noisy_mean": 0.0,
+    "exact_match_noisy_std": 0.0,
+    "exact_match_repaired_mean": 0.0,
+    "exact_match_repaired_std": 0.0,
+    "bertscore_clean_mean": 0.8452783497897062,
+    "bertscore_clean_std": 0.008258561746989797,
+    "bertscore_noisy_mean": 0.8340704170140353,
+    "bertscore_noisy_std": 0.014770595718780966,
+    "bertscore_repaired_mean": 0.841061835939234,
+    "bertscore_repaired_std": 0.021140420336505057,
+    "intent_preservation_clean_mean": 0.9999999837441877,
+    "intent_preservation_clean_std": 3.675076085396934e-08,
+    "intent_preservation_noisy_mean": 0.6414065902883356,
+    "intent_preservation_noisy_std": 0.12440693663170116,
+    "intent_preservation_repaired_mean": 0.7701858038252051,
+    "intent_preservation_repaired_std": 0.17090520402876289,
+    "geval_clean_mean": 4.181818181818182,
+    "geval_clean_std": 0.385694607919935,
+    "geval_noisy_mean": 3.5454545454545454,
+    "geval_noisy_std": 0.9875254992000196,
+    "geval_repaired_mean": 3.8181818181818183,
+    "geval_repaired_std": 1.02851895445316,
+    "bleu_degradation": -0.07660206752685061,
+    "bleu_recovery": 0.4398739006392871,
+    "bleu_recovery_ratio": -5.742324128328549,
+    "chrf_degradation": 0.12818882066460446,
+    "chrf_recovery": 2.2733958143855553,
+    "chrf_recovery_ratio": 17.734743190544744,
+    "rouge_l_degradation": 1.760501814993411,
+    "rouge_l_recovery": -0.2857036151596084,
+    "rouge_l_recovery_ratio": -0.16228532837989587,
+    "token_f1_degradation": 0.9340537638178716,
+    "token_f1_recovery": -0.7495539353319316,
+    "token_f1_recovery_ratio": -0.8024740805798892,
+    "exact_match_degradation": 0.0,
+    "exact_match_recovery": 0.0,
+    "exact_match_recovery_ratio": NaN,
+    "bertscore_degradation": 0.011207932775670892,
+    "bertscore_recovery": 0.0069914189251987224,
+    "bertscore_recovery_ratio": 0.6237920109919847,
+    "intent_preservation_degradation": 0.35859339345585217,
+    "intent_preservation_recovery": 0.1287792135368695,
+    "intent_preservation_recovery_ratio": 0.3591232183498774,
+    "geval_degradation": 0.6363636363636362,
+    "geval_recovery": 0.27272727272727293,
+    "geval_recovery_ratio": 0.428571428571429,
+    "runtime_seconds": 186.91233921051025
+  }
+]

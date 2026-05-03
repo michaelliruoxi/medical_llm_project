@@ -1,0 +1,11 @@
+{
+  "model": "Qwen2.5-32B-Instruct (4bit)",
+  "config": "qwen25_32b_4bit.yaml",
+  "status": "completed",
+  "rows_completed": 50,
+  "rows_expected": 50,
+  "error": null,
+  "samples_csv": "data\\outputs\\comparison_50_round2\\samples_Qwen2.5-32B-Instruct_(4bit).csv",
+  "result_json": "data\\outputs\\comparison_50_round2\\result_Qwen2.5-32B-Instruct_(4bit).json",
+  "updated_at_epoch": 1775389537.2520077
+}

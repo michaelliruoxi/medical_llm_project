@@ -1,0 +1,11 @@
+{
+  "model": "BioMistral-7B",
+  "config": "biomistral_7b.yaml",
+  "status": "completed",
+  "rows_completed": 250,
+  "rows_expected": 250,
+  "error": null,
+  "samples_csv": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\outputs\\comparison\\samples_BioMistral-7B.csv",
+  "result_json": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\outputs\\comparison\\result_BioMistral-7B.json",
+  "updated_at_epoch": 1774743237.1391585
+}

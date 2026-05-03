@@ -1,0 +1,9 @@
+{
+    "updated_at":  "2026-04-19T01:18:58",
+    "step":  "supervisor",
+    "state":  "failed",
+    "message":  "Mixtral server ensure step failed with exit code . See C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\outputs\\benchmarks_n1000\\orchestration\\logs\\20260419_011837_ensure_mixtral_server.log and C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\outputs\\benchmarks_n1000\\orchestration\\logs\\20260419_011837_ensure_mixtral_server_stderr.log.",
+    "extra":  {
+
+              }
+}

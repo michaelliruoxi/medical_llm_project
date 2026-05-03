@@ -1,0 +1,10 @@
+{
+    "updated_at":  "2026-05-01T21:56:48",
+    "step":  "fixed_repair_backfill_metrics",
+    "state":  "running",
+    "message":  "Launching C:\\Users\\Owner\\AppData\\Local\\Programs\\Python\\Python311\\python.exe scripts/benchmarks/backfill_metrics.py --mode fixed_repair --output-root data/outputs/benchmarks_n1000",
+    "extra":  {
+                  "stderr":  "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\outputs\\benchmarks_n1000\\orchestration\\logs\\20260501_215648_fixed_repair_backfill_metrics_stderr.log",
+                  "stdout":  "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\outputs\\benchmarks_n1000\\orchestration\\logs\\20260501_215648_fixed_repair_backfill_metrics.log"
+              }
+}

@@ -13,27 +13,30 @@ from src.utils import PROJECT_ROOT, load_config, load_prompts, call_llm, setup_l
 logger = setup_logging()
 
 
+def _repair_messages(system_msg: str, user_msg: str, attempt: int, last_reason: str) -> list[dict]:
+    if attempt == 0:
+        content = user_msg
+    else:
+        content = (
+            f"{user_msg}\n\n"
+            f"Retry correction: {retry_feedback('repair', last_reason)}"
+        )
+    return [
+        {"role": "system", "content": system_msg},
+        {"role": "user", "content": content},
+    ]
+
+
 def repair_question(noisy_question: str, prompts: dict, cfg: dict) -> str:
     """Call the repair LLM to rewrite one noisy question."""
     system_msg = prompts["repair"]["system"]
     user_msg = prompts["repair"]["user_template"].format(question=noisy_question)
-    base_messages = [
-        {"role": "system", "content": system_msg},
-        {"role": "user", "content": user_msg},
-    ]
     attempts = max(int(cfg.get("max_validation_retries_repair", 2)) + 1, 1)
     last_candidate = ""
     last_reason = "did not produce a valid repaired question"
 
     for attempt in range(attempts):
-        messages = list(base_messages)
-        if attempt > 0:
-            messages.append(
-                {
-                    "role": "user",
-                    "content": retry_feedback("repair", last_reason),
-                }
-            )
+        messages = _repair_messages(system_msg, user_msg, attempt, last_reason)
 
         raw = call_llm(
             messages=messages,

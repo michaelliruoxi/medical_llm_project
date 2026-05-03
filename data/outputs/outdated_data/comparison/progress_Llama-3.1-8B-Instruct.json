@@ -1,0 +1,11 @@
+{
+  "model": "Llama-3.1-8B-Instruct",
+  "config": "llama3_8b.yaml",
+  "status": "completed",
+  "rows_completed": 250,
+  "rows_expected": 250,
+  "error": null,
+  "samples_csv": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\outputs\\comparison\\samples_Llama-3.1-8B-Instruct.csv",
+  "result_json": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\outputs\\comparison\\result_Llama-3.1-8B-Instruct.json",
+  "updated_at_epoch": 1774749400.9102623
+}

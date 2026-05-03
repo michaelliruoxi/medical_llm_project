@@ -19,6 +19,7 @@ import argparse
 import csv
 import json
 import os
+import shutil
 import sys
 import time
 import types
@@ -45,21 +46,41 @@ from bert_score import BERTScorer
 from src.answer import answer_question
 from src.judge import geval_answer
 from src.metrics import (
+    compute_intent_preservation_score,
     compute_intent_preservation_scores,
     compute_recovery_statistics,
     compute_reference_metrics,
 )
 from src.noise import generate_noisy_variant
 from src.noise_schedule import build_noise_plan, expected_noise_rows, summarize_noise_plan
+from src.question_validation import validate_generated_question
 from src.repair import repair_question
-from src.utils import load_config, load_prompts, quantization_label, set_active_config, setup_logging, unload_local_models
+from src.resume import replace_file_atomic
+from src.utils import (
+    ensure_backend_ready,
+    load_config,
+    load_prompts,
+    quantization_label,
+    set_active_config,
+    setup_logging,
+    unload_local_models,
+)
 
 
 logger = setup_logging()
 
 PIPELINES = ("clean", "noisy", "repaired")
 BENCHMARK_MODES = ("end_to_end", "fixed_repair", "self_repair")
-REFERENCE_METRICS = ("bleu", "chrf", "rouge_l", "token_f1", "exact_match")
+REFERENCE_METRICS = (
+    "bleu",
+    "chrf",
+    "rouge_l",
+    "token_f1",
+    "exact_match",
+    "med_coverage",
+    "med_precision",
+    "med_f1",
+)
 METRICS = REFERENCE_METRICS + ("bertscore", "intent_preservation", "geval")
 DEFAULT_QUESTION_SET_DIR = PROJECT_ROOT / "data" / "processed" / "benchmarks" / "fixed_question_sets_gpt54"
 BASE_SAMPLE_FIELDS = [
@@ -82,7 +103,13 @@ SAMPLE_FIELDNAMES = BASE_SAMPLE_FIELDS + [
     for pipeline in PIPELINES
 ]
 TEXT_SAMPLE_FIELDS = set(BASE_SAMPLE_FIELDS)
-METRIC_PRECISION = {"bertscore": 4, "intent_preservation": 4}
+METRIC_PRECISION = {
+    "bertscore": 4,
+    "intent_preservation": 4,
+    "med_coverage": 4,
+    "med_precision": 4,
+    "med_f1": 4,
+}
 
 _bert_scorer: BERTScorer | None = None
 
@@ -291,15 +318,70 @@ def get_bert_scorer() -> BERTScorer:
     global _bert_scorer
     if _bert_scorer is None:
         logger.info("Loading BERTScore model on CPU for incremental scoring")
-        _bert_scorer = BERTScorer(lang="en", device="cpu")
+        _bert_scorer = BERTScorer(lang="en", device="cpu", use_fast_tokenizer=True)
+    _ensure_bert_tokenizer_compat(_bert_scorer)
     return _bert_scorer
 
 
-def compute_bertscore_triplet(clean: str, noisy: str, repaired: str, ref: str) -> tuple[float, float, float]:
+def _ensure_bert_tokenizer_compat(scorer: BERTScorer) -> None:
+    tokenizer = getattr(scorer, "tokenizer", None) or getattr(scorer, "_tokenizer", None)
+    if tokenizer is None or hasattr(tokenizer, "build_inputs_with_special_tokens"):
+        return
+
+    cls_id = getattr(tokenizer, "cls_token_id", None)
+    sep_id = getattr(tokenizer, "sep_token_id", None)
+    bos_id = getattr(tokenizer, "bos_token_id", None)
+    eos_id = getattr(tokenizer, "eos_token_id", None)
+
+    def build_inputs_with_special_tokens(token_ids_0, token_ids_1=None):
+        left = list(token_ids_0 or [])
+        right = list(token_ids_1 or [])
+        if cls_id is not None and sep_id is not None:
+            tokens = [cls_id] + left + [sep_id]
+            if right:
+                tokens.extend(right + [sep_id])
+            return tokens
+        if bos_id is not None and eos_id is not None:
+            tokens = [bos_id] + left + [eos_id]
+            if right:
+                tokens.extend(right + [eos_id])
+            return tokens
+        return left + right
+
+    tokenizer.build_inputs_with_special_tokens = build_inputs_with_special_tokens
+    logger.info("Patched BERTScore tokenizer compatibility for %s", tokenizer.__class__.__name__)
+
+
+def _score_with_bert_scorer(predictions: list[str], references: list[str]):
+    global _bert_scorer
     scorer = get_bert_scorer()
-    _, _, f1 = scorer.score([clean, noisy, repaired], [ref, ref, ref])
+    try:
+        return scorer.score(predictions, references)
+    except AttributeError as exc:
+        if "build_inputs_with_special_tokens" not in str(exc):
+            raise
+        logger.warning(
+            "Patching BERTScore scorer after tokenizer compatibility error: %s",
+            exc,
+        )
+        _ensure_bert_tokenizer_compat(scorer)
+        try:
+            return scorer.score(predictions, references)
+        except AttributeError:
+            _bert_scorer = BERTScorer(lang="en", device="cpu", use_fast_tokenizer=True)
+            _ensure_bert_tokenizer_compat(_bert_scorer)
+            return _bert_scorer.score(predictions, references)
+
+
+def compute_bertscore_triplet(clean: str, noisy: str, repaired: str, ref: str) -> tuple[float, float, float]:
+    _, _, f1 = _score_with_bert_scorer([clean, noisy, repaired], [ref, ref, ref])
     vals = [float(v) for v in f1.tolist()]
     return vals[0], vals[1], vals[2]
+
+
+def compute_bertscore_single(prediction: str, reference: str) -> float:
+    _, _, f1 = _score_with_bert_scorer([prediction], [reference])
+    return float(f1.tolist()[0])
 
 
 def compute_intent_preservation_triplet(
@@ -314,6 +396,16 @@ def compute_intent_preservation_triplet(
     return float(vals[0]), float(vals[1]), float(vals[2])
 
 
+def _coerce_metric_float(value, default: float = float("nan")) -> float:
+    try:
+        text = str(value).strip()
+        if text.lower() in {"", "nan", "none"}:
+            return default
+        return float(text)
+    except Exception:
+        return default
+
+
 def write_json_atomic(path: Path, payload: dict | list):
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp_path = path.with_suffix(path.suffix + ".tmp")
@@ -321,14 +413,14 @@ def write_json_atomic(path: Path, payload: dict | list):
         json.dump(payload, f, indent=2, ensure_ascii=False, default=str)
         f.flush()
         os.fsync(f.fileno())
-    tmp_path.replace(path)
+    replace_file_atomic(tmp_path, path)
 
 
 def write_csv_atomic(path: Path, df: pd.DataFrame):
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp_path = path.with_suffix(path.suffix + ".tmp")
     df.to_csv(tmp_path, index=False)
-    tmp_path.replace(path)
+    replace_file_atomic(tmp_path, path)
 
 
 def append_sample_row(path: Path, row: dict):
@@ -573,6 +665,114 @@ def load_samples_csv(path: Path) -> pd.DataFrame:
     return df
 
 
+def _normalize_samples_df(samples_df: pd.DataFrame) -> pd.DataFrame:
+    if samples_df.empty:
+        return samples_df.copy()
+
+    normalized = samples_df.copy()
+    if "question_id" in normalized.columns:
+        normalized["question_id"] = pd.to_numeric(normalized["question_id"], errors="coerce")
+        normalized = normalized.dropna(subset=["question_id"])
+        normalized["question_id"] = normalized["question_id"].astype(int)
+
+    if {"noise_type", "question_id"}.issubset(normalized.columns):
+        normalized = normalized.drop_duplicates(subset=["noise_type", "question_id"], keep="last")
+
+    return normalized.reset_index(drop=True)
+
+
+def prune_invalid_self_repair_rows(path: Path) -> int:
+    if not path.exists() or path.stat().st_size == 0:
+        return 0
+
+    df = load_samples_csv(path)
+    if df.empty or "question_repaired" not in df.columns or "question_noisy" not in df.columns:
+        return 0
+
+    invalid_indexes: list[int] = []
+    invalid_rows: list[tuple[int, str, str]] = []
+    for idx, row in df.iterrows():
+        _, error = validate_generated_question(
+            str(row.get("question_repaired", "") or ""),
+            stage="repair",
+            source_question=str(row.get("question_noisy", "") or ""),
+        )
+        if error is None:
+            continue
+        invalid_indexes.append(idx)
+        invalid_rows.append(
+            (
+                int(pd.to_numeric(row.get("question_id"), errors="coerce")),
+                str(row.get("noise_type", "")),
+                error,
+            )
+        )
+
+    if not invalid_indexes:
+        return 0
+
+    backup_path = path.with_name(path.stem + "_pre_validator_cleanup.csv")
+    if not backup_path.exists():
+        shutil.copy2(path, backup_path)
+
+    cleaned = df.drop(index=invalid_indexes).reset_index(drop=True)
+    write_csv_atomic(path, cleaned)
+
+    logger.warning(
+        "Dropped %d invalid self_repair rows from %s after revalidation: %s",
+        len(invalid_rows),
+        path.name,
+        invalid_rows[:5],
+    )
+    return len(invalid_rows)
+
+
+def _self_repair_reuse_dir(output_dir: Path, benchmark_mode: str) -> Path | None:
+    if benchmark_mode != "self_repair":
+        return None
+    candidate = output_dir.parent / "fixed_repair"
+    return candidate if candidate.exists() else None
+
+
+def _load_self_repair_reuse_lookup(
+    output_dir: Path,
+    label: str,
+    benchmark_mode: str,
+) -> dict[tuple[str, int], dict]:
+    reuse_dir = _self_repair_reuse_dir(output_dir, benchmark_mode)
+    if reuse_dir is None:
+        return {}
+
+    reuse_csv = model_paths(reuse_dir, label)["samples_csv"]
+    if not reuse_csv.exists():
+        return {}
+
+    df = load_samples_csv(reuse_csv)
+    if df.empty:
+        return {}
+
+    df = df.drop_duplicates(subset=["noise_type", "question_id"], keep="last").copy()
+    df["question_id"] = pd.to_numeric(df["question_id"], errors="coerce")
+    df = df.dropna(subset=["question_id"])
+    df["question_id"] = df["question_id"].astype(int)
+
+    lookup: dict[tuple[str, int], dict] = {}
+    for _, row in df.iterrows():
+        row_dict = row.to_dict()
+        if not _sample_row_complete(row_dict):
+            continue
+        lookup[(str(row_dict["noise_type"]), int(row_dict["question_id"]))] = row_dict
+
+    if lookup:
+        logger.info(
+            "Loaded %d reusable fixed_repair rows for %s from %s",
+            len(lookup),
+            label,
+            reuse_csv,
+        )
+    return lookup
+
+
 def write_progress(path: Path, payload: dict):
     write_json_atomic(path, payload)
 
@@ -593,6 +793,7 @@ def summarize_error(exc: Exception) -> str:
 
 
 def build_detailed_results(samples_df: pd.DataFrame) -> list[dict]:
+    samples_df = _normalize_samples_df(samples_df)
     if samples_df.empty:
         return []
 
@@ -633,6 +834,7 @@ def build_summary_from_samples(
     model_name = cfg["answer_model"]
     quant = quantization_label(cfg)
     noise_types = cfg["noise_types"]
+    normalized_samples = _normalize_samples_df(samples_df)
 
     summary = {
         "model": model_name,
@@ -646,20 +848,20 @@ def build_summary_from_samples(
         "benchmark_mode": benchmark_mode,
         "question_set_dir": str(question_set_dir) if question_set_dir is not None else None,
         "status": status,
-        "rows_completed": int(len(samples_df)),
+        "rows_completed": int(len(normalized_samples)),
         "rows_expected": int(rows_expected),
         "error": error,
         "detailed_results": [],
         "per_noise_type": [],
     }
 
-    if samples_df.empty:
+    if normalized_samples.empty:
         return summary
 
     for metric in METRICS:
         for pipeline in PIPELINES:
             col = f"{metric}_{pipeline}"
-            vals = samples_df[col].dropna().astype(float).to_numpy()
+            vals = normalized_samples[col].dropna().astype(float).to_numpy()
             summary[f"{metric}_{pipeline}_mean"] = float(np.mean(vals)) if len(vals) else float("nan")
             summary[f"{metric}_{pipeline}_std"] = float(np.std(vals)) if len(vals) else float("nan")
 
@@ -678,7 +880,7 @@ def build_summary_from_samples(
         summary[f"{metric}_recovery_ratio"] = recovery_stats["recovery_ratio"]
 
     per_noise = []
-    for noise_type, grp in samples_df.groupby("noise_type", sort=False):
+    for noise_type, grp in normalized_samples.groupby("noise_type", sort=False):
         row = {"noise_type": noise_type}
         for metric in METRICS:
             for pipeline in PIPELINES:
@@ -688,7 +890,7 @@ def build_summary_from_samples(
         per_noise.append(row)
 
     summary["per_noise_type"] = per_noise
-    summary["detailed_results"] = build_detailed_results(samples_df)
+    summary["detailed_results"] = build_detailed_results(normalized_samples)
     return summary
 
 
@@ -771,41 +973,126 @@ def write_comparison_outputs(all_summaries: list[dict], output_dir: Path) -> pd.
     return comparison_df
 
 
-def process_sample(row: pd.Series, prompts: dict, cfg: dict, label: str, benchmark_mode: str) -> dict:
+def _same_question_set(recorded: str | None, expected: Path | None) -> bool:
+    if expected is None:
+        return True
+    if not recorded:
+        return False
+    try:
+        return Path(recorded).resolve() == expected.resolve()
+    except Exception:
+        return str(recorded) == str(expected)
+
+
+def _summary_matches_run(
+    summary: dict,
+    benchmark_mode: str,
+    question_set_dir: Path | None,
+    n_examples_override: int | None,
+) -> bool:
+    if summary.get("benchmark_mode") != benchmark_mode:
+        return False
+    if benchmark_mode != "end_to_end" and not _same_question_set(summary.get("question_set_dir"), question_set_dir):
+        return False
+    if n_examples_override is not None:
+        try:
+            rows_expected = int(summary.get("rows_expected", summary.get("n_examples", -1)))
+        except Exception:
+            return False
+        if rows_expected != int(n_examples_override):
+            return False
+    return True
+
+
+def load_existing_summaries(
+    output_dir: Path,
+    benchmark_mode: str,
+    question_set_dir: Path | None,
+    n_examples_override: int | None,
+) -> list[dict]:
+    """Seed comparison tables from durable per-model result JSON files."""
+    summaries: list[dict] = []
+    for path in sorted(output_dir.glob("result_*.json")):
+        payload = _read_json(path)
+        if not isinstance(payload, dict):
+            continue
+        if not _summary_matches_run(payload, benchmark_mode, question_set_dir, n_examples_override):
+            continue
+        upsert_summary(summaries, payload)
+    return summaries
+
+
+def process_sample(
+    row: pd.Series,
+    prompts: dict,
+    cfg: dict,
+    label: str,
+    benchmark_mode: str,
+    reuse_lookup: dict[tuple[str, int], dict] | None = None,
+) -> dict:
     question = row["question_clean"]
     reference = row["answer_ref"]
     question_id = int(row["id"])
     noise_type = row["noise_type"]
+    sample_tag = f"{label} qid={question_id} noise={noise_type}"
+    reused_row = (reuse_lookup or {}).get((noise_type, question_id))
 
     if benchmark_mode == "end_to_end":
+        logger.info("%s stage=noise start", sample_tag)
         noisy_q = generate_noisy_variant(question, noise_type, prompts, cfg)
+        logger.info("%s stage=repair start", sample_tag)
         repaired_q = repair_question(noisy_q, prompts, cfg)
     elif benchmark_mode == "fixed_repair":
         noisy_q = row["question_noisy"]
         repaired_q = row["question_repaired"]
     elif benchmark_mode == "self_repair":
         noisy_q = row["question_noisy"]
+        logger.info("%s stage=repair start", sample_tag)
         repaired_q = repair_question(noisy_q, prompts, cfg)
     else:  # pragma: no cover - guarded by CLI choices
         raise ValueError(f"Unknown benchmark_mode: {benchmark_mode}")
 
-    answer_clean = answer_question(question, prompts, cfg)
-    answer_noisy = answer_question(noisy_q, prompts, cfg)
+    if reused_row is not None:
+        question = reused_row["question_clean"]
+        noisy_q = reused_row["question_noisy"]
+        reference = reused_row["reference_answer"]
+        answer_clean = reused_row["answer_clean"]
+        answer_noisy = reused_row["answer_noisy"]
+        lexical_clean = {
+            metric: _coerce_metric_float(reused_row.get(f"{metric}_clean"))
+            for metric in REFERENCE_METRICS
+        }
+        lexical_noisy = {
+            metric: _coerce_metric_float(reused_row.get(f"{metric}_noisy"))
+            for metric in REFERENCE_METRICS
+        }
+        bert_clean = _coerce_metric_float(reused_row.get("bertscore_clean"))
+        bert_noisy = _coerce_metric_float(reused_row.get("bertscore_noisy"))
+        intent_clean = _coerce_metric_float(reused_row.get("intent_preservation_clean"))
+        intent_noisy = _coerce_metric_float(reused_row.get("intent_preservation_noisy"))
+        geval_clean = int(round(_coerce_metric_float(reused_row.get("geval_clean"), default=1.0)))
+        geval_noisy = int(round(_coerce_metric_float(reused_row.get("geval_noisy"), default=1.0)))
+        logger.info("%s reused clean/noisy outputs from fixed_repair", sample_tag)
+    else:
+        logger.info("%s stage=answer_clean start", sample_tag)
+        answer_clean = answer_question(question, prompts, cfg)
+        logger.info("%s stage=answer_noisy start", sample_tag)
+        answer_noisy = answer_question(noisy_q, prompts, cfg)
+
+        lexical_clean = compute_reference_metrics(answer_clean, reference)
+        lexical_noisy = compute_reference_metrics(answer_noisy, reference)
+        bert_clean = compute_bertscore_single(answer_clean, reference)
+        bert_noisy = compute_bertscore_single(answer_noisy, reference)
+        intent_clean = compute_intent_preservation_score(question, question)
+        intent_noisy = compute_intent_preservation_score(question, noisy_q)
+        geval_clean = geval_answer(reference, answer_clean, prompts, cfg, question=question)
+        geval_noisy = geval_answer(reference, answer_noisy, prompts, cfg, question=noisy_q)
+
+    logger.info("%s stage=answer_repaired start", sample_tag)
     answer_repaired = answer_question(repaired_q, prompts, cfg)
-
-    lexical_clean = compute_reference_metrics(answer_clean, reference)
-    lexical_noisy = compute_reference_metrics(answer_noisy, reference)
     lexical_repaired = compute_reference_metrics(answer_repaired, reference)
-
-    bert_clean, bert_noisy, bert_repaired = compute_bertscore_triplet(
-        answer_clean, answer_noisy, answer_repaired, reference
-    )
-    intent_clean, intent_noisy, intent_repaired = compute_intent_preservation_triplet(
-        question, noisy_q, repaired_q
-    )
-
-    geval_clean = geval_answer(reference, answer_clean, prompts, cfg, question=question)
-    geval_noisy = geval_answer(reference, answer_noisy, prompts, cfg, question=noisy_q)
+    bert_repaired = compute_bertscore_single(answer_repaired, reference)
+    intent_repaired = compute_intent_preservation_score(question, repaired_q)
     geval_repaired = geval_answer(reference, answer_repaired, prompts, cfg, question=repaired_q)
 
     return {
@@ -841,11 +1128,14 @@ def run_single_model(
     output_dir: Path,
     benchmark_mode: str = "end_to_end",
     question_set_dir: Path | None = None,
+    n_examples_override: int | None = None,
     on_progress=None,
 ) -> tuple[dict, bool]:
     """Run or resume one model config, persisting each completed sample row."""
     set_active_config(config_path)
     cfg = load_config(config_path)
+    if n_examples_override is not None:
+        cfg["n_examples"] = int(n_examples_override)
     cfg["_config_path"] = config_path
     prompts = load_prompts()
     model_name = cfg["answer_model"]
@@ -885,7 +1175,10 @@ def run_single_model(
         for _, row in plan_df.iterrows()
     }
     align_resume_csv_to_plan(paths["samples_csv"], planned_pairs)
+    if benchmark_mode == "self_repair":
+        prune_invalid_self_repair_rows(paths["samples_csv"])
     completed_pairs = load_completed_pairs(paths["samples_csv"])
+    reuse_lookup = _load_self_repair_reuse_lookup(output_dir, label, benchmark_mode)
 
     if completed_pairs:
         logger.info("Resuming %s with %d/%d completed rows from %s",
@@ -925,12 +1218,23 @@ def run_single_model(
     emit_partial_summary(status_override="running")
 
     try:
+        if cfg.get("startup_script"):
+            logger.info("%s ensuring local backend via %s", label, cfg["startup_script"])
+            ensure_backend_ready(cfg=cfg, force=True)
+
         for _, row in plan_df.iterrows():
             pair = (str(row["noise_type"]), int(row["id"]))
             if pair in completed_pairs:
                 continue
 
-            sample_row = process_sample(row, prompts, cfg, label, benchmark_mode)
+            sample_row = process_sample(
+                row,
+                prompts,
+                cfg,
+                label,
+                benchmark_mode,
+                reuse_lookup=reuse_lookup,
+            )
             append_sample_row(paths["samples_csv"], sample_row)
             completed_pairs.add(pair)
 
@@ -963,9 +1267,10 @@ def run_single_model(
         logger.exception("Model failed after partial progress: %s", label)
 
     samples_df = load_samples_csv(paths["samples_csv"])
-    if len(samples_df) == expected_rows and error is None:
+    completed_rows = len(_normalize_samples_df(samples_df))
+    if completed_rows >= expected_rows and error is None:
         status = "completed"
-    elif len(samples_df) > 0:
+    elif completed_rows > 0:
         status = "partial"
     else:
         status = "failed"
@@ -1017,10 +1322,20 @@ def run_comparison(
     output_dir: Path,
     benchmark_mode: str = "end_to_end",
     question_set_dir: Path | None = None,
+    n_examples_override: int | None = None,
 ):
     """Run all model configs and produce/update a comparison table."""
     output_dir.mkdir(parents=True, exist_ok=True)
-    all_summaries: list[dict] = []
+    resolved_question_set_dir = question_set_dir.resolve() if question_set_dir is not None else None
+    all_summaries = load_existing_summaries(
+        output_dir,
+        benchmark_mode,
+        resolved_question_set_dir,
+        n_examples_override,
+    )
+    if all_summaries:
+        logger.info("Seeded comparison with %d existing result summaries from %s", len(all_summaries), output_dir)
+        write_comparison_outputs(all_summaries, output_dir)
     interrupted = False
 
     for i, config_path in enumerate(config_paths):
@@ -1037,7 +1352,8 @@ def run_comparison(
             config_path,
             output_dir,
             benchmark_mode=benchmark_mode,
-            question_set_dir=question_set_dir,
+            question_set_dir=resolved_question_set_dir,
+            n_examples_override=n_examples_override,
             on_progress=on_progress,
         )
         summary["runtime_seconds"] = time.time() - start
@@ -1084,6 +1400,12 @@ if __name__ == "__main__":
                         help="List configs without executing")
     parser.add_argument("--output-dir", type=str, default=None,
                         help="Output directory (default depends on --benchmark-mode)")
+    parser.add_argument(
+        "--n-examples",
+        type=int,
+        default=None,
+        help="Override n_examples from model configs for this run",
+    )
     args = parser.parse_args()
 
     if args.configs:
@@ -1113,4 +1435,5 @@ if __name__ == "__main__":
         output_dir,
         benchmark_mode=args.benchmark_mode,
         question_set_dir=question_set_dir,
+        n_examples_override=args.n_examples,
     )

@@ -1,0 +1,10 @@
+{
+    "updated_at":  "2026-04-19T01:15:32",
+    "step":  "ensure_mixtral_server",
+    "state":  "running",
+    "message":  "Launching powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\scripts\\benchmarks\\start_mixtral_llamaserver.ps1",
+    "extra":  {
+                  "stderr":  "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\outputs\\benchmarks_n1000\\orchestration\\logs\\20260419_011532_ensure_mixtral_server_stderr.log",
+                  "stdout":  "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\outputs\\benchmarks_n1000\\orchestration\\logs\\20260419_011532_ensure_mixtral_server.log"
+              }
+}

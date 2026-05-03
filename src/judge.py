@@ -35,6 +35,10 @@ def _extract_numeric_score(text: str) -> tuple[str, int | None]:
     if explicit:
         return stripped, int(explicit[-1])
 
+    leading = re.match(r"^([0-9]+)\b", stripped)
+    if leading:
+        return stripped, int(leading.group(1))
+
     if re.fullmatch(r"[0-9]+", stripped):
         return stripped, int(stripped)
 
@@ -96,15 +100,26 @@ def _score_prediction(
     default_api_mode = cfg.get("geval_api_mode", DEFAULT_GEVAL_API_MODE)
 
     n_votes = cfg.get(n_votes_key, 1)
+    selected_backend = cfg.get(backend_key, default_backend)
     common_kwargs = {
         "messages": messages,
         "model": cfg.get(model_key, default_model),
         "max_tokens": cfg.get(max_tokens_key, default_max_tokens),
-        "backend": cfg.get(backend_key, default_backend),
+        "backend": selected_backend,
         "quantization": cfg.get(quantization_key, default_quantization),
         "api_mode": cfg.get(api_mode_key, default_api_mode),
         "reasoning_effort": cfg.get(reasoning_key, default_reasoning),
     }
+    if str(selected_backend).lower() == "openai":
+        # G-Eval is a shared OpenAI judge even when the answer model is served
+        # through a local OpenAI-compatible endpoint.
+        common_kwargs["api_base_url"] = str(cfg.get("geval_base_url", "") or "")
+        common_kwargs["api_key_env"] = str(cfg.get("geval_api_key_env", "OPENAI_API_KEY") or "OPENAI_API_KEY")
+        if cfg.get("geval_api_key"):
+            common_kwargs["api_key"] = str(cfg["geval_api_key"])
+        common_kwargs["use_config_startup_script"] = bool(cfg.get("geval_startup_script"))
+        if cfg.get("geval_startup_script"):
+            common_kwargs["startup_script"] = str(cfg["geval_startup_script"])
 
     if n_votes <= 1:
         request_temperature = cfg.get(temperature_key, default_temp)

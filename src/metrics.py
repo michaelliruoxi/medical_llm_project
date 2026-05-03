@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
+import json
 import math
 import os
 import re
 from collections import Counter
+from pathlib import Path
 
 import sacrebleu
 
@@ -242,12 +244,158 @@ def compute_intent_preservation_score(
     )[0]
 
 
+# ---------------------------------------------------------------------------
+# Medical term coverage (non-semantic, domain-aware)
+# ---------------------------------------------------------------------------
+
+_MEDICAL_LEXICON_PATH = (
+    Path(__file__).resolve().parents[1] / "data" / "processed" / "medical_lexicon.json"
+)
+_medical_lexicon: dict | None = None
+_MED_TOKEN_RE = re.compile(r"[A-Za-z][A-Za-z'-]+")
+
+
+def _load_medical_lexicon(path: Path | None = None) -> dict:
+    """Lazy-load the MedQuAD-derived lexicon. Returns a dict with
+    ``unigrams`` (set) and ``bigrams`` (set)."""
+    global _medical_lexicon
+    chosen = Path(path) if path is not None else _MEDICAL_LEXICON_PATH
+    if _medical_lexicon is not None and _medical_lexicon.get("_path") == str(chosen):
+        return _medical_lexicon
+
+    if not chosen.exists():
+        # Graceful fallback: empty lexicon yields neutral metric values.
+        # The pipeline must not crash just because the lexicon was not built.
+        _medical_lexicon = {
+            "_path": str(chosen),
+            "unigrams": set(),
+            "bigrams": set(),
+            "_available": False,
+        }
+        return _medical_lexicon
+
+    with open(chosen, "r", encoding="utf-8") as fh:
+        raw = json.load(fh)
+    _medical_lexicon = {
+        "_path": str(chosen),
+        "unigrams": set(raw.get("unigrams", [])),
+        "bigrams": set(raw.get("bigrams", [])),
+        "_available": True,
+    }
+    return _medical_lexicon
+
+
+def extract_medical_terms(text: str, lexicon: dict | None = None) -> Counter:
+    """Extract medical-term occurrences (unigrams + bigrams) from ``text``
+    using the lexicon. Returns a Counter keyed by term -> occurrence count.
+
+    Bigrams take precedence: when two adjacent tokens form a lexicon bigram,
+    the bigram is counted and the two tokens do not *also* contribute their
+    unigram counts for that span. This avoids double-counting phrases like
+    "blood pressure" as both a bigram and two unigrams.
+    """
+    lex = lexicon if lexicon is not None else _load_medical_lexicon()
+    unigram_set: set = lex.get("unigrams", set())
+    bigram_set: set = lex.get("bigrams", set())
+
+    tokens = [tok.lower() for tok in _MED_TOKEN_RE.findall(text or "")]
+    counts: Counter = Counter()
+
+    i = 0
+    while i < len(tokens):
+        consumed_as_bigram = False
+        if i + 1 < len(tokens):
+            bg = f"{tokens[i]} {tokens[i + 1]}"
+            if bg in bigram_set:
+                counts[bg] += 1
+                i += 2
+                consumed_as_bigram = True
+        if not consumed_as_bigram:
+            tok = tokens[i]
+            if tok in unigram_set:
+                counts[tok] += 1
+            i += 1
+    return counts
+
+
+def compute_medical_term_coverage(
+    prediction: str,
+    reference: str,
+    lexicon: dict | None = None,
+) -> dict[str, float]:
+    """Compute medical-term precision / recall / F1 between prediction and
+    reference.
+
+    "Coverage" = recall: what fraction of the reference's medical-term
+    occurrences were matched by the prediction.
+
+    Returns a dict:
+        med_coverage  — recall, 0..100
+        med_precision — precision, 0..100
+        med_f1        — F1, 0..100
+        ref_med_terms — raw medical-term occurrences in reference
+        pred_med_terms — raw medical-term occurrences in prediction
+    """
+    lex = lexicon if lexicon is not None else _load_medical_lexicon()
+    pred_counts = extract_medical_terms(prediction, lexicon=lex)
+    ref_counts = extract_medical_terms(reference, lexicon=lex)
+
+    ref_total = sum(ref_counts.values())
+    pred_total = sum(pred_counts.values())
+
+    if ref_total == 0 and pred_total == 0:
+        # No medical vocabulary in either — coverage is undefined but report
+        # 100.0 so it is not treated as a failure mode.
+        return {
+            "med_coverage": 100.0,
+            "med_precision": 100.0,
+            "med_f1": 100.0,
+            "ref_med_terms": 0,
+            "pred_med_terms": 0,
+        }
+    if ref_total == 0:
+        return {
+            "med_coverage": 0.0,
+            "med_precision": 0.0,
+            "med_f1": 0.0,
+            "ref_med_terms": 0,
+            "pred_med_terms": pred_total,
+        }
+    if pred_total == 0:
+        return {
+            "med_coverage": 0.0,
+            "med_precision": 0.0,
+            "med_f1": 0.0,
+            "ref_med_terms": ref_total,
+            "pred_med_terms": 0,
+        }
+
+    overlap = pred_counts & ref_counts  # min-counts per key
+    matched = sum(overlap.values())
+
+    recall = matched / ref_total if ref_total else 0.0
+    precision = matched / pred_total if pred_total else 0.0
+    f1 = (2 * precision * recall / (precision + recall)) if (precision + recall) else 0.0
+
+    return {
+        "med_coverage": 100.0 * recall,
+        "med_precision": 100.0 * precision,
+        "med_f1": 100.0 * f1,
+        "ref_med_terms": ref_total,
+        "pred_med_terms": pred_total,
+    }
+
+
 def compute_reference_metrics(prediction: str, reference: str) -> dict[str, float]:
     """Lexical/reference-based metrics for one prediction-reference pair."""
+    med = compute_medical_term_coverage(prediction, reference)
     return {
         "bleu": compute_bleu_score(prediction, reference),
         "chrf": compute_chrf_score(prediction, reference),
         "rouge_l": compute_rouge_l_score(prediction, reference),
         "token_f1": compute_token_f1_score(prediction, reference),
         "exact_match": compute_exact_match_score(prediction, reference),
+        "med_coverage": med["med_coverage"],
+        "med_precision": med["med_precision"],
+        "med_f1": med["med_f1"],
     }

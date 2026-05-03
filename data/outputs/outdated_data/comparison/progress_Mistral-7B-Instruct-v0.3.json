@@ -1,0 +1,11 @@
+{
+  "model": "Mistral-7B-Instruct-v0.3",
+  "config": "mistral_7b.yaml",
+  "status": "completed",
+  "rows_completed": 250,
+  "rows_expected": 250,
+  "error": null,
+  "samples_csv": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\outputs\\comparison\\samples_Mistral-7B-Instruct-v0.3.csv",
+  "result_json": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\outputs\\comparison\\result_Mistral-7B-Instruct-v0.3.json",
+  "updated_at_epoch": 1774743237.3658242
+}

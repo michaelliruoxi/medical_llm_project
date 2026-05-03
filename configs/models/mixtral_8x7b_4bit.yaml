@@ -1,5 +1,14 @@
-backend: local
+backend: openai
+api_mode: chat_completions
+base_url: http://127.0.0.1:8081/v1
+api_key: local-placeholder
+startup_script: scripts/benchmarks/start_mixtral_llamaserver.ps1
+startup_timeout_sec: 2700
+startup_health_ttl_seconds: 300
 quantization: 4bit
+# Mixtral is served locally through llama.cpp's OpenAI-compatible server on
+# port 8081 using a full-GPU Q4_K_M GGUF, which is much faster and more stable
+# on this workstation than the transformers+bnb CPU-offload path.
 
 run_priority: 50
 n_examples: 50
@@ -14,20 +23,26 @@ noise_types:
   - incomplete
   - overgeneralization
 
-answer_model: mistralai/Mixtral-8x7B-Instruct-v0.1
-repair_model: mistralai/Mixtral-8x7B-Instruct-v0.1
-noise_model: mistralai/Mixtral-8x7B-Instruct-v0.1
-judge_model: mistralai/Mixtral-8x7B-Instruct-v0.1
+answer_model: Mixtral-8x7B-Instruct-v0.1
+repair_model: Mixtral-8x7B-Instruct-v0.1
+noise_model: Mixtral-8x7B-Instruct-v0.1
+judge_model: Mixtral-8x7B-Instruct-v0.1
+geval_model: gpt-5.4-mini
+geval_backend: openai
+geval_api_mode: responses
 
-temperature_answer: 0.2
+temperature_answer: 0.0
 temperature_noise: 0.8
-temperature_repair: 0.2
+temperature_repair: 0.0
 temperature_judge: 0.0
 
-max_tokens_answer: 300
-max_tokens_repair: 120
+# Keep answer/repair generation conservative to preserve the benchmark's
+# concise medical QA style while minimizing unnecessary latency.
+max_tokens_answer: 180
+max_tokens_repair: 64
 max_tokens_noise: 150
 max_tokens_judge: 200
+max_validation_retries_repair: 5
 
 paths:
   raw_data: data/raw

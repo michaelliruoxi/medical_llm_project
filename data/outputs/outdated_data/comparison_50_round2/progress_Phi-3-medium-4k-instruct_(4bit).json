@@ -1,0 +1,11 @@
+{
+  "model": "Phi-3-medium-4k-instruct (4bit)",
+  "config": "phi3_14b_4bit.yaml",
+  "status": "completed",
+  "rows_completed": 50,
+  "rows_expected": 50,
+  "error": null,
+  "samples_csv": "data\\outputs\\comparison_50_round2\\samples_Phi-3-medium-4k-instruct_(4bit).csv",
+  "result_json": "data\\outputs\\comparison_50_round2\\result_Phi-3-medium-4k-instruct_(4bit).json",
+  "updated_at_epoch": 1775386621.2987032
+}

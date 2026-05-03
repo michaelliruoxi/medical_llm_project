@@ -1,0 +1,9 @@
+{
+  "question_set_dir": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\processed\\benchmarks\\fixed_question_sets_gpt54",
+  "noisy_rows": 50,
+  "repaired_rows": 50,
+  "noisy_invalid": 0,
+  "repaired_invalid": 0,
+  "invalid_rows_csv": null,
+  "status": "ok"
+}

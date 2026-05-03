@@ -1,0 +1,11 @@
+{
+  "model": "gpt-5.4",
+  "config": "gpt54_hybrid_api.yaml",
+  "status": "completed",
+  "rows_completed": 50,
+  "rows_expected": 50,
+  "error": null,
+  "samples_csv": "data\\outputs\\comparison_50_round2\\samples_gpt-5.4.csv",
+  "result_json": "data\\outputs\\comparison_50_round2\\result_gpt-5.4.json",
+  "updated_at_epoch": 1775392689.0388896
+}

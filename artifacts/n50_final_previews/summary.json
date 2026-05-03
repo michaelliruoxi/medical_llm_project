@@ -1,0 +1,17 @@
+{
+  "pptx": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\MedQuAD_Robustness_Final_Presentation_n50_updated.pptx",
+  "previews": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\artifacts\\n50_final_previews",
+  "slideCount": 19,
+  "fixedRows": 550,
+  "selfRows": 550,
+  "fixedGEval": {
+    "clean": 3.727272727272727,
+    "noisy": 3.4727272727272727,
+    "repaired": 3.3527272727272726
+  },
+  "selfGEval": {
+    "clean": 3.727272727272727,
+    "noisy": 3.4727272727272727,
+    "repaired": 3.409090909090909
+  }
+}

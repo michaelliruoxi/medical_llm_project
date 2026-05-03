@@ -17,6 +17,9 @@ answer_model: BioMistral/BioMistral-7B
 repair_model: BioMistral/BioMistral-7B
 noise_model: BioMistral/BioMistral-7B
 judge_model: BioMistral/BioMistral-7B
+geval_model: gpt-5.4-mini
+geval_backend: openai
+geval_api_mode: responses
 
 temperature_answer: 0.2
 temperature_noise: 0.8

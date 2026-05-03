@@ -1,0 +1,11 @@
+{
+  "model": "Mixtral-8x7B-Instruct-v0.1 (4bit)",
+  "config": "mixtral_8x7b_4bit.yaml",
+  "status": "completed",
+  "rows_completed": 50,
+  "rows_expected": 50,
+  "error": null,
+  "samples_csv": "data\\outputs\\comparison_50_round2\\samples_Mixtral-8x7B-Instruct-v0.1_(4bit).csv",
+  "result_json": "data\\outputs\\comparison_50_round2\\result_Mixtral-8x7B-Instruct-v0.1_(4bit).json",
+  "updated_at_epoch": 1775391705.7451277
+}

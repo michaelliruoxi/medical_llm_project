@@ -1,0 +1,10 @@
+{
+    "updated_at":  "2026-05-01T00:45:21",
+    "step":  "self_repair",
+    "state":  "retrying",
+    "message":  "Attempt 4/100 finished with exit code -1073741819. Completed models: 0/11. gemma-4-31B-it (4bit) [running; 1/1000]",
+    "extra":  {
+                  "stderr":  "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\outputs\\benchmarks_n1000\\orchestration\\logs\\20260501_004143_self_repair_run_attempt4_stderr.log",
+                  "stdout":  "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\outputs\\benchmarks_n1000\\orchestration\\logs\\20260501_004143_self_repair_run_attempt4.log"
+              }
+}

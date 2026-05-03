@@ -1,0 +1,11 @@
+{
+  "model": "Mixtral-8x7B-Instruct-v0.1 (4bit)",
+  "config": "mixtral_8x7b_4bit.yaml",
+  "status": "completed",
+  "rows_completed": 250,
+  "rows_expected": 250,
+  "error": null,
+  "samples_csv": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\outputs\\comparison\\samples_Mixtral-8x7B-Instruct-v0.1_(4bit).csv",
+  "result_json": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\outputs\\comparison\\result_Mixtral-8x7B-Instruct-v0.1_(4bit).json",
+  "updated_at_epoch": 1774802922.3633113
+}

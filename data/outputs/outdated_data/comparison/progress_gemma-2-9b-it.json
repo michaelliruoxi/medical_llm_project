@@ -1,0 +1,11 @@
+{
+  "model": "gemma-2-9b-it",
+  "config": "gemma2_9b.yaml",
+  "status": "completed",
+  "rows_completed": 250,
+  "rows_expected": 250,
+  "error": null,
+  "samples_csv": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\outputs\\comparison\\samples_gemma-2-9b-it.csv",
+  "result_json": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\outputs\\comparison\\result_gemma-2-9b-it.json",
+  "updated_at_epoch": 1774743237.5544703
+}

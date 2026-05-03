@@ -14,9 +14,12 @@ noise:
     - Do not ask for clarification.
     - Do not add labels such as "Rewritten question:", "Original question:",
       or any bullets, numbering, quotation marks, or meta commentary.
+    - Do not output <think> tags, reasoning traces, analysis, or any other
+      internal notes.
     - Preserve the broad medical intent, but degrade clarity according to the
       requested noise type.
     - Keep the output plausible as something a real user might type.
+    - Keep the result as one noisy question, even if it contains messy clauses.
 
   user_template: >
     Noise type: {noise_type}
@@ -50,6 +53,7 @@ noise:
     - Is the rewrite materially noisier than the original?
     - Does it still point to the same general medical intent?
     - Is the output exactly one noisy question and nothing else?
+    - Did you avoid <think>, explanation, bullets, and extra labels?
 
     Rewritten question:
 
@@ -65,6 +69,8 @@ repair:
     - Do not explain your changes.
     - Do not ask the user for more context or clarification.
     - Do not add labels such as "Rewritten question:" or any bullets or quotes.
+    - Do not output <think> tags, analysis, chain-of-thought, or any other
+      internal reasoning text.
     - Keep the underlying medical intent as close as possible to the noisy input.
     - If the noisy question is underspecified, make the best possible clear rewrite
       from the available text instead of asking a follow-up question.
@@ -76,6 +82,7 @@ repair:
 
     Rewrite this into one clear medical question.
     Do not ask for clarification. Use best-effort rewriting only.
+    Return only the final rewritten question text, with no analysis or <think>.
 
     Rewritten clear question:
 
