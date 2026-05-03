@@ -1,0 +1,9 @@
+{
+    "updated_at":  "2026-04-29T07:23:09",
+    "step":  "supervisor",
+    "state":  "failed",
+    "message":  "fixed_repair did not reach 11 completed model rows after 100 attempt(s).",
+    "extra":  {
+
+              }
+}

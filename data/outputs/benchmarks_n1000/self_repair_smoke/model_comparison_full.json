@@ -1,0 +1,496 @@
+[
+  {
+    "model": "gemma-4-31B-it",
+    "label": "gemma-4-31B-it (4bit)",
+    "config": "gemma4_31b_q6k_ref.yaml",
+    "quantization": "4bit",
+    "n_examples": 2,
+    "n_noise_types": 5,
+    "noise_types": [
+      "typos_grammar",
+      "ambiguity",
+      "layperson",
+      "incomplete",
+      "overgeneralization"
+    ],
+    "noise_assignment": "round_robin",
+    "benchmark_mode": "self_repair",
+    "question_set_dir": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\processed\\benchmarks\\fixed_question_sets_gpt54_n1000",
+    "status": "completed",
+    "rows_completed": 2,
+    "rows_expected": 2,
+    "error": null,
+    "detailed_results": [
+      {
+        "noise_type": "ambiguity",
+        "question_ids": [
+          1
+        ],
+        "questions_clean": [
+          "What are the symptoms of Adult Acute Lymphoblastic Leukemia ?"
+        ],
+        "questions_noisy": [
+          "What kinda signs/symtoms would a grown person get if they had that fast moving blood cancer thing, like would it just be feeling run down, bruising easy, fevers or weird bone pain etc?"
+        ],
+        "questions_repaired": [
+          "What are the common signs and symptoms of acute leukemia in adults, and do they include fatigue, easy bruising, fever, and bone pain?"
+        ],
+        "answers_clean": [
+          "Adult Acute Lymphoblastic Leukemia (ALL) is characterized by the rapid overproduction of immature white blood cells (lymphoblasts), which crowd out healthy blood cells in the bone marrow. Symptoms typically develop quickly and result from three primary deficiencies: anemia, neutropenia, and thrombocytopenia.\n\n**1. Due to Anemia (Low Red Blood Cells):**\n*   **Fatigue and lethargy:** Persistent tiredness regardless of rest.\n*   **Shortness of breath:** Dyspnea during mild activity or while resting.\n*   **Pale skin:** Pallor affecting the face and nail beds.\n*   **Dizziness:** Feeling lightheaded due to decreased oxygen transport.\n\n**2. Due to Neutropenia (Low Functional White Blood Cells):**\n*   **Frequent infections:** Increased susceptibility to bacterial or viral illnesses.\n*   **Persistent fever:** Unexplained fevers or chills.\n*   **Slow-healing sores:** Wounds or mouth ulcers that do not heal normally.\n\n**3. Due to Thrombocytopenia (Low Platelets):**\n*   **Easy bruising:** Appearance of bruises without significant trauma.\n*   **Petechiae:** Tiny red or purple spots under the skin caused by broken capillaries.\n*   **Abnormal bleeding:** Frequent nosebleeds, bleeding gums, or unusually heavy menstrual periods.\n\n**4. Systemic and Organ-Specific Symptoms:**\n*   **Bone and joint pain:** Caused by the"
+        ],
+        "answers_noisy": [
+          "***Disclaimer:** I am an AI, not a doctor. If you or someone you know is experiencing these symptoms, please seek immediate medical attention from a healthcare professional.*\n\nThe \"fast-moving blood cancers\" you are referring to are typically **acute leukemias** (such as Acute Myeloid Leukemia or Acute Lymphoblastic Leukemia). These occur when the bone marrow produces a large number of abnormal white blood cells (blasts) that crowd out healthy red blood cells, white blood cells, and platelets.\n\nBecause the body lacks functional blood cells, the symptoms reflect those specific deficiencies:\n\n### 1. Lack of Red Blood Cells (Anemia)\nWhen there aren't enough red blood cells to carry oxygen to tissues, a person may experience:\n*   **Extreme fatigue/feeling \"run down\":** This is often profound exhaustion that doesn't improve with rest.\n*   **Shortness of breath:** Feeling winded even during light activity.\n*   **Pale skin:** A noticeable loss of color in the face or nail beds.\n\n### 2. Lack of Functional White Blood Cells (Neutropenia)\nEven though the body is producing *more* white blood cells, they are malformed and cannot fight infection. This leads to:\n*   **Frequent infections:** Getting sick more often than usual.\n*   **Persistent fevers:** Low-grade or high fevers without a clear cause (like a cold or flu).\n*   **"
+        ],
+        "answers_repaired": [
+          "Yes, the common signs and symptoms of acute leukemia in adults include **fatigue, easy bruising, fever, and bone pain**.\n\nThese symptoms occur because the rapid overproduction of abnormal leukemic blasts in the bone marrow crowds out healthy blood cells, leading to several deficiencies:\n\n*   **Anemia (Low Red Blood Cells):** Causes fatigue, shortness of breath, and pale skin (pallor).\n*   **Thrombocytopenia (Low Platelets):** Leads to easy bruising, petechiae (small red/purple spots on the skin), and prolonged bleeding from minor cuts or gums.\n*   **Neutropenia (Low Functional White Blood Cells):** Results in an increased susceptibility to infections, which often manifests as fever, chills, or recurrent infections.\n*   **Marrow Expansion:** The accumulation of leukemic cells within the bone marrow can cause bone pain or joint pain.\n\nOther possible symptoms include unexplained weight loss, night sweats, swollen lymph nodes, or an enlarged liver or spleen (causing abdominal fullness)."
+        ],
+        "reference_answers": [
+          "Signs and symptoms of adult ALL include fever, feeling tired, and easy bruising or bleeding. The early signs and symptoms of ALL may be like the flu or other common diseases. Check with your doctor if you have any of the following: - Weakness or feeling tired. - Fever or night sweats. - Easy bruising or bleeding. - Petechiae (flat, pinpoint spots under the skin, caused by bleeding). - Shortness of breath. - Weight loss or loss of appetite. - Pain in the bones or stomach. - Pain or feeling of fullness below the ribs. - Painless lumps in the neck, underarm, stomach, or groin. - Having many infections. These and other signs and symptoms may be caused by adult acute lymphoblastic leukemia or by other conditions."
+        ],
+        "bleu": {
+          "clean": [
+            2.271906918677536
+          ],
+          "noisy": [
+            1.3072274531092103
+          ],
+          "repaired": [
+            3.148357945954768
+          ]
+        },
+        "chrf": {
+          "clean": [
+            36.81449732138413
+          ],
+          "noisy": [
+            33.53233709382993
+          ],
+          "repaired": [
+            41.01923658039034
+          ]
+        },
+        "rouge_l": {
+          "clean": [
+            17.391304347826086
+          ],
+          "noisy": [
+            11.333333333333332
+          ],
+          "repaired": [
+            20.5761316872428
+          ]
+        },
+        "token_f1": {
+          "clean": [
+            30.43478260869565
+          ],
+          "noisy": [
+            22.0
+          ],
+          "repaired": [
+            37.03703703703704
+          ]
+        },
+        "exact_match": {
+          "clean": [
+            0.0
+          ],
+          "noisy": [
+            0.0
+          ],
+          "repaired": [
+            0.0
+          ]
+        },
+        "med_coverage": {
+          "clean": [
+            29.629629629629623
+          ],
+          "noisy": [
+            22.22222222222222
+          ],
+          "repaired": [
+            33.33333333333333
+          ]
+        },
+        "med_precision": {
+          "clean": [
+            17.97752808988764
+          ],
+          "noisy": [
+            12.903225806451612
+          ],
+          "repaired": [
+            25.0
+          ]
+        },
+        "med_f1": {
+          "clean": [
+            22.377622377622377
+          ],
+          "noisy": [
+            16.3265306122449
+          ],
+          "repaired": [
+            28.571428571428577
+          ]
+        },
+        "bertscore": {
+          "clean": [
+            0.8171321749687195
+          ],
+          "noisy": [
+            0.813624918460846
+          ],
+          "repaired": [
+            0.845257043838501
+          ]
+        },
+        "intent_preservation": {
+          "clean": [
+            0.9999999403953552
+          ],
+          "noisy": [
+            0.5525673031806946
+          ],
+          "repaired": [
+            0.8405764698982239
+          ]
+        },
+        "geval": {
+          "clean": [
+            4.0
+          ],
+          "noisy": [
+            3.0
+          ],
+          "repaired": [
+            5.0
+          ]
+        }
+      },
+      {
+        "noise_type": "typos_grammar",
+        "question_ids": [
+          0
+        ],
+        "questions_clean": [
+          "What is (are) Adult Acute Lymphoblastic Leukemia ?"
+        ],
+        "questions_noisy": [
+          "what is adult acute lymphoblstic leukemia , like what does it actualy mean ?"
+        ],
+        "questions_repaired": [
+          "What is the definition and pathophysiology of adult acute lymphoblastic leukemia?"
+        ],
+        "answers_clean": [
+          "**Adult Acute Lymphoblastic Leukemia (ALL)** is a fast-growing (acute) cancer of the blood and bone marrow characterized by the overproduction of immature lymphocytes called **lymphoblasts**.\n\nHere is a detailed breakdown of the condition:\n\n### 1. Pathophysiology\nIn ALL, the DNA of a developing lymphocyte undergoes mutations that prevent it from maturing properly. These \"blasts\" multiply rapidly in the bone marrow, crowding out healthy cells. This leads to a deficiency in:\n*   **Red blood cells:** Causing anemia (fatigue, paleness).\n*   **Platelets:** Leading to easy bruising or bleeding.\n*   **Healthy white blood cells:** Increasing susceptibility to infections.\n\n### 2. Types of Adult ALL\nALL is categorized primarily by the type of lymphocyte affected:\n*   **B-cell ALL:** The most common form in adults; affects B-lymphocytes (which normally produce antibodies).\n*   **T-cell ALL:** Affects T-lymphocytes (which coordinate the immune response); often presents with a higher white blood cell count and may involve a mass in the chest (thymus).\n\n### 3. Clinical Presentation\nWhile more common in children, adult ALL typically manifests through symptoms related to bone marrow failure:\n*   Persistent fatigue and shortness of breath.\n*   Frequent or severe infections.\n*   Unexplained fever.\n*   Easy bruising, petechiae (small red spots), or"
+        ],
+        "answers_noisy": [
+          "**Adult Acute Lymphoblastic Leukemia (ALL)** is a fast-growing cancer of the blood and bone marrow. To understand what it actually means, it helps to break down the name:\n\n### 1. Breaking Down the Terms\n*   **Acute:** This means the disease progresses rapidly. Unlike \"chronic\" leukemias, which develop slowly over years, acute leukemia appears suddenly and requires immediate treatment.\n*   **Lymphoblastic:** This refers to the type of cell involved. Your immune system has white blood cells called **lymphocytes**. In ALL, the bone marrow produces immature, dysfunctional lymphocytes called **lymphoblasts**. These are \"blasts\"—cells that have stopped maturing but continue to multiply.\n*   **Leukemia:** This is a general term for cancer of the blood-forming tissues (the bone marrow).\n\n### 2. What Is Actually Happening in the Body?\nIn a healthy person, the bone marrow acts as a factory producing red blood cells, white blood cells, and platelets. \n\nWhen someone has ALL, the genetic code in a developing lymphocyte mutates. Instead of growing into a mature cell that fights infection, the cell becomes stuck in an immature state (a blast) and begins cloning itself uncontrollably. \n\nBecause these blasts grow so quickly, they **crowd out** the healthy cells in the bone marrow. This leads to three primary problems:\n1.  **Lack of Healthy White Blood Cells:** Even though there are millions of"
+        ],
+        "answers_repaired": [
+          "**Definition**\nAdult Acute Lymphoblastic Leukemia (ALL) is a malignant hematologic disorder characterized by the uncontrolled proliferation of immature lymphoid progenitor cells (lymphoblasts). These blasts accumulate in the bone marrow, crowding out normal hematopoietic stem cells and spilling into the peripheral blood.\n\n**Pathophysiology**\nThe development of adult ALL involves several complex mechanisms:\n\n1.  **Genetic Mutations:** The disease begins with acquired genetic alterations—such as chromosomal translocations, deletions, or point mutations—in a single hematopoietic stem cell. Common aberrations include the Philadelphia chromosome $\\text{t}(9;22)$, which creates the *BCR-ABL1* fusion gene.\n2.  **Dysregulated Signaling:** These mutations lead to the constitutive activation of signal transduction pathways (e.g., JAK/STAT, PI3K/AKT/mTOR). This results in \"oncogenic drive,\" where the cell receives continuous signals to divide regardless of external growth factors.\n3.  **Block in Differentiation:** A hallmark of ALL is the arrest of lymphocyte maturation. Because these cells cannot differentiate into mature B-cells or T-cells, they remain in an immature \"blast\" state but continue to proliferate rapidly.\n4.  **Bone Marrow Failure:** As lymphoblasts infiltrate the bone marrow, they physically displace healthy myeloid and lymphoid precursors. This leads to **pancytopenia**, resulting in the clinical manifestations of the disease:\n    *   **Anemia:** Due to decreased"
+        ],
+        "reference_answers": [
+          "Key Points - Adult acute lymphoblastic leukemia (ALL) is a type of cancer in which the bone marrow makes too many lymphocytes (a type of white blood cell). - Leukemia may affect red blood cells, white blood cells, and platelets. - Previous chemotherapy and exposure to radiation may increase the risk of developing ALL. - Signs and symptoms of adult ALL include fever, feeling tired, and easy bruising or bleeding. - Tests that examine the blood and bone marrow are used to detect (find) and diagnose adult ALL. - Certain factors affect prognosis (chance of recovery) and treatment options. Adult acute lymphoblastic leukemia (ALL) is a type of cancer in which the bone marrow makes too many lymphocytes (a type of white blood cell). Adult acute lymphoblastic leukemia (ALL; also called acute lymphocytic leukemia) is a cancer of the blood and bone marrow. This type of cancer usually gets worse quickly if it is not treated. Leukemia may affect red blood cells, white blood cells, and platelets. Normally, the bone marrow makes blood stem cells (immature cells) that become mature blood cells over time. A blood stem cell may become a myeloid stem cell or a lymphoid stem cell. A myeloid stem cell becomes one of three types of mature blood cells: - Red blood cells that carry oxygen and other substances to all tissues of the body. - Platelets that form blood clots to stop bleeding. - Granulocytes (white blood cells) that fight infection and disease. A lymphoid stem cell becomes a lymphoblast cell and then one of three types of lymphocytes (white blood cells): - B lymphocytes that make antibodies to help fight infection. - T lymphocytes that help B lymphocytes make the antibodies that help fight infection. - Natural killer cells that attack cancer cells and viruses. In ALL, too many stem cells become lymphoblasts, B lymphocytes, or T lymphocytes. These cells are also called leukemia cells. These leukemia cells are not able to fight infection very well. Also, as the number of leukemia cells increases in the blood and bone marrow, there is less room for healthy white blood cells, red blood cells, and platelets. This may cause infection, anemia, and easy bleeding. The cancer can also spread to the central nervous system (brain and spinal cord). This summary is about adult acute lymphoblastic leukemia. See the following PDQ summaries for information about other types of leukemia: - Childhood Acute Lymphoblastic Leukemia Treatment. - Adult Acute Myeloid Leukemia Treatment. - Childhood Acute Myeloid Leukemia/Other Myeloid Malignancies Treatment. - Chronic Lymphocytic Leukemia Treatment. - Chronic Myelogenous Leukemia Treatment. - Hairy Cell Leukemia Treatment."
+        ],
+        "bleu": {
+          "clean": [
+            4.297725519130214
+          ],
+          "noisy": [
+            6.697047464163792
+          ],
+          "repaired": [
+            2.521453837802424
+          ]
+        },
+        "chrf": {
+          "clean": [
+            27.91758240774804
+          ],
+          "noisy": [
+            29.874438864244468
+          ],
+          "repaired": [
+            27.05989082434398
+          ]
+        },
+        "rouge_l": {
+          "clean": [
+            16.49122807017544
+          ],
+          "noisy": [
+            19.080068143100508
+          ],
+          "repaired": [
+            13.769363166953529
+          ]
+        },
+        "token_f1": {
+          "clean": [
+            31.92982456140352
+          ],
+          "noisy": [
+            34.41226575809199
+          ],
+          "repaired": [
+            22.719449225473323
+          ]
+        },
+        "exact_match": {
+          "clean": [
+            0.0
+          ],
+          "noisy": [
+            0.0
+          ],
+          "repaired": [
+            0.0
+          ]
+        },
+        "med_coverage": {
+          "clean": [
+            14.975845410628018
+          ],
+          "noisy": [
+            20.77294685990338
+          ],
+          "repaired": [
+            9.66183574879227
+          ]
+        },
+        "med_precision": {
+          "clean": [
+            41.333333333333336
+          ],
+          "noisy": [
+            44.329896907216494
+          ],
+          "repaired": [
+            30.76923076923077
+          ]
+        },
+        "med_f1": {
+          "clean": [
+            21.98581560283688
+          ],
+          "noisy": [
+            28.289473684210524
+          ],
+          "repaired": [
+            14.705882352941178
+          ]
+        },
+        "bertscore": {
+          "clean": [
+            0.8309200406074524
+          ],
+          "noisy": [
+            0.8384127616882324
+          ],
+          "repaired": [
+            0.8170763254165649
+          ]
+        },
+        "intent_preservation": {
+          "clean": [
+            1.0
+          ],
+          "noisy": [
+            0.8992835283279419
+          ],
+          "repaired": [
+            0.897831916809082
+          ]
+        },
+        "geval": {
+          "clean": [
+            3.0
+          ],
+          "noisy": [
+            3.0
+          ],
+          "repaired": [
+            3.0
+          ]
+        }
+      }
+    ],
+    "per_noise_type": [
+      {
+        "noise_type": "typos_grammar",
+        "bleu_clean_mean": 4.297725519130214,
+        "bleu_noisy_mean": 6.697047464163792,
+        "bleu_repaired_mean": 2.521453837802424,
+        "chrf_clean_mean": 27.91758240774804,
+        "chrf_noisy_mean": 29.874438864244468,
+        "chrf_repaired_mean": 27.05989082434398,
+        "rouge_l_clean_mean": 16.49122807017544,
+        "rouge_l_noisy_mean": 19.080068143100508,
+        "rouge_l_repaired_mean": 13.769363166953529,
+        "token_f1_clean_mean": 31.92982456140352,
+        "token_f1_noisy_mean": 34.41226575809199,
+        "token_f1_repaired_mean": 22.719449225473323,
+        "exact_match_clean_mean": 0.0,
+        "exact_match_noisy_mean": 0.0,
+        "exact_match_repaired_mean": 0.0,
+        "med_coverage_clean_mean": 14.975845410628018,
+        "med_coverage_noisy_mean": 20.77294685990338,
+        "med_coverage_repaired_mean": 9.66183574879227,
+        "med_precision_clean_mean": 41.333333333333336,
+        "med_precision_noisy_mean": 44.329896907216494,
+        "med_precision_repaired_mean": 30.76923076923077,
+        "med_f1_clean_mean": 21.98581560283688,
+        "med_f1_noisy_mean": 28.289473684210524,
+        "med_f1_repaired_mean": 14.705882352941178,
+        "bertscore_clean_mean": 0.8309200406074524,
+        "bertscore_noisy_mean": 0.8384127616882324,
+        "bertscore_repaired_mean": 0.8170763254165649,
+        "intent_preservation_clean_mean": 1.0,
+        "intent_preservation_noisy_mean": 0.8992835283279419,
+        "intent_preservation_repaired_mean": 0.897831916809082,
+        "geval_clean_mean": 3.0,
+        "geval_noisy_mean": 3.0,
+        "geval_repaired_mean": 3.0
+      },
+      {
+        "noise_type": "ambiguity",
+        "bleu_clean_mean": 2.271906918677536,
+        "bleu_noisy_mean": 1.3072274531092103,
+        "bleu_repaired_mean": 3.148357945954768,
+        "chrf_clean_mean": 36.81449732138413,
+        "chrf_noisy_mean": 33.53233709382993,
+        "chrf_repaired_mean": 41.01923658039034,
+        "rouge_l_clean_mean": 17.391304347826086,
+        "rouge_l_noisy_mean": 11.333333333333332,
+        "rouge_l_repaired_mean": 20.5761316872428,
+        "token_f1_clean_mean": 30.43478260869565,
+        "token_f1_noisy_mean": 22.0,
+        "token_f1_repaired_mean": 37.03703703703704,
+        "exact_match_clean_mean": 0.0,
+        "exact_match_noisy_mean": 0.0,
+        "exact_match_repaired_mean": 0.0,
+        "med_coverage_clean_mean": 29.629629629629623,
+        "med_coverage_noisy_mean": 22.22222222222222,
+        "med_coverage_repaired_mean": 33.33333333333333,
+        "med_precision_clean_mean": 17.97752808988764,
+        "med_precision_noisy_mean": 12.903225806451612,
+        "med_precision_repaired_mean": 25.0,
+        "med_f1_clean_mean": 22.377622377622377,
+        "med_f1_noisy_mean": 16.3265306122449,
+        "med_f1_repaired_mean": 28.571428571428577,
+        "bertscore_clean_mean": 0.8171321749687195,
+        "bertscore_noisy_mean": 0.813624918460846,
+        "bertscore_repaired_mean": 0.845257043838501,
+        "intent_preservation_clean_mean": 0.9999999403953552,
+        "intent_preservation_noisy_mean": 0.5525673031806946,
+        "intent_preservation_repaired_mean": 0.8405764698982239,
+        "geval_clean_mean": 4.0,
+        "geval_noisy_mean": 3.0,
+        "geval_repaired_mean": 5.0
+      }
+    ],
+    "bleu_clean_mean": 3.2848162189038748,
+    "bleu_clean_std": 1.0129093002263392,
+    "bleu_noisy_mean": 4.0021374586365015,
+    "bleu_noisy_std": 2.694910005527291,
+    "bleu_repaired_mean": 2.834905891878596,
+    "bleu_repaired_std": 0.31345205407617205,
+    "chrf_clean_mean": 32.36603986456608,
+    "chrf_clean_std": 4.448457456818046,
+    "chrf_noisy_mean": 31.7033879790372,
+    "chrf_noisy_std": 1.8289491147927315,
+    "chrf_repaired_mean": 34.03956370236716,
+    "chrf_repaired_std": 6.97967287802318,
+    "rouge_l_clean_mean": 16.941266209000762,
+    "rouge_l_clean_std": 0.45003813882532384,
+    "rouge_l_noisy_mean": 15.20670073821692,
+    "rouge_l_noisy_std": 3.873367404883588,
+    "rouge_l_repaired_mean": 17.172747427098166,
+    "rouge_l_repaired_std": 3.4033842601446356,
+    "token_f1_clean_mean": 31.182303585049585,
+    "token_f1_clean_std": 0.7475209763539361,
+    "token_f1_noisy_mean": 28.206132879045995,
+    "token_f1_noisy_std": 6.206132879045995,
+    "token_f1_repaired_mean": 29.878243131255182,
+    "token_f1_repaired_std": 7.158793905781858,
+    "exact_match_clean_mean": 0.0,
+    "exact_match_clean_std": 0.0,
+    "exact_match_noisy_mean": 0.0,
+    "exact_match_noisy_std": 0.0,
+    "exact_match_repaired_mean": 0.0,
+    "exact_match_repaired_std": 0.0,
+    "med_coverage_clean_mean": 22.302737520128822,
+    "med_coverage_clean_std": 7.326892109500802,
+    "med_coverage_noisy_mean": 21.4975845410628,
+    "med_coverage_noisy_std": 0.72463768115942,
+    "med_coverage_repaired_mean": 21.4975845410628,
+    "med_coverage_repaired_std": 11.835748792270529,
+    "med_precision_clean_mean": 29.65543071161049,
+    "med_precision_clean_std": 11.677902621722847,
+    "med_precision_noisy_mean": 28.616561356834055,
+    "med_precision_noisy_std": 15.71333555038244,
+    "med_precision_repaired_mean": 27.884615384615387,
+    "med_precision_repaired_std": 2.884615384615385,
+    "med_f1_clean_mean": 22.181718990229626,
+    "med_f1_clean_std": 0.19590338739274848,
+    "med_f1_noisy_mean": 22.30800214822771,
+    "med_f1_noisy_std": 5.981471535982813,
+    "med_f1_repaired_mean": 21.63865546218488,
+    "med_f1_repaired_std": 6.9327731092436995,
+    "bertscore_clean_mean": 0.8240261077880859,
+    "bertscore_clean_std": 0.006893932819366455,
+    "bertscore_noisy_mean": 0.8260188400745392,
+    "bertscore_noisy_std": 0.012393921613693237,
+    "bertscore_repaired_mean": 0.831166684627533,
+    "bertscore_repaired_std": 0.014090359210968018,
+    "intent_preservation_clean_mean": 0.9999999701976776,
+    "intent_preservation_clean_std": 2.9802322387695312e-08,
+    "intent_preservation_noisy_mean": 0.7259254157543182,
+    "intent_preservation_noisy_std": 0.17335811257362366,
+    "intent_preservation_repaired_mean": 0.869204193353653,
+    "intent_preservation_repaired_std": 0.028627723455429077,
+    "geval_clean_mean": 3.5,
+    "geval_clean_std": 0.5,
+    "geval_noisy_mean": 3.0,
+    "geval_noisy_std": 0.0,
+    "geval_repaired_mean": 4.0,
+    "geval_repaired_std": 1.0,
+    "bleu_degradation": -0.7173212397326267,
+    "bleu_recovery": -1.1672315667579056,
+    "bleu_recovery_ratio": NaN,
+    "chrf_degradation": 0.6626518855288843,
+    "chrf_recovery": 2.336175723329962,
+    "chrf_recovery_ratio": NaN,
+    "rouge_l_degradation": 1.734565470783842,
+    "rouge_l_recovery": 1.9660466888812458,
+    "rouge_l_recovery_ratio": 1.0,
+    "token_f1_degradation": 2.9761707060035896,
+    "token_f1_recovery": 1.6721102522091869,
+    "token_f1_recovery_ratio": 0.56183277687539,
+    "exact_match_degradation": 0.0,
+    "exact_match_recovery": 0.0,
+    "exact_match_recovery_ratio": NaN,
+    "med_coverage_degradation": 0.8051529790660226,
+    "med_coverage_recovery": 0.0,
+    "med_coverage_recovery_ratio": NaN,
+    "med_precision_degradation": 1.038869354776434,
+    "med_precision_recovery": -0.7319459722186679,
+    "med_precision_recovery_ratio": -0.7045601728969891,
+    "med_f1_degradation": -0.12628315799808476,
+    "med_f1_recovery": -0.6693466860428323,
+    "med_f1_recovery_ratio": NaN,
+    "bertscore_degradation": -0.001992732286453247,
+    "bertscore_recovery": 0.005147844552993774,
+    "bertscore_recovery_ratio": NaN,
+    "intent_preservation_degradation": 0.2740745544433594,
+    "intent_preservation_recovery": 0.14327877759933472,
+    "intent_preservation_recovery_ratio": 0.522773002004259,
+    "geval_degradation": 0.5,
+    "geval_recovery": 1.0,
+    "geval_recovery_ratio": 1.0,
+    "runtime_seconds": 28.092742443084717
+  }
+]

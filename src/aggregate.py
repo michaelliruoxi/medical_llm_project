@@ -1,16 +1,36 @@
-"""Step E (part 3): Aggregate metrics, compute robustness measures, and run statistical tests."""
+"""Aggregate metrics, compute robustness measures, and run paired statistical tests.
+
+This module is the significance layer for the benchmark pipeline. It reads the
+per-model wide-format ``samples_<label>.csv`` files produced by
+``scripts/benchmarks/run_comparison.py``, reshapes them to long form, and
+writes per-model summary / robustness / Wilcoxon / bootstrap-CI tables.
+
+Library functions (``summary_by_pipeline``, ``robustness_metrics``,
+``paired_tests``, ``compute_bootstrap_cis``) operate on long-form DataFrames
+with columns ``id``, ``pipeline`` (clean/noisy/repaired), ``noise_type`` and
+any subset of ``METRIC_COLS``.
+
+Usage:
+    python -m src.aggregate --mode fixed_repair
+    python -m src.aggregate --mode self_repair --output-root data/outputs/benchmarks
+"""
+
+from __future__ import annotations
 
 import argparse
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
 from scipy import stats
 
 from src.metrics import compute_recovery_statistics
-from src.utils import PROJECT_ROOT, load_config, setup_logging
+from src.utils import PROJECT_ROOT, setup_logging
 
 
 logger = setup_logging()
+
+PIPELINES = ("clean", "noisy", "repaired")
 
 METRIC_COLS = [
     "bleu",
@@ -18,10 +38,51 @@ METRIC_COLS = [
     "rouge_l",
     "token_f1",
     "exact_match",
-    "bertscore_f1",
+    "med_coverage",
+    "med_precision",
+    "med_f1",
+    "bertscore",
     "intent_preservation",
-    "geval_score",
+    "geval",
 ]
+
+BASE_LONG_COLS = ["id", "noise_type", "pipeline"]
+
+
+# ---------------------------------------------------------------------------
+# Wide (benchmark samples_*.csv) -> long adapter
+# ---------------------------------------------------------------------------
+
+def samples_wide_to_long(samples_df: pd.DataFrame) -> pd.DataFrame:
+    """Reshape one model's wide-format samples dataframe into long form.
+
+    The benchmark writes each sample row with per-pipeline metric columns
+    like ``bleu_clean``, ``bleu_noisy``, ``bleu_repaired``. We melt that into
+    one long row per (question_id, noise_type, pipeline) with one column per
+    metric, which is the shape the statistical helpers below expect.
+    """
+    if samples_df.empty:
+        return pd.DataFrame(columns=BASE_LONG_COLS + METRIC_COLS)
+
+    records: list[dict] = []
+    for _, row in samples_df.iterrows():
+        try:
+            qid = int(row["question_id"])
+        except (KeyError, ValueError, TypeError):
+            continue
+        noise_type = row.get("noise_type", "")
+        for pipeline in PIPELINES:
+            rec = {"id": qid, "noise_type": noise_type, "pipeline": pipeline}
+            for metric in METRIC_COLS:
+                col = f"{metric}_{pipeline}"
+                if col in samples_df.columns:
+                    val = row[col]
+                    try:
+                        rec[metric] = float(val) if pd.notna(val) else np.nan
+                    except (TypeError, ValueError):
+                        rec[metric] = np.nan
+            records.append(rec)
+    return pd.DataFrame.from_records(records)
 
 
 # ---------------------------------------------------------------------------
@@ -32,7 +93,7 @@ def summary_by_pipeline(df: pd.DataFrame) -> pd.DataFrame:
     """Mean, median, std for each metric grouped by pipeline."""
     rows = []
     for pipeline, grp in df.groupby("pipeline"):
-        row = {"pipeline": pipeline}
+        row = {"pipeline": pipeline, "n": int(len(grp))}
         for col in METRIC_COLS:
             if col in grp.columns:
                 row[f"{col}_mean"] = grp[col].mean()
@@ -49,7 +110,7 @@ def summary_by_pipeline_noise(df: pd.DataFrame) -> pd.DataFrame:
 
     rows = []
     for (pipeline, nt), grp in df.groupby(["pipeline", "noise_type"]):
-        row = {"pipeline": pipeline, "noise_type": nt}
+        row = {"pipeline": pipeline, "noise_type": nt, "n": int(len(grp))}
         for col in METRIC_COLS:
             if col in grp.columns:
                 row[f"{col}_mean"] = grp[col].mean()
@@ -77,7 +138,6 @@ def robustness_metrics(df: pd.DataFrame) -> pd.DataFrame:
     for nt in noise_types:
         noisy_nt = noisy[noisy["noise_type"] == nt] if "noise_type" in noisy.columns else noisy
 
-        # Match rows by id
         ids = set(clean["id"]) & set(noisy_nt["id"])
         c = clean[clean["id"].isin(ids)].set_index("id").sort_index()
         n = noisy_nt[noisy_nt["id"].isin(ids)].set_index("id").sort_index()
@@ -105,6 +165,7 @@ def robustness_metrics(df: pd.DataFrame) -> pd.DataFrame:
             rows.append({
                 "noise_type": nt,
                 "metric": col,
+                "n_pairs": int(len(ids)),
                 "clean_mean": clean_mean,
                 "noisy_mean": noisy_mean,
                 "repaired_mean": repaired_mean,
@@ -120,9 +181,14 @@ def robustness_metrics(df: pd.DataFrame) -> pd.DataFrame:
 # Statistical tests
 # ---------------------------------------------------------------------------
 
+def _cohens_d(a: np.ndarray, b: np.ndarray) -> float:
+    diff = a - b
+    return float(diff.mean() / diff.std()) if diff.std() > 0 else 0.0
+
+
 def paired_tests(df: pd.DataFrame) -> pd.DataFrame:
-    """Wilcoxon signed-rank tests: clean vs noisy, noisy vs repaired."""
-    clean = df[df["pipeline"] == "clean"].set_index("id").sort_index()
+    """Wilcoxon signed-rank tests: clean vs noisy, noisy vs repaired (paired by id)."""
+    clean_all = df[df["pipeline"] == "clean"].set_index("id").sort_index()
     noisy_all = df[df["pipeline"] == "noisy"]
     repaired_all = df[df["pipeline"] == "repaired"]
 
@@ -132,46 +198,69 @@ def paired_tests(df: pd.DataFrame) -> pd.DataFrame:
     for nt in noise_types:
         noisy = noisy_all[noisy_all["noise_type"] == nt] if "noise_type" in noisy_all.columns else noisy_all
         noisy = noisy.set_index("id").sort_index()
-        repaired = (
-            repaired_all[repaired_all["noise_type"] == nt].set_index("id").sort_index()
-            if not repaired_all.empty and "noise_type" in repaired_all.columns
-            else repaired_all.set_index("id").sort_index() if not repaired_all.empty
-            else pd.DataFrame()
-        )
 
-        shared_cn = sorted(set(clean.index) & set(noisy.index))
+        if not repaired_all.empty and "noise_type" in repaired_all.columns:
+            repaired = repaired_all[repaired_all["noise_type"] == nt].set_index("id").sort_index()
+        elif not repaired_all.empty:
+            repaired = repaired_all.set_index("id").sort_index()
+        else:
+            repaired = pd.DataFrame()
+
+        shared_cn = sorted(set(clean_all.index) & set(noisy.index))
         shared_nr = sorted(set(noisy.index) & set(repaired.index)) if not repaired.empty else []
 
         for col in METRIC_COLS:
-            if col not in clean.columns or col not in noisy.columns:
+            if col not in clean_all.columns or col not in noisy.columns:
                 continue
 
-            # Clean vs Noisy
-            c_vals = clean.loc[shared_cn, col].values
-            n_vals = noisy.loc[shared_cn, col].values
-            try:
-                stat_cn, p_cn = stats.wilcoxon(c_vals, n_vals)
-            except ValueError:
-                stat_cn, p_cn = np.nan, np.nan
-            d_cn = _cohens_d(c_vals, n_vals)
-
-            # Noisy vs Repaired
-            stat_nr, p_nr, d_nr = np.nan, np.nan, np.nan
-            if shared_nr and col in repaired.columns:
-                n2 = noisy.loc[shared_nr, col].values
-                r_vals = repaired.loc[shared_nr, col].values
+            c_vals = clean_all.loc[shared_cn, col].dropna().values
+            n_vals = noisy.loc[shared_cn, col].dropna().values
+            # align after dropna: use intersection of non-na indices
+            paired_cn = (
+                pd.concat(
+                    [clean_all.loc[shared_cn, col], noisy.loc[shared_cn, col]],
+                    axis=1, keys=["c", "n"],
+                )
+                .dropna()
+            )
+            c_vals = paired_cn["c"].values
+            n_vals = paired_cn["n"].values
+            stat_cn, p_cn = np.nan, np.nan
+            if len(c_vals) >= 1 and np.any(c_vals - n_vals):
                 try:
-                    stat_nr, p_nr = stats.wilcoxon(n2, r_vals)
+                    stat_cn, p_cn = stats.wilcoxon(c_vals, n_vals, zero_method="wilcox")
                 except ValueError:
                     pass
-                d_nr = _cohens_d(r_vals, n2)
+            d_cn = _cohens_d(c_vals, n_vals) if len(c_vals) else np.nan
+
+            stat_nr, p_nr, d_nr = np.nan, np.nan, np.nan
+            n_pairs_nr = 0
+            if shared_nr and col in repaired.columns:
+                paired_nr = (
+                    pd.concat(
+                        [noisy.loc[shared_nr, col], repaired.loc[shared_nr, col]],
+                        axis=1, keys=["n", "r"],
+                    )
+                    .dropna()
+                )
+                n2 = paired_nr["n"].values
+                r_vals = paired_nr["r"].values
+                n_pairs_nr = int(len(n2))
+                if len(n2) >= 1 and np.any(n2 - r_vals):
+                    try:
+                        stat_nr, p_nr = stats.wilcoxon(n2, r_vals, zero_method="wilcox")
+                    except ValueError:
+                        pass
+                d_nr = _cohens_d(r_vals, n2) if len(n2) else np.nan
 
             rows.append({
                 "noise_type": nt,
                 "metric": col,
+                "n_pairs_clean_noisy": int(len(c_vals)),
                 "wilcoxon_stat_clean_noisy": stat_cn,
                 "p_value_clean_noisy": p_cn,
                 "cohens_d_clean_noisy": d_cn,
+                "n_pairs_noisy_repaired": n_pairs_nr,
                 "wilcoxon_stat_noisy_repaired": stat_nr,
                 "p_value_noisy_repaired": p_nr,
                 "cohens_d_noisy_repaired": d_nr,
@@ -181,22 +270,17 @@ def paired_tests(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def bootstrap_ci(values: np.ndarray, n_boot: int = 10000, alpha: float = 0.05,
-                  seed: int = 42) -> tuple[float, float]:
+                 seed: int = 42) -> tuple[float, float]:
     """Bootstrap confidence interval for the mean."""
     rng = np.random.RandomState(seed)
     means = [rng.choice(values, size=len(values), replace=True).mean()
              for _ in range(n_boot)]
-    lower = np.percentile(means, 100 * alpha / 2)
-    upper = np.percentile(means, 100 * (1 - alpha / 2))
+    lower = float(np.percentile(means, 100 * alpha / 2))
+    upper = float(np.percentile(means, 100 * (1 - alpha / 2)))
     return lower, upper
 
 
-def _cohens_d(a: np.ndarray, b: np.ndarray) -> float:
-    diff = a - b
-    return diff.mean() / diff.std() if diff.std() > 0 else 0.0
-
-
-def compute_bootstrap_cis(df: pd.DataFrame) -> pd.DataFrame:
+def compute_bootstrap_cis(df: pd.DataFrame, n_boot: int = 10000) -> pd.DataFrame:
     """Bootstrap 95% CIs for each (pipeline, metric) combination."""
     rows = []
     for pipeline, grp in df.groupby("pipeline"):
@@ -206,11 +290,12 @@ def compute_bootstrap_cis(df: pd.DataFrame) -> pd.DataFrame:
             vals = grp[col].dropna().values
             if len(vals) < 2:
                 continue
-            lo, hi = bootstrap_ci(vals)
+            lo, hi = bootstrap_ci(vals, n_boot=n_boot)
             rows.append({
                 "pipeline": pipeline,
                 "metric": col,
-                "mean": vals.mean(),
+                "n": int(len(vals)),
+                "mean": float(vals.mean()),
                 "ci_lower": lo,
                 "ci_upper": hi,
             })
@@ -218,48 +303,113 @@ def compute_bootstrap_cis(df: pd.DataFrame) -> pd.DataFrame:
 
 
 # ---------------------------------------------------------------------------
-# Main
+# Per-model driver
 # ---------------------------------------------------------------------------
 
-def run():
-    cfg = load_config()
-    out_dir = PROJECT_ROOT / cfg["paths"]["outputs"]
-    metrics_path = out_dir / "metrics.parquet"
+def aggregate_one_model(
+    samples_csv: Path,
+    stats_dir: Path,
+    n_boot: int = 10000,
+) -> dict[str, Path]:
+    """Run the full stats suite on one model's samples_*.csv.
 
-    df = pd.read_parquet(metrics_path)
-    logger.info("Loaded %d metric rows", len(df))
+    Writes four CSVs under ``stats_dir``:
+        summary_<label>.csv
+        summary_noise_<label>.csv
+        robustness_<label>.csv
+        paired_tests_<label>.csv
+        bootstrap_cis_<label>.csv
+    """
+    label = samples_csv.stem[len("samples_"):] if samples_csv.stem.startswith("samples_") else samples_csv.stem
+    stats_dir.mkdir(parents=True, exist_ok=True)
 
-    # Summary tables
-    summary = summary_by_pipeline(df)
-    summary.to_csv(out_dir / "summary_by_pipeline.csv", index=False)
-    logger.info("Summary by pipeline:\n%s", summary.to_string(index=False))
+    samples_df = pd.read_csv(samples_csv)
+    long_df = samples_wide_to_long(samples_df)
 
-    summary_noise = summary_by_pipeline_noise(df)
+    out: dict[str, Path] = {}
+    if long_df.empty:
+        logger.warning("%s: no rows after reshape; skipping stats", label)
+        return out
+
+    summary = summary_by_pipeline(long_df)
+    if not summary.empty:
+        path = stats_dir / f"summary_{label}.csv"
+        summary.to_csv(path, index=False)
+        out["summary"] = path
+
+    summary_noise = summary_by_pipeline_noise(long_df)
     if not summary_noise.empty:
-        summary_noise.to_csv(out_dir / "summary_by_pipeline_noise.csv", index=False)
+        path = stats_dir / f"summary_noise_{label}.csv"
+        summary_noise.to_csv(path, index=False)
+        out["summary_noise"] = path
 
-    # Robustness
-    robust = robustness_metrics(df)
+    robust = robustness_metrics(long_df)
     if not robust.empty:
-        robust.to_csv(out_dir / "robustness_metrics.csv", index=False)
-        logger.info("Robustness metrics:\n%s", robust.to_string(index=False))
+        path = stats_dir / f"robustness_{label}.csv"
+        robust.to_csv(path, index=False)
+        out["robustness"] = path
 
-    # Statistical tests
-    tests = paired_tests(df)
+    tests = paired_tests(long_df)
     if not tests.empty:
-        tests.to_csv(out_dir / "statistical_tests.csv", index=False)
-        logger.info("Statistical tests:\n%s", tests.to_string(index=False))
+        path = stats_dir / f"paired_tests_{label}.csv"
+        tests.to_csv(path, index=False)
+        out["paired_tests"] = path
 
-    # Bootstrap CIs
-    cis = compute_bootstrap_cis(df)
+    cis = compute_bootstrap_cis(long_df, n_boot=n_boot)
     if not cis.empty:
-        cis.to_csv(out_dir / "bootstrap_cis.csv", index=False)
-        logger.info("Bootstrap CIs:\n%s", cis.to_string(index=False))
+        path = stats_dir / f"bootstrap_cis_{label}.csv"
+        cis.to_csv(path, index=False)
+        out["bootstrap_cis"] = path
 
-    logger.info("All aggregate outputs saved to %s", out_dir)
+    logger.info(
+        "Aggregated %s: %d long rows -> %d tables under %s",
+        label, len(long_df), len(out), stats_dir,
+    )
+    return out
+
+
+def run_for_mode(
+    mode: str,
+    output_root: Path,
+    n_boot: int = 10000,
+) -> list[str]:
+    mode_dir = output_root / mode
+    if not mode_dir.exists():
+        logger.error("No output directory for mode=%s: %s", mode, mode_dir)
+        return []
+
+    samples = sorted(mode_dir.glob("samples_*.csv"))
+    if not samples:
+        logger.warning("No samples_*.csv in %s", mode_dir)
+        return []
+
+    stats_dir = mode_dir / "stats"
+    labels: list[str] = []
+    for sp in samples:
+        label = sp.stem[len("samples_"):]
+        aggregate_one_model(sp, stats_dir, n_boot=n_boot)
+        labels.append(label)
+    logger.info("Aggregated %d model(s) for mode=%s into %s", len(labels), mode, stats_dir)
+    return labels
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--mode",
+        choices=("end_to_end", "fixed_repair", "self_repair"),
+        default="fixed_repair",
+    )
+    parser.add_argument(
+        "--output-root",
+        type=Path,
+        default=PROJECT_ROOT / "data" / "outputs" / "benchmarks",
+    )
+    parser.add_argument("--n-boot", type=int, default=10000)
+    args = parser.parse_args()
+
+    run_for_mode(args.mode, args.output_root, n_boot=args.n_boot)
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Aggregate results and compute statistics")
-    parser.parse_args()
-    run()
+    main()

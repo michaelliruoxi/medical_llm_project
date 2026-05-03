@@ -1,0 +1,10 @@
+{
+    "updated_at":  "2026-05-01T00:24:07",
+    "step":  "fixed_repair_refresh_geval",
+    "state":  "running",
+    "message":  "Launching C:\\Users\\Owner\\AppData\\Local\\Programs\\Python\\Python311\\python.exe scripts/benchmarks/refresh_geval_from_cache.py --mode fixed_repair --output-root data/outputs/benchmarks_n1000",
+    "extra":  {
+                  "stderr":  "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\outputs\\benchmarks_n1000\\orchestration\\logs\\20260501_002354_fixed_repair_refresh_geval_stderr.log",
+                  "stdout":  "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\outputs\\benchmarks_n1000\\orchestration\\logs\\20260501_002354_fixed_repair_refresh_geval.log"
+              }
+}

@@ -1,0 +1,494 @@
+{
+  "model": "mistralai/Mixtral-8x7B-Instruct-v0.1",
+  "label": "Mixtral-8x7B-Instruct-v0.1_(4bit)",
+  "config": "mixtral_8x7b_4bit.yaml",
+  "quantization": "4bit",
+  "n_examples": 50,
+  "n_noise_types": 5,
+  "noise_types": [
+    "typos_grammar",
+    "ambiguity",
+    "layperson",
+    "incomplete",
+    "overgeneralization"
+  ],
+  "noise_assignment": "round_robin",
+  "benchmark_mode": "self_repair",
+  "question_set_dir": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\processed\\benchmarks\\fixed_question_sets_gpt54",
+  "status": "partial",
+  "rows_completed": 2,
+  "rows_expected": 3,
+  "error": "Some modules are dispatched on the CPU or the disk. Make sure you have enough GPU RAM to fit the quantized model. If you want to dispatch the model on the CPU or the disk while keeping these modules in 32-bit, you need to set `llm_int8_enable_fp32_cpu_offload=True` and pass a custom `device_map` to ",
+  "detailed_results": [
+    {
+      "noise_type": "ambiguity",
+      "question_ids": [
+        1
+      ],
+      "questions_clean": [
+        "What is (are) Abdominal Pain ?"
+      ],
+      "questions_noisy": [
+        "what does it mean if your stomach/belly area is hurting inside, like that kind of pain in the middle, or around there, is that just a regular stomach ache or something else?"
+      ],
+      "questions_repaired": [
+        "Could experiencing mild, vague abdominal pain specifically located in the central region indicate a typical stomach ache or could it suggest another underlying condition?* \\*Note: This rewrite assumes 'stomach' refers to the abdomen; true stomach conditions include gastritis, ulcers etc.*"
+      ],
+      "answers_clean": [
+        "Abdominal pain refers to discomfort or hurt felt in the abdomen, which is the area between the chest and pelvis. It can be acute (sudden and severe) or chronic (persistent or recurring), and can have various causes such as indigestion, infection, inflammation, obstruction, or injury of the organs located in this region like the stomach, small intestine, large intestine, liver, gallbladder, pancreas, or kidneys. The severity and location of the pain may provide clues about its underlying cause, but further diagnostic tests are often required for accurate diagnosis and treatment."
+      ],
+      "answers_noisy": [
+        "I'm an AI language model and while I can provide some general information, I can't diagnose symptoms or replace professional medical advice. However, I can tell you that abdominal pain can be caused by various factors, ranging from minor issues like gas or indigestion to more serious conditions such as appendicitis, inflammatory bowel disease, or even cancer. \n\nIf the pain is severe, persistent, or accompanied by other symptoms like fever, nausea, vomiting, or changes in bowel movements, it would be wise to seek immediate medical attention. If it's a mild, occasional discomfort, it might simply be a stomachache, which could be due to overeating, stress, or menstrual cramps, among other things. But remember, self-diagnosis can be risky - always consult with a healthcare professional for accurate assessment and treatment."
+      ],
+      "answers_repaired": [
+        "Yes, mild, vague abdominal pain in the central region can sometimes indicate a simple stomach ache. However, it could also suggest other underlying conditions such as gastrointestinal disorders (like irritable bowel syndrome), food intolerances, or even early stages of certain diseases. If the pain persists, worsens, or is accompanied by other symptoms like fever, nausea, vomiting, or changes in bowel movements, it is important to seek medical attention for proper diagnosis and treatment."
+      ],
+      "reference_answers": [
+        "Your abdomen extends from below your chest to your groin. Some people call it the stomach, but your abdomen contains many other important organs. Pain in the abdomen can come from any one of them. The pain may start somewhere else, such as your chest. Severe pain doesn't always mean a serious problem. Nor does mild pain mean a problem is not serious. Call your healthcare provider if mild pain lasts a week or more or if you have pain with other symptoms. Get medical help immediately if - You have abdominal pain that is sudden and sharp - You also have pain in your chest, neck or shoulder - You're vomiting blood or have blood in your stool - Your abdomen is stiff, hard and tender to touch - You can't move your bowels, especially if you're also vomiting"
+      ],
+      "bleu": {
+        "clean": [
+          2.6506319585032485
+        ],
+        "noisy": [
+          1.361469027051382
+        ],
+        "repaired": [
+          1.234883259039904
+        ]
+      },
+      "chrf": {
+        "clean": [
+          29.202015309032188
+        ],
+        "noisy": [
+          34.205893329404816
+        ],
+        "repaired": [
+          28.48624257598128
+        ]
+      },
+      "rouge_l": {
+        "clean": [
+          11.11111111111111
+        ],
+        "noisy": [
+          12.307692307692308
+        ],
+        "repaired": [
+          14.77832512315271
+        ]
+      },
+      "token_f1": {
+        "clean": [
+          25.925925925925924
+        ],
+        "noisy": [
+          29.230769230769237
+        ],
+        "repaired": [
+          26.600985221674872
+        ]
+      },
+      "exact_match": {
+        "clean": [
+          0.0
+        ],
+        "noisy": [
+          0.0
+        ],
+        "repaired": [
+          0.0
+        ]
+      },
+      "med_coverage": {
+        "clean": [
+          10.0
+        ],
+        "noisy": [
+          10.0
+        ],
+        "repaired": [
+          8.333333333333332
+        ]
+      },
+      "med_precision": {
+        "clean": [
+          14.634146341463412
+        ],
+        "noisy": [
+          10.714285714285714
+        ],
+        "repaired": [
+          16.666666666666664
+        ]
+      },
+      "med_f1": {
+        "clean": [
+          11.88118811881188
+        ],
+        "noisy": [
+          10.3448275862069
+        ],
+        "repaired": [
+          11.11111111111111
+        ]
+      },
+      "bertscore": {
+        "clean": [
+          0.8394666314125061
+        ],
+        "noisy": [
+          0.8464222550392151
+        ],
+        "repaired": [
+          0.8536713719367981
+        ]
+      },
+      "intent_preservation": {
+        "clean": [
+          1.0
+        ],
+        "noisy": [
+          0.6781895756721497
+        ],
+        "repaired": [
+          0.7223732471466064
+        ]
+      },
+      "geval": {
+        "clean": [
+          4.0
+        ],
+        "noisy": [
+          4.0
+        ],
+        "repaired": [
+          4.0
+        ]
+      }
+    },
+    {
+      "noise_type": "typos_grammar",
+      "question_ids": [
+        0
+      ],
+      "questions_clean": [
+        "Do you have information about A1C"
+      ],
+      "questions_noisy": [
+        "do you got any info rmation abotu A1C , like what it is an how it works?"
+      ],
+      "questions_repaired": [
+        "What is A1C, including its purpose and mechanism of action?"
+      ],
+      "answers_clean": [
+        "Yes, I can provide information about A1C. A1C is a blood test that measures your average blood sugar levels over the past 2-3 months. It's also known as hemoglobin A1c or glycated hemoglobin. The test works by measuring the amount of glucose attached to hemoglobin, a protein in red blood cells. Higher blood sugar levels cause more glucose to attach to hemoglobin, resulting in a higher A1C level. An A1C level of 6.5% or higher typically indicates diabetes, while an A1C between 5.7% and 6.4% suggests prediabetes. Lower A1C levels indicate better blood sugar control. Regular A1C testing is important for managing diabetes and reducing the risk of complications associated with the disease."
+      ],
+      "answers_noisy": [
+        "Yes, I'd be happy to help explain! An A1C test, also known as hemoglobin A1c or HbA1c, is a common blood test used to diagnose and monitor diabetes. The test measures the average level of glucose (sugar) in your blood over the past 2-3 months by checking the amount of glycated hemoglobin in your red blood cells. Hemoglobin is a protein found inside your red blood cells that carries oxygen throughout your body. When sugar enters your bloodstream, some of it attaches to hemoglobin, forming glycated hemoglobin.\n\nThe more glucose there is in your blood, the higher the amount of glycated hemoglobin will be. This makes the A1C test a useful tool for tracking long-term control of blood sugar levels in people with diabetes. It provides valuable information about overall trends rather than short-term fluctuations, allowing healthcare providers to evaluate the effectiveness of treatment plans and adjust them accordingly.\n\nIn general, an A1C result below 5.7% is considered normal; values between 5.7% and 6.4% indicate prediabetes, while an A1C equal to or greater than 6.5% suggests a diagnosis of diabetes. However, these thresholds may vary slightly depending on the"
+      ],
+      "answers_repaired": [
+        "A1C, also known as hemoglobin A1c or glycosylated hemoglobin, is a blood test that measures your average blood sugar levels over the past 2-3 months. It does not require fasting. The test works by measuring the amount of glucose (sugar) that has attached to hemoglobin, the protein in red blood cells that carries oxygen. The higher your blood sugar levels, the more glucose will attach to your hemoglobin. Therefore, a high A1C level indicates poor long-term blood sugar control. This test is commonly used in diagnosing and monitoring diabetes."
+      ],
+      "reference_answers": [
+        "Summary : A1C is a blood test for type 2 diabetes and prediabetes. It measures your average blood glucose, or blood sugar, level over the past 3 months. Doctors may use the A1C alone or in combination with other diabetes tests to make a diagnosis. They also use the A1C to see how well you are managing your diabetes. This test is different from the blood sugar checks that people with diabetes do every day. Your A1C test result is given in percentages. The higher the percentage, the higher your blood sugar levels have been: - A normal A1C level is below 5.7 percent - Prediabetes is between 5.7 to 6.4 percent. Having prediabetes is a risk factor for getting type 2 diabetes. People with prediabetes may need retests every year. - Type 2 diabetes is above 6.5 percent - If you have diabetes, you should have the A1C test at least twice a year. The A1C goal for many people with diabetes is below 7. It may be different for you. Ask what your goal should be. If your A1C result is too high, you may need to change your diabetes care plan. NIH: National Institute of Diabetes and Digestive and Kidney Diseases"
+      ],
+      "bleu": {
+        "clean": [
+          5.259864817904746
+        ],
+        "noisy": [
+          4.0806657474262975
+        ],
+        "repaired": [
+          5.375218446915986
+        ]
+      },
+      "chrf": {
+        "clean": [
+          32.51744491379481
+        ],
+        "noisy": [
+          39.892773086252966
+        ],
+        "repaired": [
+          26.49623489856724
+        ]
+      },
+      "rouge_l": {
+        "clean": [
+          24.24242424242425
+        ],
+        "noisy": [
+          21.68021680216802
+        ],
+        "repaired": [
+          19.852941176470587
+        ]
+      },
+      "token_f1": {
+        "clean": [
+          41.07744107744107
+        ],
+        "noisy": [
+          42.27642276422764
+        ],
+        "repaired": [
+          31.61764705882353
+        ]
+      },
+      "exact_match": {
+        "clean": [
+          0.0
+        ],
+        "noisy": [
+          0.0
+        ],
+        "repaired": [
+          0.0
+        ]
+      },
+      "med_coverage": {
+        "clean": [
+          22.666666666666664
+        ],
+        "noisy": [
+          25.333333333333336
+        ],
+        "repaired": [
+          20.0
+        ]
+      },
+      "med_precision": {
+        "clean": [
+          35.41666666666667
+        ],
+        "noisy": [
+          25.675675675675677
+        ],
+        "repaired": [
+          39.47368421052632
+        ]
+      },
+      "med_f1": {
+        "clean": [
+          27.64227642276423
+        ],
+        "noisy": [
+          25.503355704697988
+        ],
+        "repaired": [
+          26.548672566371685
+        ]
+      },
+      "bertscore": {
+        "clean": [
+          0.8728090524673462
+        ],
+        "noisy": [
+          0.8648045063018799
+        ],
+        "repaired": [
+          0.8605111241340637
+        ]
+      },
+      "intent_preservation": {
+        "clean": [
+          1.0
+        ],
+        "noisy": [
+          0.8034437298774719
+        ],
+        "repaired": [
+          0.8250675201416016
+        ]
+      },
+      "geval": {
+        "clean": [
+          4.0
+        ],
+        "noisy": [
+          4.0
+        ],
+        "repaired": [
+          5.0
+        ]
+      }
+    }
+  ],
+  "per_noise_type": [
+    {
+      "noise_type": "typos_grammar",
+      "bleu_clean_mean": 5.259864817904746,
+      "bleu_noisy_mean": 4.0806657474262975,
+      "bleu_repaired_mean": 5.375218446915986,
+      "chrf_clean_mean": 32.51744491379481,
+      "chrf_noisy_mean": 39.892773086252966,
+      "chrf_repaired_mean": 26.49623489856724,
+      "rouge_l_clean_mean": 24.24242424242425,
+      "rouge_l_noisy_mean": 21.68021680216802,
+      "rouge_l_repaired_mean": 19.852941176470587,
+      "token_f1_clean_mean": 41.07744107744107,
+      "token_f1_noisy_mean": 42.27642276422764,
+      "token_f1_repaired_mean": 31.61764705882353,
+      "exact_match_clean_mean": 0.0,
+      "exact_match_noisy_mean": 0.0,
+      "exact_match_repaired_mean": 0.0,
+      "med_coverage_clean_mean": 22.666666666666664,
+      "med_coverage_noisy_mean": 25.333333333333336,
+      "med_coverage_repaired_mean": 20.0,
+      "med_precision_clean_mean": 35.41666666666667,
+      "med_precision_noisy_mean": 25.675675675675677,
+      "med_precision_repaired_mean": 39.47368421052632,
+      "med_f1_clean_mean": 27.64227642276423,
+      "med_f1_noisy_mean": 25.503355704697988,
+      "med_f1_repaired_mean": 26.548672566371685,
+      "bertscore_clean_mean": 0.8728090524673462,
+      "bertscore_noisy_mean": 0.8648045063018799,
+      "bertscore_repaired_mean": 0.8605111241340637,
+      "intent_preservation_clean_mean": 1.0,
+      "intent_preservation_noisy_mean": 0.8034437298774719,
+      "intent_preservation_repaired_mean": 0.8250675201416016,
+      "geval_clean_mean": 4.0,
+      "geval_noisy_mean": 4.0,
+      "geval_repaired_mean": 5.0
+    },
+    {
+      "noise_type": "ambiguity",
+      "bleu_clean_mean": 2.6506319585032485,
+      "bleu_noisy_mean": 1.361469027051382,
+      "bleu_repaired_mean": 1.234883259039904,
+      "chrf_clean_mean": 29.202015309032188,
+      "chrf_noisy_mean": 34.205893329404816,
+      "chrf_repaired_mean": 28.48624257598128,
+      "rouge_l_clean_mean": 11.11111111111111,
+      "rouge_l_noisy_mean": 12.307692307692308,
+      "rouge_l_repaired_mean": 14.77832512315271,
+      "token_f1_clean_mean": 25.925925925925924,
+      "token_f1_noisy_mean": 29.230769230769237,
+      "token_f1_repaired_mean": 26.600985221674872,
+      "exact_match_clean_mean": 0.0,
+      "exact_match_noisy_mean": 0.0,
+      "exact_match_repaired_mean": 0.0,
+      "med_coverage_clean_mean": 10.0,
+      "med_coverage_noisy_mean": 10.0,
+      "med_coverage_repaired_mean": 8.333333333333332,
+      "med_precision_clean_mean": 14.634146341463412,
+      "med_precision_noisy_mean": 10.714285714285714,
+      "med_precision_repaired_mean": 16.666666666666664,
+      "med_f1_clean_mean": 11.88118811881188,
+      "med_f1_noisy_mean": 10.3448275862069,
+      "med_f1_repaired_mean": 11.11111111111111,
+      "bertscore_clean_mean": 0.8394666314125061,
+      "bertscore_noisy_mean": 0.8464222550392151,
+      "bertscore_repaired_mean": 0.8536713719367981,
+      "intent_preservation_clean_mean": 1.0,
+      "intent_preservation_noisy_mean": 0.6781895756721497,
+      "intent_preservation_repaired_mean": 0.7223732471466064,
+      "geval_clean_mean": 4.0,
+      "geval_noisy_mean": 4.0,
+      "geval_repaired_mean": 4.0
+    }
+  ],
+  "bleu_clean_mean": 3.955248388203997,
+  "bleu_clean_std": 1.3046164297007488,
+  "bleu_noisy_mean": 2.72106738723884,
+  "bleu_noisy_std": 1.3595983601874577,
+  "bleu_repaired_mean": 3.305050852977945,
+  "bleu_repaired_std": 2.070167593938041,
+  "chrf_clean_mean": 30.859730111413498,
+  "chrf_clean_std": 1.657714802381312,
+  "chrf_noisy_mean": 37.049333207828894,
+  "chrf_noisy_std": 2.843439878424075,
+  "chrf_repaired_mean": 27.49123873727426,
+  "chrf_repaired_std": 0.995003838707019,
+  "rouge_l_clean_mean": 17.676767676767682,
+  "rouge_l_clean_std": 6.565656565656569,
+  "rouge_l_noisy_mean": 16.993954554930163,
+  "rouge_l_noisy_std": 4.686262247237855,
+  "rouge_l_repaired_mean": 17.31563314981165,
+  "rouge_l_repaired_std": 2.5373080266589385,
+  "token_f1_clean_mean": 33.5016835016835,
+  "token_f1_clean_std": 7.575757575757574,
+  "token_f1_noisy_mean": 35.75359599749844,
+  "token_f1_noisy_std": 6.522826766729201,
+  "token_f1_repaired_mean": 29.1093161402492,
+  "token_f1_repaired_std": 2.5083309185743285,
+  "exact_match_clean_mean": 0.0,
+  "exact_match_clean_std": 0.0,
+  "exact_match_noisy_mean": 0.0,
+  "exact_match_noisy_std": 0.0,
+  "exact_match_repaired_mean": 0.0,
+  "exact_match_repaired_std": 0.0,
+  "med_coverage_clean_mean": 16.333333333333332,
+  "med_coverage_clean_std": 6.333333333333332,
+  "med_coverage_noisy_mean": 17.666666666666668,
+  "med_coverage_noisy_std": 7.666666666666668,
+  "med_coverage_repaired_mean": 14.166666666666666,
+  "med_coverage_repaired_std": 5.833333333333334,
+  "med_precision_clean_mean": 25.025406504065042,
+  "med_precision_clean_std": 10.39126016260163,
+  "med_precision_noisy_mean": 18.194980694980696,
+  "med_precision_noisy_std": 7.480694980694982,
+  "med_precision_repaired_mean": 28.070175438596493,
+  "med_precision_repaired_std": 11.403508771929829,
+  "med_f1_clean_mean": 19.761732270788055,
+  "med_f1_clean_std": 7.880544151976175,
+  "med_f1_noisy_mean": 17.924091645452442,
+  "med_f1_noisy_std": 7.579264059245544,
+  "med_f1_repaired_mean": 18.829891838741396,
+  "med_f1_repaired_std": 7.718780727630287,
+  "bertscore_clean_mean": 0.8561378419399261,
+  "bertscore_clean_std": 0.016671210527420044,
+  "bertscore_noisy_mean": 0.8556133806705475,
+  "bertscore_noisy_std": 0.009191125631332397,
+  "bertscore_repaired_mean": 0.8570912480354309,
+  "bertscore_repaired_std": 0.0034198760986328125,
+  "intent_preservation_clean_mean": 1.0,
+  "intent_preservation_clean_std": 0.0,
+  "intent_preservation_noisy_mean": 0.7408166527748108,
+  "intent_preservation_noisy_std": 0.06262707710266113,
+  "intent_preservation_repaired_mean": 0.773720383644104,
+  "intent_preservation_repaired_std": 0.05134713649749756,
+  "geval_clean_mean": 4.0,
+  "geval_clean_std": 0.0,
+  "geval_noisy_mean": 4.0,
+  "geval_noisy_std": 0.0,
+  "geval_repaired_mean": 4.5,
+  "geval_repaired_std": 0.5,
+  "bleu_degradation": 1.2341810009651573,
+  "bleu_recovery": 0.5839834657391054,
+  "bleu_recovery_ratio": 0.4731748951591519,
+  "chrf_degradation": -6.1896030964153965,
+  "chrf_recovery": -9.558094470554636,
+  "chrf_recovery_ratio": NaN,
+  "rouge_l_degradation": 0.6828131218375191,
+  "rouge_l_recovery": 0.32167859488148665,
+  "rouge_l_recovery_ratio": NaN,
+  "token_f1_degradation": -2.251912495814935,
+  "token_f1_recovery": -6.644279857249238,
+  "token_f1_recovery_ratio": NaN,
+  "exact_match_degradation": 0.0,
+  "exact_match_recovery": 0.0,
+  "exact_match_recovery_ratio": NaN,
+  "med_coverage_degradation": -1.3333333333333357,
+  "med_coverage_recovery": -3.5000000000000018,
+  "med_coverage_recovery_ratio": NaN,
+  "med_precision_degradation": 6.830425809084346,
+  "med_precision_recovery": 9.875194743615797,
+  "med_precision_recovery_ratio": 1.0,
+  "med_f1_degradation": 1.837640625335613,
+  "med_f1_recovery": 0.9058001932889539,
+  "med_f1_recovery_ratio": 0.4929147629850234,
+  "bertscore_degradation": 0.0005244612693786621,
+  "bertscore_recovery": 0.0014778673648834229,
+  "bertscore_recovery_ratio": NaN,
+  "intent_preservation_degradation": 0.2591833472251892,
+  "intent_preservation_recovery": 0.03290373086929321,
+  "intent_preservation_recovery_ratio": 0.12695156236525137,
+  "geval_degradation": 0.0,
+  "geval_recovery": 0.5,
+  "geval_recovery_ratio": NaN,
+  "runtime_seconds": 2.181831121444702
+}

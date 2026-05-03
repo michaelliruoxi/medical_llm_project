@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import os
+import time
 from pathlib import Path
 from typing import Iterable
 
@@ -49,8 +51,23 @@ def build_completed_lookup(
     return completed
 
 
+def replace_file_atomic(tmp_path: Path, path: Path, retries: int = 20, delay_seconds: float = 0.5):
+    last_error: Exception | None = None
+    for attempt in range(retries):
+        try:
+            os.replace(tmp_path, path)
+            return
+        except PermissionError as exc:
+            last_error = exc
+            if attempt == retries - 1:
+                raise
+            time.sleep(delay_seconds)
+    if last_error is not None:
+        raise last_error
+
+
 def write_parquet_atomic(df: pd.DataFrame, path: Path):
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp_path = path.with_suffix(path.suffix + ".tmp")
     df.to_parquet(tmp_path, index=False)
-    tmp_path.replace(path)
+    replace_file_atomic(tmp_path, path)

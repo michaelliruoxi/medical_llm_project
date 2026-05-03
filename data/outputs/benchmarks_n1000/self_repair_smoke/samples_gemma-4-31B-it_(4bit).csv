@@ -1,0 +1,90 @@
+model,config,quantization,noise_type,question_id,question_clean,question_noisy,question_repaired,reference_answer,answer_clean,answer_noisy,answer_repaired,bleu_clean,bleu_noisy,bleu_repaired,chrf_clean,chrf_noisy,chrf_repaired,rouge_l_clean,rouge_l_noisy,rouge_l_repaired,token_f1_clean,token_f1_noisy,token_f1_repaired,exact_match_clean,exact_match_noisy,exact_match_repaired,med_coverage_clean,med_coverage_noisy,med_coverage_repaired,med_precision_clean,med_precision_noisy,med_precision_repaired,med_f1_clean,med_f1_noisy,med_f1_repaired,bertscore_clean,bertscore_noisy,bertscore_repaired,intent_preservation_clean,intent_preservation_noisy,intent_preservation_repaired,geval_clean,geval_noisy,geval_repaired
+gemma-4-31B-it (4bit),gemma4_31b_q6k_ref.yaml,4bit,typos_grammar,0,What is (are) Adult Acute Lymphoblastic Leukemia ?,"what is adult acute lymphoblstic leukemia , like what does it actualy mean ?",What is the definition and pathophysiology of adult acute lymphoblastic leukemia?,"Key Points - Adult acute lymphoblastic leukemia (ALL) is a type of cancer in which the bone marrow makes too many lymphocytes (a type of white blood cell). - Leukemia may affect red blood cells, white blood cells, and platelets. - Previous chemotherapy and exposure to radiation may increase the risk of developing ALL. - Signs and symptoms of adult ALL include fever, feeling tired, and easy bruising or bleeding. - Tests that examine the blood and bone marrow are used to detect (find) and diagnose adult ALL. - Certain factors affect prognosis (chance of recovery) and treatment options. Adult acute lymphoblastic leukemia (ALL) is a type of cancer in which the bone marrow makes too many lymphocytes (a type of white blood cell). Adult acute lymphoblastic leukemia (ALL; also called acute lymphocytic leukemia) is a cancer of the blood and bone marrow. This type of cancer usually gets worse quickly if it is not treated. Leukemia may affect red blood cells, white blood cells, and platelets. Normally, the bone marrow makes blood stem cells (immature cells) that become mature blood cells over time. A blood stem cell may become a myeloid stem cell or a lymphoid stem cell. A myeloid stem cell becomes one of three types of mature blood cells: - Red blood cells that carry oxygen and other substances to all tissues of the body. - Platelets that form blood clots to stop bleeding. - Granulocytes (white blood cells) that fight infection and disease. A lymphoid stem cell becomes a lymphoblast cell and then one of three types of lymphocytes (white blood cells): - B lymphocytes that make antibodies to help fight infection. - T lymphocytes that help B lymphocytes make the antibodies that help fight infection. - Natural killer cells that attack cancer cells and viruses. In ALL, too many stem cells become lymphoblasts, B lymphocytes, or T lymphocytes. These cells are also called leukemia cells. These leukemia cells are not able to fight infection very well. Also, as the number of leukemia cells increases in the blood and bone marrow, there is less room for healthy white blood cells, red blood cells, and platelets. This may cause infection, anemia, and easy bleeding. The cancer can also spread to the central nervous system (brain and spinal cord). This summary is about adult acute lymphoblastic leukemia. See the following PDQ summaries for information about other types of leukemia: - Childhood Acute Lymphoblastic Leukemia Treatment. - Adult Acute Myeloid Leukemia Treatment. - Childhood Acute Myeloid Leukemia/Other Myeloid Malignancies Treatment. - Chronic Lymphocytic Leukemia Treatment. - Chronic Myelogenous Leukemia Treatment. - Hairy Cell Leukemia Treatment.","**Adult Acute Lymphoblastic Leukemia (ALL)** is a fast-growing (acute) cancer of the blood and bone marrow characterized by the overproduction of immature lymphocytes called **lymphoblasts**.
+
+Here is a detailed breakdown of the condition:
+
+### 1. Pathophysiology
+In ALL, the DNA of a developing lymphocyte undergoes mutations that prevent it from maturing properly. These ""blasts"" multiply rapidly in the bone marrow, crowding out healthy cells. This leads to a deficiency in:
+*   **Red blood cells:** Causing anemia (fatigue, paleness).
+*   **Platelets:** Leading to easy bruising or bleeding.
+*   **Healthy white blood cells:** Increasing susceptibility to infections.
+
+### 2. Types of Adult ALL
+ALL is categorized primarily by the type of lymphocyte affected:
+*   **B-cell ALL:** The most common form in adults; affects B-lymphocytes (which normally produce antibodies).
+*   **T-cell ALL:** Affects T-lymphocytes (which coordinate the immune response); often presents with a higher white blood cell count and may involve a mass in the chest (thymus).
+
+### 3. Clinical Presentation
+While more common in children, adult ALL typically manifests through symptoms related to bone marrow failure:
+*   Persistent fatigue and shortness of breath.
+*   Frequent or severe infections.
+*   Unexplained fever.
+*   Easy bruising, petechiae (small red spots), or","**Adult Acute Lymphoblastic Leukemia (ALL)** is a fast-growing cancer of the blood and bone marrow. To understand what it actually means, it helps to break down the name:
+
+### 1. Breaking Down the Terms
+*   **Acute:** This means the disease progresses rapidly. Unlike ""chronic"" leukemias, which develop slowly over years, acute leukemia appears suddenly and requires immediate treatment.
+*   **Lymphoblastic:** This refers to the type of cell involved. Your immune system has white blood cells called **lymphocytes**. In ALL, the bone marrow produces immature, dysfunctional lymphocytes called **lymphoblasts**. These are ""blasts""—cells that have stopped maturing but continue to multiply.
+*   **Leukemia:** This is a general term for cancer of the blood-forming tissues (the bone marrow).
+
+### 2. What Is Actually Happening in the Body?
+In a healthy person, the bone marrow acts as a factory producing red blood cells, white blood cells, and platelets. 
+
+When someone has ALL, the genetic code in a developing lymphocyte mutates. Instead of growing into a mature cell that fights infection, the cell becomes stuck in an immature state (a blast) and begins cloning itself uncontrollably. 
+
+Because these blasts grow so quickly, they **crowd out** the healthy cells in the bone marrow. This leads to three primary problems:
+1.  **Lack of Healthy White Blood Cells:** Even though there are millions of","**Definition**
+Adult Acute Lymphoblastic Leukemia (ALL) is a malignant hematologic disorder characterized by the uncontrolled proliferation of immature lymphoid progenitor cells (lymphoblasts). These blasts accumulate in the bone marrow, crowding out normal hematopoietic stem cells and spilling into the peripheral blood.
+
+**Pathophysiology**
+The development of adult ALL involves several complex mechanisms:
+
+1.  **Genetic Mutations:** The disease begins with acquired genetic alterations—such as chromosomal translocations, deletions, or point mutations—in a single hematopoietic stem cell. Common aberrations include the Philadelphia chromosome $\text{t}(9;22)$, which creates the *BCR-ABL1* fusion gene.
+2.  **Dysregulated Signaling:** These mutations lead to the constitutive activation of signal transduction pathways (e.g., JAK/STAT, PI3K/AKT/mTOR). This results in ""oncogenic drive,"" where the cell receives continuous signals to divide regardless of external growth factors.
+3.  **Block in Differentiation:** A hallmark of ALL is the arrest of lymphocyte maturation. Because these cells cannot differentiate into mature B-cells or T-cells, they remain in an immature ""blast"" state but continue to proliferate rapidly.
+4.  **Bone Marrow Failure:** As lymphoblasts infiltrate the bone marrow, they physically displace healthy myeloid and lymphoid precursors. This leads to **pancytopenia**, resulting in the clinical manifestations of the disease:
+    *   **Anemia:** Due to decreased",4.297725519130214,6.697047464163792,2.521453837802424,27.91758240774804,29.874438864244468,27.05989082434398,16.49122807017544,19.080068143100508,13.769363166953527,31.92982456140352,34.41226575809199,22.719449225473323,0.0,0.0,0.0,14.975845410628018,20.77294685990338,9.66183574879227,41.333333333333336,44.329896907216494,30.76923076923077,21.98581560283688,28.289473684210524,14.705882352941178,0.8309200406074524,0.8384127616882324,0.8170763254165649,1.0,0.8992835283279419,0.897831916809082,3,3,3
+gemma-4-31B-it (4bit),gemma4_31b_q6k_ref.yaml,4bit,ambiguity,1,What are the symptoms of Adult Acute Lymphoblastic Leukemia ?,"What kinda signs/symtoms would a grown person get if they had that fast moving blood cancer thing, like would it just be feeling run down, bruising easy, fevers or weird bone pain etc?","What are the common signs and symptoms of acute leukemia in adults, and do they include fatigue, easy bruising, fever, and bone pain?","Signs and symptoms of adult ALL include fever, feeling tired, and easy bruising or bleeding. The early signs and symptoms of ALL may be like the flu or other common diseases. Check with your doctor if you have any of the following: - Weakness or feeling tired. - Fever or night sweats. - Easy bruising or bleeding. - Petechiae (flat, pinpoint spots under the skin, caused by bleeding). - Shortness of breath. - Weight loss or loss of appetite. - Pain in the bones or stomach. - Pain or feeling of fullness below the ribs. - Painless lumps in the neck, underarm, stomach, or groin. - Having many infections. These and other signs and symptoms may be caused by adult acute lymphoblastic leukemia or by other conditions.","Adult Acute Lymphoblastic Leukemia (ALL) is characterized by the rapid overproduction of immature white blood cells (lymphoblasts), which crowd out healthy blood cells in the bone marrow. Symptoms typically develop quickly and result from three primary deficiencies: anemia, neutropenia, and thrombocytopenia.
+
+**1. Due to Anemia (Low Red Blood Cells):**
+*   **Fatigue and lethargy:** Persistent tiredness regardless of rest.
+*   **Shortness of breath:** Dyspnea during mild activity or while resting.
+*   **Pale skin:** Pallor affecting the face and nail beds.
+*   **Dizziness:** Feeling lightheaded due to decreased oxygen transport.
+
+**2. Due to Neutropenia (Low Functional White Blood Cells):**
+*   **Frequent infections:** Increased susceptibility to bacterial or viral illnesses.
+*   **Persistent fever:** Unexplained fevers or chills.
+*   **Slow-healing sores:** Wounds or mouth ulcers that do not heal normally.
+
+**3. Due to Thrombocytopenia (Low Platelets):**
+*   **Easy bruising:** Appearance of bruises without significant trauma.
+*   **Petechiae:** Tiny red or purple spots under the skin caused by broken capillaries.
+*   **Abnormal bleeding:** Frequent nosebleeds, bleeding gums, or unusually heavy menstrual periods.
+
+**4. Systemic and Organ-Specific Symptoms:**
+*   **Bone and joint pain:** Caused by the","***Disclaimer:** I am an AI, not a doctor. If you or someone you know is experiencing these symptoms, please seek immediate medical attention from a healthcare professional.*
+
+The ""fast-moving blood cancers"" you are referring to are typically **acute leukemias** (such as Acute Myeloid Leukemia or Acute Lymphoblastic Leukemia). These occur when the bone marrow produces a large number of abnormal white blood cells (blasts) that crowd out healthy red blood cells, white blood cells, and platelets.
+
+Because the body lacks functional blood cells, the symptoms reflect those specific deficiencies:
+
+### 1. Lack of Red Blood Cells (Anemia)
+When there aren't enough red blood cells to carry oxygen to tissues, a person may experience:
+*   **Extreme fatigue/feeling ""run down"":** This is often profound exhaustion that doesn't improve with rest.
+*   **Shortness of breath:** Feeling winded even during light activity.
+*   **Pale skin:** A noticeable loss of color in the face or nail beds.
+
+### 2. Lack of Functional White Blood Cells (Neutropenia)
+Even though the body is producing *more* white blood cells, they are malformed and cannot fight infection. This leads to:
+*   **Frequent infections:** Getting sick more often than usual.
+*   **Persistent fevers:** Low-grade or high fevers without a clear cause (like a cold or flu).
+*   **","Yes, the common signs and symptoms of acute leukemia in adults include **fatigue, easy bruising, fever, and bone pain**.
+
+These symptoms occur because the rapid overproduction of abnormal leukemic blasts in the bone marrow crowds out healthy blood cells, leading to several deficiencies:
+
+*   **Anemia (Low Red Blood Cells):** Causes fatigue, shortness of breath, and pale skin (pallor).
+*   **Thrombocytopenia (Low Platelets):** Leads to easy bruising, petechiae (small red/purple spots on the skin), and prolonged bleeding from minor cuts or gums.
+*   **Neutropenia (Low Functional White Blood Cells):** Results in an increased susceptibility to infections, which often manifests as fever, chills, or recurrent infections.
+*   **Marrow Expansion:** The accumulation of leukemic cells within the bone marrow can cause bone pain or joint pain.
+
+Other possible symptoms include unexplained weight loss, night sweats, swollen lymph nodes, or an enlarged liver or spleen (causing abdominal fullness).",2.271906918677536,1.3072274531092103,3.148357945954768,36.81449732138413,33.53233709382993,41.01923658039034,17.391304347826086,11.333333333333332,20.5761316872428,30.43478260869565,22.0,37.03703703703704,0.0,0.0,0.0,29.629629629629623,22.22222222222222,33.33333333333333,17.97752808988764,12.903225806451612,25.0,22.377622377622377,16.3265306122449,28.571428571428577,0.8171321749687195,0.813624918460846,0.845257043838501,0.9999999403953552,0.5525673031806946,0.8405764698982239,4,3,5

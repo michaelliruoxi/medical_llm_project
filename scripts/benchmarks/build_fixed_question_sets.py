@@ -16,8 +16,9 @@ import pandas as pd
 
 from src.noise import generate_noisy_variant
 from src.noise_schedule import build_noise_plan, summarize_noise_plan
+from src.question_validation import validate_generated_question
 from src.repair import repair_question
-from src.resume import build_completed_lookup, row_key, write_parquet_atomic
+from src.resume import build_completed_lookup, replace_file_atomic, row_key, write_parquet_atomic
 from src.utils import get_token_tracker, load_config, load_prompts, set_active_config, setup_logging
 
 
@@ -32,14 +33,14 @@ def write_json_atomic(path: Path, payload: dict):
         json.dump(payload, f, indent=2, ensure_ascii=False, default=str)
         f.flush()
         os.fsync(f.fileno())
-    tmp_path.replace(path)
+    replace_file_atomic(tmp_path, path)
 
 
 def write_csv_atomic(df: pd.DataFrame, path: Path):
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp_path = path.with_suffix(path.suffix + ".tmp")
     df.to_csv(tmp_path, index=False)
-    tmp_path.replace(path)
+    replace_file_atomic(tmp_path, path)
 
 
 def read_table(path_csv: Path, path_parquet: Path) -> pd.DataFrame:
@@ -50,15 +51,58 @@ def read_table(path_csv: Path, path_parquet: Path) -> pd.DataFrame:
     return pd.DataFrame()
 
 
+def prune_invalid_rows(
+    df: pd.DataFrame,
+    *,
+    stage: str,
+    text_col: str,
+    source_col: str,
+) -> tuple[pd.DataFrame, set[tuple[int, str]]]:
+    if df.empty or text_col not in df.columns or source_col not in df.columns:
+        return df, set()
+
+    invalid_indexes: list[int] = []
+    invalid_keys: set[tuple[int, str]] = set()
+    for idx, row in df.iterrows():
+        _, error = validate_generated_question(
+            str(row.get(text_col, "") or ""),
+            stage=stage,
+            source_question=str(row.get(source_col, "") or ""),
+        )
+        if error is not None:
+            invalid_indexes.append(idx)
+            try:
+                invalid_keys.add((int(row.get("id")), str(row.get("noise_type", ""))))
+            except Exception:
+                pass
+
+    if not invalid_indexes:
+        return df, set()
+
+    cleaned = df.drop(index=invalid_indexes).reset_index(drop=True)
+    logger.warning(
+        "Dropped %d invalid cached %s row(s) before resume from frozen question set",
+        len(invalid_indexes),
+        stage,
+    )
+    return cleaned, invalid_keys
+
+
 def write_question_set(df: pd.DataFrame, path_csv: Path, path_parquet: Path):
     write_csv_atomic(df, path_csv)
     write_parquet_atomic(df, path_parquet)
 
 
-def load_clean_samples(n: int) -> pd.DataFrame:
-    cleaned = PROJECT_ROOT / "data" / "processed" / "medquad_cleaned.parquet"
+def load_clean_samples(n: int, cfg: dict) -> pd.DataFrame:
+    paths_cfg = cfg.get("paths", {})
+    clean_source = paths_cfg.get("clean_source")
+    cleaned = (PROJECT_ROOT / clean_source) if clean_source else (PROJECT_ROOT / "data" / "processed" / "medquad_cleaned.parquet")
+
     if cleaned.exists():
-        df = pd.read_parquet(cleaned)
+        if cleaned.suffix == ".csv":
+            df = pd.read_csv(cleaned)
+        else:
+            df = pd.read_parquet(cleaned)
     else:
         cleaned_csv = PROJECT_ROOT / "data" / "processed" / "medquad_cleaned.csv"
         if not cleaned_csv.exists():
@@ -104,7 +148,7 @@ def build_fixed_question_sets(config_path: str, n_examples: int | None = None):
     prompts = load_prompts()
 
     requested_n = int(n_examples or cfg.get("n_examples", 50))
-    df = load_clean_samples(requested_n)
+    df = load_clean_samples(requested_n, cfg)
     clean_records = build_clean_records(df, cfg)
     noise_counts = summarize_noise_plan(build_noise_plan(df, cfg))
 
@@ -130,6 +174,14 @@ def build_fixed_question_sets(config_path: str, n_examples: int | None = None):
     expected_rows = len(clean_records)
 
     existing_noisy_df = read_table(noisy_csv_path, noisy_path)
+    existing_noisy_df, pruned_noisy_keys = prune_invalid_rows(
+        existing_noisy_df,
+        stage="noise",
+        text_col="question_noisy",
+        source_col="question_clean",
+    )
+    if pruned_noisy_keys:
+        write_question_set(existing_noisy_df, noisy_csv_path, noisy_path)
     noisy_lookup = build_completed_lookup(existing_noisy_df, ["id", "noise_type"], ["question_noisy"])
     if noisy_lookup:
         logger.info("Resuming fixed noisy-question generation with %d/%d rows from %s",
@@ -166,6 +218,23 @@ def build_fixed_question_sets(config_path: str, n_examples: int | None = None):
     logger.info("Saved %d frozen noisy questions to %s", len(noisy_df), noisy_csv_path)
 
     existing_repaired_df = read_table(repaired_csv_path, repaired_path)
+    if pruned_noisy_keys and not existing_repaired_df.empty:
+        existing_repaired_df = existing_repaired_df[
+            ~existing_repaired_df.apply(
+                lambda row: (int(row.get("id")), str(row.get("noise_type", ""))) in pruned_noisy_keys,
+                axis=1,
+            )
+        ].reset_index(drop=True)
+        write_question_set(existing_repaired_df, repaired_csv_path, repaired_path)
+
+    existing_repaired_df, pruned_repaired_keys = prune_invalid_rows(
+        existing_repaired_df,
+        stage="repair",
+        text_col="question_repaired",
+        source_col="question_noisy",
+    )
+    if pruned_repaired_keys:
+        write_question_set(existing_repaired_df, repaired_csv_path, repaired_path)
     repaired_lookup = build_completed_lookup(existing_repaired_df, ["id", "noise_type"], ["question_repaired"])
     if repaired_lookup:
         logger.info("Resuming fixed repaired-question generation with %d/%d rows from %s",

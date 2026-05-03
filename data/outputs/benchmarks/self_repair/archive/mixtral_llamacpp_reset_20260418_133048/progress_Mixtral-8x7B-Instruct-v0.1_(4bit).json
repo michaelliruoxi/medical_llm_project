@@ -1,0 +1,11 @@
+{
+  "model": "Mixtral-8x7B-Instruct-v0.1 (4bit)",
+  "config": "mixtral_8x7b_4bit.yaml",
+  "benchmark_mode": "self_repair",
+  "question_set_dir": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\processed\\benchmarks\\fixed_question_sets_gpt54",
+  "status": "running",
+  "rows_completed": 2,
+  "rows_expected": 3,
+  "samples_csv": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\outputs\\benchmarks\\self_repair\\samples_Mixtral-8x7B-Instruct-v0.1_(4bit).csv",
+  "updated_at_epoch": 1776505956.2282474
+}

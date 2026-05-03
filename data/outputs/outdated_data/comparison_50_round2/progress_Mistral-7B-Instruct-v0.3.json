@@ -1,0 +1,11 @@
+{
+  "model": "Mistral-7B-Instruct-v0.3",
+  "config": "mistral_7b.yaml",
+  "status": "completed",
+  "rows_completed": 50,
+  "rows_expected": 50,
+  "error": null,
+  "samples_csv": "data\\outputs\\comparison_50_round2\\samples_Mistral-7B-Instruct-v0.3.csv",
+  "result_json": "data\\outputs\\comparison_50_round2\\result_Mistral-7B-Instruct-v0.3.json",
+  "updated_at_epoch": 1775383887.2429469
+}

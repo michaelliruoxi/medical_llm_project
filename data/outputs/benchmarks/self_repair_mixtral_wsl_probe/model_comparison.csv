@@ -1,0 +1,2 @@
+Model,Mode,Status,Quant,N,Rows,Runtime_min
+Mixtral-8x7B-Instruct-v0.1 (4bit),self_repair,RUNNING 0/2,4bit,2,0/2,0.0

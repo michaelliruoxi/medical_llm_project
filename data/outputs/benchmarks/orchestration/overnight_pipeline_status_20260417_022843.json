@@ -1,0 +1,12 @@
+{
+    "updated_at":  "2026-04-17T13:57:33",
+    "message":  "Waiting for active python process(es): 30852",
+    "step":  "self_repair_n50_wait",
+    "extra":  {
+                  "process_ids":  [
+                                      30852
+                                  ],
+                  "pattern":  "run_comparison.py --benchmark-mode self_repair"
+              },
+    "state":  "waiting"
+}

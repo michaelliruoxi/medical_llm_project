@@ -1,0 +1,312 @@
+[
+  {
+    "model": "gpt-5.4",
+    "label": "gpt-5.4",
+    "config": "gpt54_hybrid_api.yaml",
+    "quantization": "none",
+    "n_examples": 1,
+    "n_noise_types": 5,
+    "noise_types": [
+      "typos_grammar",
+      "ambiguity",
+      "layperson",
+      "incomplete",
+      "overgeneralization"
+    ],
+    "noise_assignment": "round_robin",
+    "benchmark_mode": "fixed_repair",
+    "question_set_dir": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\processed\\benchmarks\\fixed_question_sets_gpt54_n1000",
+    "status": "completed",
+    "rows_completed": 1,
+    "rows_expected": 1,
+    "error": null,
+    "detailed_results": [
+      {
+        "noise_type": "typos_grammar",
+        "question_ids": [
+          0
+        ],
+        "questions_clean": [
+          "What is (are) Adult Acute Lymphoblastic Leukemia ?"
+        ],
+        "questions_noisy": [
+          "what is adult acute lymphoblstic leukemia , like what does it actualy mean ?"
+        ],
+        "questions_repaired": [
+          "What does adult acute lymphoblastic leukemia mean?"
+        ],
+        "answers_clean": [
+          "Adult acute lymphoblastic leukemia (adult ALL) is a rapidly progressing cancer of the blood and bone marrow in adults in which too many immature lymphoid white blood cells, called lymphoblasts, are produced. These abnormal cells crowd out normal blood-forming cells and can spread into the blood and other organs. It is also called **adult acute lymphocytic leukemia**."
+        ],
+        "answers_noisy": [
+          "**Adult acute lymphoblastic leukemia (adult ALL)** is a **fast-growing cancer of the blood and bone marrow** that happens in **adults**.\n\nWhat the name means:\n\n- **Adult** = it occurs in a grown person, not a child  \n- **Acute** = it develops **quickly** and usually needs treatment right away  \n- **Lymphoblastic** = it involves **lymphoblasts**, which are **very immature white blood cells** that are supposed to grow into normal lymphocytes  \n- **Leukemia** = a cancer of the **blood-forming cells** in the bone marrow\n\n### What actually happens\nYour **bone marrow** normally makes healthy blood cells:\n- white blood cells to fight infection\n- red blood cells to carry oxygen\n- platelets to help blood clot\n\nIn **ALL**, the bone marrow starts making **too many abnormal immature white blood cells** (lymphoblasts)."
+        ],
+        "answers_repaired": [
+          "Adult acute lymphoblastic leukemia (adult ALL) is a **fast-growing cancer of the blood and bone marrow** that occurs in **adults**. It develops when the bone marrow makes too many **immature lymphocytes** (called **lymphoblasts**), a type of white blood cell, which crowd out normal blood-forming cells.\n\n- **Adult** = it occurs in adults  \n- **Acute** = it progresses quickly if untreated  \n- **Lymphoblastic leukemia** = cancer involving immature lymphoid white blood cells in the blood and bone marrow"
+        ],
+        "reference_answers": [
+          "Key Points - Adult acute lymphoblastic leukemia (ALL) is a type of cancer in which the bone marrow makes too many lymphocytes (a type of white blood cell). - Leukemia may affect red blood cells, white blood cells, and platelets. - Previous chemotherapy and exposure to radiation may increase the risk of developing ALL. - Signs and symptoms of adult ALL include fever, feeling tired, and easy bruising or bleeding. - Tests that examine the blood and bone marrow are used to detect (find) and diagnose adult ALL. - Certain factors affect prognosis (chance of recovery) and treatment options. Adult acute lymphoblastic leukemia (ALL) is a type of cancer in which the bone marrow makes too many lymphocytes (a type of white blood cell). Adult acute lymphoblastic leukemia (ALL; also called acute lymphocytic leukemia) is a cancer of the blood and bone marrow. This type of cancer usually gets worse quickly if it is not treated. Leukemia may affect red blood cells, white blood cells, and platelets. Normally, the bone marrow makes blood stem cells (immature cells) that become mature blood cells over time. A blood stem cell may become a myeloid stem cell or a lymphoid stem cell. A myeloid stem cell becomes one of three types of mature blood cells: - Red blood cells that carry oxygen and other substances to all tissues of the body. - Platelets that form blood clots to stop bleeding. - Granulocytes (white blood cells) that fight infection and disease. A lymphoid stem cell becomes a lymphoblast cell and then one of three types of lymphocytes (white blood cells): - B lymphocytes that make antibodies to help fight infection. - T lymphocytes that help B lymphocytes make the antibodies that help fight infection. - Natural killer cells that attack cancer cells and viruses. In ALL, too many stem cells become lymphoblasts, B lymphocytes, or T lymphocytes. These cells are also called leukemia cells. These leukemia cells are not able to fight infection very well. Also, as the number of leukemia cells increases in the blood and bone marrow, there is less room for healthy white blood cells, red blood cells, and platelets. This may cause infection, anemia, and easy bleeding. The cancer can also spread to the central nervous system (brain and spinal cord). This summary is about adult acute lymphoblastic leukemia. See the following PDQ summaries for information about other types of leukemia: - Childhood Acute Lymphoblastic Leukemia Treatment. - Adult Acute Myeloid Leukemia Treatment. - Childhood Acute Myeloid Leukemia/Other Myeloid Malignancies Treatment. - Chronic Lymphocytic Leukemia Treatment. - Chronic Myelogenous Leukemia Treatment. - Hairy Cell Leukemia Treatment."
+        ],
+        "bleu": {
+          "clean": [
+            0.0451693429526645
+          ],
+          "noisy": [
+            3.0270689764565617
+          ],
+          "repaired": [
+            0.7955509870420346
+          ]
+        },
+        "chrf": {
+          "clean": [
+            11.65996434398569
+          ],
+          "noisy": [
+            19.958055422051785
+          ],
+          "repaired": [
+            14.519877022009553
+          ]
+        },
+        "rouge_l": {
+          "clean": [
+            16.0
+          ],
+          "noisy": [
+            18.613861386138613
+          ],
+          "repaired": [
+            16.846652267818577
+          ]
+        },
+        "token_f1": {
+          "clean": [
+            19.555555555555557
+          ],
+          "noisy": [
+            30.495049504950494
+          ],
+          "repaired": [
+            21.598272138228943
+          ]
+        },
+        "exact_match": {
+          "clean": [
+            0.0
+          ],
+          "noisy": [
+            0.0
+          ],
+          "repaired": [
+            0.0
+          ]
+        },
+        "med_coverage": {
+          "clean": [
+            8.695652173913043
+          ],
+          "noisy": [
+            14.975845410628018
+          ],
+          "repaired": [
+            11.11111111111111
+          ]
+        },
+        "med_precision": {
+          "clean": [
+            75.0
+          ],
+          "noisy": [
+            57.407407407407405
+          ],
+          "repaired": [
+            69.6969696969697
+          ]
+        },
+        "med_f1": {
+          "clean": [
+            15.584415584415584
+          ],
+          "noisy": [
+            23.754789272030653
+          ],
+          "repaired": [
+            19.16666666666666
+          ]
+        },
+        "bertscore": {
+          "clean": [
+            0.8531581163406372
+          ],
+          "noisy": [
+            0.832264244556427
+          ],
+          "repaired": [
+            0.8319514393806458
+          ]
+        },
+        "intent_preservation": {
+          "clean": [
+            1.0
+          ],
+          "noisy": [
+            0.8992835283279419
+          ],
+          "repaired": [
+            0.9456538558006288
+          ]
+        },
+        "geval": {
+          "clean": [
+            5.0
+          ],
+          "noisy": [
+            5.0
+          ],
+          "repaired": [
+            4.0
+          ]
+        }
+      }
+    ],
+    "per_noise_type": [
+      {
+        "noise_type": "typos_grammar",
+        "bleu_clean_mean": 0.0451693429526645,
+        "bleu_noisy_mean": 3.0270689764565617,
+        "bleu_repaired_mean": 0.7955509870420346,
+        "chrf_clean_mean": 11.65996434398569,
+        "chrf_noisy_mean": 19.958055422051785,
+        "chrf_repaired_mean": 14.519877022009553,
+        "rouge_l_clean_mean": 16.0,
+        "rouge_l_noisy_mean": 18.613861386138613,
+        "rouge_l_repaired_mean": 16.846652267818577,
+        "token_f1_clean_mean": 19.555555555555557,
+        "token_f1_noisy_mean": 30.495049504950494,
+        "token_f1_repaired_mean": 21.598272138228943,
+        "exact_match_clean_mean": 0.0,
+        "exact_match_noisy_mean": 0.0,
+        "exact_match_repaired_mean": 0.0,
+        "med_coverage_clean_mean": 8.695652173913043,
+        "med_coverage_noisy_mean": 14.975845410628018,
+        "med_coverage_repaired_mean": 11.11111111111111,
+        "med_precision_clean_mean": 75.0,
+        "med_precision_noisy_mean": 57.407407407407405,
+        "med_precision_repaired_mean": 69.6969696969697,
+        "med_f1_clean_mean": 15.584415584415584,
+        "med_f1_noisy_mean": 23.754789272030653,
+        "med_f1_repaired_mean": 19.16666666666666,
+        "bertscore_clean_mean": 0.8531581163406372,
+        "bertscore_noisy_mean": 0.832264244556427,
+        "bertscore_repaired_mean": 0.8319514393806458,
+        "intent_preservation_clean_mean": 1.0,
+        "intent_preservation_noisy_mean": 0.8992835283279419,
+        "intent_preservation_repaired_mean": 0.9456538558006288,
+        "geval_clean_mean": 5.0,
+        "geval_noisy_mean": 5.0,
+        "geval_repaired_mean": 4.0
+      }
+    ],
+    "bleu_clean_mean": 0.0451693429526645,
+    "bleu_clean_std": 0.0,
+    "bleu_noisy_mean": 3.0270689764565617,
+    "bleu_noisy_std": 0.0,
+    "bleu_repaired_mean": 0.7955509870420346,
+    "bleu_repaired_std": 0.0,
+    "chrf_clean_mean": 11.65996434398569,
+    "chrf_clean_std": 0.0,
+    "chrf_noisy_mean": 19.958055422051785,
+    "chrf_noisy_std": 0.0,
+    "chrf_repaired_mean": 14.519877022009553,
+    "chrf_repaired_std": 0.0,
+    "rouge_l_clean_mean": 16.0,
+    "rouge_l_clean_std": 0.0,
+    "rouge_l_noisy_mean": 18.613861386138613,
+    "rouge_l_noisy_std": 0.0,
+    "rouge_l_repaired_mean": 16.846652267818577,
+    "rouge_l_repaired_std": 0.0,
+    "token_f1_clean_mean": 19.555555555555557,
+    "token_f1_clean_std": 0.0,
+    "token_f1_noisy_mean": 30.495049504950494,
+    "token_f1_noisy_std": 0.0,
+    "token_f1_repaired_mean": 21.598272138228943,
+    "token_f1_repaired_std": 0.0,
+    "exact_match_clean_mean": 0.0,
+    "exact_match_clean_std": 0.0,
+    "exact_match_noisy_mean": 0.0,
+    "exact_match_noisy_std": 0.0,
+    "exact_match_repaired_mean": 0.0,
+    "exact_match_repaired_std": 0.0,
+    "med_coverage_clean_mean": 8.695652173913043,
+    "med_coverage_clean_std": 0.0,
+    "med_coverage_noisy_mean": 14.975845410628018,
+    "med_coverage_noisy_std": 0.0,
+    "med_coverage_repaired_mean": 11.11111111111111,
+    "med_coverage_repaired_std": 0.0,
+    "med_precision_clean_mean": 75.0,
+    "med_precision_clean_std": 0.0,
+    "med_precision_noisy_mean": 57.407407407407405,
+    "med_precision_noisy_std": 0.0,
+    "med_precision_repaired_mean": 69.6969696969697,
+    "med_precision_repaired_std": 0.0,
+    "med_f1_clean_mean": 15.584415584415584,
+    "med_f1_clean_std": 0.0,
+    "med_f1_noisy_mean": 23.754789272030653,
+    "med_f1_noisy_std": 0.0,
+    "med_f1_repaired_mean": 19.16666666666666,
+    "med_f1_repaired_std": 0.0,
+    "bertscore_clean_mean": 0.8531581163406372,
+    "bertscore_clean_std": 0.0,
+    "bertscore_noisy_mean": 0.832264244556427,
+    "bertscore_noisy_std": 0.0,
+    "bertscore_repaired_mean": 0.8319514393806458,
+    "bertscore_repaired_std": 0.0,
+    "intent_preservation_clean_mean": 1.0,
+    "intent_preservation_clean_std": 0.0,
+    "intent_preservation_noisy_mean": 0.8992835283279419,
+    "intent_preservation_noisy_std": 0.0,
+    "intent_preservation_repaired_mean": 0.9456538558006288,
+    "intent_preservation_repaired_std": 0.0,
+    "geval_clean_mean": 5.0,
+    "geval_clean_std": 0.0,
+    "geval_noisy_mean": 5.0,
+    "geval_noisy_std": 0.0,
+    "geval_repaired_mean": 4.0,
+    "geval_repaired_std": 0.0,
+    "bleu_degradation": -2.981899633503897,
+    "bleu_recovery": -2.231517989414527,
+    "bleu_recovery_ratio": NaN,
+    "chrf_degradation": -8.298091078066095,
+    "chrf_recovery": -5.438178400042233,
+    "chrf_recovery_ratio": NaN,
+    "rouge_l_degradation": -2.6138613861386126,
+    "rouge_l_recovery": -1.7672091183200358,
+    "rouge_l_recovery_ratio": NaN,
+    "token_f1_degradation": -10.939493949394937,
+    "token_f1_recovery": -8.896777366721551,
+    "token_f1_recovery_ratio": NaN,
+    "exact_match_degradation": 0.0,
+    "exact_match_recovery": 0.0,
+    "exact_match_recovery_ratio": NaN,
+    "med_coverage_degradation": -6.280193236714975,
+    "med_coverage_recovery": -3.8647342995169076,
+    "med_coverage_recovery_ratio": NaN,
+    "med_precision_degradation": 17.592592592592595,
+    "med_precision_recovery": 12.289562289562298,
+    "med_precision_recovery_ratio": 0.6985645933014357,
+    "med_f1_degradation": -8.170373687615069,
+    "med_f1_recovery": -4.588122605363992,
+    "med_f1_recovery_ratio": NaN,
+    "bertscore_degradation": 0.020893871784210205,
+    "bertscore_recovery": -0.00031280517578125,
+    "bertscore_recovery_ratio": -0.014971144602200599,
+    "intent_preservation_degradation": 0.1007164716720581,
+    "intent_preservation_recovery": 0.04637032747268688,
+    "intent_preservation_recovery_ratio": 0.46040460614697504,
+    "geval_degradation": 0.0,
+    "geval_recovery": -1.0,
+    "geval_recovery_ratio": NaN,
+    "runtime_seconds": 3.5695509910583496
+  }
+]

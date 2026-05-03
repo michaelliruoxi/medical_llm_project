@@ -14,6 +14,20 @@ from src.utils import PROJECT_ROOT, load_config, load_prompts, call_llm, setup_l
 logger = setup_logging()
 
 
+def _noise_messages(system_msg: str, user_msg: str, attempt: int, last_reason: str) -> list[dict]:
+    if attempt == 0:
+        content = user_msg
+    else:
+        content = (
+            f"{user_msg}\n\n"
+            f"Retry correction: {retry_feedback('noise', last_reason)}"
+        )
+    return [
+        {"role": "system", "content": system_msg},
+        {"role": "user", "content": content},
+    ]
+
+
 def generate_noisy_variant(question: str, noise_type: str,
                            prompts: dict, cfg: dict) -> str:
     """Call the noise LLM to produce a single noisy variant."""
@@ -21,23 +35,12 @@ def generate_noisy_variant(question: str, noise_type: str,
     user_msg = prompts["noise"]["user_template"].format(
         noise_type=noise_type, question=question
     )
-    base_messages = [
-        {"role": "system", "content": system_msg},
-        {"role": "user", "content": user_msg},
-    ]
     attempts = max(int(cfg.get("max_validation_retries_noise", 2)) + 1, 1)
     last_candidate = ""
     last_reason = "did not produce a valid noisy question"
 
     for attempt in range(attempts):
-        messages = list(base_messages)
-        if attempt > 0:
-            messages.append(
-                {
-                    "role": "user",
-                    "content": retry_feedback("noise", last_reason),
-                }
-            )
+        messages = _noise_messages(system_msg, user_msg, attempt, last_reason)
 
         raw = call_llm(
             messages=messages,

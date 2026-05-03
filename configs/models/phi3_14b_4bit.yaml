@@ -18,6 +18,9 @@ answer_model: microsoft/Phi-3-medium-4k-instruct
 repair_model: microsoft/Phi-3-medium-4k-instruct
 noise_model: microsoft/Phi-3-medium-4k-instruct
 judge_model: microsoft/Phi-3-medium-4k-instruct
+geval_model: gpt-5.4-mini
+geval_backend: openai
+geval_api_mode: responses
 
 temperature_answer: 0.2
 temperature_noise: 0.8

@@ -18,6 +18,9 @@ answer_model: openai/gpt-oss-20b
 repair_model: openai/gpt-oss-20b
 noise_model: openai/gpt-oss-20b
 judge_model: openai/gpt-oss-20b
+geval_model: gpt-5.4-mini
+geval_backend: openai
+geval_api_mode: responses
 
 temperature_answer: 0.2
 temperature_noise: 0.8

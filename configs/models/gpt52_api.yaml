@@ -20,6 +20,9 @@ answer_model: gpt-5.2
 repair_model: gpt-5.2
 noise_model: gpt-5.2
 judge_model: gpt-5.2
+geval_model: gpt-5.4-mini
+geval_backend: openai
+geval_api_mode: responses
 
 reasoning_effort_answer: medium
 reasoning_effort_repair: low

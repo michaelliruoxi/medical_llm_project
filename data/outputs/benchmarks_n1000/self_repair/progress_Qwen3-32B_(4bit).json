@@ -1,0 +1,13 @@
+{
+  "model": "Qwen3-32B (4bit)",
+  "config": "qwen3_32b_4bit.yaml",
+  "benchmark_mode": "self_repair",
+  "question_set_dir": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\processed\\benchmarks\\fixed_question_sets_gpt54_n1000",
+  "status": "completed",
+  "rows_completed": 1000,
+  "rows_expected": 1000,
+  "error": null,
+  "samples_csv": "data\\outputs\\benchmarks_n1000\\self_repair\\samples_Qwen3-32B_(4bit).csv",
+  "result_json": "data\\outputs\\benchmarks_n1000\\self_repair\\result_Qwen3-32B_(4bit).json",
+  "updated_at_epoch": 1777763127.6812322
+}

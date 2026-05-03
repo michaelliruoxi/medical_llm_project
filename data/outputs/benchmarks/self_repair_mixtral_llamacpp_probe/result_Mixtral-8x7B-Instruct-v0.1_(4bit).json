@@ -1,0 +1,678 @@
+{
+  "model": "Mixtral-8x7B-Instruct-v0.1",
+  "label": "Mixtral-8x7B-Instruct-v0.1 (4bit)",
+  "config": "mixtral_8x7b_4bit.yaml",
+  "quantization": "4bit",
+  "n_examples": 3,
+  "n_noise_types": 5,
+  "noise_types": [
+    "typos_grammar",
+    "ambiguity",
+    "layperson",
+    "incomplete",
+    "overgeneralization"
+  ],
+  "noise_assignment": "round_robin",
+  "benchmark_mode": "self_repair",
+  "question_set_dir": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\processed\\benchmarks\\fixed_question_sets_gpt54",
+  "status": "completed",
+  "rows_completed": 3,
+  "rows_expected": 3,
+  "error": null,
+  "detailed_results": [
+    {
+      "noise_type": "ambiguity",
+      "question_ids": [
+        1
+      ],
+      "questions_clean": [
+        "What is (are) Abdominal Pain ?"
+      ],
+      "questions_noisy": [
+        "what does it mean if your stomach/belly area is hurting inside, like that kind of pain in the middle, or around there, is that just a regular stomach ache or something else?"
+      ],
+      "questions_repaired": [
+        "What does it indicate if one experiences persistent middle abdominal pain, is this simply a typical stomach ache or could it be something else?"
+      ],
+      "answers_clean": [
+        "Abdominal pain refers to discomfort or hurt felt in the abdomen, which is the area between the chest and pelvis. It can be acute (sudden and severe) or chronic (persistent or recurring), and can have various causes such as indigestion, infection, inflammation, obstruction, or injury of the organs located in this region like the stomach, small intestine, large intestine, liver, gallbladder, pancreas, or kidneys. The severity and location of the pain may provide clues about its underlying cause, but further diagnostic tests are often required for accurate diagnosis and treatment."
+      ],
+      "answers_noisy": [
+        "I'm an AI language model and while I can provide some general information, I can't diagnose symptoms or replace professional medical advice. However, I can tell you that abdominal pain can be caused by various factors, ranging from minor issues like gas or indigestion to more serious conditions such as appendicitis, inflammatory bowel disease, or even cancer. \n\nIf the pain is severe, persistent, or accompanied by other symptoms like fever, nausea, vomiting, or changes in bowel movements, it would be wise to seek immediate medical attention. If it's a mild, occasional discomfort, it might simply be a stomachache, which could be due to overeating, stress, or menstrual cramps, among other things. But remember, self-diagnosis can be risky - always consult with a healthcare professional for accurate assessment and treatment."
+      ],
+      "answers_repaired": [
+        "Persistent middle abdominal pain can indicate various conditions, not limited to a typical stomach ache. It could potentially signal issues such as gastrointestinal problems, kidney stones, or even appendicitis in some cases. If the pain is severe, persistent, or accompanied by other symptoms like fever, nausea, or vomiting, it is crucial to seek medical attention immediately to determine the cause and appropriate treatment."
+      ],
+      "reference_answers": [
+        "Your abdomen extends from below your chest to your groin. Some people call it the stomach, but your abdomen contains many other important organs. Pain in the abdomen can come from any one of them. The pain may start somewhere else, such as your chest. Severe pain doesn't always mean a serious problem. Nor does mild pain mean a problem is not serious. Call your healthcare provider if mild pain lasts a week or more or if you have pain with other symptoms. Get medical help immediately if - You have abdominal pain that is sudden and sharp - You also have pain in your chest, neck or shoulder - You're vomiting blood or have blood in your stool - Your abdomen is stiff, hard and tender to touch - You can't move your bowels, especially if you're also vomiting"
+      ],
+      "bleu": {
+        "clean": [
+          2.6506319585032485
+        ],
+        "noisy": [
+          1.361469027051382
+        ],
+        "repaired": [
+          0.9084924670931652
+        ]
+      },
+      "chrf": {
+        "clean": [
+          29.202015309032188
+        ],
+        "noisy": [
+          34.205893329404816
+        ],
+        "repaired": [
+          26.1962916624776
+        ]
+      },
+      "rouge_l": {
+        "clean": [
+          11.11111111111111
+        ],
+        "noisy": [
+          12.307692307692308
+        ],
+        "repaired": [
+          13.471502590673577
+        ]
+      },
+      "token_f1": {
+        "clean": [
+          25.925925925925924
+        ],
+        "noisy": [
+          29.23076923076924
+        ],
+        "repaired": [
+          26.94300518134715
+        ]
+      },
+      "exact_match": {
+        "clean": [
+          0.0
+        ],
+        "noisy": [
+          0.0
+        ],
+        "repaired": [
+          0.0
+        ]
+      },
+      "med_coverage": {
+        "clean": [
+          10.0
+        ],
+        "noisy": [
+          10.0
+        ],
+        "repaired": [
+          8.333333333333332
+        ]
+      },
+      "med_precision": {
+        "clean": [
+          14.634146341463412
+        ],
+        "noisy": [
+          10.714285714285714
+        ],
+        "repaired": [
+          19.230769230769237
+        ]
+      },
+      "med_f1": {
+        "clean": [
+          11.88118811881188
+        ],
+        "noisy": [
+          10.3448275862069
+        ],
+        "repaired": [
+          11.627906976744184
+        ]
+      },
+      "bertscore": {
+        "clean": [
+          0.8384106755256653
+        ],
+        "noisy": [
+          0.8463030457496643
+        ],
+        "repaired": [
+          0.8567913770675659
+        ]
+      },
+      "intent_preservation": {
+        "clean": [
+          1.0
+        ],
+        "noisy": [
+          0.6781894564628601
+        ],
+        "repaired": [
+          0.7607349157333374
+        ]
+      },
+      "geval": {
+        "clean": [
+          4.0
+        ],
+        "noisy": [
+          4.0
+        ],
+        "repaired": [
+          5.0
+        ]
+      }
+    },
+    {
+      "noise_type": "layperson",
+      "question_ids": [
+        2
+      ],
+      "questions_clean": [
+        "What is (are) Abortion ?"
+      ],
+      "questions_noisy": [
+        "what does it mean when a pregancy gets ended early or the baby is not kept, like how does that whole thing happen and what is it exactly ?"
+      ],
+      "questions_repaired": [
+        "What does it mean when a pregnancy is terminated early, resulting in a missed miscarriage or induced abortion, and what processes occur during this event?"
+      ],
+      "answers_clean": [
+        "An abortion is a medical procedure that terminates a pregnancy. It can be performed surgically or through medication, also known as medical abortion. The legality and availability of abortions vary by country and state. Two types of surgical procedures are dilation and evacuation (D&E) and dilation and curettage (D&C). Medical abortions involve taking medications to cause the embryo or fetus to be expelled from the uterus. The timing of an abortion depends on various factors including gestational age, personal preference, and medical indications."
+      ],
+      "answers_noisy": [
+        "It sounds like you're asking about pregnancy loss before 20 weeks gestation, often referred to as a miscarriage. A miscarriage can occur due to various reasons such as chromosomal abnormalities, hormonal imbalances, infections, maternal health issues, or lifestyle factors (like smoking, alcohol use, or drug abuse). The body may naturally expel the pregnancy tissue, or a healthcare provider might need to perform a procedure to remove it. Emotional support is crucial during this time, and follow-up care with a healthcare professional should be sought for proper physical and mental healing."
+      ],
+      "answers_repaired": [
+        "An early pregnancy termination can result in either a missed miscarriage or an induced abortion. A missed miscarriage, also known as a silent miscarriage, occurs when a pregnancy ends naturally, but the fetus has not been expelled from the uterus. The body may not show any symptoms, and the pregnancy may not be aware that the miscarriage has happened. The body may eventually expel the fetus, or a medical procedure may be required to remove it.\n\nAn induced abortion is a deliberate termination of a pregnancy, usually performed during the first trimester. The process involves removing the contents of the uterus, including the fetus and placenta, using medication or a surgical procedure. The specific methods and procedures may vary depending on the stage of the pregnancy, the patient's health, and the provider's recommendations."
+      ],
+      "reference_answers": [
+        "An abortion is a procedure to end a pregnancy. It uses medicine or surgery to remove the embryo or fetus and placenta from the uterus. The procedure is done by a licensed health care professional. The decision to end a pregnancy is very personal. If you are thinking of having an abortion, most healthcare providers advise counseling."
+      ],
+      "bleu": {
+        "clean": [
+          12.403555008410216
+        ],
+        "noisy": [
+          2.6192890734117427
+        ],
+        "repaired": [
+          5.382089263291921
+        ]
+      },
+      "chrf": {
+        "clean": [
+          42.77545509586027
+        ],
+        "noisy": [
+          39.34389157605288
+        ],
+        "repaired": [
+          40.12236670465906
+        ]
+      },
+      "rouge_l": {
+        "clean": [
+          22.580645161290324
+        ],
+        "noisy": [
+          12.12121212121212
+        ],
+        "repaired": [
+          12.987012987012989
+        ]
+      },
+      "token_f1": {
+        "clean": [
+          30.64516129032258
+        ],
+        "noisy": [
+          25.75757575757576
+        ],
+        "repaired": [
+          24.675324675324678
+        ]
+      },
+      "exact_match": {
+        "clean": [
+          0.0
+        ],
+        "noisy": [
+          0.0
+        ],
+        "repaired": [
+          0.0
+        ]
+      },
+      "med_coverage": {
+        "clean": [
+          23.809523809523807
+        ],
+        "noisy": [
+          28.57142857142857
+        ],
+        "repaired": [
+          38.095238095238095
+        ]
+      },
+      "med_precision": {
+        "clean": [
+          20.0
+        ],
+        "noisy": [
+          13.333333333333334
+        ],
+        "repaired": [
+          16.3265306122449
+        ]
+      },
+      "med_f1": {
+        "clean": [
+          21.73913043478261
+        ],
+        "noisy": [
+          18.181818181818183
+        ],
+        "repaired": [
+          22.857142857142858
+        ]
+      },
+      "bertscore": {
+        "clean": [
+          0.8836723566055298
+        ],
+        "noisy": [
+          0.8545554876327515
+        ],
+        "repaired": [
+          0.8824306726455688
+        ]
+      },
+      "intent_preservation": {
+        "clean": [
+          0.9999999403953552
+        ],
+        "noisy": [
+          0.4420582950115204
+        ],
+        "repaired": [
+          0.5593756437301636
+        ]
+      },
+      "geval": {
+        "clean": [
+          4.0
+        ],
+        "noisy": [
+          2.0
+        ],
+        "repaired": [
+          5.0
+        ]
+      }
+    },
+    {
+      "noise_type": "typos_grammar",
+      "question_ids": [
+        0
+      ],
+      "questions_clean": [
+        "Do you have information about A1C"
+      ],
+      "questions_noisy": [
+        "do you got any info rmation abotu A1C , like what it is an how it works?"
+      ],
+      "questions_repaired": [
+        "What is A1C and how does it work?"
+      ],
+      "answers_clean": [
+        "Yes, I can provide information about A1C. A1C is a blood test that measures your average blood sugar levels over the past 2-3 months. It's also known as hemoglobin A1c or glycated hemoglobin. The test works by measuring the amount of glucose attached to hemoglobin, a protein in red blood cells. Higher blood sugar levels cause more glucose to attach to hemoglobin, resulting in a higher A1C level. An A1C level of 6.5% or higher typically indicates diabetes, while an A1C between 5.7% and 6.4% suggests prediabetes. Lower A1C levels indicate better blood sugar control. Regular A1C testing is important for managing diabetes and reducing the risk of complications associated with the disease."
+      ],
+      "answers_noisy": [
+        "Yes, I'd be happy to help explain! An A1C test, also known as hemoglobin A1c or HbA1c, is a common blood test used to diagnose and monitor diabetes. The test measures the average level of glucose (sugar) in your blood over the past 2-3 months by checking the amount of glycated hemoglobin in your red blood cells. Hemoglobin is a protein found inside your red blood cells that carries oxygen throughout your body. When sugar enters your bloodstream, some of it attaches to hemoglobin, forming glycated hemoglobin.\n\nThe more glucose there is in your blood, the higher the amount of glycated hemoglobin will be. This makes the A1C test a useful tool for tracking long-term control of blood sugar levels in people with diabetes. It provides valuable information about overall trends rather than short-term fluctuations, allowing healthcare providers to evaluate the effectiveness of treatment plans and adjust them accordingly.\n\nIn general, an A1C result below 5.7% is considered normal; values between 5.7% and 6.4% indicate prediabetes, while an A1C equal to or greater than 6.5% suggests a diagnosis of diabetes. However, these thresholds may vary slightly depending on the"
+      ],
+      "answers_repaired": [
+        "A1C, also known as hemoglobin A1c or glycated hemoglobin, is a blood test that measures your average blood sugar levels over the past 2-3 months. It works by measuring the percentage of hemoglobin (the protein in red blood cells that carries oxygen) that is coated with sugar. The higher your blood sugar levels, the more sugar will be attached to your hemoglobin. An A1C test can help diagnose diabetes and monitor blood sugar levels in people with diabetes. The target A1C level for most people with diabetes is below 7%."
+      ],
+      "reference_answers": [
+        "Summary : A1C is a blood test for type 2 diabetes and prediabetes. It measures your average blood glucose, or blood sugar, level over the past 3 months. Doctors may use the A1C alone or in combination with other diabetes tests to make a diagnosis. They also use the A1C to see how well you are managing your diabetes. This test is different from the blood sugar checks that people with diabetes do every day. Your A1C test result is given in percentages. The higher the percentage, the higher your blood sugar levels have been: - A normal A1C level is below 5.7 percent - Prediabetes is between 5.7 to 6.4 percent. Having prediabetes is a risk factor for getting type 2 diabetes. People with prediabetes may need retests every year. - Type 2 diabetes is above 6.5 percent - If you have diabetes, you should have the A1C test at least twice a year. The A1C goal for many people with diabetes is below 7. It may be different for you. Ask what your goal should be. If your A1C result is too high, you may need to change your diabetes care plan. NIH: National Institute of Diabetes and Digestive and Kidney Diseases"
+      ],
+      "bleu": {
+        "clean": [
+          5.259864817904746
+        ],
+        "noisy": [
+          4.0806657474262975
+        ],
+        "repaired": [
+          6.616034505951472
+        ]
+      },
+      "chrf": {
+        "clean": [
+          32.51744491379481
+        ],
+        "noisy": [
+          39.892773086252966
+        ],
+        "repaired": [
+          30.050687398093466
+        ]
+      },
+      "rouge_l": {
+        "clean": [
+          24.24242424242425
+        ],
+        "noisy": [
+          21.68021680216802
+        ],
+        "repaired": [
+          25.735294117647054
+        ]
+      },
+      "token_f1": {
+        "clean": [
+          41.07744107744107
+        ],
+        "noisy": [
+          42.27642276422764
+        ],
+        "repaired": [
+          38.235294117647065
+        ]
+      },
+      "exact_match": {
+        "clean": [
+          0.0
+        ],
+        "noisy": [
+          0.0
+        ],
+        "repaired": [
+          0.0
+        ]
+      },
+      "med_coverage": {
+        "clean": [
+          22.666666666666664
+        ],
+        "noisy": [
+          25.333333333333336
+        ],
+        "repaired": [
+          24.0
+        ]
+      },
+      "med_precision": {
+        "clean": [
+          35.41666666666667
+        ],
+        "noisy": [
+          25.67567567567568
+        ],
+        "repaired": [
+          51.42857142857142
+        ]
+      },
+      "med_f1": {
+        "clean": [
+          27.64227642276423
+        ],
+        "noisy": [
+          25.503355704697988
+        ],
+        "repaired": [
+          32.72727272727273
+        ]
+      },
+      "bertscore": {
+        "clean": [
+          0.8713674545288086
+        ],
+        "noisy": [
+          0.8635678291320801
+        ],
+        "repaired": [
+          0.8694988489151001
+        ]
+      },
+      "intent_preservation": {
+        "clean": [
+          1.0
+        ],
+        "noisy": [
+          0.8034437298774719
+        ],
+        "repaired": [
+          0.8761646747589111
+        ]
+      },
+      "geval": {
+        "clean": [
+          4.0
+        ],
+        "noisy": [
+          4.0
+        ],
+        "repaired": [
+          5.0
+        ]
+      }
+    }
+  ],
+  "per_noise_type": [
+    {
+      "noise_type": "typos_grammar",
+      "bleu_clean_mean": 5.259864817904746,
+      "bleu_noisy_mean": 4.0806657474262975,
+      "bleu_repaired_mean": 6.616034505951472,
+      "chrf_clean_mean": 32.51744491379481,
+      "chrf_noisy_mean": 39.892773086252966,
+      "chrf_repaired_mean": 30.050687398093466,
+      "rouge_l_clean_mean": 24.24242424242425,
+      "rouge_l_noisy_mean": 21.68021680216802,
+      "rouge_l_repaired_mean": 25.735294117647054,
+      "token_f1_clean_mean": 41.07744107744107,
+      "token_f1_noisy_mean": 42.27642276422764,
+      "token_f1_repaired_mean": 38.235294117647065,
+      "exact_match_clean_mean": 0.0,
+      "exact_match_noisy_mean": 0.0,
+      "exact_match_repaired_mean": 0.0,
+      "med_coverage_clean_mean": 22.666666666666664,
+      "med_coverage_noisy_mean": 25.333333333333336,
+      "med_coverage_repaired_mean": 24.0,
+      "med_precision_clean_mean": 35.41666666666667,
+      "med_precision_noisy_mean": 25.67567567567568,
+      "med_precision_repaired_mean": 51.42857142857142,
+      "med_f1_clean_mean": 27.64227642276423,
+      "med_f1_noisy_mean": 25.503355704697988,
+      "med_f1_repaired_mean": 32.72727272727273,
+      "bertscore_clean_mean": 0.8713674545288086,
+      "bertscore_noisy_mean": 0.8635678291320801,
+      "bertscore_repaired_mean": 0.8694988489151001,
+      "intent_preservation_clean_mean": 1.0,
+      "intent_preservation_noisy_mean": 0.8034437298774719,
+      "intent_preservation_repaired_mean": 0.8761646747589111,
+      "geval_clean_mean": 4.0,
+      "geval_noisy_mean": 4.0,
+      "geval_repaired_mean": 5.0
+    },
+    {
+      "noise_type": "ambiguity",
+      "bleu_clean_mean": 2.6506319585032485,
+      "bleu_noisy_mean": 1.361469027051382,
+      "bleu_repaired_mean": 0.9084924670931652,
+      "chrf_clean_mean": 29.202015309032188,
+      "chrf_noisy_mean": 34.205893329404816,
+      "chrf_repaired_mean": 26.1962916624776,
+      "rouge_l_clean_mean": 11.11111111111111,
+      "rouge_l_noisy_mean": 12.307692307692308,
+      "rouge_l_repaired_mean": 13.471502590673577,
+      "token_f1_clean_mean": 25.925925925925924,
+      "token_f1_noisy_mean": 29.23076923076924,
+      "token_f1_repaired_mean": 26.94300518134715,
+      "exact_match_clean_mean": 0.0,
+      "exact_match_noisy_mean": 0.0,
+      "exact_match_repaired_mean": 0.0,
+      "med_coverage_clean_mean": 10.0,
+      "med_coverage_noisy_mean": 10.0,
+      "med_coverage_repaired_mean": 8.333333333333332,
+      "med_precision_clean_mean": 14.634146341463412,
+      "med_precision_noisy_mean": 10.714285714285714,
+      "med_precision_repaired_mean": 19.230769230769237,
+      "med_f1_clean_mean": 11.88118811881188,
+      "med_f1_noisy_mean": 10.3448275862069,
+      "med_f1_repaired_mean": 11.627906976744184,
+      "bertscore_clean_mean": 0.8384106755256653,
+      "bertscore_noisy_mean": 0.8463030457496643,
+      "bertscore_repaired_mean": 0.8567913770675659,
+      "intent_preservation_clean_mean": 1.0,
+      "intent_preservation_noisy_mean": 0.6781894564628601,
+      "intent_preservation_repaired_mean": 0.7607349157333374,
+      "geval_clean_mean": 4.0,
+      "geval_noisy_mean": 4.0,
+      "geval_repaired_mean": 5.0
+    },
+    {
+      "noise_type": "layperson",
+      "bleu_clean_mean": 12.403555008410216,
+      "bleu_noisy_mean": 2.6192890734117427,
+      "bleu_repaired_mean": 5.382089263291921,
+      "chrf_clean_mean": 42.77545509586027,
+      "chrf_noisy_mean": 39.34389157605288,
+      "chrf_repaired_mean": 40.12236670465906,
+      "rouge_l_clean_mean": 22.580645161290324,
+      "rouge_l_noisy_mean": 12.12121212121212,
+      "rouge_l_repaired_mean": 12.987012987012989,
+      "token_f1_clean_mean": 30.64516129032258,
+      "token_f1_noisy_mean": 25.75757575757576,
+      "token_f1_repaired_mean": 24.675324675324678,
+      "exact_match_clean_mean": 0.0,
+      "exact_match_noisy_mean": 0.0,
+      "exact_match_repaired_mean": 0.0,
+      "med_coverage_clean_mean": 23.809523809523807,
+      "med_coverage_noisy_mean": 28.57142857142857,
+      "med_coverage_repaired_mean": 38.095238095238095,
+      "med_precision_clean_mean": 20.0,
+      "med_precision_noisy_mean": 13.333333333333334,
+      "med_precision_repaired_mean": 16.3265306122449,
+      "med_f1_clean_mean": 21.73913043478261,
+      "med_f1_noisy_mean": 18.181818181818183,
+      "med_f1_repaired_mean": 22.857142857142858,
+      "bertscore_clean_mean": 0.8836723566055298,
+      "bertscore_noisy_mean": 0.8545554876327515,
+      "bertscore_repaired_mean": 0.8824306726455688,
+      "intent_preservation_clean_mean": 0.9999999403953552,
+      "intent_preservation_noisy_mean": 0.4420582950115204,
+      "intent_preservation_repaired_mean": 0.5593756437301636,
+      "geval_clean_mean": 4.0,
+      "geval_noisy_mean": 2.0,
+      "geval_repaired_mean": 5.0
+    }
+  ],
+  "bleu_clean_mean": 6.7713505949394035,
+  "bleu_clean_std": 4.122565458949496,
+  "bleu_noisy_mean": 2.6871412826298076,
+  "bleu_noisy_std": 1.1111437479001094,
+  "bleu_repaired_mean": 4.302205412112186,
+  "bleu_repaired_std": 2.4520224143025,
+  "chrf_clean_mean": 34.831638439562425,
+  "chrf_clean_std": 5.777899599202145,
+  "chrf_noisy_mean": 37.81418599723689,
+  "chrf_noisy_std": 2.561269178956389,
+  "chrf_repaired_mean": 32.123115255076705,
+  "chrf_repaired_std": 5.871121950525723,
+  "rouge_l_clean_mean": 19.311393504941893,
+  "rouge_l_clean_std": 5.838027688215255,
+  "rouge_l_noisy_mean": 15.369707077024147,
+  "rouge_l_noisy_std": 4.462853605660765,
+  "rouge_l_repaired_mean": 17.397936565111205,
+  "rouge_l_repaired_std": 5.898719113114514,
+  "token_f1_clean_mean": 32.54950943122986,
+  "token_f1_clean_std": 6.330455972412573,
+  "token_f1_noisy_mean": 32.421589250857544,
+  "token_f1_noisy_std": 7.111215362966688,
+  "token_f1_repaired_mean": 29.95120799143963,
+  "token_f1_repaired_std": 5.930438765620717,
+  "exact_match_clean_mean": 0.0,
+  "exact_match_clean_std": 0.0,
+  "exact_match_noisy_mean": 0.0,
+  "exact_match_noisy_std": 0.0,
+  "exact_match_repaired_mean": 0.0,
+  "exact_match_repaired_std": 0.0,
+  "med_coverage_clean_mean": 18.825396825396822,
+  "med_coverage_clean_std": 6.257915119086555,
+  "med_coverage_noisy_mean": 21.3015873015873,
+  "med_coverage_noisy_std": 8.100029705472002,
+  "med_coverage_repaired_mean": 23.47619047619047,
+  "med_coverage_repaired_std": 12.155890919689858,
+  "med_precision_clean_mean": 23.35027100271003,
+  "med_precision_clean_std": 8.80895470948252,
+  "med_precision_noisy_mean": 16.574431574431575,
+  "med_precision_noisy_std": 6.523768632241781,
+  "med_precision_repaired_mean": 28.99529042386185,
+  "med_precision_repaired_std": 15.906973794859692,
+  "med_f1_clean_mean": 20.420864992119572,
+  "med_f1_clean_std": 6.5016071840858745,
+  "med_f1_noisy_mean": 18.01000049090769,
+  "med_f1_noisy_std": 6.189635674197828,
+  "med_f1_repaired_mean": 22.40410752038659,
+  "med_f1_repaired_std": 8.61973470322247,
+  "bertscore_clean_mean": 0.8644834955533346,
+  "bertscore_clean_std": 0.019108403246143622,
+  "bertscore_noisy_mean": 0.8548087875048319,
+  "bertscore_noisy_std": 0.007050593683245496,
+  "bertscore_repaired_mean": 0.8695736328760783,
+  "bertscore_repaired_std": 0.010467332162961895,
+  "intent_preservation_clean_mean": 0.999999980131785,
+  "intent_preservation_clean_std": 2.8097899007262688e-08,
+  "intent_preservation_noisy_mean": 0.6412304937839508,
+  "intent_preservation_noisy_std": 0.149831754144527,
+  "intent_preservation_repaired_mean": 0.7320917447408041,
+  "intent_preservation_repaired_std": 0.13090491709230234,
+  "geval_clean_mean": 4.0,
+  "geval_clean_std": 0.0,
+  "geval_noisy_mean": 3.3333333333333335,
+  "geval_noisy_std": 0.9428090415820634,
+  "geval_repaired_mean": 5.0,
+  "geval_repaired_std": 0.0,
+  "bleu_degradation": 4.084209312309596,
+  "bleu_recovery": 1.6150641294823784,
+  "bleu_recovery_ratio": 0.3954410770806135,
+  "chrf_degradation": -2.982547557674465,
+  "chrf_recovery": -5.691070742160186,
+  "chrf_recovery_ratio": NaN,
+  "rouge_l_degradation": 3.9416864279177464,
+  "rouge_l_recovery": 2.0282294880870584,
+  "rouge_l_recovery_ratio": 0.5145588126243975,
+  "token_f1_degradation": 0.127920180372314,
+  "token_f1_recovery": -2.4703812594179126,
+  "token_f1_recovery_ratio": NaN,
+  "exact_match_degradation": 0.0,
+  "exact_match_recovery": 0.0,
+  "exact_match_recovery_ratio": NaN,
+  "med_coverage_degradation": -2.476190476190478,
+  "med_coverage_recovery": 2.1746031746031704,
+  "med_coverage_recovery_ratio": NaN,
+  "med_precision_degradation": 6.775839428278456,
+  "med_precision_recovery": 12.420858849430275,
+  "med_precision_recovery_ratio": 1.0,
+  "med_f1_degradation": 2.410864501211883,
+  "med_f1_recovery": 4.394107029478899,
+  "med_f1_recovery_ratio": 1.0,
+  "bertscore_degradation": 0.009674708048502678,
+  "bertscore_recovery": 0.014764845371246338,
+  "bertscore_recovery_ratio": NaN,
+  "intent_preservation_degradation": 0.35876948634783423,
+  "intent_preservation_recovery": 0.09086125095685327,
+  "intent_preservation_recovery_ratio": 0.2532580233670192,
+  "geval_degradation": 0.6666666666666665,
+  "geval_recovery": 1.6666666666666665,
+  "geval_recovery_ratio": 1.0,
+  "runtime_seconds": 7.683279275894165
+}

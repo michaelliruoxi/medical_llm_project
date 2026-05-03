@@ -1,0 +1,13 @@
+{
+    "updated_at":  "2026-04-29T01:04:30",
+    "step":  "supervisor",
+    "state":  "paused",
+    "message":  "Paused by user request on 2026-04-29. Stopped supervisor PID 49344, run_comparison PID 34440, and llama-server PID 41584.",
+    "extra":  {
+                  "stopped_process_ids":  [
+                                              49344,
+                                              34440,
+                                              41584
+                                          ]
+              }
+}

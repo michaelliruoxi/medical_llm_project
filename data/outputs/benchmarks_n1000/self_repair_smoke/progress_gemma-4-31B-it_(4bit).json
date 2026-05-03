@@ -1,0 +1,13 @@
+{
+  "model": "gemma-4-31B-it (4bit)",
+  "config": "gemma4_31b_q6k_ref.yaml",
+  "benchmark_mode": "self_repair",
+  "question_set_dir": "C:\\Users\\Owner\\OneDrive\\Columbia University\\Practicum\\medical_llm_project\\data\\processed\\benchmarks\\fixed_question_sets_gpt54_n1000",
+  "status": "completed",
+  "rows_completed": 2,
+  "rows_expected": 2,
+  "error": null,
+  "samples_csv": "data\\outputs\\benchmarks_n1000\\self_repair_smoke\\samples_gemma-4-31B-it_(4bit).csv",
+  "result_json": "data\\outputs\\benchmarks_n1000\\self_repair_smoke\\result_gemma-4-31B-it_(4bit).json",
+  "updated_at_epoch": 1777611021.5569608
+}

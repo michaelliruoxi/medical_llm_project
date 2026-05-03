@@ -17,6 +17,9 @@ answer_model: google/gemma-2-9b-it
 repair_model: google/gemma-2-9b-it
 noise_model: google/gemma-2-9b-it
 judge_model: google/gemma-2-9b-it
+geval_model: gpt-5.4-mini
+geval_backend: openai
+geval_api_mode: responses
 
 temperature_answer: 0.2
 temperature_noise: 0.8

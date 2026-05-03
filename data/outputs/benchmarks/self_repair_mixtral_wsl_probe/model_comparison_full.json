@@ -1,0 +1,27 @@
+[
+  {
+    "model": "mistralai/Mixtral-8x7B-Instruct-v0.1",
+    "label": "Mixtral-8x7B-Instruct-v0.1 (4bit)",
+    "config": "mixtral_8x7b_4bit.yaml",
+    "quantization": "4bit",
+    "n_examples": 2,
+    "n_noise_types": 5,
+    "noise_types": [
+      "typos_grammar",
+      "ambiguity",
+      "layperson",
+      "incomplete",
+      "overgeneralization"
+    ],
+    "noise_assignment": "round_robin",
+    "benchmark_mode": "self_repair",
+    "question_set_dir": "/mnt/c/Users/Owner/OneDrive/Columbia University/Practicum/medical_llm_project/data/processed/benchmarks/fixed_question_sets_gpt54",
+    "status": "running",
+    "rows_completed": 0,
+    "rows_expected": 2,
+    "error": null,
+    "detailed_results": [],
+    "per_noise_type": [],
+    "runtime_seconds": 0.16484427452087402
+  }
+]
